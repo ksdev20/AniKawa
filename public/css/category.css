@@ -1,0 +1,157 @@
+.main-root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-main {
+    width: 100%;
+    max-width: 1250px;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-top {
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-section {
+    margin-top: 0px;
+}
+
+.category-text {
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.cat-des {
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.cat-slider {
+    margin-top: 40px;
+}
+
+.cat-slider-heading-big {
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+.cat-anime-card {
+    width: 17vw;
+    max-width: 200px;
+}
+
+.cat-slider-heading {
+    margin-bottom: 5px;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-all-text-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: gray;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.view-all-text-section:hover {
+    color: white;
+}
+
+.view-all-text-section:hover .view-all-icon {
+    fill: white;
+}
+
+.cat-anime-card-first {
+    padding: 5px;
+}
+
+.cat-anime-card-inside-heading {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/*Sub-category styles now*/
+
+.sub-cat-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.sub-cat-top {
+    display: flex;
+    gap: 12px;
+    color: gray;
+    font-size: 25px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.main-cat-link {
+    font-size: 28px;
+    color: gray;
+    text-decoration: none;
+}
+
+.main-cat-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.sub-cat-name {
+    color: white;
+    font-size: 25px;
+}
+
+.sub-cat-anime-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/*.sub-cat-anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    width: 100%;
+    gap: 12px;
+    justify-content: center;
+}*/
+
+.sub-cat-anime-card {
+    width: 25vw;
+    max-width: 214px;
+}
+
+@media screen and (max-width: 700px) {
+    .sub-cat-anime-card {
+        width: 39vw;
+        max-width: 210px;
+    }
+}
