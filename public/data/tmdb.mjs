@@ -31,7 +31,7 @@ function extractSeason(title) {
 
 
 async function searchShow(title) {
-  const API_KEY = "3d91002a5707fa86be6a7181ff177068";
+  /*FIND TMDB_API_KEY*/
   const query = encodeURIComponent(title);
   const url = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=${query}`;
 
@@ -49,7 +49,7 @@ async function searchShow(title) {
 }
 
 async function getEpisodeDescription(showId, season, episode) {
-  const apiKey = '3d91002a5707fa86be6a7181ff177068';
+  /*FIND YOUTUBE_API_KEY*/
   const url = `https://api.themoviedb.org/3/tv/${showId}/season/${season}/episode/${episode}?api_key=${apiKey}&language=en-US`;
 
   const res = await fetch(url);

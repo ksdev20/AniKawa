@@ -1,5 +1,5 @@
 import fs from 'fs';
-const API_KEY = "AIzaSyCSLV2xaco5tjvaDWKmZbGqinXH-fwEKuc";
+/*YOUTUBE_API_KEY*/
 const CHANNEL_ID = "UC0wNSTMWIL3qaorLx0jie6A"
 const MAX_RESULTS = 50;
 const MIN_DURATION_MINUTES = 10;

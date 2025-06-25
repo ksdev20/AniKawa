@@ -1,8 +1,7 @@
 /*import fs from 'fs';
 import { museIndiaPlaylistDataWithCleanTitle3 } from './museIndiaPlaylistDataWithCleanTitle3.mjs';
 
-const API_KEY = "AIzaSyCSLV2xaco5tjvaDWKmZbGqinXH-fwEKuc";
-
+FIND YOUTUBE_API_KEY
 async function getVideos(playlistID){
   let nextPageToken = '';
   const allVideos = [];
@@ -51,12 +50,13 @@ enrichWithVideos();*/
 import fs from 'fs';
 import { museIndiaPlaylistDataWithCleanTitle3 } from './museIndiaPlaylistDataWithCleanTitle3.mjs';
 
-const API_KEY = "AIzaSyCSLV2xaco5tjvaDWKmZbGqinXH-fwEKuc";
 
 async function getVideos(playlistID) {
   let nextPageToken = '';
   const allVideos = [];
 
+  /*YOUTUBE_API_KEY*/
+  
   do {
     const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistID}&maxResults=50&pageToken=${nextPageToken}&key=${API_KEY}`;
     const res = await fetch(url);
