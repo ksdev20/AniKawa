@@ -16,5 +16,9 @@
   },
   "devDependencies": {
     "tailwindcss": "^4.1.10"
-  }
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "type": "module"
 }
