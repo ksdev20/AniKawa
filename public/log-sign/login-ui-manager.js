@@ -70,8 +70,10 @@ mainActionBtn.addEventListener('click', () => {
     const email = emailInput.value;
     const password = passwordInput.value;
 
+    const baseURL = window.location.origin;
+
     if (isValidEmail(email) && isValidPassword(password)) {
-        fetch(`/api/${currentPage}`, {
+        fetch(`${baseURL}/api/${currentPage}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
