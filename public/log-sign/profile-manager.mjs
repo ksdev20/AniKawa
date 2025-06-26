@@ -9,7 +9,8 @@ let savedAvatarSrc = "";
 let savedValue = "";
 
 /*db*/
-fetch('http://localhost:3000/api/me?fields=email,profileName,profilePic,profileBanner', {
+const baseURL = window.location.origin;
+fetch(`${baseURL}/api/me?fields=email,profileName,profilePic,profileBanner`, {
     method: 'GET',
     credentials: 'include'
 })
@@ -239,7 +240,7 @@ saveBtn.addEventListener('click', async () => {
             profileName: inputElement.value
         }
 
-        fetch("http://localhost:3000/api/update", {
+        fetch(`${baseURL}/api/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

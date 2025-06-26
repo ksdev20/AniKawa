@@ -6,8 +6,9 @@ let hasFetched = false;
 const isIndex = window.location.pathname.endsWith("index.html");
 
 export function fetchWatchlist(force = false) {
+    const baseURL = window.location.origin;
     if (hasFetched && !force) return Promise.resolve(true);
-    return fetch('http://localhost:3000/api/me?fields=watchlist', {
+    return fetch(`${baseURL}/api/me?fields=watchlist`, {
         method: 'GET',
         credentials: "include"
     })
@@ -239,7 +240,9 @@ export function getCurrentDate() {
 }
 
 export function toggleWatchlist(data, method, btn, delFromHis = false, ac2BtnText = null) {
-    return fetch("http://localhost:3000/api/updateWatchlistOrHistory", {
+    const baseURL = window.location.origin;
+    
+    return fetch(`${baseURL}/api/updateWatchlistOrHistory`, {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json'

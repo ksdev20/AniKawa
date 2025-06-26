@@ -158,7 +158,8 @@ logSignOverlay.addEventListener('click', (event) => {
 /*server data fetch*/
 
 function fetchLoginData() {
-    fetch('http://localhost:3000/api/me?fields=profileName,profilePic', {
+    const baseURL = window.location.origin;
+    fetch(`${baseURL}/api/me?fields=profileName,profilePic`, {
         method: 'GET',
         credentials: "include"
     })
@@ -217,7 +218,8 @@ if (hBtnP){
 }
 
 function logout(){
-    fetch("http://localhost:3000/api/logout", {
+    const baseURL = window.location.origin;
+    fetch(`${baseURL}/api/logout`, {
         method: 'POST',
         credentials: "include"
     })

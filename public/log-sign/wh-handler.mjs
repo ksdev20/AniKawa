@@ -70,8 +70,10 @@ function createEpisodeCard(episode) {
 
 import { toggleWatchlist } from "../majorJs/anime-card.mjs";
 
+const baseURL = window.location.origin;
+
 function loadWatHis(thing, newlyadded = false) {
-    fetch(`http://localhost:3000/api/me?fields=${thing}`, {
+    fetch(`${baseURL}/api/me?fields=${thing}`, {
         method: 'GET',
         credentials: "include"
     })
@@ -261,7 +263,7 @@ historyBtn.addEventListener('click', () => {
 });
 
 function clearHistory(del) {
-    return fetch('http://localhost:3000/api/clearHistory', {
+    return fetch(`${baseURL}/api/clearHistory`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
