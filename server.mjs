@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI)
     });
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(cors({

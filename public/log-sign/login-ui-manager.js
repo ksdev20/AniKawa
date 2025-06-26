@@ -71,7 +71,7 @@ mainActionBtn.addEventListener('click', () => {
     const password = passwordInput.value;
 
     if (isValidEmail(email) && isValidPassword(password)) {
-        fetch(`http://localhost:3000/api/${currentPage}`, {
+        fetch(`/api/${currentPage}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
