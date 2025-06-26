@@ -45,6 +45,7 @@ const heroAnime = ["JUJUTSU KAISEN Season2", "Dr. STONE Season 4", "Astra Lost i
 
 function hsPoplator() {
     fetchWatchlist(true).then(() => {
+        document.querySelector(".hs-slider.skeleton").classList.add("hidden");
         for (const a of heroAnime) {
             const anime = aniOneAsiaDataAnilist3.find(n => n?.cleanTitle == a);
 
