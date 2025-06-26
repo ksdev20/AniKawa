@@ -121,7 +121,7 @@ export function createAndAppendAnimeCard(anime, sliderElement, fn = () => "", di
         localStorage.setItem('selectedEpisode', JSON.stringify(epData));
         toggleWatchlist(epData, 'history').then(res => {
             if (res) {
-                window.location.href = isIndex ? "./episodePage/episodeMainPage.html"  : "../episodePage/episodeMainPage.html";
+                window.location.href = isIndex ? "./episodePage/episodeMainPage.html" : "../episodePage/episodeMainPage.html";
             }
         });
     });
@@ -150,19 +150,6 @@ export async function populateSlider(sliderElement, animeArray, fn = () => Boole
         added++;
     }
     await new Promise(resolve => setTimeout(resolve, 2000));
-}
-
-if (slider) {
-    fetchWatchlist().then(() => {
-        hasFetched = true;
-        populateSlider(slider, aniOneAsiaDataAnilist3, topRatedLast5);
-        populateSlider(slider2, aniOneAsiaDataAnilist3, beginnerAnime);
-        populateSlider(slider3, aniOneAsiaDataAnilist3, sameMonthAnimeGen);
-        populateSlider(slider4, aniOneAsiaDataAnilist3, isPopular);
-        populateSlider(slider5, aniOneAsiaDataAnilist3, actionPopular);
-        populateSlider(slider6, aniOneAsiaDataAnilist3, adventurePopular);
-        slidersHandler();
-    });
 }
 
 function sameMonthAnimeGen(anime) {
@@ -292,7 +279,16 @@ export function toggleWatchlist(data, method, btn, delFromHis = false, ac2BtnTex
 }
 
 export function slidersHandler() {
-    const sliderWrapper = document.querySelectorAll(".slider-content-wrapper");
+    const pathname = window.location.pathname;
+    let sliderWrapper;
+
+    if (pathname.endsWith("category.html")){
+        sliderWrapper = document.querySelectorAll(".slider-content-wrapper.sl");
+    } else if (pathname.endsWith("index.html")){
+        sliderWrapper = document.getElementById("hpac").querySelectorAll(".slider-content-wrapper") || document.querySelectorAll(".slider-content-wrapper");
+    } else {
+        sliderWrapper = document.querySelectorAll(".slider-content-wrapper");
+    }
 
     sliderWrapper.forEach(sw => {
         const sliderContainer = sw.querySelector(".slider-container");
@@ -325,3 +321,144 @@ export function slidersHandler() {
 }
 
 document.addEventListener('DOMContentLoaded', slidersHandler);
+
+/*ANIME CARD 2 HANDLER*/
+
+function createAnimeCard2(anime) {
+    const data = anime?.anilist;
+    return `<div class="wrapper">
+        <img class="anime-card-2-image" src="${data?.coverImage}" />
+        <div class="anime-card-2-details">
+            <div class="anime-card-2-heading">${data?.title}</div>
+            <div class="anime-card-sub-dub">${data?.language}</div>
+            <div class="anime-card-2-para">${data?.description}</div>
+            <div class="anime-card-2-btn-section">
+                <div class="start-watching-btn card-2">
+                    <img class="watch-logo" src="./assets/icons/play_arrow_24dp_black.svg" />
+                    START WATCHING S1 E1
+                </div>
+                <div id="anime-card-2-watchlist-btn" class="anime-card-2-watchlist-btn">
+                    <svg class="wat-icon-ac-2" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px"
+                        fill="#ff640a">
+                        <path
+                            d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
+                    </svg>
+                    <div id="ac-2-wat-text" class="anime-card-2-watchlist-text">ADD TO WATCHLIST</div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+let usedTitles = [];
+let categories = ["Romance", "Action", "Action", "Comedy", "Adventure", "Fantasy"];
+let idx = 0;
+
+function populateAnimeCard2(cardElement, animeArray, fn = () => Boolean) {
+    for (const anime of animeArray) {
+        if (!anime) continue;
+        if (!anime?.anilist) continue;
+        if (usedTitles.includes(anime?.anilist?.title)) continue;
+        if (!fn(anime, categories[idx])) continue;
+
+        const cardHtml = createAnimeCard2(anime);
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = cardHtml;
+        const cElement = tempDiv.firstElementChild;
+
+        const wBtn = cElement.querySelector(".wat-icon-ac-2");
+        const wBtnText = cElement.querySelector(".anime-card-2-watchlist-text");
+
+        cElement.querySelector(".anime-card-2-watchlist-btn").addEventListener('click', () => {
+            toggleWatchlist(anime, 'watchlist', wBtn, false, wBtnText);
+        });
+
+        const t = anime?.anilist?.title || anime?.cleanTitle;
+
+        if (checkWatchlist(t)) {
+            const path = "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z";
+            wBtn.querySelector('path').setAttribute('d', path);
+            wBtnText.innerHTML = "IN WATCHLIST";
+        }
+
+        cardElement.appendChild(cElement);
+
+        cElement.querySelector(".anime-card-2-image").addEventListener('click', () => {
+            localStorage.setItem('selectedAnime', JSON.stringify(anime));
+            window.location.href = "./animePages/animeMainPage.html";
+        });
+
+        cElement.querySelector(".anime-card-2-heading").addEventListener('click', () => {
+            localStorage.setItem('selectedAnime', JSON.stringify(anime));
+            window.location.href = "./animePages/animeMainPage.html";
+        });
+
+        cElement.querySelector(".start-watching-btn.card-2").addEventListener('click', () => {
+            const episodePageData = {
+                animeTitle: anime?.anilist?.title,
+                lang: anime?.anilist?.language,
+                score: anime?.anilist?.score
+            };
+
+            const epData = {
+                episode: anime?.videos?.[0],
+                meta: episodePageData,
+                idx: 0,
+                allEpisodes: anime?.videos
+            };
+
+            localStorage.setItem('selectedAnime', JSON.stringify(anime));
+            localStorage.setItem('selectedEpisode', JSON.stringify(epData));
+
+            toggleWatchlist(epData, 'history').then(res => {
+                if (res) {
+                    window.location.href = "./episodePage/episodeMainPage.html";
+                }
+            });
+        });
+
+        usedTitles.push(anime?.anilist?.title);
+
+        idx++;
+        return;
+    }
+}
+
+const sliders = [];
+
+for (let i = 1; i < 7; i++) {
+    const el = document.getElementById(`anime-card-2-${i}`);
+    if (el) sliders.push(el);
+}
+
+function thisYearTopByCategory(anime, category) {
+    const score = parseFloat(anime?.anilist?.score.split(' ')?.[0]);
+    if (!score) return false;
+    const startYear = anime?.anilist?.startDate?.split('/')?.[2];
+    if (!startYear) return false;
+
+    if (startYear >= getCurrentDate()?.[2] - 1 && anime?.anilist?.genres?.includes(category) && score >= 7) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*Control Room*/
+if (slider) {
+    fetchWatchlist().then(() => {
+        document.querySelector(".homepage-actual-content.hidden").classList.remove("hidden");
+        document.querySelector(".homepage-loading-content").classList.add("hidden");
+        hasFetched = true;
+        populateSlider(slider, aniOneAsiaDataAnilist3, topRatedLast5);
+        populateSlider(slider2, aniOneAsiaDataAnilist3, beginnerAnime);
+        populateSlider(slider3, aniOneAsiaDataAnilist3, sameMonthAnimeGen);
+        populateSlider(slider4, aniOneAsiaDataAnilist3, isPopular);
+        populateSlider(slider5, aniOneAsiaDataAnilist3, actionPopular);
+        populateSlider(slider6, aniOneAsiaDataAnilist3, adventurePopular);
+        sliders.forEach(s => {
+            populateAnimeCard2(s, aniOneAsiaDataAnilist3, thisYearTopByCategory);
+        });
+        if (document.getElementById("hpac")) slidersHandler();
+    });
+}

@@ -43,6 +43,7 @@ function loadMain() {
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchWatchlist(true).then(() => {
+        document.querySelector(".new-pop-anime-list.skeletons").classList.add("hidden");
         loadMain();
     });
 });

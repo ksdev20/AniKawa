@@ -268,6 +268,33 @@ body{
     font-size: 13px;
 }
 
+
+/*EPISODE CARD LOADING HANDLER*/
+
+.el-history.skeletons.hidden{
+    display: none;
+}
+
+.episode-loading-image{
+    width: 100%;
+    aspect-ratio: 3 / 2;
+}
+
+.episode-loading-title{
+    width: 22vw;
+    max-width: 200px;
+    height: 18px;
+    margin: 12px 0;
+}
+
+.episode-loading-language{
+    width: 22vw;
+    max-width: 100px;
+    height: 14px;
+}
+
+/*LOADING HANDLER ENDS*/ 
+
 .episode-card-hover{
     background-color: #141519;
     position: absolute;

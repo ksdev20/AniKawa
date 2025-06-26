@@ -82,6 +82,7 @@ function loadWatHis(thing, newlyadded = false) {
             }
 
             if (thing == 'watchlist') {
+                document.querySelector(".new-pop-anime-list.np-watchlist.skeletons").classList.add("hidden");
                 localStorage.setItem('selectedBtn', 'watchlist');
                 const watchlist = data.data.watchlist;
                 if (watchlist.length == 0) {
@@ -149,6 +150,7 @@ function loadWatHis(thing, newlyadded = false) {
                     watchlistList.appendChild(cardElement);
                 });
             } else if (thing == 'history') {
+                document.querySelector(".episodes-list.el-history.skeletons").classList.add("hidden");
                 localStorage.setItem('selectedBtn', 'history');
                 const history = data.data.history;
                 if (history.length == 0) {

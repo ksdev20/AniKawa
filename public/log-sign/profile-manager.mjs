@@ -26,6 +26,17 @@ fetch('http://localhost:3000/api/me?fields=email,profileName,profilePic,profileB
         profileBannerMain.src = profileBanner;
         inputElement.value = profileName;
 
+        [profileAvatarMain, profileBannerMain].forEach(img => {
+            const filter = img.dataset.filter;
+            const loader = filter == 'pp' ? document.getElementById("pp-main-loader") : document.getElementById("pb-main-loader");
+
+            img.addEventListener('load', () => {
+                loader.classList.add("hidden");
+            });
+
+            if (img.complete) loader.classList.add("hidden");
+        });
+
         document.getElementById("email-text").innerHTML = email;
     })
     .catch(e => {

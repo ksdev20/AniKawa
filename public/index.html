@@ -20,7 +20,6 @@
         rel="stylesheet">
     <script type="module" src="./majorJs/hero-section.mjs"></script>
     <script type="module" src="./majorJs/anime-card.mjs"></script>
-    <script type="module" src="./majorJs/anime-card-2.mjs"></script>
     <script type="module" src="./majorJs/menu-handler.mjs"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
@@ -124,6 +123,24 @@
     </div>
     <div id="hs-slider" class="hs-slider">
     </div>
+    <div class="hs-slider skeleton">
+        <div class="hero-section-root">
+            <div class="hs-img-section">
+                <div class="hs-anime-img loading-e" style="width: 400px;"></div>
+                <div class="hero-section-overlay">
+                    <div class="hs-title-loading loading-e"></div>
+                    <span class="dub-sub-loading loading-e"></span>
+                    <p class="hs-des-loading one loading-e"></p>
+                    <p class="hs-des-loading two loading-e"></p>
+                    <p class="hs-des-loading three loading-e"></p>
+                    <div class="hero-button-section">
+                        <div class="hs-action-loading play loading-e"></div>
+                        <div class="hs-action-loading wl loading-e"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="progress-container">
         <div data-index="0" class="progress-bar active"></div>
         <div data-index="1" class="progress-bar"></div>
@@ -131,178 +148,291 @@
         <div data-index="3" class="progress-bar"></div>
         <div data-index="4" class="progress-bar"></div>
     </div>
-    <div id="ass-first" class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">Celebrate Ani-May with Free-to-Watch Shows!</div>
-            <div class="slider-section-text-small">Watch these shows for free during the month of Ani-May!</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
-                </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
+    <div class="homepage-loading-content">
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slh-loading loading-e"></div>
+                <div class="slh-loading small loading-e"></div>
+            </div>
+            <div class="slider-content-wrapper sl">
+                <div class="slider-container skeleton">
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="slider-container-hero" class="slider-container">
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slh-loading loading-e"></div>
+                <div class="slh-loading small loading-e"></div>
             </div>
-        </div>
-    </div>
-    <div class="mid-section card">
-        <div id="anime-card-2-1" class="anime-card-2"></div>
-    </div>
-    <div class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">Ani-May: Start Your Anime Journey Here!</div>
-            <div class="slider-section-text-small">Choose your fandom!</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
-                </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
-                </div>
-            </div>
-            <div id="slider-container2" class="slider-container">
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">April 2025 Seasonal Sampler</div>
-            <div class="slider-section-text-small">Check out the first few episodes of these new shows for free!</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
-                </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
+            <div class="slider-content-wrapper sl">
+                <div class="slider-container skeleton">
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
+                    <div class="anime-card">
+                        <div class="anime-card-first">
+                            <div class="anime-loading-image loading-e"></div>
+                            <div class="anime-loading-title loading-e"></div>
+                            <div class="anime-loading-language loading-e"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div id="slider-container3" class="slider-container">
-            </div>
         </div>
-    </div>
-    <div class="mid-section">
-        <div id="anime-card-2-2" class="anime-card-2"></div>
-    </div>
-    <div class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">Most Popular</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
+        <div class="mid-section">
+            <div class="anime-card-2 skeletons">
+                <div class="wrapper wrapper-loading">
+                    <div class="ac2-img loading-e"></div>
+                    <div class="anime-card-2-details">
+                        <div class="ac2-head loading-e"></div>
+                        <div class="ac2-lang loading-e"></div>
+                        <div class="ac2-para loading-e" style="margin-top: 16px;"></div>
+                        <div class="ac2-para loading-e" style="width: 90%;"></div>
+                        <div class="ac2-para loading-e" style="width: 80%;margin-bottom: 24px;"></div>
+                        <div class="anime-card-2-btn-section">
+                            <div class="ac2-action loading-e">
+                            </div>
+                            <div id="anime-card-2-watchlist-btn" class="ac2-action loading-e">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
-                </div>
-            </div>
-            <div id="slider-container4" class="slider-container">
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="mid-section card">
-        <div id="anime-card-2-3" class="anime-card-2"></div>
-    </div>
-    <div class="mid-section">
-        <div id="anime-card-2-4" class="anime-card-2"></div>
-    </div>
-    <div class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">Best Action Anime To Watch</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
-                </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
-                </div>
-            </div>
-            <div id="slider-container5" class="slider-container">
             </div>
         </div>
     </div>
-    <div class="mid-section">
-        <div id="anime-card-2-5" class="anime-card-2"></div>
-    </div>
-    <div class="anime-slider-section">
-        <div class="slider-heading">
-            <div class="slider-section-text-big">Best Adventure Anime To Watch</div>
-        </div>
-        <div class="slider-content-wrapper">
-            <div id="slider-buttons-section" class="slider-btn-section">
-                <div class="slider-btn left">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                    </svg>
+    <div class="homepage-actual-content hidden" id="hpac">
+        <div id="ass-first" class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">Celebrate Ani-May with Free-to-Watch Shows!</div>
+                <div class="slider-section-text-small">Watch these shows for free during the month of Ani-May!</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
                 </div>
-                <div class="slider-btn right">
-                    <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                        width="30px" fill="#ffffff">
-                        <path
-                            d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                    </svg>
+                <div id="slider-container-hero" class="slider-container">
                 </div>
             </div>
-            <div id="slider-container6" class="slider-container">
+        </div>
+        <div class="mid-section card">
+            <div id="anime-card-2-1" class="anime-card-2"></div>
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">Ani-May: Start Your Anime Journey Here!</div>
+                <div class="slider-section-text-small">Choose your fandom!</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="slider-container2" class="slider-container">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="mid-section">
-        <div id="anime-card-2-6" class="anime-card-2"></div>
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">April 2025 Seasonal Sampler</div>
+                <div class="slider-section-text-small">Check out the first few episodes of these new shows for free!</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="slider-container3" class="slider-container">
+                </div>
+            </div>
+        </div>
+        <div class="mid-section">
+            <div id="anime-card-2-2" class="anime-card-2"></div>
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">Most Popular</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="slider-container4" class="slider-container">
+                </div>
+            </div>
+        </div>
+        <div class="mid-section card">
+            <div id="anime-card-2-3" class="anime-card-2"></div>
+        </div>
+        <div class="mid-section">
+            <div id="anime-card-2-4" class="anime-card-2"></div>
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">Best Action Anime To Watch</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="slider-container5" class="slider-container">
+                </div>
+            </div>
+        </div>
+        <div class="mid-section">
+            <div id="anime-card-2-5" class="anime-card-2"></div>
+        </div>
+        <div class="anime-slider-section">
+            <div class="slider-heading">
+                <div class="slider-section-text-big">Best Adventure Anime To Watch</div>
+            </div>
+            <div class="slider-content-wrapper">
+                <div id="slider-buttons-section" class="slider-btn-section">
+                    <div class="slider-btn left">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
+                        </svg>
+                    </div>
+                    <div class="slider-btn right">
+                        <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                            width="30px" fill="#ffffff">
+                            <path
+                                d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div id="slider-container6" class="slider-container">
+                </div>
+            </div>
+        </div>
+        <div class="mid-section">
+            <div id="anime-card-2-6" class="anime-card-2"></div>
+        </div>
     </div>
     <div class="site-footer">
         <a href="/legalStuff/terms.html" target="_blank">Terms of Services</a>

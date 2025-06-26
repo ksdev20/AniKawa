@@ -422,6 +422,56 @@ body {
 .watchlist-btn:hover .hero-action-watchlist {
     fill: #f7813e;
 }
+
+/*HERO SECTION LOADING HANDLER*/
+
+.hs-slider.skeleton.hidden{
+    display: none;
+}
+
+.hs-title-loading{
+    width: 400px;
+    height: 35px;
+}
+
+.dub-sub-loading{
+    width: 100px;
+    height: 20px;
+    margin-top: 20px;
+}
+
+.hs-des-loading{
+    height: 15px;
+    margin-top: 8px;
+}
+
+.hs-des-loading.one{
+    margin-top: 20px;
+    width: 100%;
+}
+
+.hs-des-loading.two{
+    width: 80%;
+}
+
+.hs-des-loading.three{
+    width: 70%;
+}
+
+.hs-action-loading{
+    height: 40px;
+}
+
+.hs-action-loading.play{
+    width: 150px;
+}
+
+.hs-action-loading.wl{
+    width: 50px;
+}
+
+/*LOADING HANDLER ENDS*/
+
 /*
 .progress-container {
     margin-top: 40px;
@@ -717,6 +767,47 @@ body {
     font-size: 14px;
     color: gray;
 }
+
+
+/*ANIME CARD LOADING HANDLER*/
+
+.skeletons.hidden{
+    display: none;
+}
+
+.loading-e{
+    background: linear-gradient(90deg, #141519 0%, #1a1b1f 50%, #141519 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+}
+
+.anime-loading-image {
+    width: 100%;
+    aspect-ratio: 2/ 3;
+}
+
+.anime-loading-title {
+    width: 120px;
+    height: 20px;
+}
+
+.anime-loading-language {
+    width: 90px;
+    height: 15px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/*LOADING HANDLER ENDS*/
+
 
 .anime-card-hover {
     position: absolute;
@@ -1093,6 +1184,44 @@ body {
     fill: #f7813e;
 }
 
+
+/*ANIME CARD 2 LOADING HANDLER*/
+
+.wrapper-loading{
+    justify-content: center;
+}
+
+.ac2-img{
+    width: 18vw;
+    aspect-ratio: 2 / 3;
+    max-width: 250px;
+    max-height: 350px;
+}
+
+.ac2-head{
+    width: 300px;
+    height: 30px;
+    margin-bottom: 12px;
+}
+
+.ac2-lang{
+    width: 100px;
+    height: 20px;
+}
+
+.ac2-para{
+    width: 100%;
+    height: 15px;
+    margin-bottom: 8px;
+}
+
+.ac2-action{
+    width: 140px;
+    height: 45px;
+}
+
+/*LOADING HANDLER ENDS*/
+
 /*
 @media screen and (max-width: 900px) {
     .trial-box {
@@ -1280,6 +1409,10 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 }
 
+.np-watchlist.skeletons.hidden{
+    display: none;
+}
+
 .dropdown-new-pop {
     position: absolute;
     height: auto;
@@ -1388,4 +1521,22 @@ body {
 
 .progress-bar.active{
     background-color: #ff640a;
+}
+
+/*LOADING CONTENT N MAIN CONTENT LAYOUT HANDLER*/
+
+.new-pop-anime-list.hidden {
+    display: none;
+}
+
+.homepage-loading-content{
+    pointer-events: none;
+}
+
+.homepage-loading-content.hidden{
+    display: none;
+}
+
+.homepage-actual-content.hidden {
+    display: none;
 }
