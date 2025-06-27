@@ -753,6 +753,7 @@ body {
     flex-direction: column;
     height: auto;
     width: 18vw;
+    min-width: 185px;
     max-width: 290px;
     gap: 12px;
     padding: 10px;
