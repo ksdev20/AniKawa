@@ -353,7 +353,7 @@ function createAnimeCard2(anime) {
     </div>`;
 }
 
-let usedTitles = [];
+let usedTitlesAC2 = [];
 let categories = ["Romance", "Action", "Action", "Comedy", "Adventure", "Fantasy"];
 let idx = 0;
 
@@ -361,7 +361,7 @@ function populateAnimeCard2(cardElement, animeArray, fn = () => Boolean) {
     for (const anime of animeArray) {
         if (!anime) continue;
         if (!anime?.anilist) continue;
-        if (usedTitles.includes(anime?.anilist?.title)) continue;
+        if (usedTitlesAC2.includes(anime?.anilist?.title)) continue;
         if (!fn(anime, categories[idx])) continue;
 
         const cardHtml = createAnimeCard2(anime);
@@ -373,7 +373,7 @@ function populateAnimeCard2(cardElement, animeArray, fn = () => Boolean) {
         const wBtnText = cElement.querySelector(".anime-card-2-watchlist-text");
 
         cElement.querySelector(".anime-card-2-watchlist-btn").addEventListener('click', () => {
-            toggleWatchlist(anime, 'watchlist', wBtn, false, wBtnText);
+            toggleWatchlist(anime, 'watchlist', wBtn, false, wBtnText).then(() => { fetchWatchlist(true) });
         });
 
         const t = anime?.anilist?.title || anime?.cleanTitle;
@@ -420,7 +420,7 @@ function populateAnimeCard2(cardElement, animeArray, fn = () => Boolean) {
             });
         });
 
-        usedTitles.push(anime?.anilist?.title);
+        usedTitlesAC2.push(anime?.anilist?.title);
 
         idx++;
         return;
