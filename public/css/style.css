@@ -1099,22 +1099,20 @@ body {
 }
 
 .anime-card-2 {
-    width: 93vw;
+    width: 100%;
     max-width: 1370px;
     margin-bottom: 50px;
 }
 
 .wrapper {
     display: flex;
-    width: 93vw;
+    width: 100%;
     max-width: 1370px;
 }
 
 .anime-card-2-image {
     width: auto;
-    height: 25vw;
-    max-height: 350px;
-    max-width: 630px;
+    height: auto;
     cursor: pointer;
 }
 
