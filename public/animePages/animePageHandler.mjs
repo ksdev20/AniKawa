@@ -1,5 +1,6 @@
 const mainSkeleton = document.getElementById("main-skeleton");
 const mainContent = document.getElementById("main");
+let hasRunUpdateMC = false;
 
 function updateMainContent(anime) {
     const anilist = anime.anilist;
@@ -29,6 +30,7 @@ function updateMainContent(anime) {
         mainSkeleton.classList.add("hidden");
         mainContent.classList.remove("remove");
     }
+    hasRunUpdateMC = true;
 }
 
 function generateSideData(anilist) {
@@ -52,7 +54,7 @@ function generateSideData(anilist) {
 
 /*MORE LIKE THIS ANIME SLIDER HANDLING */
 
-import { createAnimeCard, getScore, genreCheck, toggleWatchlist, slidersHandler } from "../majorJs/anime-card.mjs";
+import { createAnimeCard, getScore, genreCheck, toggleWatchlist, slidersHandler, fetchWatchlist, checkWatchlist } from "../majorJs/anime-card.mjs";
 import { aniOneAsiaDataAnilist3 } from "../data/aniOneAsiaDataAnilist3.mjs";
 
 
@@ -103,15 +105,50 @@ function populateSlider(sliderElement, animeArray, fn = () => Boolean, cat, main
 
         cardElement.addEventListener('click', () => {
             localStorage.setItem('selectedAnime', JSON.stringify(anime));
-            window.location.reload();
-            window.scrollTo(0, 0);
+            window.open("/animePages/animeMainPage.html", "_blank");
         });
 
         const watchlistBtn = cardElement.querySelector(".card-action-watchlist");
 
         watchlistBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            toggleWatchlist(anime, 'watchlist', watchlistBtn);
+            toggleWatchlist(anime, 'watchlist', watchlistBtn).then(() => fetchWatchlist(true));
+        });
+
+        const title = anime?.anilist?.title || anime?.cleanTitle;
+
+        const isInWatchlist = checkWatchlist(title);
+
+        if (isInWatchlist) {
+            const path = "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z";
+            watchlistBtn.querySelector('path').setAttribute('d', path);
+        }
+
+        const playBtn = cardElement.querySelector(".card-action-play");
+
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            const episodePageData = {
+                animeTitle: anime?.anilist?.title,
+                lang: anime?.anilist?.language,
+                score: anime?.anilist?.score
+            };
+
+            const epData = {
+                episode: anime?.videos?.[0],
+                meta: episodePageData,
+                idx: 0,
+                allEpisodes: anime?.videos
+            };
+
+            localStorage.setItem('selectedAnime', JSON.stringify(anime));
+            localStorage.setItem('selectedEpisode', JSON.stringify(epData));
+            toggleWatchlist(epData, 'history').then(res => {
+                if (res) {
+                    window.location.href = "/episodePage/episodeMainPage.html";
+                }
+            });
         });
 
         sliderElement.appendChild(cardElement);
@@ -128,7 +165,7 @@ let animeJson = null;
 let mainCategory = '';
 let secondCategory = '';
 
-function loadMainData(newFirst) {
+function loadMainData(newFirst = false) {
     animeJson = JSON.parse(localStorage.getItem('selectedAnime'));
     if (!animeJson) return;
     animeTitle = animeJson?.anilist?.title || animeJson?.cleanTitle;
@@ -142,15 +179,15 @@ function loadMainData(newFirst) {
         score: score
     };
 
-    updateMainContent(animeJson);
-
-    sortBtnHandler();
+    if (!hasRunUpdateMC) updateMainContent(animeJson);
 
     const orderedArray = newFirst ? animeJson.videos.slice().reverse() : animeJson.videos.slice();
 
+    const episodeList = document.getElementById("episodes-list");
+    episodeList.innerHTML = ' ';
+
     orderedArray.forEach((episode) => {
         const allEpisodes = animeJson.videos;
-        const episodeList = document.getElementById("episodes-list");
 
         const cardHtml = createEpisodeCard(episode);
 
@@ -189,11 +226,18 @@ function loadMainData(newFirst) {
 
     const MLTSlider = document.getElementById("slider-container");
 
-    populateSlider(MLTSlider, aniOneAsiaDataAnilist3, matchCategories, 'Popular', mainCategory, secondCategory);
+    fetchWatchlist(true).then(() => {
+        if (checkWatchlist(animeTitle)) {
+            const path = "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z";
+            wBtnAnimepage.querySelector('path').setAttribute('d', path);
+        }
+        populateSlider(MLTSlider, aniOneAsiaDataAnilist3, matchCategories, 'Popular', mainCategory, secondCategory);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMainData(false);
+    sortBtnHandler();
     slidersHandler();
 });
 
@@ -230,33 +274,32 @@ function createEpisodeCard(videos) {
 
 /*sort btn handler */
 
-let showingSDD = false;
-
 function sortBtnHandler() {
     const sortBtn = document.getElementById("sort-btn-apage");
-    const sortDD = sortBtn.querySelector(".dropdown-new-pop");
+    const sortDD = document.getElementById("dropdown-new-pop");
 
     function showSortDropdown() {
         sortDD.classList.add("active");
         sortBtn.classList.add("active");
-        showingSDD = true;
     }
 
     function hideSortDropdown() {
         sortDD.classList.remove("active");
         sortBtn.classList.remove("active");
-        showingSDD = false;
     }
 
     sortBtn.addEventListener('click', () => {
-        if (!showingSDD) {
-            showSortDropdown();
-        } else {
+        if (sortDD.classList.contains("active")) {
             hideSortDropdown();
+        } else {
+            showSortDropdown();
         }
     });
 
-    sortDD.querySelectorAll(".dropdown-new-pop-btn.pop-new").forEach(btn => {
+    const sortNew = document.getElementById("sort-new");
+    const sortOld = document.getElementById("sort-old");
+
+    [sortNew, sortOld].forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.dataset.filter;
             if (filter == 'new') {
@@ -267,21 +310,5 @@ function sortBtnHandler() {
                 slidersHandler();
             }
         });
-    });
-}
-
-function sHandler() {
-    const sw = document.querySelector(".slider-content-wrapper");
-
-    const sliderContainer = sw.querySelector(".slider-container");
-
-    sw.querySelector(".slider-btn.left").addEventListener('click', () => {
-        console.log("Scrolling left");
-        sliderContainer.scrollBy({ left: -sliderContainer.clientWidth, behavior: 'smooth' });
-    });
-
-    sw.querySelector(".slider-btn.right").addEventListener('click', () => {
-        console.log("Scrolling right");
-        sliderContainer.scrollBy({ left: sliderContainer.clientWidth, behavior: 'smooth' });
     });
 }

@@ -1415,7 +1415,8 @@ body {
 
 .dropdown-new-pop {
     position: absolute;
-    height: auto;
+    top: 100%;
+    right: 0;
     width: 200px;
     z-index: 10;
     display: none;

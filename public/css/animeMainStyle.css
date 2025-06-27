@@ -152,8 +152,8 @@ body{
 .other-metadata{
     display: flex;
     flex-direction: column;
-    gap: 5px;
     width: 20%;
+    gap: 15px;
 }
 
 .metadata-label{
@@ -165,7 +165,48 @@ body{
 .metadata-value{
     color: white;
     font-size: 13px;
+    padding-right: 5px;
 }
+
+/*ANIME PAGE HERO FOR MOBILES*/
+
+@media screen and (max-width: 900px) {
+    .anime-hero-section{
+        flex-direction: column;
+        align-items: center;
+    }
+    .image{
+        width: 100%;
+        max-width: 350px;
+    }
+    .metadata{
+        width: 100%;
+    }
+    .titles-section{
+        align-items: center;
+        margin: 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid gray;
+    }
+    .watchlist-btn-animepage{
+        align-self: flex-start;
+        margin-top: 10px;
+    }
+    .description-section{
+        padding: 20px 0;
+        flex-direction: column;
+    }
+    .des-only{
+        border-bottom: 1px solid gray;
+    }
+    .other-metadata{
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* END */
 
 .episodes-section{
     margin-top: 50px;
