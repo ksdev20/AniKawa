@@ -230,6 +230,8 @@ function loadMainData(newFirst = false) {
         if (checkWatchlist(animeTitle)) {
             const path = "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z";
             wBtnAnimepage.querySelector('path').setAttribute('d', path);
+            wBtnAnimepage.classList.remove("hidden");
+            document.querySelector(".loader.loader-wbtn").classList.add("hidden");
         }
         populateSlider(MLTSlider, aniOneAsiaDataAnilist3, matchCategories, 'Popular', mainCategory, secondCategory);
     });

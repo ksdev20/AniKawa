@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     height: 60px;
     background-color: #23252b;
     color: whitesmoke;
@@ -73,6 +73,12 @@ body {
     background-color: #141519;
 }
 
+@media screen and (max-width: 500px) {
+    .nav-right-block.w-navbar{
+        display: none;
+    }
+}
+
 .nav-right-block.active {
     background-color: #141519;
 }
@@ -86,38 +92,28 @@ body {
     display: none;
     position: fixed;
     z-index: 11;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: rgba(58, 57, 57, 0.616);
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
+    display: block;
     position: fixed;
     z-index: 12;
-    height: 100%;
-    width: 35%;
+    width: 40%;
+    max-width: 350px;
     background-color: #141519;
     padding-top: 10px;
-    overflow-y: auto;
-}
-
-.sidebar::-webkit-scrollbar {
-    width: 5px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 10px;
+    height: 600px;
 }
 
 .sidebar-button {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 7%;
-    padding-left: 10px;
+    height: 50px;
+    padding-left: 20px;
     background-color: transparent;
     cursor: pointer;
     font-size: 17px;
@@ -139,6 +135,7 @@ body {
     transition: display 0.2s ease;
     background-color: #1a1c20;
     overflow-y: auto;
+    height: 250px;
 }
 
 .dropdown {
@@ -176,6 +173,12 @@ body {
     width: 375px;
     height: fit-content;
     background-color: #141519;
+}
+
+@media screen and (max-width: 600px) {
+    .corner-box{
+        width: 100%;
+    }
 }
 
 .log-sign-box {
@@ -624,6 +627,15 @@ body {
     font-size: large;
 }
 
+@media screen and (max-width: 600px) {
+    .slider-section-text-big{
+        font-size: 22px;
+    }
+    .slider-section-text-small{
+        font-size: 14px;
+    }
+}
+
 .anime-slider-section {
     display: flex;
     flex-direction: column;
@@ -768,6 +780,21 @@ body {
     color: gray;
 }
 
+/*ANIME CARD FOR MOBILE*/
+@media screen and (max-width: 900px) {
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .anime-card-hover{
+        display: none;
+    }
+
+    .anime-card-first:active{
+        background-color: rgba(0, 162, 255, 0.342);
+    }
+}
 
 /*ANIME CARD LOADING HANDLER*/
 
@@ -1222,81 +1249,64 @@ body {
 
 /*LOADING HANDLER ENDS*/
 
-/*
+/*ANIME CARD 2 FOR MOBILE*/
 @media screen and (max-width: 900px) {
-    .trial-box {
-        height: fit-content;
+    .mid-section{
+        display: block;
+        align-items: unset;
+        justify-content: unset;
+        width: 100%;
+    }
+    .anime-card-2{
+        display: block;
+        width: 100vw;
+        padding: 0px;
+    }
+    .wrapper{
+        width: 100vw;
         flex-direction: column;
+        max-width: none;
+        flex-shrink: 0;
+        align-items: center;
+        padding: 0 20px;
+        padding-bottom: 30px;
+    }
+    .anime-card-2-details{
+        margin: 0;
+        width: 100%;
+        max-height: none;
+        height: auto;
+        align-self: unset;
         align-items: center;
     }
-
-    .trial-box-logo {
-        display: none;
-    }
-
-    .trial-box-text {
-        margin: 0;
-    }
-
-    .trial-box-text-big {
+    .anime-card-2-heading{
+        font-size: 20px;
         text-align: center;
     }
-
-    .trial-box-text-small {
-        text-align: center;
-    }
-
-    .start-trial-btn {
-        margin-left: 0px;
-        margin-top: 20px;
-        width: 100%;
-    }
-
-    .mid-image {
-        height: auto;
-    }
-
-    .anime-card-2 {
-        flex-direction: column;
-        padding-right: 15px;
-    }
-
-    .anime-card-2-details {
-        height: 10%;
-        width: 100%;
-        margin-left: 0px;
-    }
-
-    .anime-card-2-image {
-        width: 100%;
-        height: 50vw;
-        max-width: none;
-        max-height: none;
-    }
-
-    .anime-card-2-heading {
-        font-size: 25px;
-        margin-bottom: 4px;
-    }
-
-    .anime-card-2-para {
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
+    .anime-card-sub-dub{
         font-size: 15px;
     }
-
-    .anime-card-2-btn-section {
+    .anime-card-2-para{
+        font-size: 14px;
+    }
+    .anime-card-2-btn-section{
         flex-direction: column;
+        padding-right: 12px;
     }
-
-    .card-2 {
+    .card-2{
         width: 100%;
     }
-
-    .anime-card-2-watchlist-btn {
+    .anime-card-2-watchlist-btn{
         width: 100%;
     }
-}*/
+    .anime-card-2-image{
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        aspect-ratio: 3/ 2;
+        object-position: top;
+    }
+}
 
 /* THIS MUCH FOR MAIN PAGE */
 

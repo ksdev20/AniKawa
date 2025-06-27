@@ -122,7 +122,7 @@
         </div>
     </div>
     <div id="main-skeleton" class="main skeleton">
-        <span class="loader"></span>
+        <span class="loader wholepage"></span>
     </div>
     <div id="main" class="main">
         <div id="top-banner" class="top-banner">
@@ -138,11 +138,12 @@
                     <div class="titles-section">
                         <div id="title-english" class="poetsen-one-regular english"></div>
                         <div id="title-romaji" class="poetsen-one-regular romaji"></div>
-                        <svg id="wBtn-animepage" class="watchlist-btn-animepage" xmlns="http://www.w3.org/2000/svg"
+                        <svg id="wBtn-animepage" class="watchlist-btn-animepage hidden" xmlns="http://www.w3.org/2000/svg"
                             height="30px" viewBox="0 -960 960 960" width="30px" fill="#ffffff">
                             <path
                                 d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
                         </svg>
+                        <span class="loader loader-wbtn"></span>
                     </div>
                     <div class="description-section">
                         <div class="des-only">
@@ -171,8 +172,8 @@
                             <div class="filter-name">SORT</div>
                         </div>
                         <div class="dropdown-new-pop">
-                            <div class="dropdown-new-pop-btn pop-new" data-filter="new">Newest</div>
-                            <div class="dropdown-new-pop-btn pop-new" data-filter="old">Oldest</div>
+                            <div class="dropdown-new-pop-btn pop-new" data-filter="new">Descending (by order)</div>
+                            <div class="dropdown-new-pop-btn pop-new" data-filter="old">Ascending (by order)</div>
                         </div>
                     </div>
                 </div>

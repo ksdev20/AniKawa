@@ -41,6 +41,26 @@ body{
     translate: -50% -50%;
 }
 
+.loader.hidden{
+    display: none;
+}
+
+.loader.wholepage{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.loader.loader-wbtn{
+    margin-top: 30px;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #FFF;
+    border-bottom-color: #ff5722;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
