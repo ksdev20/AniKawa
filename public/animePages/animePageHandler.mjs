@@ -1,5 +1,37 @@
+const mainSkeleton = document.getElementById("main-skeleton");
+const mainContent = document.getElementById("main");
+
 function updateMainContent(anime) {
     const anilist = anime.anilist;
+
+    const topB = document.getElementById("top-banner");
+    const cardImg = document.getElementById("card-image");
+    const tE = document.getElementById("title-english");
+    const tR = document.getElementById("title-romaji");
+    const des = document.getElementById("description-anime-hero");
+    const omd = document.getElementById("other-metadata");
+    const titleS = document.getElementById("season-text");
+
+    topB.style.backgroundImage = `url(${anilist.bannerImage})`;
+    cardImg.src = `${anilist.coverImage}`;
+    tE.innerHTML = `${anilist.title}`;
+    tR.innerHTML = `${anilist.romaji}`;
+    des.innerHTML = `${anilist.description}`;
+    omd.innerHTML = generateSideData(anilist);
+    titleS.innerHTML = `S1: ${anilist.title}`;
+
+    cardImg.addEventListener('load', () => {
+        mainSkeleton.classList.add("hidden");
+        mainContent.classList.remove("remove");
+    });
+
+    if (cardImg.complete) {
+        mainSkeleton.classList.add("hidden");
+        mainContent.classList.remove("remove");
+    }
+}
+
+function generateSideData(anilist) {
     let genre_str = "";
     anilist.genres.forEach((g, idx) => {
         if ((idx + 1) >= anilist.genres.length) {
@@ -9,123 +41,13 @@ function updateMainContent(anime) {
         }
     });
 
-    return `<div id="top-banner" class="top-banner"
-            style="background-image: url(${anilist.bannerImage});">
-            <div class="bottom-gradient"></div>
-            </div>
-             <div id="overlay-main" class="overlay-main">
-                <div class="empty-top-banner"></div>
-                <div class="anime-hero-section">
-                    <div class="hero-column image">
-                        <img id="card-image" class="card-image"
-                            src=${anilist.coverImage} />
-                    </div>
-                    <div class="hero-column metadata">
-                        <div class="titles-section">
-                            <div id="title-english" class="poetsen-one-regular english">${anilist.title}</div>
-                            <div id="title-romaji" class="poetsen-one-regular romaji">${anilist.romaji}</div>
-                            <svg id="wBtn-animepage" class="watchlist-btn-animepage" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                            fill="#ffffff">
-                            <path
-                                d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
-                            </svg>
-                        </div>
-                        <div class="description-section">
-                            <div class="des-only">
-                                <p id="description-anime-hero" class="description-anime-hero">${anilist.description}</p>
-                            </div>
-                            <div class="other-metadata">
-                                <p class="metadata-value"><b class="metadata-label">Type:</b> ${anilist.type}</p>
-                                <p class="metadata-value"><b class="metadata-label">Episodes: </b>${anilist.episodes}</p>
-                                <p class="metadata-value"><b class="metadata-label">Status: </b>${anilist.status}</p>
-                                <p class="metadata-value"><b class="metadata-label">Duration: </b>${anilist.duration}</p>
-                                <p class="metadata-value"><b class="metadata-label">Aired: </b>${anilist.startDate} to ${anilist.endDate}</p>
-                                <p class="metadata-value"><b class="metadata-label">Season: </b>${anilist.season}</p>
-                                <p class="metadata-value"><b class="metadata-label">Genres: </b>${genre_str}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="episodes-section">
-                    <div class="top-controls">
-                        <div class="top-controls-btn">
-                            <svg class="arrow-down" xmlns="http://www.w3.org/2000/svg" height="30px"
-                                viewBox="0 -960 960 960" width="30px" fill="#ffffff">
-                                <path d="M480-360 280-560h400L480-360Z" />
-                            </svg>
-                            <div class="season-text">S1: ${anilist.title}</div>
-                        </div>
-                        <div id="sort-btn-apage" class="new-first-right part">
-                        <div class="new-first-right">
-                            <svg class="part-icon" xmlns="http://www.w3.org/2000/svg" height="30px"
-                                viewBox="0 -960 960 960" width="30px" fill="#666666">
-                                <path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z" />
-                            </svg>
-                            <div class="filter-name">SORT</div>
-                        </div>
-                        <div class="dropdown-new-pop">
-                            <div class="dropdown-new-pop-btn pop-new" data-filter="new">Newest</div>
-                            <div class="dropdown-new-pop-btn pop-new" data-filter="old">Oldest</div>
-                        </div>
-                        </div>
-                    </div>
-                    <div id="episodes-list" class="episodes-list">
-                    </div>
-                    <div class="episode-list-endline"></div>
-                    <div class="season-change-section">
-                        <div class="season-change-section scs-part">
-                            <svg class="chevron-arrow" xmlns="http://www.w3.org/2000/svg" height="15px"
-                                viewBox="0 -960 960 960" width="15px" fill="#808080">
-                                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
-                            </svg>
-                            PREVIOUS SEASON
-                        </div>
-                        <div class="season-change-section scs-part">
-                            NEXT SEASON
-                            <svg class="chevron-arrow" xmlns="http://www.w3.org/2000/svg" height="15px"
-                                viewBox="0 -960 960 960" width="15px" fill="#808080">
-                                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="more-section">
-                    <div class="anime-slider-section ms-anime-slider">
-                    <div class="slider-heading sl-heading-apage">
-                        <div class="slider-section-text-big" style="font-size: 23px;">More Like This</div>
-                    </div>
-                    <div class="slider-content-wrapper">
-                        <div id="slider-buttons-section" class="slider-btn-section">
-                            <div class="slider-btn left">
-                                <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                                    width="30px" fill="#ffffff">
-                                    <path
-                                        d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
-                                </svg>
-                            </div>
-                            <div class="slider-btn right">
-                                <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                                    width="30px" fill="#ffffff">
-                                    <path
-                                        d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div id="slider-container" class="sl-heading-apage slider-container">
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="site-footer">
-        <a href="../legalStuff/terms.html" target="_blank">Terms of Services</a>
-        <div class="sf-separator" target="_blank">|</div>
-        <a href="../legalStuff/privacy.html" target="_blank">Privacy Policies</a>
-        <div class="sf-separator">|</div>
-        <a href="../legalStuff/about.html">About</a>
-        <div class="sf-separator">|</div>
-        <a href="../legalStuff/credits.html">Credits</a>
-    </div>
-            </div`;
+    return `<p class="metadata-value"><b class="metadata-label">Type:</b> ${anilist.type}</p>
+            <p class="metadata-value"><b class="metadata-label">Episodes: </b>${anilist.episodes}</p>
+            <p class="metadata-value"><b class="metadata-label">Status: </b>${anilist.status}</p>
+            <p class="metadata-value"><b class="metadata-label">Duration: </b>${anilist.duration}</p>
+            <p class="metadata-value"><b class="metadata-label">Aired: </b>${anilist.startDate} to ${anilist.endDate}</p>
+            <p class="metadata-value"><b class="metadata-label">Season: </b>${anilist.season}</p>
+            <p class="metadata-value"><b class="metadata-label">Genres: </b>${genre_str}</p>`;
 }
 
 /*MORE LIKE THIS ANIME SLIDER HANDLING */
@@ -220,9 +142,7 @@ function loadMainData(newFirst) {
         score: score
     };
 
-    const overlayMain = document.getElementById("main");
-
-    overlayMain.innerHTML = updateMainContent(animeJson);
+    updateMainContent(animeJson);
 
     sortBtnHandler();
 

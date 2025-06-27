@@ -109,8 +109,8 @@
             <div class="sidebar-button" id="sidebar-popular" href="../sidebar/popular.html">Popular</div>
             <div class="sidebar-button category" id="category-button">
                 Category
-                <svg id="category-arrow" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                    fill="#ffffff">
+                <svg id="category-arrow" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                    width="24px" fill="#ffffff">
                     <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
                 </svg>
             </div>
@@ -121,46 +121,34 @@
             <a class="sidebar-button" href="../legalStuff/credits.html">Credits</a>
         </div>
     </div>
+    <div id="main-skeleton" class="main skeleton">
+        <span class="loader"></span>
+    </div>
     <div id="main" class="main">
-        <div id="top-banner" class="top-banner"
-            style="background-image: url(https://s4.anilist.co/file/anilistcdn/media/anime/banner/6702-VSHyctSAeUBS.jpg);">
+        <div id="top-banner" class="top-banner">
             <div class="bottom-gradient"></div>
         </div>
         <div id="overlay-main" class="overlay-main">
             <div class="empty-top-banner"></div>
             <div class="anime-hero-section">
                 <div class="hero-column image">
-                    <img id="card-image" class="card-image"
-                        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b6702-KI4qgSMyI8Pm.png" />
+                    <img id="card-image" class="card-image" />
                 </div>
                 <div class="hero-column metadata">
                     <div class="titles-section">
-                        <div id="title-english" class="poetsen-one-regular english">Fairy Tail</div>
-                        <div id="title-romaji" class="poetsen-one-regular romaji">Kimetsu No Yaiba</div>
+                        <div id="title-english" class="poetsen-one-regular english"></div>
+                        <div id="title-romaji" class="poetsen-one-regular romaji"></div>
+                        <svg id="wBtn-animepage" class="watchlist-btn-animepage" xmlns="http://www.w3.org/2000/svg"
+                            height="30px" viewBox="0 -960 960 960" width="30px" fill="#ffffff">
+                            <path
+                                d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z" />
+                        </svg>
                     </div>
                     <div class="description-section">
                         <div class="des-only">
-                            <p id="description-anime-hero" class="description-anime-hero">Across the Fiore kingdom,
-                                wizards join guilds and make
-                                their pay by filling magical needs—but one guild has a reputation as the roughest,
-                                rowdiest, most dangerous of all: Fairy Tail!
-                                When four young Fairy Tail members unite, their bond is
-                                forged by a power found in neither muscle nor magic and grows stronger with every
-                                mission. Whatever you do, don't mess with these friends or you'll get a taste of Natsu's
-                                flaming fist or Gray's ice hammer, suffer a painful blow from one of Lucy's celestial
-                                spirits or catch the edge of Erza's mighty blade! Whether they're stopping demons from
-                                devastating the world or wrestling in the mess hall, this mystical team manages to
-                                inflict as much damage to their rivals as they do to the surrounding area!</p>
+                            <p id="description-anime-hero" class="description-anime-hero"></p>
                         </div>
-                        <div class="other-metadata">
-                            <p class="metadata-value"><b class="metadata-label">Type:</b> TV</p>
-                            <p class="metadata-value"><b class="metadata-label">Episodes: </b>175</p>
-                            <p class="metadata-value"><b class="metadata-label">Status: </b>FINISHED</p>
-                            <p class="metadata-value"><b class="metadata-label">Duration: </b>24 minutes</p>
-                            <p class="metadata-value"><b class="metadata-label">Aired: </b>12/10/2009 to 30/03/2013</p>
-                            <p class="metadata-value"><b class="metadata-label">Season: </b>FALL</p>
-                            <p class="metadata-value"><b class="metadata-label">Genres: </b>Action, Adventure, Comedy,
-                                Fantasy, Shonen</p>
+                        <div id="other-metadata" class="other-metadata">
                         </div>
                     </div>
                 </div>
@@ -172,17 +160,23 @@
                             viewBox="0 -960 960 960" width="30px" fill="#ffffff">
                             <path d="M480-360 280-560h400L480-360Z" />
                         </svg>
-                        <div class="season-text">S1: Fairy Tail</div>
+                        <div id="season-text" class="season-text"></div>
                     </div>
-                    <div class="top-controls-btn sort">
-                        <svg class="sort-icon" xmlns="http://www.w3.org/2000/svg" height="24px" width="24px"
-                            viewBox="0 -960 960 960" fill="#c0c0c0">
-                            <path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z" />
-                        </svg>
-                        <div class="sort-text">OLDEST</div>
+                    <div id="sort-btn-apage" class="new-first-right part">
+                        <div class="new-first-right">
+                            <svg class="part-icon" xmlns="http://www.w3.org/2000/svg" height="30px"
+                                viewBox="0 -960 960 960" width="30px" fill="#666666">
+                                <path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z" />
+                            </svg>
+                            <div class="filter-name">SORT</div>
+                        </div>
+                        <div class="dropdown-new-pop">
+                            <div class="dropdown-new-pop-btn pop-new" data-filter="new">Newest</div>
+                            <div class="dropdown-new-pop-btn pop-new" data-filter="old">Oldest</div>
+                        </div>
                     </div>
                 </div>
-                <div class="episodes-list">
+                <div id="episodes-list" class="episodes-list">
                 </div>
                 <div class="episode-list-endline"></div>
                 <div class="season-change-section">
@@ -205,20 +199,20 @@
             <div class="more-section">
                 <div class="anime-slider-section ms-anime-slider">
                     <div class="slider-heading sl-heading-apage">
-                        <div class="slider-section-text-big" style="font-size: 15px;">More Like This</div>
+                        <div class="slider-section-text-big" style="font-size: 23px;">More Like This</div>
                     </div>
                     <div class="slider-content-wrapper">
                         <div id="slider-buttons-section" class="slider-btn-section">
                             <div class="slider-btn left">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                                    width="30px" fill="#ffffff">
+                                <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px"
+                                    viewBox="0 -960 960 960" width="30px" fill="#ffffff">
                                     <path
                                         d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" />
                                 </svg>
                             </div>
                             <div class="slider-btn right">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
-                                    width="30px" fill="#ffffff">
+                                <svg class="s-btn" xmlns="http://www.w3.org/2000/svg" height="30px"
+                                    viewBox="0 -960 960 960" width="30px" fill="#ffffff">
                                     <path
                                         d="M579-480 285-774q-15-15-14.5-35.5T286-845q15-15 35.5-15t35.5 15l307 308q12 12 18 27t6 30q0 15-6 30t-18 27L356-115q-15 15-35 14.5T286-116q-15-15-15-35.5t15-35.5l293-293Z" />
                                 </svg>
@@ -228,6 +222,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="site-footer">
+                <a href="/legalStuff/terms.html" target="_blank">Terms of Services</a>
+                <div class="sf-separator" target="_blank">|</div>
+                <a href="/legalStuff/privacy.html" target="_blank">Privacy Policies</a>
+                <div class="sf-separator">|</div>
+                <a href="/legalStuff/about.html">About</a>
+                <div class="sf-separator">|</div>
+                <a href="/legalStuff/credits.html">Credits</a>
             </div>
         </div>
     </div>
