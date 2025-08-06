@@ -3,8 +3,8 @@ import "../../../../styles/category/subcat.css";
 import "../../../../components/watchlist-history/wat-his.css";
 import Navbar from "../../../../components/Navbar/Navbar";
 import Footer from "../../../../components/Footer/Footer";
-import { getFilteredAnime } from "../../../../filters/animeFilterMain";
-import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStatic.astro";
+import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer";
+import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 
 const { mainCategory, subCategory } = Astro.params;
 const finalArray = getFilteredAnime("matchCategories", {

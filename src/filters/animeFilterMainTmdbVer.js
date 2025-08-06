@@ -49,6 +49,7 @@ export function getFilteredAnime(filterName, options = {}) {
         if (usedTitlesGlobal && usedTitlesGlobal.length > 0 && usedTitlesGlobal.filter(i => i == title).length > 2) continue;
 
         const genresB = anime?.genres || [];
+        const keywords = anime?.keywords.split(',');
         let toSend = false;
 
         if (mode == 'genreCompare') {
@@ -56,9 +57,9 @@ export function getFilteredAnime(filterName, options = {}) {
             if (diffGenre.includes(categoryB)) { 
                 const score = anime?.score ?? 0;
                 const startYear = getYear(anime) ?? '2000';
-                toSend = NewPopChecker({ score, startYear, categoryB, categoryA, genresB });
+                toSend = NewPopChecker({ score, startYear, categoryB, categoryA, genresB, keywords });
             } else {
-                toSend = fn(arrA, genresB);
+                toSend = fn(arrA, genresB, keywords);
             }
         } else {
             toSend = fn(anime);
@@ -130,11 +131,12 @@ export function getFilteredAnime(filterName, animePageCalling = false, genresA =
 /*for category page*/
 
 export function NewPopChecker(options = {}) {
-    const { genresB, categoryA, categoryB, score, startYear } = options;
+    const { genresB, categoryA, categoryB, score, startYear, keywords } = options;
+    const lowered = categoryA.toLowerCase();
     if (categoryB == 'Popular') {
-        return (score >= 7 && genresB.includes(categoryA));
+        return (score >= 7 && (genresB.includes(categoryA) || keywords.includes(lowered)));
     } else {
-        return (parseInt(startYear) >= 2025 && genresB.includes(categoryA));
+        return (parseInt(startYear) >= 2025 && (genresB.includes(categoryA) || keywords.includes(lowered)));
     }
 }
 
@@ -166,7 +168,7 @@ function beginnerAnime(anime) {
 }
 
 function isPopular(anime) {
-    return (anime?.score >= 8);
+    return (anime?.score >= 7);
 }
 
 function actionPopular(anime) {
@@ -213,13 +215,15 @@ function getCurrentDate() {
 
 /*for anime page*/
 
-function matchCategories(genresA, genresB) {
+function matchCategories(genresA, genresB, keywords = null) {
     if (!genresB) return false;
     if (genresB.length <= 1) return false;
 
     let count = 0;
     return genresA.some(x => {
+        const lowered = x.toLowerCase();
         if (genresB.includes(x)) count++;
+        if (keywords && keywords.includes(lowered)) count++;
         return count == 2;
     });
 }

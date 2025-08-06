@@ -19,7 +19,7 @@ let filteredAnimeList;
 const forCategory = filterName == "matchCategories" && !forAnimePage;
 
 if (filterName == "matchCategories") {
-    if (genresA != undefined && genresA.length > 1) {
+    if (genresA && genresA.length > 1) {
         filteredAnimeList = getFilteredAnime("matchCategories", {
             genresA: genresA,
             usedTitlesGlobal,

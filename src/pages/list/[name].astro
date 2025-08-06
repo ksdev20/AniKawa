@@ -1,9 +1,9 @@
 ---
-import aniOneAsia2 from "../../data/aniOneData2.json";
+import aniOneAsia2 from "../../data/mergedList.json";
 import "../../components/ButtonHandlers/sortbuttons.css";
 import "../../styles/new-pop.css";
 import Navbar from "../../components/Navbar/Navbar";
-import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStatic.astro";
+import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import Footer from "../../components/Footer/Footer";
 import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
 import dayjs from "dayjs";
@@ -16,11 +16,11 @@ let finalArray;
 
 if (urlFilter == "sub") {
     finalArray = aniOneAsia2.slice().filter((a) => {
-        return a?.anilist?.language == "Subtitled";
+        return a?.episodes?.[0]?.audio == "ja";
     });
 } else if (urlFilter == "dub") {
     finalArray = aniOneAsia2.slice().filter((a) => {
-        return a?.anilist?.language == "Sub | Dub";
+        return a?.episodes?.[0]?.audio !== "ja";
     });
 } else {
     finalArray = aniOneAsia2.slice();
@@ -28,25 +28,25 @@ if (urlFilter == "sub") {
 
 const seen = new Map();
 finalArray = finalArray.filter(a => {
-    const title = a?.anilist?.title;
+    const title = a?.title;
     if (!title || seen.has(title)) return false;
     seen.set(title, true);
     return true;
 });
 
-dayjs.extend(customParseFormat);
-const format = "D/M/YYYY";
+// dayjs.extend(customParseFormat);
+// const format = "D/M/YYYY";
 
 if (name == "new") {
     finalArray.sort((a, b) => {
-        const dateA = dayjs(a?.anilist?.startDate ?? "1/1/2000", format);
-        const dateB = dayjs(b?.anilist?.startDate ?? "1/1/2005", format);
+        const dateA = dayjs(a?.startDate ?? "2000-1-1");
+        const dateB = dayjs(b?.startDate ?? "2000-1-1");
         return dateB.valueOf() - dateA.valueOf();
     });
 } else if (name == "popular") {
     finalArray.sort((a, b) => {
-        const scoreA = parseFloat(a?.anilist?.score) ?? 0;
-        const scoreB = parseFloat(b?.anilist?.score) ?? 1;
+        const scoreA = a?.score ?? 0.0;
+        const scoreB = b?.score ?? 1.0;
         return scoreB - scoreA;
     });
 }
