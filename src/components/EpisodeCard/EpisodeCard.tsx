@@ -1,14 +1,15 @@
+import getEpisodeTitle from '../../utils/getEpisodeTitle';
 import './episode-card.css';
 export default function EpisodeCard({ epData }: { epData: any}) {
-    const { animeTitle= 'Anime Title N/A', language='Language N/A', animenanoid, slug, episodeNumber } = epData;
-    const { title = `Episode ${episodeNumber}`, thumbnail = '/episode-thumbnail-alt-2.png', description = 'No description' } = epData.episodeDetails[0] ?? [];
+    const { animeTitle= 'Anime Title N/A', language='Language N/A', animenanoid, slug, epNum } = epData;
+    const { title, img = epData.ytThumbnail || '/episode-thumbnail-alt-2.png', description = 'No description' } = epData ?? [];
     return (
         <div className="episode-card">
             <div className="episode-card-first">
                 <img className="episode-card-image"
-                    src={thumbnail} />
+                    src={img} />
                 <div className="anime-title">{animeTitle}</div>
-                <div className="episode-number-name">{title}</div>
+                <div className="episode-number-name">{getEpisodeTitle(title, epNum)}</div>
                 <div className="language-section">{language}</div>
 
                 <div className="episode-card-hover">

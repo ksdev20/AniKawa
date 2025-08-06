@@ -1,4 +1,5 @@
-import aniOneData2 from '../data/aniOneData2.json';
+// import aniOneData2 from '../data/aniOneData2.json';
+import aniOneData2 from '../data/mergedList.json';
 import type { Video } from './AnimeDataTypes';
 
 export function getAnimeById(nanoid: string | undefined): any{

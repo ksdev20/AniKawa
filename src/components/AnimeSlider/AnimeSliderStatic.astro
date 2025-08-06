@@ -1,6 +1,5 @@
 ---
-import { getFilteredAnime } from "../../filters/animeFilterMain";
-import AnimeSliderCSR from "./AnimeSliderCSR";
+import { getFilteredAnime } from "../../filters/animeFilterMainTmdbVer";
 import SliderContainer from "./SliderContainer.astro";
 import "./anime-slider.css";
 
@@ -66,7 +65,7 @@ if (filteredAnimeList) {
                 "item": {
                     "@type": "TVSeries",
                     "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
-                    "name": a.anilist.title || a.cleanTitle || a.slug || 'Untitled'
+                    "name": a.title ||  a.slug || 'Untitled'
                 }
             }))
         })}></script>
@@ -108,7 +107,7 @@ if (filteredAnimeList) {
                 "item": {
                     "@type": "TVSeries",
                     "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
-                    "name": a.anilist.title || a.cleanTitle || a.slug || 'Untitled'
+                    "name": a.title || a.slug || 'Untitled'
                 }
             }))
         })}></script>

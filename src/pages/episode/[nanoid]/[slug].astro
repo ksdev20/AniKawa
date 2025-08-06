@@ -1,17 +1,18 @@
 ---
 import '../../../styles/config.css';
 import '../../../styles/episode-page.css';
-import { type Anime } from "../../../filters/AnimeDataTypes";
+import { type Anime } from "../../../filters/mergedListTypes";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import { getAnimeById }from "../../../filters/getAnimeById";
 import HandleECClick from '../../../components/EpisodeCard/EcDatabaseContact/HandleECClick';
+import getEpisodeTitle from '../../../utils/getEpisodeTitle';
 const { nanoid, slug } = Astro.params;
 let anime = getAnimeById(nanoid) as Anime | null;
 if (
-    anime?.videos == null ||
-    anime?.videos?.length == 0 ||
-    !Array.isArray(anime?.videos) ||
+    !anime?.episodes ||
+    anime?.episodes?.length == 0 ||
+    !Array.isArray(anime?.episodes) ||
     slug == 'n-a'
 ) {
     return new Response(null, {
@@ -22,7 +23,7 @@ if (
     });
 }
 
-let episode = anime?.videos?.find((e) => e?.slug == slug);
+let episode = anime?.episodes?.find((e) => e?.slug == slug);
 /*if (
     episode == null ||
     episode?.episodeDetails == null ||
@@ -34,26 +35,27 @@ let episode = anime?.videos?.find((e) => e?.slug == slug);
 const {slug: animeslug = 'n-a'} = anime;
 const {
     title: animeTitle = "Untitled",
-    language = "Language N/A",
     score = "Score N/A",
-} = anime?.anilist ?? {};
+} = anime ?? {};
+const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
 
-const { episodeNumber , url } = episode ?? {};
+const { epNum , url } = episode ?? {};
 
-const { title: episodeTitle = `Episode ${episodeNumber}`, description = "No description" } =
-    episode?.episodeDetails?.[0] ?? {};
+const { title: episodeTitle, description = "No description" } =
+    episode ?? {};
 
-const prevIdx = episodeNumber ? episodeNumber - 2 : -1;
-const nextIdx = episodeNumber ?? 1;
+const prevIdx = epNum ? epNum - 2 : -1;
+const nextIdx = epNum ?? 1;
 
-const { slug: prevSlug , episodeNumber: pEpNo} = anime?.videos?.[prevIdx] ?? {};
-const { title: previousTitle = `Episode ${pEpNo}`, thumbnail: previousThumbnail = '/episode-thumbnail-alt-2.png'} = anime?.videos?.[prevIdx]?.episodeDetails?.[0] ?? {};
+const prevObj = anime?.episodes?.[prevIdx];
+const nextObj = anime?.episodes?.[nextIdx];
 
-const { slug: nextSlug, episodeNumber: nEpNo} = anime?.videos?.[nextIdx] ?? {};
-const { title: nextTitle = `Episode ${nEpNo}`, thumbnail: nextThumbnail = '/episode-thumbnail-alt-2.png'} = anime?.videos?.[nextIdx]?.episodeDetails?.[0] ?? {};
+const { slug: prevSlug , epNum: pEpNo, title: previousTitle = `Episode ${pEpNo}`, img: previousThumbnail = prevObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = prevObj ?? {};
+
+const { slug: nextSlug, epNum: nEpNo, title: nextTitle = `Episode ${nEpNo}`, img: nextThumbnail = nextObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = nextObj ?? {};
 
 const hasPrev = prevIdx <= -1 ? false : true;
-const hasNext = anime?.videos?.length <= nextIdx ? false : true;
+const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
 ---
 
 <html lang="en">
@@ -89,10 +91,10 @@ const hasNext = anime?.videos?.length <= nextIdx ? false : true;
                                 id="a-title">{animeTitle}</a
                             >
                             |
-                            <div class="first-part-rating" id="a-score">{score}</div>
+                            <div class="first-part-rating" id="a-score">{score} ★</div>
                         </div>
                     </div>
-                    <div id="e-title" class="epd-ep-title">{episodeTitle}</div>
+                    <div id="e-title" class="epd-ep-title">{getEpisodeTitle(episodeTitle, epNum)}</div>
                     <div id="e-language" class="epd-language">{language}</div>
                     <div id="e-des" class="epd-description">{description}</div>
                     <div class="episode-list-endline"></div>
@@ -116,7 +118,7 @@ const hasNext = anime?.videos?.length <= nextIdx ? false : true;
                                 <div
                                     id="p-ep-title"
                                     class="epd-ep-title for-card"
-                                >{previousTitle}
+                                >{getEpisodeTitle(previousTitle, pEpNo)}
                                 </div>
                                 <div
                                     id="ecc-p-language"
@@ -142,7 +144,7 @@ const hasNext = anime?.videos?.length <= nextIdx ? false : true;
                                 <div
                                     id="n-ep-title"
                                     class="epd-ep-title for-card"
-                                >{nextTitle}
+                                >{getEpisodeTitle(nextTitle, nEpNo)}
                                 </div>
                                 <div
                                     id="ecc-n-language"

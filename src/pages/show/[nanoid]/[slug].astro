@@ -1,20 +1,20 @@
 ---
 import "../../../styles/animePage.css";
 import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
-import { type Anime, type EpisodeCardProps } from "../../../filters/AnimeDataTypes";
+import { type Anime } from "../../../filters/mergedListTypes";
+//, type EpisodeCardProps
 import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import { getAnimeById } from "../../../filters/getAnimeById";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
-import EpisodeCardStatic from "../../../components/EpisodeCard/EpisodeCardStatic.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 let anime = getAnimeById(nanoid) as Anime | null;
 
-if (anime == null || !anime.anilist == null) {
+if (anime == null || !anime.episodes == null) {
     return new Response(null, {
         status: 302,
         headers: {
@@ -23,35 +23,33 @@ if (anime == null || !anime.anilist == null) {
     });
 }
 
-let episodeList = anime?.videos ?? [];
+let episodeList = anime?.episodes ?? [];
 
 if (sort == "new") {
     episodeList = [...episodeList].reverse();
 }
 
-const genresA = anime?.anilist?.genres ?? [];
+const genresA = anime?.genres ?? [];
 
 const {
-    id = 10,
     title = "Untitled",
-    romaji = title,
-    bannerImage = "/episode-thumbnail-alt-2.png",
-    coverImage = "/anime-image-alt.png",
+    tagline,
+    backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
+    poster = anime?.season_poster ?? "/anime-image-alt.png",
     description = "No Description",
-    language = "Sub|Dub",
-    score
-} = anime.anilist ?? {};
-
-const {
-    type = "N/A",
-    episodes = "N/A",
+    score,
+    runtime = "N/A",
     status = "N/A",
-    duration = "N/A",
     startDate = "N/A",
     endDate = "N/A",
-    season = "N/A",
-    genres = "N/A",
-} = anime.anilist ?? {};
+    seasons = "N/A",
+    genres = ["N/A"],
+    season
+} = anime ?? {};
+
+const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
+const episodes = episodeList.length ?? 'N/A';
+const type = 'Anime';
 
 const usedTitlesGlobal = [title, title, title];
 ---
@@ -68,8 +66,9 @@ const usedTitlesGlobal = [title, title, title];
             <div
                 id="top-banner"
                 class="top-banner"
-                style={{ backgroundImage: `url(${bannerImage})` }}
+                style={{ backgroundImage: `url(${backdrop})` }}
             >
+                <div class="overlay-gradient"></div>
                 <div class="bottom-gradient"></div>
             </div>
             <div id="overlay-main" class="overlay-main">
@@ -79,7 +78,7 @@ const usedTitlesGlobal = [title, title, title];
                         <img
                             id="card-image"
                             class="card-image"
-                            src={coverImage}
+                            src={poster}
                         />
                     </div>
                     <div class="hero-column metadata">
@@ -94,9 +93,9 @@ const usedTitlesGlobal = [title, title, title];
                                 id="title-romaji"
                                 class="poetsen-one-regular romaji"
                             >
-                                {romaji}
+                                {tagline}
                             </div>
-                            <div class="poetsen-one-regular">Score : {score}</div>
+                            <div class="poetsen-one-regular">Score : {score} ★</div>
                             <div class="watchlist-section-ap">
                                 <div id="wbtn-label"></div>
                                 <AnimeWBtn nanoid={nanoid ?? 'xyzxyz'} client:load />
@@ -127,7 +126,7 @@ const usedTitlesGlobal = [title, title, title];
                                 </p>
                                 <p class="metadata-value">
                                     <b class="metadata-label">Duration: </b>{
-                                        duration
+                                        runtime
                                     }
                                 </p>
                                 <p class="metadata-value">
@@ -136,13 +135,18 @@ const usedTitlesGlobal = [title, title, title];
                                     } to {endDate}
                                 </p>
                                 <p class="metadata-value">
-                                    <b class="metadata-label">Season: </b>{
+                                    <b class="metadata-label">This Season: </b>{
                                         season
                                     }
                                 </p>
                                 <p class="metadata-value">
+                                    <b class="metadata-label">Total seasons: </b>{
+                                        seasons
+                                    }
+                                </p>
+                                <p class="metadata-value">
                                     <b class="metadata-label">Genres: </b>{
-                                        genres
+                                        genres.join(',')
                                     }
                                 </p>
                             </div>
@@ -163,7 +167,7 @@ const usedTitlesGlobal = [title, title, title];
                                 <path d="M480-360 280-560h400L480-360Z"></path>
                             </svg>
                             <div id="season-text" class="season-text">
-                                S1: {title}
+                                S{season}: {title}
                             </div>
                         </div>
                         <SortBtnHandler client:load />
@@ -171,7 +175,7 @@ const usedTitlesGlobal = [title, title, title];
                     <div class="episodes-list">
                         {
                             episodeList?.map((e: any) => {
-                                const epData: EpisodeCardProps = {
+                                const epData: any = {
                                     animeTitle: title,
                                     language,
                                     animenanoid: nanoid,
