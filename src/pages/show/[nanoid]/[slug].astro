@@ -1,0 +1,236 @@
+---
+import "../../../styles/animePage.css";
+import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
+import { type Anime, type EpisodeCardProps } from "../../../filters/AnimeDataTypes";
+import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
+import Navbar from "../../../components/Navbar/Navbar";
+import Footer from "../../../components/Footer/Footer";
+import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
+import { getAnimeById } from "../../../filters/getAnimeById";
+import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
+import EpisodeCardStatic from "../../../components/EpisodeCard/EpisodeCardStatic.astro";
+import SEOHead from "../../../components/SEO/SEOHead.astro";
+const { nanoid, slug } = Astro.params;
+const sort = Astro.url.searchParams.get("sort") ?? "old";
+let anime = getAnimeById(nanoid) as Anime | null;
+
+if (anime == null || !anime.anilist == null) {
+    return new Response(null, {
+        status: 302,
+        headers: {
+            Location: "/404",
+        },
+    });
+}
+
+let episodeList = anime?.videos ?? [];
+
+if (sort == "new") {
+    episodeList = [...episodeList].reverse();
+}
+
+const genresA = anime?.anilist?.genres ?? [];
+
+const {
+    id = 10,
+    title = "Untitled",
+    romaji = title,
+    bannerImage = "/episode-thumbnail-alt-2.png",
+    coverImage = "/anime-image-alt.png",
+    description = "No Description",
+    language = "Sub|Dub",
+    score
+} = anime.anilist ?? {};
+
+const {
+    type = "N/A",
+    episodes = "N/A",
+    status = "N/A",
+    duration = "N/A",
+    startDate = "N/A",
+    endDate = "N/A",
+    season = "N/A",
+    genres = "N/A",
+} = anime.anilist ?? {};
+
+const usedTitlesGlobal = [title, title, title];
+---
+
+<html lang="en">
+    <SEOHead 
+        title={`Watch ${title} Ad-Free | Anikawa`}
+        description={`Stream ${title} online in high quality — No ads on Anikawa. ${description}`}/>
+
+    <body>
+        <Navbar client:load />
+
+        <div id="main" class="main">
+            <div
+                id="top-banner"
+                class="top-banner"
+                style={{ backgroundImage: `url(${bannerImage})` }}
+            >
+                <div class="bottom-gradient"></div>
+            </div>
+            <div id="overlay-main" class="overlay-main">
+                <div class="empty-top-banner"></div>
+                <div class="anime-hero-section">
+                    <div class="hero-column image">
+                        <img
+                            id="card-image"
+                            class="card-image"
+                            src={coverImage}
+                        />
+                    </div>
+                    <div class="hero-column metadata">
+                        <div class="titles-section">
+                            <div
+                                id="title-english"
+                                class="poetsen-one-regular english"
+                            >
+                                {title}
+                            </div>
+                            <div
+                                id="title-romaji"
+                                class="poetsen-one-regular romaji"
+                            >
+                                {romaji}
+                            </div>
+                            <div class="poetsen-one-regular">Score : {score}</div>
+                            <div class="watchlist-section-ap">
+                                <div id="wbtn-label"></div>
+                                <AnimeWBtn nanoid={nanoid ?? 'xyzxyz'} client:load />
+                            </div>
+                        </div>
+                        <div class="description-section">
+                            <div class="des-only">
+                                <p
+                                    id="description-anime-hero"
+                                    class="description-anime-hero"
+                                    set:html={description}
+                                />
+                            </div>
+                            <div id="other-metadata" class="other-metadata">
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Type:</b>
+                                    {type}
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Episodes: </b>{
+                                        episodes
+                                    }
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Status: </b>{
+                                        status
+                                    }
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Duration: </b>{
+                                        duration
+                                    }
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Aired: </b>{
+                                        startDate
+                                    } to {endDate}
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Season: </b>{
+                                        season
+                                    }
+                                </p>
+                                <p class="metadata-value">
+                                    <b class="metadata-label">Genres: </b>{
+                                        genres
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="episodes-section" class="episodes-section">
+                    <div class="top-controls">
+                        <div class="top-controls-btn">
+                            <svg
+                                class="arrow-down"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="30px"
+                                viewBox="0 -960 960 960"
+                                width="30px"
+                                fill="#ffffff"
+                            >
+                                <path d="M480-360 280-560h400L480-360Z"></path>
+                            </svg>
+                            <div id="season-text" class="season-text">
+                                S1: {title}
+                            </div>
+                        </div>
+                        <SortBtnHandler client:load />
+                    </div>
+                    <div class="episodes-list">
+                        {
+                            episodeList?.map((e: any) => {
+                                const epData: EpisodeCardProps = {
+                                    animeTitle: title,
+                                    language,
+                                    animenanoid: nanoid,
+                                    animeslug: slug,
+                                    ...e,
+                                };
+
+                                return(<EpisodeCard epData={epData} />);
+                            })
+                        }
+                    </div>
+                    <div class="episode-list-endline"></div>
+                    <div class="season-change-section">
+                        <div class="season-change-section scs-part">
+                            <svg
+                                class="chevron-arrow"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="15px"
+                                viewBox="0 -960 960 960"
+                                width="15px"
+                                fill="#808080"
+                            >
+                                <path
+                                    d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"
+                                ></path>
+                            </svg>
+                            PREVIOUS SEASON
+                        </div>
+                        <div class="season-change-section scs-part">
+                            NEXT SEASON
+                            <svg
+                                class="chevron-arrow"
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="15px"
+                                viewBox="0 -960 960 960"
+                                width="15px"
+                                fill="#808080"
+                            >
+                                <path
+                                    d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="more-section">
+                    <AnimeSliderStatic
+                        info={{
+                            bigH: "More Like This",
+                            smallH: "",
+                            filterName: "matchCategories",
+                            genresA,
+                            forAnimePage: true,
+                            usedTitlesGlobal: usedTitlesGlobal
+                        }}
+                    />
+                </div>
+                <Footer />
+            </div>
+        </div>
+    </body>
+</html>

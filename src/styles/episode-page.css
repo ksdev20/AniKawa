@@ -1,0 +1,219 @@
+.main-episode-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/1.1;
+    max-width: 1350px;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.episode-page-details {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+}
+
+@media (max-width: 900px) {
+    .episode-page-details {
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1000px) {
+    .episode-page-details {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .episode-page-details {
+        padding: 0 64px;
+    }
+}
+
+.epd-first-top {
+    display: flex;
+    align-items: center;
+}
+
+.first-part {
+    gap: 10px;
+    color: white;
+    font-size: 17px;
+}
+
+.first-part-anime-title {
+    color: #8c52ff;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.first-part-anime-title:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.first-part-rating {
+    color: white;
+    font-size: 15px;
+}
+
+.add-to-watchlist-icon {
+    cursor: pointer;
+}
+
+.epd-ep-title {
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.epd-language {
+    margin-top: 16px;
+    color: gray;
+    font-size: 14px;
+}
+
+.epd-description {
+    margin-top: 12px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.episode-change-section {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.episode-change-card-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+}
+
+.episode-change-card-container.hidden {
+    display: none;
+}
+
+.eccc-link {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.episode-change-card:hover {
+    background-color: #23252b;
+}
+
+.eccc-heading {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.episode-change-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 5px;
+}
+
+.for-card {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.ecc-image {
+    width: 40%;
+    height: 100%;
+}
+
+@media (max-width: 500px) {
+    .ecc-image {
+        max-width: 110px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .ecc-image {
+        max-width: 160px;
+    }
+}
+
+.ecc-text-section {
+    gap: 8px;
+}
+
+.ecc-language {
+    margin-top: 0;
+}
+
+@media (max-width: 650px) {
+    .episode-change-section {
+        flex-direction: column;
+    }
+
+    .episode-change-card-container {
+        width: 100%;
+    }
+}
+
+.epd-first {
+    padding: 0px;
+    max-width: none;
+}
+
+@media (max-width: 500px) {
+    .episode-page-details {
+        padding: 0 15px;
+    }
+
+    .epd-first {
+        padding: 0px;
+        max-width: none;
+    }
+
+    .epd-ep-title {
+        font-size: 20px;
+    }
+
+    .epd-description {
+        font-size: 14px;
+    }
+
+    .for-card {
+        font-size: 16px;
+    }
+}

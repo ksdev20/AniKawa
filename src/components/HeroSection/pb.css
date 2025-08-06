@@ -1,0 +1,30 @@
+.progress-container {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    height: 10px;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+    bottom: 30px;
+}
+
+.progress-bar {
+    background-color: #888;
+    width: 30px;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.progress-bar.active {
+    background-color: #8c52ff;
+}
+
+@media (max-width: 600px) {
+    .progress-bar {
+        width: 25px;
+    }
+}

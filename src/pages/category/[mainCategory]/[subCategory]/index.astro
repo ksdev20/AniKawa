@@ -1,0 +1,51 @@
+---
+import "../../../../styles/category/subcat.css";
+import "../../../../components/watchlist-history/wat-his.css";
+import Navbar from "../../../../components/Navbar/Navbar";
+import Footer from "../../../../components/Footer/Footer";
+import { getFilteredAnime } from "../../../../filters/animeFilterMain";
+import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStatic.astro";
+
+const { mainCategory, subCategory } = Astro.params;
+const finalArray = getFilteredAnime("matchCategories", {
+    categoryA: mainCategory,
+    categoryB: subCategory,
+    forSubCategory: true,
+});
+---
+
+<html>
+    <head>
+        <meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/icon.png" />
+        <title>{mainCategory} / {subCategory} Anime</title>
+    </head>
+    <body>
+        <Navbar client:load />
+        <div class="main-root">
+            <div class="sub-cat-main">
+                <div class="sub-cat-main">
+                    <div class="sub-cat-top">
+                        <a
+                            id="main-cat-name"
+                            class="main-cat-link"
+                            href={`/category/${mainCategory}`}>{mainCategory}</a
+                        >/
+                        <div id="sub-cat-name" class="sub-cat-name">
+                            {subCategory}
+                        </div>
+                    </div>
+                </div>
+                <div id="sub-cat-anime-list" class="new-pop-anime-list">
+                    {
+                        finalArray.map((anime, i) => (
+                            <AnimeCardStatic anime={anime} fornewpop={true} />
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+        <Footer />
+    </body>
+</html>

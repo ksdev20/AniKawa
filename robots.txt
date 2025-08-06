@@ -1,0 +1,6 @@
+Disallow: /login
+Disallow: /signup
+Disallow: /watchlist
+Disallow: /history
+Disallow: /profile
+Disallow: /search

@@ -1,0 +1,82 @@
+.slider-section-text-big {
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.cat-slider-heading-big {
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+.slider-section-text-small {
+    color: gray;
+    font-size: large;
+}
+
+@media screen and (max-width: 600px) {
+    .slider-section-text-big {
+        font-size: 22px;
+    }
+
+    .slider-section-text-small {
+        font-size: 14px;
+    }
+}
+
+.anime-slider-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.cat-slider {
+    margin-top: 40px;
+}
+
+.slider-heading {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-left: 20px;
+}
+
+.cat-slider-heading {
+    margin-bottom: 5px;
+    flex-direction: row;
+    gap: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slider-content-wrapper {
+    position: relative;
+    z-index: 9;
+    width: 100%;
+    display: block;
+}
+
+.slider-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    scroll-behavior: smooth;
+    width: 100%;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    align-items: flex-start;
+    overflow: auto;
+    padding: 0 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    list-style-type: none;
+}
+
+.slider-container.disable-clicks{
+    pointer-events: none;
+}

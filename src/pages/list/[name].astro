@@ -1,0 +1,81 @@
+---
+import aniOneAsia2 from "../../data/aniOneData2.json";
+import "../../components/ButtonHandlers/sortbuttons.css";
+import "../../styles/new-pop.css";
+import Navbar from "../../components/Navbar/Navbar";
+import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStatic.astro";
+import Footer from "../../components/Footer/Footer";
+import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+const { name } = Astro.params;
+const label = name == 'new' ? 'Newly Added Anime' : 'Most Popular Anime';
+const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
+let finalArray;
+
+if (urlFilter == "sub") {
+    finalArray = aniOneAsia2.slice().filter((a) => {
+        return a?.anilist?.language == "Subtitled";
+    });
+} else if (urlFilter == "dub") {
+    finalArray = aniOneAsia2.slice().filter((a) => {
+        return a?.anilist?.language == "Sub | Dub";
+    });
+} else {
+    finalArray = aniOneAsia2.slice();
+}
+
+const seen = new Map();
+finalArray = finalArray.filter(a => {
+    const title = a?.anilist?.title;
+    if (!title || seen.has(title)) return false;
+    seen.set(title, true);
+    return true;
+});
+
+dayjs.extend(customParseFormat);
+const format = "D/M/YYYY";
+
+if (name == "new") {
+    finalArray.sort((a, b) => {
+        const dateA = dayjs(a?.anilist?.startDate ?? "1/1/2000", format);
+        const dateB = dayjs(b?.anilist?.startDate ?? "1/1/2005", format);
+        return dateB.valueOf() - dateA.valueOf();
+    });
+} else if (name == "popular") {
+    finalArray.sort((a, b) => {
+        const scoreA = parseFloat(a?.anilist?.score) ?? 0;
+        const scoreB = parseFloat(b?.anilist?.score) ?? 1;
+        return scoreB - scoreA;
+    });
+}
+---
+
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/icon.png" />
+    </head>
+    <body>
+        <Navbar client:load />
+        <div class="main-root">
+            <div class="main-content">
+                <div class="new-first">
+                    <label class="new-first-heading">{label}</label>
+                    <NewPopButtons n={name} client:load />
+                </div>
+                <div id="new-popular-anime-list" class="new-pop-anime-list">
+                    {
+                        finalArray?.map((ani, i) => {
+                            return <AnimeCardStatic anime={ani} fornewpop={true} />;
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+        <Footer />
+    </body>
+</html>

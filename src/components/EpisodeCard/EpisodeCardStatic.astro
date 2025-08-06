@@ -1,0 +1,60 @@
+---
+import './episode-card.css';
+import type { EpisodeCardProps } from '../../filters/AnimeDataTypes';
+import EDelBtn from './EcDatabaseContact/EDelBtn';
+const epData = Astro.props.epData as EpisodeCardProps;
+const forHistory = Astro.props.forHistory as boolean ?? false;
+
+if (!epData) return null;
+
+const {
+    animeTitle = "Anime Title N/A",
+    language = "Language N/A",
+    animenanoid,
+    slug,
+    episodeNumber,
+} = epData ?? {};
+
+const {
+    title = `Episode ${episodeNumber}`,
+    thumbnail = "/episode-thumbnail-alt-2.png",
+    description = "No description",
+} = epData?.episodeDetails?.[0] ?? {};
+---
+
+<div class="episode-card">
+    <div class="episode-card-first">
+        <img class="episode-card-image" src={thumbnail} loading="lazy" decoding="async"/>
+        <div class="anime-title">{animeTitle}</div>
+        <div class="episode-number-name">{title}</div>
+        <div class="language-section">{language}</div>
+
+        <div class="episode-card-hover">
+            <div class="anime-title">{animeTitle}</div>
+            <div class="episode-number-name">{title}</div>
+            <div
+                class="episode-number-name episode-description"
+                set:html={description}
+            >
+            </div>
+            <div class="episode-play-btn">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="40px"
+                    width="40px"
+                    viewBox="0 -960 960 960"
+                    fill="#8c52ff"
+                >
+                    <path
+                        d="M360-272.31v-415.38L686.15-480 360-272.31ZM400-480Zm0 134 211.54-134L400-614v268Z"
+                    ></path>
+                </svg>
+                PLAY
+            </div>
+        </div>
+        <a href={`/episode/${animenanoid}/${slug}`} class="episode-card-link"></a>
+    </div>
+    {forHistory && (
+        <EDelBtn animenanoid={animenanoid} slug={slug} client:load />
+    )}
+</div>

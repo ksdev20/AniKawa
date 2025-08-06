@@ -1,0 +1,25 @@
+.site-footer {
+    margin: 0 20px;
+    margin-top: 30px;
+    border-top: 1px solid gray;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    font-size: 17px;
+}
+
+.site-footer a {
+    text-decoration: none;
+    color: gray;
+}
+
+.site-footer a:hover {
+    color: white;
+}
+
+.sf-separator {
+    padding: 0 20px;
+}

@@ -1,0 +1,65 @@
+---
+import "./animecard.css";
+import AnimeWBtn from "./AnimeWBtn";
+import { type Anime } from "../../filters/AnimeDataTypes";
+const anime = Astro.props.anime as Anime;
+const forNewPop = Astro.props.fornewpop ?? false;
+const {
+    id = 0,
+    title = "Untitled",
+    language = "Language N/A",
+    coverImage = "/anime-image-alt.png",
+    score = "Score N/A",
+    episodes = "N/A",
+    description = "No Description",
+} = anime?.anilist ?? {};
+const nanoid = anime.nanoid ?? "n-a";
+const epSlug = anime?.videos?.[0]?.slug;
+---
+
+<li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`} >
+    <div class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
+        <a href={`/show/${nanoid}/${anime.slug}`} class="anime-card-link"></a>
+        <img class="anime-card-image" src={coverImage} alt={`Cover of ${title}`} loading="lazy" decoding="async"/>
+        <h4 class="anime-card-title">{title}</h4>
+        <div class="anime-card-language">{language}</div>
+
+        <div
+            class="anime-card-hover"
+            style={{ backgroundImage: `url(${coverImage})` }}
+        >
+            <div class="anime-card-hover-details">
+                <div class="anime-card-hover-title">{title}</div>
+                <div class="anime-card-hover-rating">{score}</div>
+                <div class="anime-card-hover-episodes">
+                    {episodes} Episodes
+                </div>
+                <p
+                    class="anime-card-hover-description"
+                    set:html={description}
+                ></p>
+            </div>
+        </div>
+        <div class="anime-card-hover-actions">
+            <div class="tooltip" data-tip="Play S1 E1">
+                <a href={`/episode/${nanoid}/${epSlug}`} aria-label={`Watch ${title} Episode 1`}>
+                    <svg
+                        class="card-action-play"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="35px"
+                        viewBox="0 -960 960 960"
+                        width="35px"
+                        fill="#8c52ff"
+                    >
+                        <path
+                            d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="tooltip w" data-tip="Add to Watchlist">
+                <AnimeWBtn nanoid={nanoid} client:load />
+            </div>
+        </div>
+    </div>
+</li>

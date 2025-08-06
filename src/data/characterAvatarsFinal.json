@@ -1,0 +1,1903 @@
+[
+  {
+    "name": {
+      "first": "Satoru",
+      "full": "Satoru Gojou",
+      "native": "五条悟",
+      "alternative": [
+        "Satoru Gojo"
+      ],
+      "userPreferred": "Satoru Gojou"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127691-9zqh1xpIubn7.png"
+  },
+  {
+    "name": {
+      "first": "Luffy",
+      "full": "Luffy Monkey",
+      "native": "モンキー・D・ルフィ",
+      "alternative": [
+        "Straw Hat",
+        "Mugiwara",
+        "Straw",
+        "Mugi",
+        "Lucy",
+        "Luffyland",
+        "Mugiwara no Luffy",
+        "Mugiwara-ya",
+        "Ruffy"
+      ],
+      "userPreferred": "Luffy D. Monkey"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png"
+  },
+  {
+    "name": {
+      "first": "Levi",
+      "full": "Levi",
+      "native": "リヴァイ",
+      "alternative": [
+        "Levi Heichou (リヴァイ兵長)",
+        "Captain Levi",
+        "Jinrui Saikyou no Heishi (人類最強の兵士)",
+        "Humanity's Strongest Soldier",
+        "Heishichou (兵士長)"
+      ],
+      "userPreferred": "Levi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b45627-CR68RyZmddGG.png"
+  },
+  {
+    "name": {
+      "first": "Killua",
+      "full": "Killua Zoldyck",
+      "native": "キルア=ゾルディック",
+      "alternative": [
+        "Kill",
+        "Kil",
+        "Evans"
+      ],
+      "userPreferred": "Killua Zoldyck"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b27-Z5O02kQUydpT.jpg"
+  },
+  {
+    "name": {
+      "first": "Eren",
+      "full": "Eren Yeager",
+      "native": "エレン・イェーガー",
+      "alternative": [
+        "Eren Jaeger",
+        "Eren Jäger",
+        "Suicidal Maniac",
+        "Shi ni Isogi Yarou (死に急ぎ野郎)"
+      ],
+      "userPreferred": "Eren Yeager"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40882-dsj7IP943WFF.jpg"
+  },
+  {
+    "name": {
+      "first": "Zoro",
+      "full": "Zoro Roronoa",
+      "native": "ロロノア・ゾロ",
+      "alternative": [
+        "Zolo",
+        "Pirate Hunter",
+        "Marimo Head",
+        "Mr. Bushido",
+        "Zorojuro",
+        "Moss Head",
+        "Lorenor Zorro"
+      ],
+      "userPreferred": "Zoro Roronoa"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b62-S7oAeA9WInjV.png"
+  },
+  {
+    "name": {
+      "first": "Emilia",
+      "full": "Emilia",
+      "native": "エミリア",
+      "alternative": [
+        "Satella",
+        "Lia",
+        "Emilia-tan",
+        "Witch of Glaciation",
+        "Hyouketsu no Majo (氷結の魔女)",
+        "Witch of Frost",
+        "Han Ma (半魔)",
+        "Half-Devil",
+        "Mili",
+        "Emily"
+      ],
+      "userPreferred": "Emilia"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88572-IzTwXEHSobRs.jpg"
+  },
+  {
+    "name": {
+      "first": "Lelouch",
+      "full": "Lelouch Lamperouge",
+      "native": "ルルーシュ・ランペルージ",
+      "alternative": [
+        "Lulu",
+        "Zero",
+        "King of Elevens",
+        "The Demon",
+        "Black King",
+        "Black Demon",
+        "Julius Kingsley"
+      ],
+      "userPreferred": "Lelouch Lamperouge"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b417-gVLmIJu9phcK.png"
+  },
+  {
+    "name": {
+      "first": "Guts",
+      "full": "Guts",
+      "native": "ガッツ",
+      "alternative": [
+        "The Black Swordsman",
+        "Hundred Man Slayer",
+        "Heartless Swordsman",
+        "Struggler",
+        "Kuroi Kenshi"
+      ],
+      "userPreferred": "Guts"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b422-XTaiTuvRohsV.png"
+  },
+  {
+    "name": {
+      "first": "Ken",
+      "full": "Ken Kaneki",
+      "native": "金木研",
+      "alternative": [
+        "Eyepatch",
+        "Kane-yan",
+        "Kanekichi"
+      ],
+      "userPreferred": "Ken Kaneki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b87275-mb13EWZBdbh3.png"
+  },
+  {
+    "name": {
+      "first": "Mikasa",
+      "full": "Mikasa Ackerman",
+      "native": "ミカサ・アッカーマン",
+      "alternative": [],
+      "userPreferred": "Mikasa Ackerman"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40881-F3gr1PkreDvj.png"
+  },
+  {
+    "name": {
+      "first": "Arataka",
+      "full": "Arataka Reigen",
+      "native": "霊幻新隆",
+      "alternative": [
+        "The Century's Greatest Psychic",
+        "Master"
+      ],
+      "userPreferred": "Arataka Reigen"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89334-OPj1hCzvrt7X.png"
+  },
+  {
+    "name": {
+      "first": "L",
+      "full": "L Lawliet",
+      "native": "エル・ローライト",
+      "alternative": [
+        "Ryuga Hideki",
+        "Ryuzaki",
+        "Eraldo Coil",
+        "Deneuve",
+        "Asahi",
+        "Suzuki",
+        "L-Prime"
+      ],
+      "userPreferred": "L Lawliet"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b71-1W4panC53vfs.png"
+  },
+  {
+    "name": {
+      "first": "Makima",
+      "full": "Makima",
+      "native": "マキマ",
+      "alternative": [],
+      "userPreferred": "Makima"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b137080-UHcynYNjb5ZU.png"
+  },
+  {
+    "name": {
+      "first": "Kurisu",
+      "full": "Kurisu Makise",
+      "native": "牧瀬紅莉栖",
+      "alternative": [
+        "Christina",
+        "Assistant",
+        "American Virgin",
+        "Perverted Genius Girl",
+        "Celeb 17",
+        "The Zombie",
+        "Kuu-meow",
+        "k.makise",
+        "KuriGohan Kamehameha",
+        "Lab Member 004",
+        "KURI_KAME"
+      ],
+      "userPreferred": "Kurisu Makise"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b34470-Jw2LXZBL5R8i.png"
+  },
+  {
+    "name": {
+      "first": "Thorfinn",
+      "full": "Thorfinn Karlsefni",
+      "native": "トルフィン・カルルセヴニ",
+      "alternative": [
+        "ثورفين",
+        "Thorsson"
+      ],
+      "userPreferred": "Thorfinn Karlsefni"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b10138-zOPrka0ddZOR.png"
+  },
+  {
+    "name": {
+      "first": "Kaguya",
+      "full": "Kaguya Shinomiya",
+      "native": "四宮かぐや",
+      "alternative": [
+        "Muscle Queen",
+        "Auntie",
+        "Princess",
+        "Demon",
+        "Mistress Kaguya",
+        "Vice President"
+      ],
+      "userPreferred": "Kaguya Shinomiya"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b120649-NPaWaIpWy60E.png"
+  },
+  {
+    "name": {
+      "first": "Mai",
+      "full": "Mai Sakurajima",
+      "native": "桜島麻衣",
+      "alternative": [],
+      "userPreferred": "Mai Sakurajima"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127222-Jh5hhP7vZ7s1.png"
+  },
+  {
+    "name": {
+      "first": "Rintarou",
+      "full": "Rintarou Okabe",
+      "native": "岡部倫太郎",
+      "alternative": [
+        "Rintaro",
+        "Hououin Kyouma (鳳凰院凶真)",
+        "Okarin (オカリン)",
+        "Mad Scientist",
+        "Future Gadget Lab Member #001",
+        "Lintahlo",
+        "M3",
+        "Salieri's Neighbor",
+        "Rinta-kun"
+      ],
+      "userPreferred": "Rintarou Okabe"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b35252-DY9TW6pusqeh.png"
+  },
+  {
+    "name": {
+      "first": "Itachi",
+      "full": "Itachi Uchiha",
+      "native": "うちはイタチ",
+      "alternative": [
+        "Sharingan no Itachi (写輪眼のイタチ)",
+        "Itachi of the Sharingan"
+      ],
+      "userPreferred": "Itachi Uchiha"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png"
+  },
+  {
+    "name": {
+      "first": "Power",
+      "full": "Power",
+      "native": "パワー",
+      "alternative": [
+        "Powy",
+        "Blood Fiend",
+        "Chi no Majin (血の魔人)",
+        "Number One"
+      ],
+      "userPreferred": "Power"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b137079-6yLEUYR3bmpr.png"
+  },
+  {
+    "name": {
+      "first": "Yuuji",
+      "full": "Yuuji Itadori",
+      "native": "虎杖悠仁",
+      "alternative": [
+        "Sukuna's Vessel",
+        "The Tiger of West Junior High"
+      ],
+      "userPreferred": "Yuuji Itadori"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b127212-FVm2tD0erQ5B.png"
+  },
+  {
+    "name": {
+      "first": "Violet",
+      "full": "Violet Evergarden",
+      "native": "ヴァイオレット・エヴァーガーデン",
+      "alternative": [
+        "Auto Memories Doll",
+        "Leidenschaftlich's Soldier Maiden",
+        "Vi"
+      ],
+      "userPreferred": "Violet Evergarden"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b90169-4wr1Zehnsac8.png"
+  },
+  {
+    "name": {
+      "first": "Shigeo",
+      "full": "Shigeo Kageyama",
+      "native": "影山茂夫",
+      "alternative": [
+        "Mob (モブ)",
+        "White T Poison",
+        "Shige",
+        "Shadow Leader"
+      ],
+      "userPreferred": "Shigeo Kageyama"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89616-dXmdOc7L6SDi.png"
+  },
+  {
+    "name": {
+      "first": "Sakura",
+      "full": "Sakura Matou",
+      "native": "間桐桜",
+      "alternative": [],
+      "userPreferred": "Sakura Matou"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b500-NQrLbnBr1sDv.png"
+  },
+  {
+    "name": {
+      "first": "Kakashi",
+      "full": "Kakashi Hatake",
+      "native": "はたけカカシ",
+      "alternative": [
+        "The Copy Ninja",
+        "Kakashi of the Sharingan",
+        "Sukea"
+      ],
+      "userPreferred": "Kakashi Hatake"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b85-mkVBh2yjxjmx.png"
+  },
+  {
+    "name": {
+      "first": "Kurapika",
+      "full": "Kurapika",
+      "native": "クラピカ",
+      "alternative": [
+        "Chain User",
+        "Chain Bastard"
+      ],
+      "userPreferred": "Kurapika"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b28-ivA7UGnfE40a.png"
+  },
+  {
+    "name": {
+      "first": "Denji",
+      "full": "Denji",
+      "native": "デンジ",
+      "alternative": [
+        "Chainsaw Man",
+        "Chainsaw Devil",
+        "Lord Chainsaw"
+      ],
+      "userPreferred": "Denji"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b130102-FO1VHNnEnLlB.png"
+  },
+  {
+    "name": {
+      "first": "Frieren",
+      "full": "Frieren",
+      "native": "フリーレン",
+      "alternative": [
+        "Frieren the Slayer"
+      ],
+      "userPreferred": "Frieren"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b176754-PCnpqIOkjhFk.png"
+  },
+  {
+    "name": {
+      "first": "Light",
+      "full": "Light Yagami",
+      "native": "夜神月",
+      "alternative": [
+        "Kira",
+        "Light Asahi",
+        "God"
+      ],
+      "userPreferred": "Light Yagami"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b80-26EhwSsSqQ50.png"
+  },
+  {
+    "name": {
+      "first": "Edward",
+      "full": "Edward Elric",
+      "native": "エドワード・エルリック",
+      "alternative": [
+        "Ed",
+        "Fullmetal Alchemist",
+        "Pipsqueak",
+        "Little Red Runt",
+        "Shorty",
+        "Insect",
+        "Hero of the People"
+      ],
+      "userPreferred": "Edward Elric"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg"
+  },
+  {
+    "name": {
+      "first": "Maomao",
+      "full": "Maomao",
+      "native": "猫猫",
+      "alternative": [
+        "Shaomao",
+        "Xiaomao",
+        "小猫",
+        "Miêu Miêu"
+      ],
+      "userPreferred": "Maomao"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126824-MqsCncTO1qpv.png"
+  },
+  {
+    "name": {
+      "first": "Ichigo",
+      "full": "Ichigo",
+      "native": "イチゴ",
+      "alternative": [
+        "015"
+      ],
+      "userPreferred": "Ichigo"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b124382-bSBkjtYjJQtr.png"
+  },
+  {
+    "name": {
+      "first": "Tanjirou",
+      "full": "Tanjirou Kamado",
+      "native": "竈門炭治郎",
+      "alternative": [
+        "Gonpachiro Kamaboko",
+        "Monjiro",
+        "Santaro",
+        "Kentaro",
+        "Soichiro",
+        "Ponjiro",
+        "Gengo Shakariki",
+        "Tontaro Itadaki",
+        "Kanjiro Anago",
+        "Tangoro Hamado",
+        "Jangoro Amado"
+      ],
+      "userPreferred": "Tanjirou Kamado"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126071-BTNEc1nRIv68.png"
+  },
+  {
+    "name": {
+      "first": "Naruto",
+      "full": "Naruto Uzumaki",
+      "native": "うずまきナルト",
+      "alternative": [
+        "Nine-Tails Jinchuuriki",
+        "The Show-Off",
+        "Number One Unpredictable",
+        "Noisy Ninja",
+        "Number One Hyperactive",
+        "Knucklehead Ninja",
+        "Fox"
+      ],
+      "userPreferred": "Naruto Uzumaki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png"
+  },
+  {
+    "name": {
+      "first": "Chika",
+      "full": "Chika Fujiwara",
+      "native": "藤原千花",
+      "alternative": [
+        "Subject F",
+        "Love Detective Chika",
+        "Fortune Teller Chika",
+        "Secretary Fujiwara"
+      ],
+      "userPreferred": "Chika Fujiwara"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b121103-UGLxT8utLPnq.png"
+  },
+  {
+    "name": {
+      "first": "Megumin",
+      "full": "Megumin",
+      "native": "めぐみん",
+      "alternative": [
+        "Crazy Explosion Girl",
+        "Psycho Girl"
+      ],
+      "userPreferred": "Megumin"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89361-tq8PQQ4MmF0M.png"
+  },
+  {
+    "name": {
+      "first": "Itsuki",
+      "full": "Itsuki Nakano",
+      "native": "中野五月",
+      "alternative": [
+        "いつき"
+      ],
+      "userPreferred": "Itsuki Nakano"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126375-dEe9IyQ9By09.png"
+  },
+  {
+    "name": {
+      "first": "Miko",
+      "full": "Miko Iino",
+      "native": "伊井野ミコ",
+      "alternative": [],
+      "userPreferred": "Miko Iino"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b125886-TQbmqAaSgBLS.png"
+  },
+  {
+    "name": {
+      "first": "Joseph",
+      "full": "Joseph Joestar",
+      "native": "ジョセフ・ジョースター",
+      "alternative": [
+        "JoJo",
+        "Josef Joestar",
+        "Mr. Joestar",
+        "Old Man",
+        "Geezer"
+      ],
+      "userPreferred": "Joseph Joestar"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b6356-RImEfUfHpC58.png"
+  },
+  {
+    "name": {
+      "first": "Osamu",
+      "full": "Osamu Dazai",
+      "native": "太宰治",
+      "alternative": [
+        "Mackerel",
+        "Bandage Wasting Device"
+      ],
+      "userPreferred": "Osamu Dazai"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89198-qKmRTw4Y3PRC.png"
+  },
+  {
+    "name": {
+      "first": "Gintoki",
+      "full": "Gintoki Sakata",
+      "native": "坂田銀時",
+      "alternative": [
+        "Yorozuya",
+        "Mr. Odd Jobs",
+        "Shiroyasha",
+        "Gin",
+        "Gin-chan",
+        "Kintoki",
+        "Paako",
+        "Ginpachi-sensei",
+        "Ginnoji",
+        "GFundz",
+        "Boss",
+        "Ginpachi Sakata (坂田銀八)",
+        "Corpse Eating Demon",
+        "White Yaksha",
+        "Gin-san",
+        "Tokiko",
+        "Ginko",
+        "Johnny",
+        "Danna",
+        "Earth Big Brother",
+        "Earth dad"
+      ],
+      "userPreferred": "Gintoki Sakata"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b672-cP5VPriN67xJ.png"
+  },
+  {
+    "name": {
+      "first": "Kiyotaka",
+      "full": "Kiyotaka Ayanokouji",
+      "native": "綾小路清隆",
+      "alternative": [
+        "Argos-4",
+        "Ayanokoji",
+        "Aya-non",
+        "Kiyo-pon",
+        "X",
+        "The False Genius",
+        "Elevator Boy"
+      ],
+      "userPreferred": "Kiyotaka Ayanokouji"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b123212-ewZgUQr9vvEM.png"
+  },
+  {
+    "name": {
+      "first": "Askeladd",
+      "full": "Askeladd",
+      "native": "アシェラッド",
+      "alternative": [
+        "أسكيلاد",
+        "آشيلاد"
+      ],
+      "userPreferred": "Askeladd"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13020-ZdiYlNmpRUNS.png"
+  },
+  {
+    "name": {
+      "first": "Megumi",
+      "full": "Megumi Fushiguro",
+      "native": "伏黒恵",
+      "alternative": [
+        "Sea Urchin Head"
+      ],
+      "userPreferred": "Megumi Fushiguro"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b126635-L0y3I92JSUkN.png"
+  },
+  {
+    "name": {
+      "first": "Shouto",
+      "full": "Shouto Todoroki",
+      "native": "轟焦凍",
+      "alternative": [
+        "Shouto (ショート)",
+        "Shoto Todoroki",
+        "Half-and-Half",
+        "Icy-Hot"
+      ],
+      "userPreferred": "Shouto Todoroki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b89220-KNBwaVFAR8FD.png"
+  },
+  {
+    "name": {
+      "first": "Jin-U",
+      "full": "Jin-U Seong",
+      "native": "성진우",
+      "alternative": [
+        "Sung Jin-Woo",
+        "Shun Mizushino (水篠旬)",
+        "World's Weakest Hunter",
+        "2nd Rate Asian Hunter",
+        "The Weakest Hunter of All Mankind"
+      ],
+      "userPreferred": "Jin-U Seong"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b129928-BCEjVaP0AQSw.png"
+  },
+  {
+    "name": {
+      "first": "Rem",
+      "full": "Rem",
+      "native": "レム",
+      "alternative": [
+        "Rem-rin"
+      ],
+      "userPreferred": "Rem"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b88575-Ayu8UPDA8NS6.png"
+  },
+  {
+    "name": {
+      "first": "Marin",
+      "full": "Marin Kitagawa",
+      "native": "喜多川海夢",
+      "alternative": [
+        "Marine (まりん)"
+      ],
+      "userPreferred": "Marin Kitagawa"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b133676-kV2czE3C8Qls.png"
+  },
+  {
+    "name": {
+      "first": "Senkuu",
+      "full": "Senkuu Ishigami",
+      "native": "石神千空",
+      "alternative": [
+        "Sorcerer",
+        "Sorcerer Gentleman",
+        "Professor Senku",
+        "String bean",
+        "Dr. Senku",
+        "Lab"
+      ],
+      "userPreferred": "Senkuu Ishigami"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b124142-XUO1g7wRqkaT.png"
+  },
+  {
+    "name": {
+      "first": "Spike",
+      "full": "Spike Spiegel",
+      "native": "スパイク・スピーゲル",
+      "alternative": [
+        "Spike Spike",
+        "Swimming Bird"
+      ],
+      "userPreferred": "Spike Spiegel"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b1-ChxaldmieFlQ.png"
+  },
+  {
+    "name": {
+      "first": "Faye",
+      "full": "Faye Valentine",
+      "native": "フェイ・バレンタイン",
+      "alternative": [
+        "Poker Alice",
+        "Queen of Hearts",
+        "Romani"
+      ],
+      "userPreferred": "Faye Valentine"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b2-0Iszg6Izgt4p.png"
+  },
+  {
+    "name": {
+      "first": "Jet",
+      "full": "Jet Black",
+      "native": "ジェット・ブラック",
+      "alternative": [
+        "Running Rock",
+        "Black Dog",
+        "Jet Jet"
+      ],
+      "userPreferred": "Jet Black"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b3-JjH9Si9UM1NZ.png"
+  },
+  {
+    "name": {
+      "first": "Ein",
+      "full": "Ein",
+      "native": "アイン",
+      "alternative": [
+        "Poochie"
+      ],
+      "userPreferred": "Ein"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/4.jpg"
+  },
+  {
+    "name": {
+      "first": "Ichigo",
+      "full": "Ichigo Kurosaki",
+      "native": "黒崎一護",
+      "alternative": [
+        "Ichi-nii",
+        "Substitute Soul Reaper",
+        "Itsygo",
+        "Ryoka Boy"
+      ],
+      "userPreferred": "Ichigo Kurosaki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b5-a7bkJgjhhigE.png"
+  },
+  {
+    "name": {
+      "first": "Rukia",
+      "full": "Rukia Kuchiki",
+      "native": "朽木ルキア",
+      "alternative": [],
+      "userPreferred": "Rukia Kuchiki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b6-25WoBeWMZXBc.png"
+  },
+  {
+    "name": {
+      "first": "Orihime",
+      "full": "Orihime Inoue",
+      "native": "井上織姫",
+      "alternative": [
+        "Hime"
+      ],
+      "userPreferred": "Orihime Inoue"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b7-JdR4betokDjR.jpg"
+  },
+  {
+    "name": {
+      "first": "Edward",
+      "full": "Edward Elric",
+      "native": "エドワード・エルリック",
+      "alternative": [
+        "Ed",
+        "Fullmetal Alchemist",
+        "Pipsqueak",
+        "Little Red Runt",
+        "Shorty",
+        "Insect",
+        "Hero of the People"
+      ],
+      "userPreferred": "Edward Elric"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b11-TA5Nuk7EDUZG.jpg"
+  },
+  {
+    "name": {
+      "first": "Alphonse",
+      "full": "Alphonse Elric",
+      "native": "アルフォンス・エルリック",
+      "alternative": [
+        "Al",
+        "Armored Alchemist"
+      ],
+      "userPreferred": "Alphonse Elric"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b12-tCKu8yK5kFL5.jpg"
+  },
+  {
+    "name": {
+      "first": "Sasuke",
+      "full": "Sasuke Uchiha",
+      "native": "うちはサスケ",
+      "alternative": [
+        "The Uchiha Survivor",
+        "The Last Uchiha",
+        "Sasuke of the Sharingan"
+      ],
+      "userPreferred": "Sasuke Uchiha"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b13-SISLEw1oAD7a.png"
+  },
+  {
+    "name": {
+      "first": "Itachi",
+      "full": "Itachi Uchiha",
+      "native": "うちはイタチ",
+      "alternative": [
+        "Sharingan no Itachi (写輪眼のイタチ)",
+        "Itachi of the Sharingan"
+      ],
+      "userPreferred": "Itachi Uchiha"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b14-9Kb1E5oel1ke.png"
+  },
+  {
+    "name": {
+      "first": "Ippo",
+      "full": "Ippo Makunouchi",
+      "native": "幕之内一歩",
+      "alternative": [
+        "The Wind God",
+        "Big-Mara Ippo"
+      ],
+      "userPreferred": "Ippo Makunouchi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b15-AAj73hDX9bor.jpg"
+  },
+  {
+    "name": {
+      "first": "Edward",
+      "full": "Edward Wong Hau Pepelu Tivrusky IV",
+      "native": "エドワード・ウォン・ハウ・ペペル・チブルスキー4世",
+      "alternative": [
+        "Edward IV",
+        "Ed",
+        "Radical Ed",
+        "Radical Edward",
+        "Ed the Hacker",
+        "Françoise"
+      ],
+      "userPreferred": "Edward Wong Hau Pepelu Tivrusky IV"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b16-80wd87nl1Rue.png"
+  },
+  {
+    "name": {
+      "first": "Naruto",
+      "full": "Naruto Uzumaki",
+      "native": "うずまきナルト",
+      "alternative": [
+        "Nine-Tails Jinchuuriki",
+        "The Show-Off",
+        "Number One Unpredictable",
+        "Noisy Ninja",
+        "Number One Hyperactive",
+        "Knucklehead Ninja",
+        "Fox"
+      ],
+      "userPreferred": "Naruto Uzumaki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b17-phjcWCkRuIhu.png"
+  },
+  {
+    "name": {
+      "first": "Haruhi",
+      "full": "Haruhi Fujioka",
+      "native": "藤岡ハルヒ",
+      "alternative": [
+        "Haru-chan",
+        "Honor Student",
+        "Little Piglet",
+        "Host Club Dog",
+        "Lumpy",
+        "Poor Kitten"
+      ],
+      "userPreferred": "Haruhi Fujioka"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b18-SAz5kAo2Fhm1.png"
+  },
+  {
+    "name": {
+      "first": "Tamaki",
+      "full": "Tamaki Suou",
+      "native": "須王環",
+      "alternative": [
+        "Tamaki Suoh",
+        "Tama-chan",
+        "Daddy",
+        "The Host Club King",
+        "Lonesome Prince",
+        "Lord",
+        "Boss",
+        "Milord"
+      ],
+      "userPreferred": "Tamaki Suou"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b19-7Ot7WSWZ7LKF.png"
+  },
+  {
+    "name": {
+      "first": "Mitsukuni",
+      "full": "Mitsukuni Haninozuka",
+      "native": "埴之塚光邦",
+      "alternative": [
+        "Honey"
+      ],
+      "userPreferred": "Mitsukuni Haninozuka"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b20-VNIsuFhxyiJu.png"
+  },
+  {
+    "name": {
+      "first": "Takashi",
+      "full": "Takashi Morinozuka",
+      "native": "銛之塚崇",
+      "alternative": [
+        "Mori"
+      ],
+      "userPreferred": "Takashi Morinozuka"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b21-anlrcOlyRHgO.png"
+  },
+  {
+    "name": {
+      "first": "Hikaru",
+      "full": "Hikaru Hitachiin",
+      "native": "常陸院光",
+      "alternative": [
+        "Hika-chan"
+      ],
+      "userPreferred": "Hikaru Hitachiin"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b22-Xikbs9JJ9Qop.png"
+  },
+  {
+    "name": {
+      "first": "Kyouya",
+      "full": "Kyouya Ootori",
+      "native": "鳳鏡夜",
+      "alternative": [
+        "Kyo-chan",
+        "Mommy",
+        "Shadow Prince",
+        "Low Blood Pressure Demon Lord"
+      ],
+      "userPreferred": "Kyouya Ootori"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b23-8TQAV1BRyqxa.png"
+  },
+  {
+    "name": {
+      "first": "Kaoru",
+      "full": "Kaoru Hitachiin",
+      "native": "常陸院馨",
+      "alternative": [
+        "Kao-chan"
+      ],
+      "userPreferred": "Kaoru Hitachiin"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b24-QssbnrJO2Cfz.png"
+  },
+  {
+    "name": {
+      "first": "Renge",
+      "full": "Renge Houshakuji",
+      "native": "宝積寺れんげ",
+      "alternative": [],
+      "userPreferred": "Renge Houshakuji"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b25-EFSvaBRwzbNF.png"
+  },
+  {
+    "name": {
+      "first": "Ging",
+      "full": "Ging Freecss",
+      "native": "ジン・フリークス",
+      "alternative": [],
+      "userPreferred": "Ging Freecss"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/26-VpZXIwOdcz8p.jpg"
+  },
+  {
+    "name": {
+      "first": "Killua",
+      "full": "Killua Zoldyck",
+      "native": "キルア=ゾルディック",
+      "alternative": [
+        "Kill",
+        "Kil",
+        "Evans"
+      ],
+      "userPreferred": "Killua Zoldyck"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b27-Z5O02kQUydpT.jpg"
+  },
+  {
+    "name": {
+      "first": "Kurapika",
+      "full": "Kurapika",
+      "native": "クラピカ",
+      "alternative": [
+        "Chain User",
+        "Chain Bastard"
+      ],
+      "userPreferred": "Kurapika"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b28-ivA7UGnfE40a.png"
+  },
+  {
+    "name": {
+      "first": "Leorio",
+      "full": "Leorio Paradinight",
+      "native": "レオリオ・パラディナイト",
+      "alternative": [
+        "Leorio Paradiknight",
+        "Leorio Paladiknight"
+      ],
+      "userPreferred": "Leorio Paradinight"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b29-RgzoSeKmDYzl.jpg"
+  },
+  {
+    "name": {
+      "first": "Gon",
+      "full": "Gon Freecss",
+      "native": "ゴン＝フリークス",
+      "alternative": [],
+      "userPreferred": "Gon Freecss"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b30-lyFExKyDhefc.jpg"
+  },
+  {
+    "name": {
+      "first": "Hisoka",
+      "full": "Hisoka Morow",
+      "native": "ヒソカ・モロウ",
+      "alternative": [
+        "Hisoka Morou",
+        "The Magician",
+        "Grim Reaper"
+      ],
+      "userPreferred": "Hisoka Morow"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b31-FZckOuu7L1un.png"
+  },
+  {
+    "name": {
+      "first": "Ovan",
+      "full": "Ovan",
+      "native": "オーヴァン",
+      "alternative": [
+        "Masato Indou"
+      ],
+      "userPreferred": "Ovan"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b32-QwdtmCejUcPj.png"
+  },
+  {
+    "name": {
+      "first": "Haseo",
+      "full": "Haseo",
+      "native": "ハセヲ",
+      "alternative": [
+        "The Terror Of Death"
+      ],
+      "userPreferred": "Haseo"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b33-cYEpl0VXygH0.png"
+  },
+  {
+    "name": {
+      "first": "Shino",
+      "full": "Shino",
+      "native": "志乃",
+      "alternative": [
+        "Shino Nanao"
+      ],
+      "userPreferred": "Shino"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/34.jpg"
+  },
+  {
+    "name": {
+      "first": "Tabby",
+      "full": "Tabby",
+      "native": "タビー",
+      "alternative": [],
+      "userPreferred": "Tabby"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/35.jpg"
+  },
+  {
+    "name": {
+      "first": "Phyllo",
+      "full": "Phyllo",
+      "native": "フィロ",
+      "alternative": [],
+      "userPreferred": "Phyllo"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/36.jpg"
+  },
+  {
+    "name": {
+      "first": "Sakisaka",
+      "full": "Sakisaka",
+      "native": "匂坂",
+      "alternative": [
+        "Shinnosuke Sakamaki"
+      ],
+      "userPreferred": "Sakisaka"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/37.jpg"
+  },
+  {
+    "name": {
+      "first": "Tawaraya",
+      "full": "Tawaraya",
+      "native": "俵屋",
+      "alternative": [],
+      "userPreferred": "Tawaraya"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/38.jpg"
+  },
+  {
+    "name": {
+      "first": "Tsukasa",
+      "full": "Tsukasa",
+      "native": "司",
+      "alternative": [],
+      "userPreferred": "Tsukasa"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/39.jpg"
+  },
+  {
+    "name": {
+      "first": "Luffy",
+      "full": "Luffy Monkey",
+      "native": "モンキー・D・ルフィ",
+      "alternative": [
+        "Straw Hat",
+        "Mugiwara",
+        "Straw",
+        "Mugi",
+        "Lucy",
+        "Luffyland",
+        "Mugiwara no Luffy",
+        "Mugiwara-ya",
+        "Ruffy"
+      ],
+      "userPreferred": "Luffy D. Monkey"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b40-MNypXsxSRb1R.png"
+  },
+  {
+    "name": {
+      "first": "Subaru",
+      "full": "Subaru",
+      "native": "昴",
+      "alternative": [],
+      "userPreferred": "Subaru"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/41.jpg"
+  },
+  {
+    "name": {
+      "first": "Train",
+      "full": "Train Heartnet",
+      "native": "トレイン・ハートネット",
+      "alternative": [
+        "Black Cat",
+        "Chrono Number XIII"
+      ],
+      "userPreferred": "Train Heartnet"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b42-mMWsls5Qx6wG.jpg"
+  },
+  {
+    "name": {
+      "first": "Sven",
+      "full": "Sven Vollfied",
+      "native": "スヴェン・ボルフィード",
+      "alternative": [],
+      "userPreferred": "Sven Vollfied"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/43.jpg"
+  },
+  {
+    "name": {
+      "first": "Eve",
+      "full": "Eve",
+      "native": "イヴ",
+      "alternative": [
+        "Little Princess"
+      ],
+      "userPreferred": "Eve"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/44.jpg"
+  },
+  {
+    "name": {
+      "first": "Rinslet",
+      "full": "Rinslet Walker",
+      "native": "リンスレット・ウォーカー",
+      "alternative": [
+        "Rins"
+      ],
+      "userPreferred": "Rinslet Walker"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b45-z9wTQOTieezu.jpg"
+  },
+  {
+    "name": {
+      "first": "Ban",
+      "full": "Ban Mido",
+      "native": "美堂蛮",
+      "alternative": [
+        "Ban-chan "
+      ],
+      "userPreferred": "Ban Mido"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b46-nnFKOGPWNxI5.png"
+  },
+  {
+    "name": {
+      "first": "Ginji",
+      "full": "Ginji Amano",
+      "native": "天野銀次",
+      "alternative": [
+        "Thunder Emperor",
+        "Gin-chan"
+      ],
+      "userPreferred": "Ginji Amano"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/47.jpg"
+  },
+  {
+    "name": {
+      "first": "Kazuki",
+      "full": "Kazuki Fuuchoin",
+      "native": "風鳥院花月",
+      "alternative": [
+        "Kazuki of the String",
+        "Prince of Fear",
+        "Thread Spool"
+      ],
+      "userPreferred": "Kazuki Fuuchoin"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/48.jpg"
+  },
+  {
+    "name": {
+      "first": "Shido",
+      "full": "Shido Fuyuki",
+      "native": "冬木士度",
+      "alternative": [
+        "Beast Master",
+        "Tarzan"
+      ],
+      "userPreferred": "Shido Fuyuki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b49-P3iXGHesj95S.png"
+  },
+  {
+    "name": {
+      "first": "Hevn",
+      "full": "Hevn",
+      "native": "HEVN",
+      "alternative": [],
+      "userPreferred": "Hevn"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/50.jpg"
+  },
+  {
+    "name": {
+      "first": "Natsumi",
+      "full": "Natsumi Mizuki",
+      "native": "水城夏実",
+      "alternative": [],
+      "userPreferred": "Natsumi Mizuki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b51-YA654IlW07lA.jpg"
+  },
+  {
+    "name": {
+      "first": "Kuroudo",
+      "full": "Kuroudo Akabane",
+      "native": "赤屍蔵人",
+      "alternative": [
+        "Dr. Jackal"
+      ],
+      "userPreferred": "Kuroudo Akabane"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/52.jpg"
+  },
+  {
+    "name": {
+      "first": "Himiko",
+      "full": "Himiko Kudou",
+      "native": "工藤卑弥呼",
+      "alternative": [
+        "Lady Poison"
+      ],
+      "userPreferred": "Himiko Kudou"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b53-KZU5ptFb831g.png"
+  },
+  {
+    "name": {
+      "first": "Kousuke",
+      "full": "Kousuke Ochi",
+      "native": "越智康介",
+      "alternative": [],
+      "userPreferred": "Kousuke Ochi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b101-tkhP1ZsAfdLv.jpg"
+  },
+  {
+    "name": {
+      "first": "Kinugasu",
+      "full": "Kinugasu Tetsuhiko",
+      "native": "衣笠鉄人",
+      "alternative": [],
+      "userPreferred": "Kinugasu Tetsuhiko"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b343-wkGapjvYDYKO.png"
+  },
+  {
+    "name": {
+      "first": "Joseph",
+      "full": "Joseph Glear",
+      "native": "ジョセフ・グリーア",
+      "alternative": [],
+      "userPreferred": "Joseph Glear"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/361.jpg"
+  },
+  {
+    "name": {
+      "first": "Migeira",
+      "full": "Migeira",
+      "native": "ミゲイラ",
+      "alternative": [],
+      "userPreferred": "Migeira"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b489-OQ3WmxUpKYjM.jpg"
+  },
+  {
+    "name": {
+      "first": "Saizou",
+      "full": "Saizou Kirigakure",
+      "native": "霧隠才蔵",
+      "alternative": [],
+      "userPreferred": "Saizou Kirigakure"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/493.jpg"
+  },
+  {
+    "name": {
+      "first": "Yuzuru",
+      "full": "Yuzuru Narita",
+      "native": "成田譲",
+      "alternative": [],
+      "userPreferred": "Yuzuru Narita"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b511-e4pPlBTnMqC5.png"
+  },
+  {
+    "name": {
+      "first": "",
+      "full": "Ryuuzaki",
+      "native": "竜崎",
+      "alternative": [],
+      "userPreferred": "Ryuuzaki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b517-ooca8vIguAdp.png"
+  },
+  {
+    "name": {
+      "first": "Kai",
+      "full": "Kai Nagase",
+      "native": "永瀬芥",
+      "alternative": [],
+      "userPreferred": "Kai Nagase"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b532-XjmVnmq1bnIp.png"
+  },
+  {
+    "name": {
+      "first": "Kaoru",
+      "full": "Kaoru Awayuki",
+      "native": "淡雪薫",
+      "alternative": [],
+      "userPreferred": "Kaoru Awayuki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/556.jpg"
+  },
+  {
+    "name": {
+      "first": "Natsue",
+      "full": "Natsue Awayuki",
+      "native": "淡雪夏江",
+      "alternative": [],
+      "userPreferred": "Natsue Awayuki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/557.jpg"
+  },
+  {
+    "name": {
+      "first": "Hiro",
+      "full": "Hiro Utsugi",
+      "native": "空木尋",
+      "alternative": [],
+      "userPreferred": "Hiro Utsugi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/589.jpg"
+  },
+  {
+    "name": {
+      "first": "Uruno",
+      "full": "Uruno",
+      "native": "うる野",
+      "alternative": [],
+      "userPreferred": "Uruno"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/690.jpg"
+  },
+  {
+    "name": {
+      "first": "Mika",
+      "full": "Mika Seguchi",
+      "native": "瀬口みか",
+      "alternative": [],
+      "userPreferred": "Mika Seguchi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/698.jpg"
+  },
+  {
+    "name": {
+      "first": "Masao",
+      "full": "Masao Ichinokura",
+      "native": "一ノ倉正男",
+      "alternative": [],
+      "userPreferred": "Masao Ichinokura"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/709.jpg"
+  },
+  {
+    "name": {
+      "first": "Hiroshi",
+      "full": "Hiroshi Karigari",
+      "native": "雁狩ひろし",
+      "alternative": [],
+      "userPreferred": "Hiroshi Karigari"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b763-ZjwWuw49IbYK.png"
+  },
+  {
+    "name": {
+      "first": "Johan",
+      "full": "Johan Tsang",
+      "native": "ジョアン・曾",
+      "alternative": [],
+      "userPreferred": "Johan Tsang"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b790-y2eU1T5yi531.png"
+  },
+  {
+    "name": {
+      "first": "Tonfa",
+      "full": "Tonfa Yan",
+      "native": "楊豆花",
+      "alternative": [],
+      "userPreferred": "Tonfa Yan"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b833-ieJNuRqSUD9i.jpg"
+  },
+  {
+    "name": {
+      "first": "Anna",
+      "full": "Anna Marie",
+      "native": "アンナマリー",
+      "alternative": [],
+      "userPreferred": "Anna Marie"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b862-JqQ5s0AGfRZ9.png"
+  },
+  {
+    "name": {
+      "first": "Aston",
+      "full": "Aston Collins",
+      "native": "コリンズ·アストン",
+      "alternative": [],
+      "userPreferred": "Aston Collins"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b872-mAQXXcCiwuW6.png"
+  },
+  {
+    "name": {
+      "first": "Karman",
+      "full": "Karman",
+      "native": "カルマン",
+      "alternative": [],
+      "userPreferred": "Karman"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b873-Nku4vcf8QC1V.png"
+  },
+  {
+    "name": {
+      "first": "Kazuya",
+      "full": "Kazuya Kurauchi",
+      "native": "倉内和也",
+      "alternative": [],
+      "userPreferred": "Kazuya Kurauchi"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/876.jpg"
+  },
+  {
+    "name": {
+      "first": "Yutaka",
+      "full": "Yutaka Tamaru",
+      "native": "多丸裕",
+      "alternative": [],
+      "userPreferred": "Yutaka Tamaru"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/884.jpg"
+  },
+  {
+    "name": {
+      "first": "Gudrif",
+      "full": "Gudrif",
+      "native": "グドリフ",
+      "alternative": [],
+      "userPreferred": "Gudrif"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b886-s7NWHizVr5bT.png"
+  },
+  {
+    "name": {
+      "first": "Darth",
+      "full": "Darth",
+      "native": "ダーズ",
+      "alternative": [],
+      "userPreferred": "Darth"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b887-PmNcBuZXY8GN.png"
+  },
+  {
+    "name": {
+      "first": "Monique",
+      "full": "Monique",
+      "native": "モニク",
+      "alternative": [],
+      "userPreferred": "Monique"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b893-fBBpv0HxaaIg.jpg"
+  },
+  {
+    "name": {
+      "first": "Masaki",
+      "full": "Masaki Edo",
+      "native": "江戸真紀",
+      "alternative": [
+        "Maki"
+      ],
+      "userPreferred": "Masaki Edo"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/902.jpg"
+  },
+  {
+    "name": {
+      "first": "Ryousuke",
+      "full": "Ryousuke Sakakura",
+      "native": "阪倉亮介",
+      "alternative": [],
+      "userPreferred": "Ryousuke Sakakura"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b923-3ytsGqtixYG2.png"
+  },
+  {
+    "name": {
+      "first": "Heigorou",
+      "full": "Heigorou Suzuki",
+      "native": "鈴木平五郎",
+      "alternative": [],
+      "userPreferred": "Heigorou Suzuki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Takuma",
+      "full": "Takuma Kaburaki",
+      "native": "鏑木拓馬",
+      "alternative": [],
+      "userPreferred": "Takuma Kaburaki"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/928.jpg"
+  },
+  {
+    "name": {
+      "first": "Akira",
+      "full": "Akira Sukawara",
+      "native": "須河原 晶",
+      "alternative": [],
+      "userPreferred": "Akira Sukawara"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/930.jpg"
+  },
+  {
+    "name": {
+      "first": "Shirou",
+      "full": "Shirou Doumaru",
+      "native": "堂丸 史郎",
+      "alternative": [],
+      "userPreferred": "Shirou Doumaru"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Masaki",
+      "full": "Masaki Makabe",
+      "native": "真壁正樹",
+      "alternative": [
+        "Makki"
+      ],
+      "userPreferred": "Masaki Makabe"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/934.jpg"
+  },
+  {
+    "name": {
+      "first": "Jirou",
+      "full": "Jirou Hatori",
+      "native": "羽鳥次郎",
+      "alternative": [],
+      "userPreferred": "Jirou Hatori"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Asako",
+      "full": "Asako Toudou",
+      "native": "藤堂麻子",
+      "alternative": [],
+      "userPreferred": "Asako Toudou"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Akiyuki",
+      "full": "Akiyuki Kishiro",
+      "native": "稀代 秋之",
+      "alternative": [],
+      "userPreferred": "Akiyuki Kishiro"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Dosshiru",
+      "full": "Dosshiru",
+      "native": null,
+      "alternative": [],
+      "userPreferred": "Dosshiru"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b940-NwBgdfSNH3GT.png"
+  },
+  {
+    "name": {
+      "first": "Shisshin",
+      "full": "Shisshin",
+      "native": null,
+      "alternative": [],
+      "userPreferred": "Shisshin"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b941-tiO6ojGiUEjg.png"
+  },
+  {
+    "name": {
+      "first": "Junko",
+      "full": "Junko Aizawa",
+      "native": "逢沢淳子",
+      "alternative": [],
+      "userPreferred": "Junko Aizawa"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/942.jpg"
+  },
+  {
+    "name": {
+      "first": "Mika",
+      "full": "Mika Miyama",
+      "native": "深山 美佳",
+      "alternative": [],
+      "userPreferred": "Mika Miyama"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/default.jpg"
+  },
+  {
+    "name": {
+      "first": "Koya",
+      "full": "Koya Inukai",
+      "native": "犬飼洸也",
+      "alternative": [],
+      "userPreferred": "Koya Inukai"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/966.jpg"
+  },
+  {
+    "name": {
+      "first": "Natsumi",
+      "full": "Natsumi Murakami",
+      "native": "村上夏美",
+      "alternative": [],
+      "userPreferred": "Natsumi Murakami"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/b1004-rO75CfPK74BE.jpg"
+  },
+  {
+    "name": {
+      "first": "Haruhi",
+      "full": "Haruhi Takamizawa",
+      "native": null,
+      "alternative": [],
+      "userPreferred": "Haruhi Takamizawa"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1067.jpg"
+  },
+  {
+    "name": {
+      "first": "Jürgen von",
+      "full": "Jürgen von Klügel",
+      "native": "ユルゲン·フォン·クリューゲル",
+      "alternative": [
+        "Jurgen von Kruger"
+      ],
+      "userPreferred": "Jürgen von Klügel"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1069.jpg"
+  },
+  {
+    "name": {
+      "first": "Lyones Theo",
+      "full": "Lyones Theo Earthlight",
+      "native": "ライオネス・テオ・アーシュライト",
+      "alternative": [],
+      "userPreferred": "Lyones Theo Earthlight"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1070.jpg"
+  },
+  {
+    "name": {
+      "first": "Assistant",
+      "full": "Assistant",
+      "native": null,
+      "alternative": [],
+      "userPreferred": "Assistant"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1071.jpg"
+  },
+  {
+    "name": {
+      "first": "Sarah",
+      "full": "Sarah",
+      "native": "サラ",
+      "alternative": [],
+      "userPreferred": "Sarah"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1075.jpg"
+  },
+  {
+    "name": {
+      "first": "Isami",
+      "full": "Isami Kondo",
+      "native": "近藤勇",
+      "alternative": [],
+      "userPreferred": "Isami Kondo"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1097.jpg"
+  },
+  {
+    "name": {
+      "first": "Nanae",
+      "full": "Nanae Fujieda",
+      "native": "藤枝七恵",
+      "alternative": [],
+      "userPreferred": "Nanae Fujieda"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1176.jpg"
+  },
+  {
+    "name": {
+      "first": "Rad",
+      "full": "Rad",
+      "native": "ラド",
+      "alternative": [],
+      "userPreferred": "Rad"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1222.jpg"
+  },
+  {
+    "name": {
+      "first": "Lumen",
+      "full": "Lumen",
+      "native": "ルーメン",
+      "alternative": [],
+      "userPreferred": "Lumen"
+    },
+    "image": "https://s4.anilist.co/file/anilistcdn/character/large/1223.jpg"
+  }
+]

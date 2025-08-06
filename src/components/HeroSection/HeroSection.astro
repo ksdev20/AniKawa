@@ -1,0 +1,100 @@
+---
+import HeroCSR from "./HeroCSR";
+const HERO_TITLES = ["JUJUTSU KAISEN Season2", "Dr. STONE Season 4", "Astra Lost in Space", "BLEACH: Thousand-Year Blood War - The Conflict", "Umamusume: Pretty Derby Season 2"];
+import animeArray from "../../data/aniOneData2.json";
+import './HeroSection.css';
+import '../../styles/config.css';
+import AnimeWBtn from "../AnimeCard/AnimeWBtn";
+---
+
+<section aria-labelledby="hero-title" role="region">
+    <h1 id="hero-title" class="ht-hidden">Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles</h1>
+    <ul id="hs-slider" class="hs-slider">
+        {
+            HERO_TITLES.map((t, i) => {
+                const anime = animeArray.find((a) => a.cleanTitle == t);
+                const { nanoid, slug } = anime!;
+                const ep1Slug = anime?.videos?.[0]?.slug ?? "n-a";
+                const {
+                    title,
+                    language,
+                    description,
+                    coverImage,
+                    bannerImage,
+                    color,
+                    score
+                } = anime!.anilist;
+                return (
+                    <li class="hero-section-root" >
+                        <article>
+                            <div class="hs-img-section">
+                                <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img">
+                                    <img
+                                        class="hs-anime-img"
+                                        src={coverImage}
+                                        alt={`Cover of ${title}`}
+                                    />
+                                </a>
+                            <div class="hero-section-overlay">
+                                <h2 class="hs-title">{title}</h2>
+                                <span class="dub-sub" >{language} ➤ {score}</span>
+                                <p class="hero-description" set:html={description}></p>
+                                <div class="hero-button-section">
+                                    <a
+                                        class="start-watching-btn hero-play"
+                                        href={`/episode/${nanoid}/${ep1Slug}`}
+                                        title={`Watch ${title} Episode 1`}
+                                        aria-label={`Start watching ${title}, episode 1`}
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            height="28px"
+                                            viewBox="0 -960 960 960"
+                                            width="28px"
+                                            fill="#000000"
+                                        >
+                                            <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+                                        </svg>
+                                        START WATCHING S1 E1
+                                    </a>
+                                    <div class="watchlist-btn">
+                                        <AnimeWBtn
+                                            nanoid={nanoid}
+                                            client:load
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img class="hs-anime-banner" src={bannerImage!} loading="lazy" decoding="async" alt={`Backdrop of ${title}`}/>
+                        <div
+                            class="hero-gradient-left"
+                            style={{
+                                background: `linear-gradient(to right, ${color}, transparent)`,
+                            }}></div>
+                        </article>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <HeroCSR client:load />
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
+        "itemListElement": HERO_TITLES.map((t, i)  => {
+            const anime = animeArray.find(a => a.cleanTitle == t);
+            if (!anime) return null;
+            const {nanoid, slug} = anime;
+            return {
+                "@type": "ListItem",
+                "position": i + 1,
+                "item":{
+                    "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
+                }
+            };
+        }).filter(Boolean)
+    })}>
+    </script>
+</section>
