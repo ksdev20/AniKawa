@@ -6,7 +6,6 @@ import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import { getAnimeById }from "../../../filters/getAnimeById";
 import HandleECClick from '../../../components/EpisodeCard/EcDatabaseContact/HandleECClick';
-import getEpisodeTitle from '../../../utils/getEpisodeTitle';
 const { nanoid, slug } = Astro.params;
 let anime = getAnimeById(nanoid) as Anime | null;
 if (
@@ -24,14 +23,7 @@ if (
 }
 
 let episode = anime?.episodes?.find((e) => e?.slug == slug);
-/*if (
-    episode == null ||
-    episode?.episodeDetails == null ||
-    episode?.episodeDetails.length == 0
-) {
-    window.location.href = "/404";
-    return;
-}*/
+
 const {slug: animeslug = 'n-a'} = anime;
 const {
     title: animeTitle = "Untitled",
@@ -94,7 +86,7 @@ const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
                             <div class="first-part-rating" id="a-score">{score} ★</div>
                         </div>
                     </div>
-                    <div id="e-title" class="epd-ep-title">{getEpisodeTitle(episodeTitle, epNum)}</div>
+                    <div id="e-title" class="epd-ep-title">{episodeTitle}</div>
                     <div id="e-language" class="epd-language">{language}</div>
                     <div id="e-des" class="epd-description">{description}</div>
                     <div class="episode-list-endline"></div>
@@ -118,7 +110,7 @@ const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
                                 <div
                                     id="p-ep-title"
                                     class="epd-ep-title for-card"
-                                >{getEpisodeTitle(previousTitle, pEpNo)}
+                                >{previousTitle}
                                 </div>
                                 <div
                                     id="ecc-p-language"
@@ -144,7 +136,7 @@ const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
                                 <div
                                     id="n-ep-title"
                                     class="epd-ep-title for-card"
-                                >{getEpisodeTitle(nextTitle, nEpNo)}
+                                >{nextTitle}
                                 </div>
                                 <div
                                     id="ecc-n-language"

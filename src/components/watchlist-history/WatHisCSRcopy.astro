@@ -7,9 +7,8 @@ import {
     getWatchlistItems,
     getHistoryItems,
 } from "../../filters/wat-his-match-logic";
-import AnimeCardStatic from "../AnimeCard/AnimeCardStatic.astro";
-import { type Anime, type Video } from "../../filters/AnimeDataTypes";
-import EpisodeCard from "../EpisodeCard/EpisodeCard";
+import AnimeCardStatic from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
+import { type Anime, type Episode } from "../../filters/mergedListTypes";
 import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
 import ClearHisBtn from "./ClearHisBtn";
 
@@ -19,7 +18,7 @@ const forWatchlist = caller == "w";
 const field = forWatchlist ? "watchlist" : "history";
 
 let watchlist: Anime[] = [];
-let history: Video[] = [];
+let history: Episode[] = [];
 let listEmpty = false;
 
 try {

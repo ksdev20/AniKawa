@@ -1,8 +1,8 @@
 ---
 import './episode-card.css';
-import type { EpisodeCardProps } from '../../filters/AnimeDataTypes';
+// import type { EpisodeCardProps } from '../../filters/AnimeDataTypes';
 import EDelBtn from './EcDatabaseContact/EDelBtn';
-const epData = Astro.props.epData as EpisodeCardProps;
+const epData = Astro.props.epData as any;
 const forHistory = Astro.props.forHistory as boolean ?? false;
 
 if (!epData) return null;
@@ -12,19 +12,19 @@ const {
     language = "Language N/A",
     animenanoid,
     slug,
-    episodeNumber,
+    epNum,
 } = epData ?? {};
 
 const {
-    title = `Episode ${episodeNumber}`,
-    thumbnail = "/episode-thumbnail-alt-2.png",
+    title = `Episode ${epNum}`,
+    img = epData?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
     description = "No description",
-} = epData?.episodeDetails?.[0] ?? {};
+} = epData ?? {};
 ---
 
 <div class="episode-card">
     <div class="episode-card-first">
-        <img class="episode-card-image" src={thumbnail} loading="lazy" decoding="async"/>
+        <img class="episode-card-image" src={img} loading="lazy" decoding="async"/>
         <div class="anime-title">{animeTitle}</div>
         <div class="episode-number-name">{title}</div>
         <div class="language-section">{language}</div>

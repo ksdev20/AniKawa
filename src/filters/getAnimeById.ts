@@ -1,6 +1,7 @@
 // import aniOneData2 from '../data/aniOneData2.json';
 import aniOneData2 from '../data/mergedList.json';
 import type { Video } from './AnimeDataTypes';
+import type { Episode } from './mergedListTypes';
 
 export function getAnimeById(nanoid: string | undefined): any{
     if (nanoid == undefined) return [];
@@ -9,8 +10,10 @@ export function getAnimeById(nanoid: string | undefined): any{
 
 export function getEpisodebySlug(animeId : string, epSlug: string): any{
     const anime = getAnimeById(animeId);
+    if (!anime) return null;
     const { nanoid, slug } = anime;
-    const { language, title, romaji } = anime?.anilist;
+    const { title } = anime;
+    const language = anime?.episodes?.[0]?.audio == 'ja' ? 'Subtitled' : 'Sub|Dub'
 
     const animeDetails = {
         animeTitle: title,
@@ -19,8 +22,8 @@ export function getEpisodebySlug(animeId : string, epSlug: string): any{
         animeslug: slug,
     }
 
-    const episode = anime.videos.find((e: Video) => e.slug == epSlug);
-
+    const episode = anime?.episodes?.find((e: Episode) => e?.slug == epSlug);
+    
     return {
         ...animeDetails,
         ...episode

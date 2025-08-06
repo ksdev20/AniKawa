@@ -1,21 +1,23 @@
-import type { Anime } from "../../filters/AnimeDataTypes";
+import type { Anime } from "../../filters/mergedListTypes";
 import "./animecard.css";
 import AnimeWBtn from "./AnimeWBtn";
 
 export default function AnimeCardReact({ anime, forNewPop = false }: { anime: Anime, forNewPop: boolean }) {
     const {nanoid, slug} = anime;
-    const { title, coverImage, language, description , score, episodes } = anime?.anilist ?? {};
-    if (!title && !coverImage && !nanoid) return null;
+    const { title, poster = anime?.season_poster ?? '/anime-image-alt.png', description, score } = anime ?? {};
+    const language = anime?.episodes?.[0]?.audio == 'ja' ? 'Subtitled' : 'Sub|Dub';
+    const episodes = anime?.episodes.length;
+    if (!title && !poster && !nanoid) return null;
     return (
         <div className={`anime-card ${forNewPop ? 'new-pop-ac' : ''}`}>
             <div className={`anime-card-first ${forNewPop ? 'new-pop-anime-card' : ''}`}>
-                <img className="anime-card-image" src={coverImage ?? '/anime-image-alt.png'} />
+                <img className="anime-card-image" src={poster} />
                 <div className="anime-card-title">{title}</div>
                 <div className="anime-card-language">{language}</div>
 
                 <div
                     className="anime-card-hover"
-                    style={{ backgroundImage: `url(${coverImage})` }}
+                    style={{ backgroundImage: `url(${poster})` }}
                 >
                     <div className="anime-card-hover-details">
                         <div className="anime-card-hover-title">{title}</div>
@@ -46,7 +48,7 @@ export default function AnimeCardReact({ anime, forNewPop = false }: { anime: An
                         </div>
                     </div>
                 </div>
-                <a href={`/show/${nanoid}/${anime.slug}`} className="anime-card-link"></a>
+                <a href={`/show/${nanoid}/${slug}`} className="anime-card-link"></a>
             </div>
         </div>
     )

@@ -1,4 +1,3 @@
-import getEpisodeTitle from '../../utils/getEpisodeTitle';
 import './episode-card.css';
 export default function EpisodeCard({ epData }: { epData: any}) {
     const { animeTitle= 'Anime Title N/A', language='Language N/A', animenanoid, slug, epNum } = epData;
@@ -9,7 +8,7 @@ export default function EpisodeCard({ epData }: { epData: any}) {
                 <img className="episode-card-image"
                     src={img} />
                 <div className="anime-title">{animeTitle}</div>
-                <div className="episode-number-name">{getEpisodeTitle(title, epNum)}</div>
+                <div className="episode-number-name">{title}</div>
                 <div className="language-section">{language}</div>
 
                 <div className="episode-card-hover">
