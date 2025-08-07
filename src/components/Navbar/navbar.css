@@ -77,6 +77,10 @@
     }
 }
 
+.nav-right-block:focus{
+    border: 2px solid white;
+}
+
 .nav-right-block.active {
     background-color: #141519;
 }

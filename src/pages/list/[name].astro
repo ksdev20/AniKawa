@@ -7,75 +7,81 @@ import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStaticTmdbVer.a
 import Footer from "../../components/Footer/Footer";
 import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 const { name } = Astro.params;
-const label = name == 'new' ? 'Newly Added Anime' : 'Most Popular Anime';
+const standardName = `${name?.[0]?.toUpperCase()}${name?.slice(1)}`
+const pageTitle = name
+  ? `${standardName} Anime List`
+  : "Anime List";
+const label = name == "new" ? "Newly Added Anime" : "Most Popular Anime";
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
 let finalArray;
 
 if (urlFilter == "sub") {
-    finalArray = aniOneAsia2.slice().filter((a) => {
-        return a?.episodes?.[0]?.audio == "ja";
-    });
+  finalArray = aniOneAsia2.slice().filter((a) => {
+    return a?.episodes?.[0]?.audio == "ja";
+  });
 } else if (urlFilter == "dub") {
-    finalArray = aniOneAsia2.slice().filter((a) => {
-        return a?.episodes?.[0]?.audio !== "ja";
-    });
+  finalArray = aniOneAsia2.slice().filter((a) => {
+    return a?.episodes?.[0]?.audio !== "ja";
+  });
 } else {
-    finalArray = aniOneAsia2.slice();
+  finalArray = aniOneAsia2.slice();
 }
 
 const seen = new Map();
-finalArray = finalArray.filter(a => {
-    const title = a?.title;
-    if (!title || seen.has(title)) return false;
-    seen.set(title, true);
-    return true;
+finalArray = finalArray.filter((a) => {
+  const title = a?.title;
+  if (!title || seen.has(title)) return false;
+  seen.set(title, true);
+  return true;
 });
 
 // dayjs.extend(customParseFormat);
 // const format = "D/M/YYYY";
 
 if (name == "new") {
-    finalArray.sort((a, b) => {
-        const dateA = dayjs(a?.startDate ?? "2000-1-1");
-        const dateB = dayjs(b?.startDate ?? "2000-1-1");
-        return dateB.valueOf() - dateA.valueOf();
-    });
+  finalArray.sort((a, b) => {
+    const dateA = dayjs(a?.startDate ?? "2000-1-1");
+    const dateB = dayjs(b?.startDate ?? "2000-1-1");
+    return dateB.valueOf() - dateA.valueOf();
+  });
 } else if (name == "popular") {
-    finalArray.sort((a, b) => {
-        const scoreA = a?.score ?? 0.0;
-        const scoreB = b?.score ?? 1.0;
-        return scoreB - scoreA;
-    });
+  finalArray.sort((a, b) => {
+    const scoreA = a?.score ?? 0.0;
+    const scoreB = b?.score ?? 1.0;
+    return scoreB - scoreA;
+  });
 }
 ---
 
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href="/icon.png" />
-    </head>
-    <body>
-        <Navbar client:load />
-        <div class="main-root">
-            <div class="main-content">
-                <div class="new-first">
-                    <label class="new-first-heading">{label}</label>
-                    <NewPopButtons n={name} client:load />
-                </div>
-                <div id="new-popular-anime-list" class="new-pop-anime-list">
-                    {
-                        finalArray?.map((ani, i) => {
-                            return <AnimeCardStatic anime={ani} fornewpop={true} />;
-                        })
-                    }
-                </div>
-            </div>
-        </div>
-        <Footer />
-    </body>
+  <head>
+    <title>{pageTitle}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+  </head>
+  <body>
+    <Navbar client:load />
+    <main class="main-root">
+      <div class="main-content" aria-labelledby="anime-list-heading">
+        <header class="new-first">
+          <h1 class="new-first-heading">{label}</h1>
+          <NewPopButtons n={name} client:load />
+        </header>
+        <section>
+          <h2 class="ht-hidden">{standardName} Anime List</h2>
+          <ul class="new-pop-anime-list">
+            {
+              finalArray?.map((ani, i) => {
+                return <AnimeCardStatic anime={ani} fornewpop={true} />;
+              })
+            }
+          </ul>
+        </section>
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>
