@@ -16,7 +16,7 @@ const {
 } = epData ?? {};
 
 const {
-    title = `Episode ${epNum}`,
+    titleAlt = `Episode ${epNum}`,
     img = epData?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
     description = "No description",
 } = epData ?? {};
@@ -26,12 +26,12 @@ const {
     <div class="episode-card-first">
         <img class="episode-card-image" src={img} loading="lazy" decoding="async"/>
         <div class="anime-title">{animeTitle}</div>
-        <div class="episode-number-name">{title}</div>
+        <div class="episode-number-name">{titleAlt}</div>
         <div class="language-section">{language}</div>
 
         <div class="episode-card-hover">
             <div class="anime-title">{animeTitle}</div>
-            <div class="episode-number-name">{title}</div>
+            <div class="episode-number-name">{titleAlt}</div>
             <div
                 class="episode-number-name episode-description"
                 set:html={description}

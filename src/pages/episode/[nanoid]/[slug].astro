@@ -27,13 +27,13 @@ let episode = anime?.episodes?.find((e) => e?.slug == slug);
 const {slug: animeslug = 'n-a'} = anime;
 const {
     title: animeTitle = "Untitled",
-    score = "Score N/A",
+    scoreAlt = "Score N/A",
 } = anime ?? {};
 const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
 
 const { epNum , url } = episode ?? {};
 
-const { title: episodeTitle, description = "No description" } =
+const { titleAlt: episodeTitle, description = "No description" } =
     episode ?? {};
 
 const prevIdx = epNum ? epNum - 2 : -1;
@@ -42,9 +42,9 @@ const nextIdx = epNum ?? 1;
 const prevObj = anime?.episodes?.[prevIdx];
 const nextObj = anime?.episodes?.[nextIdx];
 
-const { slug: prevSlug , epNum: pEpNo, title: previousTitle = `Episode ${pEpNo}`, img: previousThumbnail = prevObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = prevObj ?? {};
+const { slug: prevSlug , epNum: pEpNo, titleAlt: previousTitle = `Episode ${pEpNo}`, img: previousThumbnail = prevObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = prevObj ?? {};
 
-const { slug: nextSlug, epNum: nEpNo, title: nextTitle = `Episode ${nEpNo}`, img: nextThumbnail = nextObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = nextObj ?? {};
+const { slug: nextSlug, epNum: nEpNo, titleAlt: nextTitle = `Episode ${nEpNo}`, img: nextThumbnail = nextObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = nextObj ?? {};
 
 const hasPrev = prevIdx <= -1 ? false : true;
 const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
@@ -83,7 +83,7 @@ const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
                                 id="a-title">{animeTitle}</a
                             >
                             |
-                            <div class="first-part-rating" id="a-score">{score} ★</div>
+                            <div class="first-part-rating" id="a-score">{scoreAlt}</div>
                         </div>
                     </div>
                     <div id="e-title" class="epd-ep-title">{episodeTitle}</div>

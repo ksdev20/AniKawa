@@ -37,7 +37,7 @@ const {
     backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
     poster = anime?.season_poster ?? "/anime-image-alt.png",
     description = "No Description",
-    score,
+    scoreAlt,
     runtime = "N/A",
     status = "N/A",
     startDate = "N/A",
@@ -95,7 +95,7 @@ const usedTitlesGlobal = [title, title, title];
                             >
                                 {tagline}
                             </div>
-                            <div class="poetsen-one-regular">Score : {score} ★</div>
+                            <div class="poetsen-one-regular">Score : {scoreAlt}</div>
                             <div class="watchlist-section-ap">
                                 <div id="wbtn-label"></div>
                                 <AnimeWBtn nanoid={nanoid ?? 'xyzxyz'} client:load />

@@ -224,6 +224,7 @@ function matchCategories(genresA, genresB, keywords = null) {
         const lowered = x.toLowerCase();
         if (genresB.includes(x)) count++;
         if (keywords && keywords.includes(lowered)) count++;
+        if (genresA.length == 1) return count == 1;
         return count == 2;
     });
 }

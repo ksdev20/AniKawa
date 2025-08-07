@@ -4,7 +4,7 @@ import AnimeWBtn from "./AnimeWBtn";
 
 export default function AnimeCardReact({ anime, forNewPop = false }: { anime: Anime, forNewPop: boolean }) {
     const {nanoid, slug} = anime;
-    const { title, poster = anime?.season_poster ?? '/anime-image-alt.png', description, score } = anime ?? {};
+    const { title, poster = anime?.season_poster ?? '/anime-image-alt.png', description, scoreAlt } = anime ?? {};
     const language = anime?.episodes?.[0]?.audio == 'ja' ? 'Subtitled' : 'Sub|Dub';
     const episodes = anime?.episodes.length;
     if (!title && !poster && !nanoid) return null;
@@ -21,7 +21,7 @@ export default function AnimeCardReact({ anime, forNewPop = false }: { anime: An
                 >
                     <div className="anime-card-hover-details">
                         <div className="anime-card-hover-title">{title}</div>
-                        <div className="anime-card-hover-rating">{score}</div>
+                        <div className="anime-card-hover-rating">{scoreAlt}</div>
                         <div className="anime-card-hover-episodes">
                             {episodes} Episodes
                         </div>

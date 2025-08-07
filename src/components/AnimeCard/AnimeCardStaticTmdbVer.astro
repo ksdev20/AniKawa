@@ -9,7 +9,7 @@ const {
     slug,
     title = "Untitled",
     poster = anime?.plThumbnail || "/anime-image-alt.png",
-    score = "Score N/A",
+    scoreAlt = "Score N/A",
     description = "No Description",
 } = anime ?? {};
 const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
@@ -30,7 +30,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
         >
             <div class="anime-card-hover-details">
                 <div class="anime-card-hover-title">{title}</div>
-                <div class="anime-card-hover-rating">{score} ★</div>
+                <div class="anime-card-hover-rating">{scoreAlt}</div>
                 <div class="anime-card-hover-episodes">
                     {episodes} Episodes
                 </div>

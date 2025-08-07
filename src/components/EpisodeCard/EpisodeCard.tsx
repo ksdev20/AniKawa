@@ -1,19 +1,19 @@
 import './episode-card.css';
 export default function EpisodeCard({ epData }: { epData: any}) {
     const { animeTitle= 'Anime Title N/A', language='Language N/A', animenanoid, slug, epNum } = epData;
-    const { title, img = epData.ytThumbnail || '/episode-thumbnail-alt-2.png', description = 'No description' } = epData ?? [];
+    const { titleAlt, img = epData.ytThumbnail ?? '/episode-thumbnail-alt-2.png', description = 'No description' } = epData ?? [];
     return (
         <div className="episode-card">
             <div className="episode-card-first">
                 <img className="episode-card-image"
-                    src={img} />
+                    src={img ?? '/episode-thumbnail-alt-2.png'} />
                 <div className="anime-title">{animeTitle}</div>
-                <div className="episode-number-name">{title}</div>
+                <div className="episode-number-name">{titleAlt}</div>
                 <div className="language-section">{language}</div>
 
                 <div className="episode-card-hover">
                     <div className="anime-title">{animeTitle}</div>
-                    <div className="episode-number-name">{title}</div>
+                    <div className="episode-number-name">{titleAlt}</div>
                     <div className="episode-number-name episode-description" dangerouslySetInnerHTML={{ __html: description}}>
                     </div>
                     <div className="episode-play-btn">

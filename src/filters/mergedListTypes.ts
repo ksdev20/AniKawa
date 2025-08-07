@@ -1,6 +1,7 @@
 export interface Anime {
     plId:            string;
     plThumbnail?:    string;
+    scoreAlt: string;
     id:              number;
     season:          number;
     nanoid:          string;
@@ -31,6 +32,7 @@ export interface Episode {
     url:          string;
     ytThumbnail:  string;
     audio:        string;
+    titleAlt: string;
     nanoid:       string;
     slug:         string;
     air_date:     Date;

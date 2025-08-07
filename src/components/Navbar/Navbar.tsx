@@ -97,6 +97,7 @@ export default function Navbar() {
             }}>
                 <div className="sidebar" id="sidebar">
                     <a className="sidebar-button" href='/list/new'>New</a>
+                    <a className="sidebar-button" href='/list/old'>Old</a>
                     <a className="sidebar-button" href='/list/popular'>Popular</a>
                     <div className="sidebar-button category" id="category-button" onClick={() => setCatdd(!catddOpen)}>
                         Category
