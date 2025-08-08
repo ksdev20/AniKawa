@@ -10,8 +10,11 @@ a {
 }
 
 button {
-  all: unset;
+  color: white;
   cursor: pointer;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
 }
 
 html,

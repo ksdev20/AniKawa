@@ -65,7 +65,7 @@ if (name == "new") {
   <body>
     <Navbar client:load />
     <main class="main-root">
-      <div class="main-content" aria-labelledby="anime-list-heading">
+      <section class="main-content" aria-labelledby="anime-list-heading">
         <header class="new-first">
           <h1 class="new-first-heading">{label}</h1>
           <NewPopButtons n={name} client:load />
@@ -80,7 +80,7 @@ if (name == "new") {
             }
           </ul>
         </section>
-      </div>
+      </section>
     </main>
     <Footer />
   </body>

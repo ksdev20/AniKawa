@@ -67,6 +67,10 @@
     user-select: none;
 }
 
+.nav-right-block:focus-visible {
+  outline: 2px solid white;
+}
+
 .nav-right-block:hover {
     background-color: #141519;
 }
@@ -77,9 +81,9 @@
     }
 }
 
-.nav-right-block:focus{
+/* .nav-right-block:focus{
     border: 2px solid white;
-}
+} */
 
 .nav-right-block.active {
     background-color: #141519;
@@ -127,6 +131,11 @@
 .category {
     justify-content: space-between;
     padding-right: 10px;
+}
+
+.category button {
+  all: unset;
+  cursor: pointer;
 }
 
 .category-dropdown {
