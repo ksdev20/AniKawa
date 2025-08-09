@@ -8,9 +8,10 @@ export function logout() {
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
-        alert("Successfully logged out ✅");
+        console.log("Successfully logged out ✅");
         localStorage.clear();
-        window.location.reload();
+        const loc = window.location;
+        loc.pathname.includes('profile') ? loc.href = '/' : loc.reload();
       }
     })
     .catch((e) => {
