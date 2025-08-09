@@ -446,7 +446,7 @@
 .wh-ec {
     min-width: 240px;
 }
-
+/* 
 .ec-del-icon {
     position: absolute;
     z-index: 3;
@@ -458,7 +458,7 @@
 
 .ec-del-icon:hover {
     fill: #ffffff;
-}
+} */
 
 .episode-card-wrapper {
     position: relative;

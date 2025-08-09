@@ -11,7 +11,7 @@ body {
 body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    font-family: "Sansation", "Cal Sans", "Open Sans", "Roboto";
+    font-family: "Cal Sans", "Open Sans", "Roboto";
     background-color: black;
     color: white;
     overflow-y: visible;
@@ -197,6 +197,8 @@ body {
 }
 
 .metadata-value {
+    display: flex;
+    gap: 5px;
     color: white;
     font-size: 13px;
     padding-right: 5px;
@@ -343,6 +345,7 @@ body {
 }*/
 
 .episodes-list {
+    list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 12px;

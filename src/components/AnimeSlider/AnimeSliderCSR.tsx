@@ -55,9 +55,9 @@ export default function AnimeSliderCSR() {
         const offset = btn == 'left' ? -slider.clientWidth : slider.clientWidth;
         slider.scrollBy({ left: offset, behavior: 'smooth' });
 
-        setTimeout(() => {
-            update();
-        }, 500);
+        // setTimeout(() => {
+        //     update();
+        // }, 500); 
     }
 
     useLayoutEffect(() => {

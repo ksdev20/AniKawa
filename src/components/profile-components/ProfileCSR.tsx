@@ -78,7 +78,8 @@ export default function ProfileCSR() {
                 <div className="avatar-name">{name}</div>
                 <img className="avatar-list-img"
                     src={img} onClick={() => setSA(img)} 
-                    loading="lazy" decoding="async"/>
+                    loading="lazy" decoding="async"
+                    alt={`Character image of ${name}`}/>
             </div>
         );
     }
@@ -90,7 +91,8 @@ export default function ProfileCSR() {
                 <img className="banner-list-img"
                     src={bc.banner}
                     onClick={() => setSB(bc.banner)} 
-                    loading="lazy" decoding="async"/>
+                    loading="lazy" decoding="async"
+                    alt={`Banner of  ${bc.title}`}/>
             </div>
         )
     }
@@ -128,7 +130,8 @@ export default function ProfileCSR() {
                 <div className="bco-main-box">
                     <div className="selected-banner-section">
                         <img id="selected-banner-img" className="selected-banner-img"
-                            src={selectedBanner || fallbackImage} />
+                            src={selectedBanner || fallbackImage}
+                            loading="lazy" decoding="async" alt={`Current selected banner`}/>
                         <div id="sbs-cross-btn" className="sbs-cross-btn" onClick={() => {
                             setOpenBco(false);
                             if (profileBanner) setSB(profileBanner);
@@ -172,7 +175,8 @@ export default function ProfileCSR() {
                 <div className="bco-main-box">
                     <div className="aco-top">
                         <img id="selected-avatar" className="act-avatar-img"
-                            src={selectedAvatar || fallbackImage} />
+                            src={selectedAvatar || fallbackImage}
+                            loading="lazy" decoding="async" alt={`Current selected avatar`}/>
                         <div className="bco-text-action-sec">
                             <div className="bco-text-big">Avatar Selection</div>
                             <div className="bco-text-small">You can change it any time !</div>
@@ -206,9 +210,9 @@ export default function ProfileCSR() {
                 </div>
             </div>
             <Navbar />
-            <div className="profile-main" style={{ padding: "0 20px" }}>
-                <div className="profile-main sec-main">
-                    <div style={{ fontSize: "32px" }}>Edit Profile</div>
+            <main className="profile-main" style={{ padding: "0 20px" }}>
+                <section className="profile-main sec-main">
+                    <h1 style={{ fontSize: "32px" }}>Edit Profile</h1>
                     <div className="profile-main main-box">
                         <div id="profile-banner" className="profile-banner">
                             <img
@@ -216,12 +220,13 @@ export default function ProfileCSR() {
                                 className="profile-banner banner-img"
                                 data-filter="pb"
                                 src={profileBanner || fallbackImage}
+                                loading="lazy" decoding="async" alt={`Saved banner of user ${name}`}
                             />
-                            <div className="profile-banner-hover" onClick={() => { setOpenBco(!openBco) }}>
-                                <div className="update-bg-text">
+                            <button className="profile-banner-hover" onClick={() => { setOpenBco(!openBco) }}>
+                                <p className="update-bg-text">
                                     Change Background image
-                                </div>
-                            </div>
+                                </p>
+                            </button>
                             <span id="pb-main-loader" className={`loader ${profileBanner? 'hidden' : ''}`}></span>
                         </div>
                         <div id="profile-pic" className="profile-pic">
@@ -230,44 +235,45 @@ export default function ProfileCSR() {
                                 className="profile-pic pic-main"
                                 data-filter="pp"
                                 src={profileAvatar || fallbackImage}
+                                loading="lazy" decoding="async" alt={`Saved profile picture of user ${name}`}
                             />
-                            <div className="profile-pic-hover" onClick={() => { setOpenAco(!openAco) }}>
-                                <div className="update-bg-text change-av-text">
+                            <button className="profile-pic-hover" onClick={() => { setOpenAco(!openAco) }}>
+                                <p className="update-bg-text change-av-text">
                                     Change Avatar
-                                </div>
-                            </div>
+                                </p>
+                            </button>
                             <span id="pp-main-loader" className={`loader p-pic ${profileAvatar ? 'hidden' : ''}`}></span>
                         </div>
                         <div className="profile-name-section">
-                            <div id="profile-name-label" className="profile-name-label">
+                            <label id="profile-name-label" className="profile-name-label">
                                 Profile Name
-                            </div>
+                            </label>
                             <input
                                 type="text"
                                 className="p-name-input"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
-                            <div
+                            <p
                                 className="profile-name-label"
                                 style={{ marginTop: "10px" }}
                             >
                                 This can be changed.
-                            </div>
+                            </p>
                         </div>
                         <div className="email-section">
-                            <div className="email-start">Your email : </div>
-                            <div id="email-text" className="email-text">{email}</div>
+                            <p className="email-start">Your email : </p>
+                            <p id="email-text" className="email-text">{email}</p>
                         </div>
                     </div>
                     <div className="sav-can-buttons">
-                        <div id="save" className={`save-can-btn sav-btn ${changesMade ? 'active' : ''}`} onClick={() => updateData()}>SAVE</div>
-                        <a id="cancel" className="save-can-btn cancel-btn" href="/">
+                        <button aria-label="Save changes" id="save" className={`save-can-btn sav-btn ${changesMade ? 'active' : ''}`} onClick={() => updateData()}>SAVE</button>
+                        <a aria-label="Cancel changes and go to homepage" id="cancel" className="save-can-btn cancel-btn" href="/">
                             CANCEL
                         </a>
                     </div>
-                </div>
-            </div>
+                </section>
+            </main>
             <Footer />
         </>
     )

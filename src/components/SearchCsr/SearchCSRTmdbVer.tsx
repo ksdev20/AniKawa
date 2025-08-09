@@ -125,7 +125,7 @@ export default function SearchCSR() {
                 </div>
             </div>
             <div className="profile-main">
-                <div className="profile-main search-results">
+                <ul className="profile-main search-results">
                     {animeResults.length > 0 && (
                         <div id="ar-box" className="mov-ser-section show">
                             <div className="mss-heading">Series</div>
@@ -146,7 +146,7 @@ export default function SearchCSR() {
                             </div>
                         </div>
                     )}
-                </div>
+                </ul>
             </div>
         </>
     )

@@ -18,10 +18,10 @@ const epSlug = anime?.episodes?.[0]?.slug;
 ---
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`} >
-    <div class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
+    <article class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
         <a href={`/show/${nanoid}/${slug}`} class="anime-card-link"></a>
         <img class="anime-card-image" src={poster} alt={`Cover of ${title}`} loading="lazy" decoding="async"/>
-        <h4 class="anime-card-title">{title}</h4>
+        <h2 class="anime-card-title">{title}</h2>
         <div class="anime-card-language">{language}</div>
 
         <div
@@ -29,7 +29,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
             style={{ backgroundImage: `url(${poster})`, backgroundPosition: 'left'}}
         >
             <div class="anime-card-hover-details">
-                <div class="anime-card-hover-title">{title}</div>
+                <h3 class="anime-card-hover-title">{title}</h3>
                 <div class="anime-card-hover-rating">{scoreAlt}</div>
                 <div class="anime-card-hover-episodes">
                     {episodes} Episodes
@@ -61,5 +61,5 @@ const epSlug = anime?.episodes?.[0]?.slug;
                 <AnimeWBtn nanoid={nanoid} client:load />
             </div>
         </div>
-    </div>
+    </article>
 </li>

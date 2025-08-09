@@ -23,10 +23,11 @@ const finalArray = getFilteredAnime("matchCategories", {
     </head>
     <body>
         <Navbar client:load />
-        <div class="main-root">
-            <div class="sub-cat-main">
-                <div class="sub-cat-main">
+        <main class="main-root">
+            <section class="sub-cat-main">
+                <header class="sub-cat-main">
                     <div class="sub-cat-top">
+                        <h1 class="ht-hidden">{mainCategory} + {subCategory} Anime List | Anikawa</h1>
                         <a
                             id="main-cat-name"
                             class="main-cat-link"
@@ -36,16 +37,16 @@ const finalArray = getFilteredAnime("matchCategories", {
                             {subCategory}
                         </div>
                     </div>
-                </div>
-                <div id="sub-cat-anime-list" class="new-pop-anime-list">
+                </header>
+                <ul id="sub-cat-anime-list" class="new-pop-anime-list">
                     {
                         finalArray.map((anime, i) => (
                             <AnimeCardStatic anime={anime} fornewpop={true} />
                         ))
                     }
-                </div>
-            </div>
-        </div>
+                </ul>
+            </section>
+        </main>
         <Footer />
     </body>
 </html>

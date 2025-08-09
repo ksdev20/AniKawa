@@ -226,7 +226,23 @@
     min-width: 240px;
 }
 
-.ec-del-icon {
+/* .ec-del-icon {
+    position: absolute;
+    z-index: 3;
+    bottom: 5px;
+    right: 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+*/
+.ec-del-icon:hover {
+    fill: #ffffff;
+}
+
+.ec-del-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     z-index: 3;
     bottom: 5px;
@@ -235,8 +251,8 @@
     cursor: pointer;
 }
 
-.ec-del-icon:hover {
-    fill: #ffffff;
+.ec-del-btn:focus{
+    border: 2px solid white;
 }
 
 .episode-card-wrapper {

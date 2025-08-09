@@ -22,21 +22,21 @@ const {
 } = epData ?? {};
 ---
 
-<div class="episode-card">
-    <div class="episode-card-first">
-        <img class="episode-card-image" src={img} loading="lazy" decoding="async"/>
-        <div class="anime-title">{animeTitle}</div>
-        <div class="episode-number-name">{titleAlt}</div>
-        <div class="language-section">{language}</div>
+<li class="episode-card">
+    <article class="episode-card-first">
+        <img class="episode-card-image" src={img} loading="lazy" decoding="async" alt={`Cover of ${titleAlt}`}/>
+        <h3 class="anime-title">{animeTitle}</h3>
+        <h2 class="episode-number-name">{titleAlt}</h2>
+        <p class="language-section">{language}</p>
 
         <div class="episode-card-hover">
             <div class="anime-title">{animeTitle}</div>
             <div class="episode-number-name">{titleAlt}</div>
-            <div
+            <p
                 class="episode-number-name episode-description"
                 set:html={description}
             >
-            </div>
+            </p>
             <div class="episode-play-btn">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +53,8 @@ const {
             </div>
         </div>
         <a href={`/episode/${animenanoid}/${slug}`} class="episode-card-link"></a>
-    </div>
+    </article>
     {forHistory && (
         <EDelBtn animenanoid={animenanoid} slug={slug} client:load />
     )}
-</div>
+</li>

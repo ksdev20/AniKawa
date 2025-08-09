@@ -11,10 +11,10 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@nanostores/react": "^1.0.0",
-    "astro": "^5.12.8",
+    "astro": "^5.12.9",
     "dayjs": "^1.11.13",
     "fuse.js": "^7.1.0",
-    "lucide-react": "^0.536.0",
+    "lucide-react": "^0.539.0",
     "nanostores": "^1.0.1",
     "use-debounce": "^10.0.5"
   },

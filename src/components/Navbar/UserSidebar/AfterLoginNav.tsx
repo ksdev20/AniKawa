@@ -37,6 +37,7 @@ export default function AfterLoginNav({ userData, clickHandler }: AfterLoginProp
               "https://s4.anilist.co/file/anilistcdn/character/large/b88572-IzTwXEHSobRs.jpg"
             }
             alt={`Profile picture of logged in user ${userData?.profileName}`}
+            loading="lazy" decoding="async"
           />
           <div className="account-name">
             {userData?.profileName || "Username"}

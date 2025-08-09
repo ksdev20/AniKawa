@@ -15,226 +15,219 @@ const sort = Astro.url.searchParams.get("sort") ?? "old";
 let anime = getAnimeById(nanoid) as Anime | null;
 
 if (anime == null || !anime.episodes == null) {
-    return new Response(null, {
-        status: 302,
-        headers: {
-            Location: "/404",
-        },
-    });
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: "/404",
+    },
+  });
 }
 
 let episodeList = anime?.episodes ?? [];
 
 if (sort == "new") {
-    episodeList = [...episodeList].reverse();
+  episodeList = [...episodeList].reverse();
 }
 
 const genresA = anime?.genres ?? [];
 
 const {
-    title = "Untitled",
-    tagline,
-    backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
-    poster = anime?.season_poster ?? "/anime-image-alt.png",
-    description = "No Description",
-    scoreAlt,
-    runtime = "N/A",
-    status = "N/A",
-    startDate = "N/A",
-    endDate = "N/A",
-    seasons = "N/A",
-    genres = ["N/A"],
-    season
+  title = "Untitled",
+  tagline,
+  backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
+  poster = anime?.season_poster ?? "/anime-image-alt.png",
+  description = "No Description",
+  scoreAlt,
+  runtime = "N/A",
+  status = "N/A",
+  startDate = "N/A",
+  endDate = "N/A",
+  seasons = "N/A",
+  genres = ["N/A"],
+  season,
 } = anime ?? {};
 
-const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
-const episodes = episodeList.length ?? 'N/A';
-const type = 'Anime';
+const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
+const episodes = episodeList.length ?? "N/A";
+const type = "Anime";
 
 const usedTitlesGlobal = [title, title, title];
 ---
 
 <html lang="en">
-    <SEOHead 
-        title={`Watch ${title} Ad-Free | Anikawa`}
-        description={`Stream ${title} online in high quality — No ads on Anikawa. ${description}`}/>
+  <SEOHead
+    title={`Watch ${title} Ad-Free | Anikawa`}
+    description={`Stream ${title} online in high quality — No ads on Anikawa. ${description}`}
+  />
 
-    <body>
-        <Navbar client:load />
+  <body>
+    <Navbar client:load />
 
-        <div id="main" class="main">
-            <div
-                id="top-banner"
-                class="top-banner"
-                style={{ backgroundImage: `url(${backdrop})` }}
-            >
-                <div class="overlay-gradient"></div>
-                <div class="bottom-gradient"></div>
+    <main id="main" class="main">
+      <header
+        id="top-banner"
+        class="top-banner"
+        style={{ backgroundImage: `url(${backdrop})` }}
+      >
+        <div class="overlay-gradient"></div>
+        <div class="bottom-gradient"></div>
+      </header>
+      <div id="overlay-main" class="overlay-main">
+        <div class="empty-top-banner"></div>
+        <section class="anime-hero-section" aria-labelledby="title-english">
+          <div class="hero-column image">
+            <img
+              id="card-image"
+              class="card-image"
+              src={poster}
+              loading="lazy"
+              decoding="async"
+              alt={`Cover of ${title}`}
+            />
+          </div>
+          <div class="hero-column metadata">
+            <div class="titles-section">
+              <h1 id="title-english" class="poetsen-one-regular english">
+                {title}
+              </h1>
+              {
+                tagline && tagline !== "" && (
+                  <p id="title-romaji" class="poetsen-one-regular romaji">
+                    {tagline}
+                  </p>
+                )
+              }
+              <p class="poetsen-one-regular">Score : {scoreAlt}</p>
+              <div class="watchlist-section-ap">
+                <div id="wbtn-label"></div>
+                <AnimeWBtn nanoid={nanoid ?? "xyzxyz"} client:load />
+              </div>
             </div>
-            <div id="overlay-main" class="overlay-main">
-                <div class="empty-top-banner"></div>
-                <div class="anime-hero-section">
-                    <div class="hero-column image">
-                        <img
-                            id="card-image"
-                            class="card-image"
-                            src={poster}
-                        />
-                    </div>
-                    <div class="hero-column metadata">
-                        <div class="titles-section">
-                            <div
-                                id="title-english"
-                                class="poetsen-one-regular english"
-                            >
-                                {title}
-                            </div>
-                            <div
-                                id="title-romaji"
-                                class="poetsen-one-regular romaji"
-                            >
-                                {tagline}
-                            </div>
-                            <div class="poetsen-one-regular">Score : {scoreAlt}</div>
-                            <div class="watchlist-section-ap">
-                                <div id="wbtn-label"></div>
-                                <AnimeWBtn nanoid={nanoid ?? 'xyzxyz'} client:load />
-                            </div>
-                        </div>
-                        <div class="description-section">
-                            <div class="des-only">
-                                <p
-                                    id="description-anime-hero"
-                                    class="description-anime-hero"
-                                    set:html={description}
-                                />
-                            </div>
-                            <div id="other-metadata" class="other-metadata">
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Type:</b>
-                                    {type}
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Episodes: </b>{
-                                        episodes
-                                    }
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Status: </b>{
-                                        status
-                                    }
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Duration: </b>{
-                                        runtime
-                                    }
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Aired: </b>{
-                                        startDate
-                                    } to {endDate}
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">This Season: </b>{
-                                        season
-                                    }
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Total seasons: </b>{
-                                        seasons
-                                    }
-                                </p>
-                                <p class="metadata-value">
-                                    <b class="metadata-label">Genres: </b>{
-                                        genres.join(',')
-                                    }
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+            <article class="description-section">
+              <div class="des-only">
+                <p
+                  id="description-anime-hero"
+                  class="description-anime-hero"
+                  set:html={description}
+                />
+              </div>
+              <dl id="other-metadata" class="other-metadata">
+                <div class="metadata-value">
+                  <dt class="metadata-label">Type:</dt>
+                  <dd>{type}</dd>
                 </div>
-                <div id="episodes-section" class="episodes-section">
-                    <div class="top-controls">
-                        <div class="top-controls-btn">
-                            <svg
-                                class="arrow-down"
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="30px"
-                                viewBox="0 -960 960 960"
-                                width="30px"
-                                fill="#ffffff"
-                            >
-                                <path d="M480-360 280-560h400L480-360Z"></path>
-                            </svg>
-                            <div id="season-text" class="season-text">
-                                S{season}: {title}
-                            </div>
-                        </div>
-                        <SortBtnHandler client:load />
-                    </div>
-                    <div class="episodes-list">
-                        {
-                            episodeList?.map((e: any) => {
-                                const epData: any = {
-                                    animeTitle: title,
-                                    language,
-                                    animenanoid: nanoid,
-                                    animeslug: slug,
-                                    ...e,
-                                };
-
-                                return(<EpisodeCard epData={epData} />);
-                            })
-                        }
-                    </div>
-                    <div class="episode-list-endline"></div>
-                    <div class="season-change-section">
-                        <div class="season-change-section scs-part">
-                            <svg
-                                class="chevron-arrow"
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="15px"
-                                viewBox="0 -960 960 960"
-                                width="15px"
-                                fill="#808080"
-                            >
-                                <path
-                                    d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"
-                                ></path>
-                            </svg>
-                            PREVIOUS SEASON
-                        </div>
-                        <div class="season-change-section scs-part">
-                            NEXT SEASON
-                            <svg
-                                class="chevron-arrow"
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="15px"
-                                viewBox="0 -960 960 960"
-                                width="15px"
-                                fill="#808080"
-                            >
-                                <path
-                                    d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
-                                ></path>
-                            </svg>
-                        </div>
-                    </div>
+                <div class="metadata-value">
+                  <dt class="metadata-label">Episodes:</dt><dd>{episodes}</dd>
                 </div>
-                <div class="more-section">
-                    <AnimeSliderStatic
-                        info={{
-                            bigH: "More Like This",
-                            smallH: "",
-                            filterName: "matchCategories",
-                            genresA,
-                            forAnimePage: true,
-                            usedTitlesGlobal: usedTitlesGlobal
-                        }}
-                    />
+                <div class="metadata-value">
+                  <dt class="metadata-label">Status:</dt><dd>{status}</dd>
                 </div>
-                <Footer />
+                <div class="metadata-value">
+                  <dt class="metadata-label">Duration:</dt><dd>{runtime}</dd>
+                </div>
+                <div class="metadata-value">
+                  <dt class="metadata-label">Aired:</dt><dd>
+                    {startDate} to {endDate}
+                  </dd>
+                </div>
+                <div class="metadata-value">
+                  <dt class="metadata-label">This Season:</dt><dd>{season}</dd>
+                </div>
+                <div class="metadata-value">
+                  <dt class="metadata-label">Total seasons:</dt><dd>
+                    {seasons}
+                  </dd>
+                </div>
+                <div class="metadata-value">
+                  <dt class="metadata-label">Genres:</dt><dd>
+                    {genres.join(",")}
+                  </dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </section>
+        <section id="episodes-section" class="episodes-section">
+          <header class="top-controls">
+            <div class="top-controls-btn">
+              <svg
+                class="arrow-down"
+                xmlns="http://www.w3.org/2000/svg"
+                height="30px"
+                viewBox="0 -960 960 960"
+                width="30px"
+                fill="#ffffff"
+              >
+                <path d="M480-360 280-560h400L480-360Z"></path>
+              </svg>
+              <h2 id="season-text" class="season-text">
+                S{season}: {title}
+              </h2>
             </div>
-        </div>
-    </body>
+            <SortBtnHandler client:load />
+          </header>
+          <ul class="episodes-list">
+            {
+              episodeList?.map((e: any) => {
+                const epData: any = {
+                  animeTitle: title,
+                  language,
+                  animenanoid: nanoid,
+                  animeslug: slug,
+                  ...e,
+                };
+
+                return <EpisodeCard epData={epData} />;
+              })
+            }
+          </ul>
+          <div class="episode-list-endline"></div>
+          <div class="season-change-section">
+            <div class="season-change-section scs-part">
+              <svg
+                class="chevron-arrow"
+                xmlns="http://www.w3.org/2000/svg"
+                height="15px"
+                viewBox="0 -960 960 960"
+                width="15px"
+                fill="#808080"
+              >
+                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"
+                ></path>
+              </svg>
+              PREVIOUS SEASON
+            </div>
+            <div class="season-change-section scs-part">
+              NEXT SEASON
+              <svg
+                class="chevron-arrow"
+                xmlns="http://www.w3.org/2000/svg"
+                height="15px"
+                viewBox="0 -960 960 960"
+                width="15px"
+                fill="#808080"
+              >
+                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </section>
+        <section class="more-section">
+          <h2 class="ht-hidden">More anime like {title}</h2>
+          <AnimeSliderStatic
+            info={{
+              bigH: "More Like This",
+              smallH: "",
+              filterName: "matchCategories",
+              genresA,
+              forAnimePage: true,
+              usedTitlesGlobal: usedTitlesGlobal,
+            }}
+          />
+        </section>
+        <Footer />
+      </div>
+    </main>
+  </body>
 </html>

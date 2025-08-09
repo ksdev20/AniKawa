@@ -7,65 +7,61 @@ import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic
 const { mainCategory } = Astro.params;
 
 const categories = [
-    "Popular",
-    "New",
-    "Action",
-    "Adventure",
-    "Comedy",
-    "Drama",
-    "Fantasy",
-    "Music",
-    "Romance",
-    "Sci-Fi",
-    "Sports",
-    "Supernatural",
-    "Thriller",
+  "Popular",
+  "New",
+  "Action",
+  "Adventure",
+  "Comedy",
+  "Drama",
+  "Fantasy",
+  "Music",
+  "Romance",
+  "Sci-Fi",
+  "Sports",
+  "Supernatural",
+  "Thriller",
 ];
 ---
 
-<html>
-    <head>
-        <meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/icon.png" />
-        <link rel="icon" type="image/png" href="/icon.png" />
-        <title></title>
-    </head>
-    <body>
-        <Navbar client:load />
-        <main class="main-root">
-            <div class="category-main">
-                <div class="category-top">
-                    <div id="category-text" class="category-text">
-                        {mainCategory}
-                    </div>
-                    <div
-                        id="category-text-cat-des"
-                        class="category-text cat-des"
-                    >
-                    </div>
-                </div>
-            </div>
-            <div class="category-main">
-                {
-                    categories.map((cat) => {
-                        if (cat == mainCategory) return <div />;
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/icon.png" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <title>{mainCategory} Anime | Anikawa</title>
+  </head>
+  <body>
+    <Navbar client:load />
+    <main class="main-root">
+      <section class="category-main">
+        <header class="category-top">
+          <h2 class="category-text">
+            {mainCategory}
+          </h2>
+          <p class="category-text cat-des"></p>
+        </header>
+      </section>
+      <div class="category-main">
+        {
+          categories.map((cat) => {
+            if (cat == mainCategory) return null;
 
-                        return (
-                            <AnimeSliderStatic
-                                info={{
-                                    bigH: cat,
-                                    smallH: "",
-                                    filterName: "matchCategories",
-                                    categoryA: mainCategory,
-                                    categoryB: cat,
-                                }}
-                            />
-                        );
-                    })
-                }
-            </div>
-        </main>
-        <Footer />
-    </body>
+            return (
+              <AnimeSliderStatic
+                info={{
+                  bigH: cat,
+                  smallH: "",
+                  filterName: "matchCategories",
+                  categoryA: mainCategory,
+                  categoryB: cat,
+                }}
+              />
+            );
+          })
+        }
+      </div>
+    </main>
+    <Footer />
+  </body>
 </html>

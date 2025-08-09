@@ -1,40 +1,37 @@
 ---
-import '../../../styles/config.css';
-import '../../../styles/episode-page.css';
+import "../../../styles/config.css";
+import "../../../styles/episode-page.css";
 import { type Anime } from "../../../filters/mergedListTypes";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
-import { getAnimeById }from "../../../filters/getAnimeById";
-import HandleECClick from '../../../components/EpisodeCard/EcDatabaseContact/HandleECClick';
+import { getAnimeById } from "../../../filters/getAnimeById";
+import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/HandleECClick";
 const { nanoid, slug } = Astro.params;
 let anime = getAnimeById(nanoid) as Anime | null;
 if (
-    !anime?.episodes ||
-    anime?.episodes?.length == 0 ||
-    !Array.isArray(anime?.episodes) ||
-    slug == 'n-a'
+  !anime?.episodes ||
+  anime?.episodes?.length == 0 ||
+  !Array.isArray(anime?.episodes) ||
+  slug == "n-a"
 ) {
-    return new Response(null, {
-        status: 302,
-        headers: {
-            Location: '/404'
-        }
-    });
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: "/404",
+    },
+  });
 }
 
 let episode = anime?.episodes?.find((e) => e?.slug == slug);
 
-const {slug: animeslug = 'n-a'} = anime;
-const {
-    title: animeTitle = "Untitled",
-    scoreAlt = "Score N/A",
-} = anime ?? {};
-const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
+const { slug: animeslug = "n-a" } = anime;
+const { title: animeTitle = "Untitled", scoreAlt = "Score N/A" } = anime ?? {};
+const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
 
-const { epNum , url } = episode ?? {};
+const { epNum, url } = episode ?? {};
 
 const { titleAlt: episodeTitle, description = "No description" } =
-    episode ?? {};
+  episode ?? {};
 
 const prevIdx = epNum ? epNum - 2 : -1;
 const nextIdx = epNum ?? 1;
@@ -42,114 +39,125 @@ const nextIdx = epNum ?? 1;
 const prevObj = anime?.episodes?.[prevIdx];
 const nextObj = anime?.episodes?.[nextIdx];
 
-const { slug: prevSlug , epNum: pEpNo, titleAlt: previousTitle = `Episode ${pEpNo}`, img: previousThumbnail = prevObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = prevObj ?? {};
+const {
+  slug: prevSlug,
+  epNum: pEpNo,
+  titleAlt: previousTitle = `Episode ${pEpNo}`,
+  img: previousThumbnail = prevObj?.ytThumbnail ??
+    "/episode-thumbnail-alt-2.png",
+} = prevObj ?? {};
 
-const { slug: nextSlug, epNum: nEpNo, titleAlt: nextTitle = `Episode ${nEpNo}`, img: nextThumbnail = nextObj?.ytThumbnail ?? '/episode-thumbnail-alt-2.png'} = nextObj ?? {};
+const {
+  slug: nextSlug,
+  epNum: nEpNo,
+  titleAlt: nextTitle = `Episode ${nEpNo}`,
+  img: nextThumbnail = nextObj?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
+} = nextObj ?? {};
 
 const hasPrev = prevIdx <= -1 ? false : true;
 const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
 ---
 
 <html lang="en">
-    <head>
-        <title>{episodeTitle} - {animeTitle} | Anikawa</title>
-        <meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href="/icon.png" />
-    </head>
-    <body>
-        <HandleECClick animenanoid={nanoid} slug={slug} client:load />
-        <Navbar client:load />
-        <div id="main-episode-page" class="main-episode-page">
-            <div class="video-container">
-                <iframe
-                    id="episode-iframe"
-                    width="560"
-                    height="315"
-                    src={url}
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;  web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
+  <head>
+    <title>{episodeTitle} - {animeTitle} | Anikawa</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+  </head>
+  <body>
+    <HandleECClick animenanoid={nanoid} slug={slug} client:load />
+    <Navbar client:load />
+    <main id="main-episode-page" class="main-episode-page">
+      <section aria-labelledby="e-title" class="video-container">
+        <iframe
+          id="episode-iframe"
+          width="560"
+          height="315"
+          src={url}
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;  web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </section>
+      <div class="episode-page-details">
+        <section class="episode-page-details epd-first">
+          <div class="epd-first-top">
+            <div class="epd-first-top first-part">
+              <a
+                href={`/show/${nanoid}/${animeslug}`}
+                id="a-title"><h2 class="first-part-anime-title">{animeTitle}</h2></a
+              >
+              |
+              <p class="first-part-rating" id="a-score">{scoreAlt}</p>
             </div>
-            <div class="episode-page-details">
-                <div class="episode-page-details epd-first">
-                    <div class="epd-first-top">
-                        <div class="epd-first-top first-part">
-                            <a
-                                class="first-part-anime-title"
-                                href={`/show/${nanoid}/${animeslug}`}
-                                id="a-title">{animeTitle}</a
-                            >
-                            |
-                            <div class="first-part-rating" id="a-score">{scoreAlt}</div>
-                        </div>
-                    </div>
-                    <div id="e-title" class="epd-ep-title">{episodeTitle}</div>
-                    <div id="e-language" class="epd-language">{language}</div>
-                    <div id="e-des" class="epd-description">{description}</div>
-                    <div class="episode-list-endline"></div>
-                </div>
-                <div class="episode-change-section">
-                    <div
-                        class={`episode-change-card-container ${hasPrev? '' : 'hidden'}`}
-                        id="previous-episode"
-                    >
-                        <div class="eccc-heading">PREVIOUS EPISODE</div>
-                        <div class="episode-change-card">
-                            <img
-                                id="p-ep-img"
-                                class="ecc-image"
-                                src={previousThumbnail}
-                            />
-                            <div
-                                class="episode-change-card-container ecc-text-section"
-                                id="epd-text-section"
-                            >
-                                <div
-                                    id="p-ep-title"
-                                    class="epd-ep-title for-card"
-                                >{previousTitle}
-                                </div>
-                                <div
-                                    id="ecc-p-language"
-                                    class="epd-language ecc-language"
-                                >{language}
-                                </div>
-                            </div>
-                        </div>
-                        <a href={`/episode/${nanoid}/${prevSlug}`} class="eccc-link"></a>
-                    </div>
-                    <div class={`episode-change-card-container ${hasNext ? '' : 'hidden'}`} id="next-episode">
-                        <div class="eccc-heading">NEXT EPISODE</div>
-                        <div class="episode-change-card">
-                            <img
-                                id="n-ep-img"
-                                class="ecc-image"
-                                src={nextThumbnail}
-                            />
-                            <div
-                                class="episode-change-card-container ecc-text-section"
-                                id="epd-text-section"
-                            >
-                                <div
-                                    id="n-ep-title"
-                                    class="epd-ep-title for-card"
-                                >{nextTitle}
-                                </div>
-                                <div
-                                    id="ecc-n-language"
-                                    class="epd-language ecc-language"
-                                >{language}
-                                </div>
-                            </div>
-                        </div>
-                        <a href={`/episode/${nanoid}/${nextSlug}`} class="eccc-link"></a>
-                    </div>
-                </div>
-                <Footer />
+          </div>
+          <h1 id="e-title" class="epd-ep-title">{episodeTitle}</h1>
+          <p id="e-language" class="epd-language">{language}</p>
+          <p id="e-des" class="epd-description">{description}</p>
+          <div class="episode-list-endline"></div>
+        </section>
+        <nav class="episode-change-section">
+          <section
+            class={`episode-change-card-container ${hasPrev ? "" : "hidden"}`}
+            id="previous-episode"
+          >
+            <h4 class="eccc-heading">PREVIOUS EPISODE</h4>
+            <div class="episode-change-card">
+              <img
+                id="p-ep-img"
+                class="ecc-image"
+                src={previousThumbnail}
+                loading="lazy"
+                decoding="async"
+                alt={`Cover of episode ${previousTitle} of anime ${animeTitle}`}
+              />
+              <div
+                class="episode-change-card-container ecc-text-section"
+                id="epd-text-section"
+              >
+                <h2 id="p-ep-title" class="epd-ep-title for-card">
+                  {previousTitle}
+                </h2>
+                <p id="ecc-p-language" class="epd-language ecc-language">
+                  {language}
+                </p>
+              </div>
             </div>
-        </div>
-    </body>
+            <a href={`/episode/${nanoid}/${prevSlug}`} class="eccc-link"></a>
+          </section>
+          <section
+            class={`episode-change-card-container ${hasNext ? "" : "hidden"}`}
+            id="next-episode"
+          >
+            <h4 class="eccc-heading">NEXT EPISODE</h4>
+            <div class="episode-change-card">
+              <img
+                id="n-ep-img"
+                class="ecc-image"
+                src={nextThumbnail}
+                loading="lazy"
+                decoding="async"
+                alt={`Cover of episode ${nextTitle} of anime ${animeTitle}`}
+              />
+              <div
+                class="episode-change-card-container ecc-text-section"
+                id="epd-text-section"
+              >
+                <h2 id="n-ep-title" class="epd-ep-title for-card">
+                  {nextTitle}
+                </h2>
+                <p id="ecc-n-language" class="epd-language ecc-language">
+                  {language}
+                </p>
+              </div>
+            </div>
+            <a href={`/episode/${nanoid}/${nextSlug}`} class="eccc-link"></a>
+          </section>
+        </nav>
+        <Footer />
+      </div>
+    </main>
+  </body>
 </html>

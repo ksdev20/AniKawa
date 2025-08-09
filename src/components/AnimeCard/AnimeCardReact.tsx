@@ -11,7 +11,7 @@ export default function AnimeCardReact({ anime, forNewPop = false }: { anime: An
     return (
         <div className={`anime-card ${forNewPop ? 'new-pop-ac' : ''}`}>
             <div className={`anime-card-first ${forNewPop ? 'new-pop-anime-card' : ''}`}>
-                <img className="anime-card-image" src={poster} />
+                <img className="anime-card-image" src={poster} loading="lazy" decoding="async" alt={`Cover of ${title}`}/>
                 <div className="anime-card-title">{title}</div>
                 <div className="anime-card-language">{language}</div>
 

@@ -25,9 +25,9 @@ function LinksElement({ keyword }: { keyword: string }) {
     if (keyword == 's') {
         return (
             <>
-                <div className="alt-login-text">Already have an account?
+                <p className="alt-login-text">Already have an account?
                     <a className="to-login" href="/login">LOG IN</a>
-                </div>
+                </p>
                 <p className="terms-para">By creating an account you're agreeing to our
                     <a className="term-policy-link" href="/legal/tos/" target="_blank">Terms</a>
                     &
@@ -116,9 +116,9 @@ export default function AuthForm({
     }
 
     return (
-        <div className="main">
-            <div className="main-content">
-                <div className="main-heading">{title}</div>
+        <main className="main">
+            <section className="main-content">
+                <h1 className="main-heading">{title}</h1>
                 <div className="form-section">
                     <div className="form-section email">
                         <input ref={emailRef} type="email" id="email" placeholder=" " required />
@@ -130,13 +130,13 @@ export default function AuthForm({
                     </div>
                     {keyword == 's' ? <label className="password-note">Use at least 6 characters, do not use empty spaces</label> : <div></div>}
                 </div>
-                <div className={`create-account-btn ${validButton ? 'active' : ''}`} onClick={() => {
+                <button className={`create-account-btn ${validButton ? 'active' : ''}`} onClick={() => {
                     if (validButton) {
                         apiCall();
                     }
-                }}>{buttonLabel}</div>
+                }}>{buttonLabel}</button>
                 <LinksElement keyword={keyword} />
-            </div>
-        </div>
+            </section>
+        </main>
     )
 }

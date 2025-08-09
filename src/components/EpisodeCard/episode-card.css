@@ -121,15 +121,22 @@
     cursor: pointer;
 }
 
-.ec-del-icon {
+.ec-del-icon:hover {
+    fill: #ffffff;
+}
+
+.ec-del-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ec-del-btn:focus{
     position: absolute;
     z-index: 3;
     bottom: 5px;
     right: 5px;
     pointer-events: auto;
     cursor: pointer;
-}
-
-.ec-del-icon:hover {
-    fill: #ffffff;
+    border: 2px solid white;
 }
