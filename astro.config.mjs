@@ -1,17 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from "@astrojs/react";
+import vercelAdapter from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+    adapter: vercelAdapter(),
     integrations: [react()],
     output: 'server',
     devToolbar: {
         enabled: false
-    },
-    vite: {
-        define: {
-            'import.meta.env.PUBLIC_BACKEND_URL': JSON.stringify(process.env.PUBLIC_BACKEND_URL)
-        }
     }
 });
