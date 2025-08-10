@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./log-sign.css";
 import fetchUserDetails from "../../global_assets/FetchUserDetails";
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 type AuthFormProps = {
   keyword: string;
@@ -131,7 +132,7 @@ export default function AuthForm({
 
     if (!email || !password) return;
 
-    fetch(`http://localhost:20000/api/${apiEndPoint}`, {
+    fetch(`${backendUrl}/api/${apiEndPoint}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

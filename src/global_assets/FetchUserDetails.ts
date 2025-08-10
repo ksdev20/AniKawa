@@ -1,9 +1,11 @@
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+
 export default async function fetchUserDetails() {
     console.log("FetchUserDetails called.");
     if (localStorage.getItem('isLoggedIn') == 'false') return;
     try {
         console.log("Database fetch made.");
-        const res = await fetch('http://localhost:20000/api/user', {
+        const res = await fetch(`${backendUrl}/api/user`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -26,7 +28,7 @@ export default async function fetchUserDetails() {
 
 export async function checkCookie(){
     try{
-        const res = await fetch('http://localhost:20000/api/checkCookie', {
+        const res = await fetch(`${backendUrl}/api/checkCookie`, {
             method: 'GET',
             credentials: 'include'
         });

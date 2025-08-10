@@ -10,7 +10,7 @@ import '../../styles/profile.css';
 import './bco-aco.css';
 import { useState, useEffect, useRef } from 'react';
 import fetchUserDetails, { setOnlyUserData } from "../../global_assets/FetchUserDetails";
-
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 export default function ProfileCSR() {
     const fallbackImage = '/black-fallback.png';
@@ -37,7 +37,7 @@ export default function ProfileCSR() {
     }, [name, profileBanner, profileAvatar, initialName, initialAvatar, initialBanner]);
 
     useEffect(() => {
-        fetch('http://localhost:20000/api/me?fields=profileName,profileBanner,profilePic,email', {
+        fetch(`${backendUrl}/api/me?fields=profileName,profileBanner,profilePic,email`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -100,7 +100,7 @@ export default function ProfileCSR() {
     function updateData(){
         const updatedData = { profilePic: profileAvatar, profileBanner, profileName: name};
 
-        fetch('http://localhost:20000/api/update', {
+        fetch(`${backendUrl}/api/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

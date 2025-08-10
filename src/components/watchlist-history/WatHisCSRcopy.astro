@@ -11,6 +11,7 @@ import AnimeCardStatic from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 import { type Anime, type Episode } from "../../filters/mergedListTypes";
 import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
 import ClearHisBtn from "./ClearHisBtn";
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 const caller = Astro.props.caller;
 const sort = Astro.url.searchParams.get('sort') ?? 'new';
@@ -23,7 +24,7 @@ let listEmpty = false;
 
 try {
     const res = await fetch(
-        `http://localhost:20000/api/getList?field=${field}`,
+        `${backendUrl}/api/getList?field=${field}`,
         {
             method: "GET",
             headers: {

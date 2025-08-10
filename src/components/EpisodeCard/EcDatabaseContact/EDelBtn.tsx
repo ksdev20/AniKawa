@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 export default function EDelBtn({ animenanoid, slug }: { animenanoid: string, slug: string }) {
     const markerRef = useRef<HTMLButtonElement | null>(null);
@@ -40,7 +41,7 @@ export default function EDelBtn({ animenanoid, slug }: { animenanoid: string, sl
 
     const delEpisodeFromHis = async () => {
         lockThings();
-        await fetch(`http://localhost:20000/api/deleteFromList?item=${animenanoid},${slug}&field=history`, {
+        await fetch(`${backendUrl}/api/deleteFromList?item=${animenanoid},${slug}&field=history`, {
             method: 'GET',
             credentials: 'include'
         })

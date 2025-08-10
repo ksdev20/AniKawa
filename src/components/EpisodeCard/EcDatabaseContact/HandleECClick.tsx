@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+
 export default async function HandleECClick({ animenanoid, slug }: { animenanoid: string | undefined, slug: string | undefined }) {
 
     async function handleClick(){
         if (localStorage.getItem('isLoggedIn') == 'false') {
             return;
         } else {
-            await fetch(`http://localhost:20000/api/addToList?item=${animenanoid},${slug}&field=history`, {
+            await fetch(`${backendUrl}/api/addToList?item=${animenanoid},${slug}&field=history`, {
                 method: 'GET',
                 credentials: 'include'
             })

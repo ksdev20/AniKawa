@@ -1,3 +1,5 @@
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+
 export default function chb() {
     function mainAction(data: any) {
         const msg = data.success ? 'Successfully cleared history✅' : 'Failed to clear history❌';
@@ -6,7 +8,7 @@ export default function chb() {
     }
 
     const clearHistory = async () => {
-        await fetch('http://localhost:20000/api/clearHistory', {
+        await fetch(`${backendUrl}/api/clearHistory`, {
             method: 'GET',
             credentials: 'include'
         }).then(res => res.json()).then(data => {

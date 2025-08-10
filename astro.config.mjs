@@ -8,5 +8,10 @@ export default defineConfig({
     output: 'server',
     devToolbar: {
         enabled: false
+    },
+    vite: {
+        define: {
+            'import.meta.env.PUBLIC_BACKEND_URL': JSON.stringify(process.env.PUBLIC_BACKEND_URL)
+        }
     }
 });

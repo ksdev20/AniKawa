@@ -1,7 +1,9 @@
 import type { AfterLoginProps } from "../NavbarTs/navbar";
 
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+
 export function logout() {
-  fetch("http://localhost:20000/api/logout", {
+  fetch(`${backendUrl}/api/logout`, {
     method: "POST",
     credentials: "include",
   })

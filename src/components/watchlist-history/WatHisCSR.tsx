@@ -7,6 +7,7 @@ import AnimeCardStatic from '../AnimeCard/AnimeCardStatic.astro';
 import { type Anime, type Video } from "../../filters/AnimeDataTypes";
 import EpisodeCard from '../EpisodeCard/EpisodeCard';
 import EpisodeCardStatic from '../EpisodeCard/EpisodeCardStatic.astro';
+const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 export default function WatHisCSR({ caller }: { caller: string }) {
     const field = caller == 'w' ? 'watchlist' : 'history';
@@ -15,7 +16,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
     const [history, setHistory] = useState<Video[]>([]);
 
     const getList = () => {
-        fetch(`http://localhost:20000/api/getList?field=${field}`, {
+        fetch(`${backendUrl}/api/getList?field=${field}`, {
             method: 'GET',
             credentials: 'include'
         })
