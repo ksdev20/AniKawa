@@ -1,6 +1,6 @@
 export const metadata = {
     title: "Watch Anime Online Free | HD Sub & Dub Streaming — AniKawa",
-    description: 'Stream the latest anime episodes online for free in HD. Watch subbed & dubbed anime series legally on AniKawa — No ads, no limits.',
+    description: 'Stream the latest anime episodes online for free in HD. Watch subbed & dubbed anime series legally on AniKawa — No ads, no limits.Anikawa is non-commercial "for fans, by fans"',
     keywords: "watch anime online, anime streaming, free anime, HD anime, subbed anime, dubbed anime, new anime episodes, online anime player",
     author: { name: 'Anikawa Team', url: 'https://anikawa.vercel.app' },
     metadataBase: new URL('https://anikawa.vercel.app'),

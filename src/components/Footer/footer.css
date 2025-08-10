@@ -6,6 +6,12 @@ footer{
     color: gray;
 }
 
+.footer-disclaimer{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
+}
 .footer-links {
     display: flex;
     flex-wrap: wrap;
