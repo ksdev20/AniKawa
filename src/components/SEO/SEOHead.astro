@@ -1,15 +1,25 @@
 ---
 import { metadata } from "../../utils/head-seo";
 
+interface SeoHeadProps{
+    title: string,
+    description: string,
+    keywords: string,
+    ogDescription: string,
+    url: string,
+    imageUrl: string,
+    author: string,
+}
+
 const {
     title = metadata.title,
     description = metadata.description,
     keywords = metadata.keywords,
     ogDescription = metadata.openGraph.description,
     url = metadata.metadataBase.href,
-    image = metadata.openGraph.images[0],
+    imageUrl = metadata.openGraph.images[0].url,
     author = metadata.author.name,
-} = Astro.props
+} = Astro.props as SeoHeadProps;
 ---
 
 <head>
@@ -43,7 +53,7 @@ const {
     <meta name="twitter:description" content={description} />
     <meta
         name="twitter:image"
-        content={image.url}
+        content={imageUrl}
     />
     <meta name="twitter:creator" content="Anikawa Team" />
 
@@ -91,4 +101,5 @@ const {
         href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet"
     />
+    <slot />
 </head>

@@ -6,6 +6,7 @@ import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import { getAnimeById } from "../../../filters/getAnimeById";
 import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/HandleECClick";
+import SEOHead from "../../../components/SEO/SEOHead.astro";
 const { nanoid, slug } = Astro.params;
 let anime = getAnimeById(nanoid) as Anime | null;
 if (
@@ -24,14 +25,18 @@ if (
 
 let episode = anime?.episodes?.find((e) => e?.slug == slug);
 
-const { slug: animeslug = "n-a" } = anime;
+const { slug: animeslug = "n-a", keywords } = anime;
 const { title: animeTitle = "Untitled", scoreAlt = "Score N/A" } = anime ?? {};
 const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
 
-const { epNum, url } = episode ?? {};
-
-const { titleAlt: episodeTitle, description = "No description" } =
-  episode ?? {};
+const {
+  epNum,
+  url,
+  img: currentThumbnail = episode?.ytThumbnail ??
+    "/episode-thumbnail-alt-2.png",
+  titleAlt: episodeTitle,
+  description = "No description",
+} = episode ?? {};
 
 const prevIdx = epNum ? epNum - 2 : -1;
 const nextIdx = epNum ?? 1;
@@ -56,15 +61,27 @@ const {
 
 const hasPrev = prevIdx <= -1 ? false : true;
 const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
+
+const siteUrl = `https://anikawa.vercel.app`;
+const pageUrl = `https://anikawa.vercel.app/episode/${nanoid}/${slug}`;
+const prevUrl = `https://anikawa.vercel.app/episode/${nanoid}/${prevSlug}`;
+const nextUrl = `https://anikawa.vercel.app/episode/${nanoid}/${nextSlug}`;
+const pageKw = `${animeTitle}, ${episodeTitle}, Episode ${epNum}, ${language}, free anime, HD anime streaming`;
+const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${language} — No ads, no popups. ${description.slice(0, 160)}`;
 ---
 
 <html lang="en">
-  <head>
-    <title>{episodeTitle} - {animeTitle} | Anikawa</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/icon.png" />
-  </head>
+  <SEOHead
+    title={`Watch {Ad-Free} ${animeTitle} - Episode ${epNum}: ${episodeTitle} | AniKawa`}
+    description={pageDes}
+    ogDescription={pageDes}
+    imageUrl={currentThumbnail}
+    url={pageUrl}
+    keywords={pageKw}
+  >
+    {hasPrev && <link rel="prev" href={prevUrl} />}
+    {hasNext && <link rel="next" href={nextUrl} />}
+  </SEOHead>
   <body>
     <HandleECClick animenanoid={nanoid} slug={slug} client:load />
     <Navbar client:load />
@@ -85,9 +102,8 @@ const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
         <section class="episode-page-details epd-first">
           <div class="epd-first-top">
             <div class="epd-first-top first-part">
-              <a
-                href={`/show/${nanoid}/${animeslug}`}
-                id="a-title"><h2 class="first-part-anime-title">{animeTitle}</h2></a
+              <a href={`/show/${nanoid}/${animeslug}`} id="a-title"
+                ><h2 class="first-part-anime-title">{animeTitle}</h2></a
               >
               |
               <p class="first-part-rating" id="a-score">{scoreAlt}</p>
