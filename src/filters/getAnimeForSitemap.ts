@@ -8,7 +8,7 @@ export default async function getAllUrlsForSitemap(){
         if (!nanoid || !slug) continue;
 
         urls.push({
-            loc: `https://anikawa.vercel.app/${nanoid}/${slug}`,
+            loc: `https://anikawa.vercel.app/show/${nanoid}/${slug}`,
             lastmod: new Date(startDate ?? Date.now()).toISOString()
         });
 
