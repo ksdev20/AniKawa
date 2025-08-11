@@ -14,7 +14,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
-    touch-action: none;
+    /* touch-action: none; */
     pointer-events: auto;
     width: 100%;
     user-select: none;
