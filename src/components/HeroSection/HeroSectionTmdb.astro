@@ -1,0 +1,38 @@
+---
+import HeroCSR from "./HeroCSR";
+const HERO_TITLES = ["JUJUTSU KAISEN", "Dr. STONE", "KONOSUBA - God's blessing on this wonderful world!", "Takopi's Original Sin", "Haikyu!!"];
+import animeArray from "../../data/mergedList.json";
+import './HeroSection.css';
+import '../../styles/config.css';
+import HeroItem from "./HeroItem.astro";
+---
+
+<section aria-labelledby="hero-title" role="region">
+    <h1 id="hero-title" class="ht-hidden">Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles</h1>
+    <ul id="hs-slider" class="hs-slider">
+        {
+            HERO_TITLES.map(titleLS => (
+                <HeroItem titleLs={titleLS} />
+            ))
+        }
+    </ul>
+    <HeroCSR client:load />
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
+        "itemListElement": HERO_TITLES.map((t, i)  => {
+            const anime = animeArray.find(a => a.title == t);
+            if (!anime) return null;
+            const {nanoid, slug} = anime;
+            return {
+                "@type": "ListItem",
+                "position": i + 1,
+                "item":{
+                    "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
+                }
+            };
+        }).filter(Boolean)
+    })}>
+    </script>
+</section>

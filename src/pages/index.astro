@@ -6,6 +6,8 @@ import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro
 import AnimeCard2 from "../components/AnimeCard2/AnimeCard2.astro";
 import Footer from "../components/Footer/Footer";
 import FetchFromDb from "../components/auth/FetchFromDb";
+import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
+import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro";
 
 const usedTitlesGlobal: string[] = [];
 const usedTitlesAC2: string[] = [];
@@ -22,49 +24,50 @@ export interface Props {
 }
 
 const SliderData = [
-	{
-		bigH: "Watch HD Anime Shows 100% Ad-Free!",
-		smallH: "These shows are one of the most popular in the last 5 years.",
-		filterName: "topRatedLast5",
-		usedTitlesGlobal
-	},
-	{
-		bigH: "Hello Ballo Moda ",
-		smallH: "Chota Bhai",
-		filterName: "beginnerAnime",
-		usedTitlesGlobal
-	},
-	{
-		bigH: "Hello Ballo Bhai",
-		smallH: "Chota Bhai",
-		filterName: "sameMonthAnimeGen",
-		usedTitlesGlobal
-	},
-	{
-		bigH: "Hello  Moda Bhai",
-		smallH: "Chota Bhai",
-		filterName: "isPopular",
-		usedTitlesGlobal
-	},
-	{
-		bigH: " Ballo Moda Bhai",
-		smallH: "Chota Bhai",
-		filterName: "actionPopular",
-		usedTitlesGlobal
-	},
-	{
-		bigH: "Hellordtrdy Ballo Moda Bhai",
-		smallH: "Chota Bhai",
-		filterName: "adventurePopular",
-		usedTitlesGlobal
-	},
-	{
-		bigH: "Amazing Romance Anime",
-		smallH: "These anime with over 7 ★ so they're a must watch for romance lovers !",
-		filterName: "romancePopular",
-		usedTitlesGlobal
-	},
+  {
+    bigH: "Watch Top-Rated Anime in HD – 100% Ad-Free!",
+    smallH: "Explore the most popular anime from the last 5 years, all in stunning high definition.",
+    filterName: "topRatedLast5",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "Best Anime for Beginners",
+    smallH: "Start your anime journey with these easy-to-follow and highly rated series.",
+    filterName: "beginnerAnime",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "New Anime Releases This Month",
+    smallH: "Stay updated with the latest anime episodes and series airing this month.",
+    filterName: "sameMonthAnimeGen",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "Most Popular Anime Worldwide",
+    smallH: "Fan-favorite anime loved by viewers across the globe.",
+    filterName: "isPopular",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "Action-Packed Anime Series",
+    smallH: "High-energy battles, epic storylines, and unforgettable heroes.",
+    filterName: "actionPopular",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "Adventure Anime You Can’t Miss",
+    smallH: "Thrilling journeys, mysterious lands, and incredible worlds to explore.",
+    filterName: "adventurePopular",
+    usedTitlesGlobal
+  },
+  {
+    bigH: "Top Romance Anime with 7★+ Ratings",
+    smallH: "Heartwarming stories and emotional moments for romance lovers.",
+    filterName: "romancePopular",
+    usedTitlesGlobal
+  }
 ];
+
 const AC2Data= ["Action", "Action", "Sports", "Romance", "Comedy", "Adventure", "Fantasy"];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -74,32 +77,32 @@ const AC2Data= ["Action", "Action", "Sports", "Romance", "Comedy", "Adventure", 
 <Layout>
 	<FetchFromDb client:load />
 	<Navbar client:load />
-	<HeroSection />
+	<HeroSectionTmdb />
 	<AnimeSliderStatic
 		info={SliderData[0]}
 	/>
-	<AnimeCard2 category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2}/>
+	<AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2}/>
 	<AnimeSliderStatic
 		info={SliderData[1]}
 	/>
 	<AnimeSliderStatic
 		info={SliderData[2]}
 	/>
-	<AnimeCard2 category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2}/>
+	<AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2}/>
 	<AnimeSliderStatic
 		info={SliderData[3]}
 	/>
-	<AnimeCard2 category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeCard2 category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2}/>
+	<AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2}/>
+	<AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2}/>
 	<AnimeSliderStatic
 		info={SliderData[4]}
 	/>
-	<AnimeCard2 category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2}/>
+	<AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2}/>
 	<AnimeSliderStatic
 		info={SliderData[5]}
 	/>
-	<AnimeCard2 category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
-	<AnimeCard2 category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
+	<AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
+	<AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
 	<AnimeSliderStatic
 		info={SliderData[6]}
 	/>

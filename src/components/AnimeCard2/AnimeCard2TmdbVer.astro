@@ -1,12 +1,14 @@
 ---
 import "./anime-card2.css";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
-import { thisYearTopByCategory } from "../../filters/animeFilterMain";
+import { thisYearTopByCategory } from "../../filters/animeFilterMainTmdbVer";
 
 const category: string = Astro.props.category;
 const usedTitlesAC2: string[] = Astro.props.usedTitlesAC2;
 
 const anime: any = thisYearTopByCategory(category, usedTitlesAC2);
+console.log(anime);
+if (!anime) return null;
 const { nanoid, slug } = anime;
 const epSlug = anime?.episodes?.[0]?.slug ?? "n-a";
 const { title, description, poster } = anime ?? {};

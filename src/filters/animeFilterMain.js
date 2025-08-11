@@ -143,8 +143,8 @@ export function NewPopChecker(options = {}) {
 
 export function thisYearTopByCategory(category, usedTitlesAC2) {
     return aniOneAsia.find(anime => {
-        const title = anime?.anilist?.title
-        const score = getScore(anime);
+        const title = anime?.title;
+        const score = anime?.score;
         if (usedTitlesAC2.includes(title)) return false;
         if (!score) return false;
         const startYear = getYear(anime);

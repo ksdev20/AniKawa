@@ -1,88 +1,107 @@
-import aniOneAsia from '../data/mergedList.json';
-import dayjs from 'dayjs';
+import aniOneAsia from "../data/mergedList.json";
+import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 const filters = {
-    sameMonthAnimeGen,
-    beginnerAnime,
-    isPopular,
-    actionPopular,
-    adventurePopular,
-    topRatedLast5,
-    matchCategories: {
-        fn: matchCategories,
-        mode: 'genreCompare',
-    },
-    romancePopular
+  sameMonthAnimeGen,
+  beginnerAnime,
+  isPopular,
+  actionPopular,
+  adventurePopular,
+  topRatedLast5,
+  matchCategories: {
+    fn: matchCategories,
+    mode: "genreCompare",
+  },
+  romancePopular,
 };
 
 function sortByDate(arr) {
-    arr.sort((a, b) => {
-        const dateA = dayjs(a?.startDate || '2000/1/1');
-        const dateB = dayjs(b?.startDate || '2000/1/1');
-        return dateB - dateA;
-    });
+  arr.sort((a, b) => {
+    const dateA = dayjs(a?.startDate || "2000/1/1");
+    const dateB = dayjs(b?.startDate || "2000/1/1");
+    return dateB - dateA;
+  });
 }
 
 function sortByScore(arr) {
-    arr.sort((a, b) => {
-        const scoreA = parseFloat(a?.score) || 0;
-        const scoreB = parseFloat(b?.score) || 0;
-        return scoreB - scoreA;
-    });
+  arr.sort((a, b) => {
+    const scoreA = parseFloat(a?.score) || 0;
+    const scoreB = parseFloat(b?.score) || 0;
+    return scoreB - scoreA;
+  });
 }
 
 export function getFilteredAnime(filterName, options = {}) {
-    const { genresA = [], categoryA = '', categoryB = '', forSubCatPage = false, usedTitlesGlobal } = options;
+  const {
+    genresA = [],
+    categoryA = "",
+    categoryB = "",
+    forSubCatPage = false,
+    usedTitlesGlobal,
+  } = options;
 
-    const fnRaw = filters[filterName];
-    const { fn, mode } = typeof fnRaw == 'function' ? { fn: fnRaw, mode: 'single' } : fnRaw;
+  const fnRaw = filters[filterName];
+  const { fn, mode } =
+    typeof fnRaw == "function" ? { fn: fnRaw, mode: "single" } : fnRaw;
 
-    const result = [];
-    const usedTitles = [];
-    const diffGenre = ['New', 'Popular'];
+  const result = [];
+  const usedTitles = [];
+  const diffGenre = ["New", "Popular"];
 
-    for (const anime of aniOneAsia) {
-        const title = anime?.title || anime?.id;
-        if (usedTitles.length >= 25 && !forSubCatPage) break;
-        if (usedTitles.includes(title) || !anime) continue;
-        if (usedTitlesGlobal && usedTitlesGlobal.length > 0 && usedTitlesGlobal.filter(i => i == title).length > 2) continue;
+  for (const anime of aniOneAsia) {
+    const title = anime?.title || anime?.id;
+    if (usedTitles.length >= 25 && !forSubCatPage) break;
+    if (usedTitles.includes(title) || !anime) continue;
+    if (
+      usedTitlesGlobal &&
+      usedTitlesGlobal.length > 0 &&
+      usedTitlesGlobal.filter((i) => i == title).length == 1
+    )
+      continue;
 
-        const genresB = anime?.genres || [];
-        const keywords = anime?.keywords.split(',');
-        let toSend = false;
+    const genresB = anime?.genres || [];
+    const keywords = anime?.keywords.split(",");
+    let toSend = false;
 
-        if (mode == 'genreCompare') {
-            const arrA = genresA.length > 0 ? genresA : [categoryA, categoryB];
-            if (diffGenre.includes(categoryB)) { 
-                const score = anime?.score ?? 0;
-                const startYear = getYear(anime) ?? '2000';
-                toSend = NewPopChecker({ score, startYear, categoryB, categoryA, genresB, keywords });
-            } else {
-                toSend = fn(arrA, genresB, keywords);
-            }
-        } else {
-            toSend = fn(anime);
-        }
-
-        if (toSend) {
-            result.push(anime);
-            usedTitles.push(title);
-            if (usedTitlesGlobal) usedTitlesGlobal.push(title);
-        }
+    if (mode == "genreCompare") {
+      const arrA = genresA.length > 0 ? genresA : [categoryA, categoryB];
+      if (diffGenre.includes(categoryB)) {
+        const score = anime?.score ?? 0;
+        const startYear = getYear(anime) ?? "2000";
+        toSend = NewPopChecker({
+          score,
+          startYear,
+          categoryB,
+          categoryA,
+          genresB,
+          keywords,
+        });
+      } else {
+        toSend = fn(arrA, genresB, keywords);
+      }
+    } else {
+      toSend = fn(anime);
     }
-    const sortThese = ['sameMonthAnimeGen', 'matchCategories'];
-    const skipSort = sortThese.includes(filterName);
 
-    if (!skipSort){
-        sortByScore(result);
+    if (toSend) {
+      result.push(anime);
+      usedTitles.push(title);
+      if (usedTitlesGlobal) usedTitlesGlobal.push(title);
     }
+  }
+  const sortThese = ["sameMonthAnimeGen", "matchCategories"];
+  const skipSort = sortThese.includes(filterName);
 
-    if (skipSort && diffGenre.includes(categoryB)){
-        categoryB == 'New' ? sortByDate(result) : sortByScore(result);
-    }
+  if (!skipSort) {
+    sortByScore(result);
+  }
 
-    return result;
+  if (skipSort && diffGenre.includes(categoryB)) {
+    categoryB == "New" ? sortByDate(result) : sortByScore(result);
+  }
+
+  return result;
 }
 
 /*
@@ -131,100 +150,136 @@ export function getFilteredAnime(filterName, animePageCalling = false, genresA =
 /*for category page*/
 
 export function NewPopChecker(options = {}) {
-    const { genresB, categoryA, categoryB, score, startYear, keywords } = options;
-    const lowered = categoryA.toLowerCase();
-    if (categoryB == 'Popular') {
-        return (score >= 7 && (genresB.includes(categoryA) || keywords.includes(lowered)));
-    } else {
-        return (parseInt(startYear) >= 2025 && (genresB.includes(categoryA) || keywords.includes(lowered)));
-    }
+  const { genresB, categoryA, categoryB, score, startYear, keywords } = options;
+  const lowered = categoryA.toLowerCase();
+  if (categoryB == "Popular") {
+    return (
+      score >= 7 && (genresB.includes(categoryA) || keywords.includes(lowered))
+    );
+  } else {
+    return (
+      parseInt(startYear) >= 2025 &&
+      (genresB.includes(categoryA) || keywords.includes(lowered))
+    );
+  }
 }
 
-export function thisYearTopByCategory(category, usedTitlesAC2) {
-    return aniOneAsia.find(anime => {
-        const title = anime?.title
-        const score = anime?.score;
-        const startYear = getYear(anime);
-        if (usedTitlesAC2.includes(title) || !score || !startYear) return false;
-        
-        const cn = startYear >= getCurrentDate()?.[0] - 1 && genreCheck(anime, category) && score >= 7;
-        if (cn) usedTitlesAC2.push(title);
+const avoidTitlesAC2 = [
+  "Uglymug, Epicfighter",
+  "Hotel Inhumans",
+  "Detectives These Days Are Crazy!",
+  "Clevatess",
+  "Gachiakuta",
+  "My Hero Academia: Vigilantes",
+  "The Brilliant Healer's New Life in the Shadows",
+  "See You Tomorrow at the Food Court",
+  "Farmagia",
+  "Solo Leveling",
+  "Takopi's Original Sin",
+  "Sword of the Demon Hunter",
+];
 
-        return (
-            cn
-        );
-    });
+export function thisYearTopByCategory(category, usedTitlesAC2) {
+  return aniOneAsia.find((anime) => {
+    if (!anime) return false;
+    const title = anime?.title;
+    const score = anime?.score;
+    const startYear = getYear(anime);
+    if (
+      avoidTitlesAC2.includes(title) ||
+      usedTitlesAC2.includes(title) ||
+      !score ||
+      !startYear
+    )
+      return false;
+
+    const cn =
+      startYear >= getCurrentDate()?.[0] - 1 &&
+      genreCheck(anime, category) &&
+      score >= 7;
+    if (cn) usedTitlesAC2.push(title);
+
+    return cn;
+  });
 }
 
 function sameMonthAnimeGen(anime) {
-    const currentDate = getCurrentDate();
-    const startDate = anime?.startDate.split('-');
-    return ((currentDate[0] >= startDate[0]) && (currentDate[1] <= startDate[1]))
+  const currentDate = getCurrentDate();
+  const startDate = anime?.startDate.split("-");
+  return currentDate[0] >= startDate[0] && currentDate[1] <= startDate[1];
 }
 
 function beginnerAnime(anime) {
-    const startDate = getYear(anime);
-    return (startDate < getCurrentDate()?.[0] - 3 && startDate > getCurrentDate()?.[0] - 10 && anime?.score >= 7)
+  const startDate = getYear(anime);
+  return (
+    startDate < getCurrentDate()?.[0] - 3 &&
+    startDate > getCurrentDate()?.[0] - 10 &&
+    anime?.score >= 7
+  );
 }
 
 function isPopular(anime) {
-    return (anime?.score >= 7);
+  return anime?.score >= 7;
 }
 
 function actionPopular(anime) {
-    const isAction = genreCheck(anime, "Action");
-    return (isAction && anime?.score >= 8);
+  const isAction = genreCheck(anime, "Action");
+  return isAction && anime?.score >= 8;
 }
 
 function adventurePopular(anime) {
-    const isAdventure = genreCheck(anime, "Adventure");
-    return (isAdventure && anime?.score >= 7);
+  const isAdventure = genreCheck(anime, "Adventure");
+  return isAdventure && anime?.score >= 7;
 }
 
-function romancePopular(anime){
-    const isRomance = genreCheck(anime, "Romance");
-    return (isRomance && anime?.score >=7);
+function romancePopular(anime) {
+  const isRomance = genreCheck(anime, "Romance");
+  return isRomance && anime?.score >= 7;
 }
 
 function topRatedLast5(anime) {
-    const startDate = getYear(anime);
-    return (startDate < getCurrentDate()[0] - 3 && startDate >= getCurrentDate()[0] - 10 && anime?.score >= 7.5);
+  const startDate = getYear(anime);
+  return (
+    startDate < getCurrentDate()[0] - 3 &&
+    startDate >= getCurrentDate()[0] - 10 &&
+    anime?.score >= 7.5
+  );
 }
 
 function getScore(anime) {
-    return parseFloat(anime?.score);
+  return parseFloat(anime?.score);
 }
 
 function getYear(anime) {
-    return anime?.startDate.split('-')[0];
+  return anime?.startDate.split("-")[0];
 }
 
 function genreCheck(anime, genre) {
-    return anime?.genres.includes(genre);
+  return anime?.genres.includes(genre);
 }
 
 function getCurrentDate() {
-    const now = new Date();
-    const date = String(now.getDate());
-    const month = String(now.getMonth());
-    const year = String(now.getFullYear());
+  const now = new Date();
+  const date = String(now.getDate());
+  const month = String(now.getMonth());
+  const year = String(now.getFullYear());
 
-    const formattedData = [year, month, date];
-    return formattedData;
+  const formattedData = [year, month, date];
+  return formattedData;
 }
 
 /*for anime page*/
 
 function matchCategories(genresA, genresB, keywords = null) {
-    if (!genresB) return false;
-    if (genresB.length <= 1) return false;
+  if (!genresB) return false;
+  if (genresB.length <= 1) return false;
 
-    let count = 0;
-    return genresA.some(x => {
-        const lowered = x.toLowerCase();
-        if (genresB.includes(x)) count++;
-        if (keywords && keywords.includes(lowered)) count++;
-        if (genresA.length == 1) return count == 1;
-        return count == 2;
-    });
+  let count = 0;
+  return genresA.some((x) => {
+    const lowered = x.toLowerCase();
+    if (genresB.includes(x)) count++;
+    if (keywords && keywords.includes(lowered)) count++;
+    if (genresA.length == 1) return count == 1;
+    return count == 2;
+  });
 }
