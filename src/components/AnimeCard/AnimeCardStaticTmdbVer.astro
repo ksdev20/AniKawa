@@ -3,6 +3,7 @@ import "./animecard.css";
 import AnimeWBtn from "./AnimeWBtn";
 import { type Anime } from "../../filters/mergedListTypes";
 const anime = Astro.props.anime as Anime;
+if (anime?.episodes?.length == 0) return null;
 const forNewPop = Astro.props.fornewpop ?? false;
 const {
     nanoid = 'n-a',
