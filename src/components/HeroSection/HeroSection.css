@@ -133,14 +133,18 @@
     height: 100%;
     z-index: 1;
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.151);
-    /* background: linear-gradient(to right, #00b7ffcb, transparent); */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
 }
 
 .dub-sub {
+    width: fit-content;
     font-size: 15px;
     color: white;
     margin-top: 32px;
+    border-radius: 6px;
+    padding: 5px;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.356); 
 }
 
 .hero-description {
@@ -155,6 +159,10 @@
     color: rgb(255, 255, 255);
     font-size: medium;
     width: 100%;
+    border-radius: 12px;
+    padding: 5px;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.356);
 }
 
 .hero-button-section {

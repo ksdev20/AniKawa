@@ -13,7 +13,7 @@ export function logout() {
         console.log("Successfully logged out ✅");
         localStorage.clear();
         const loc = window.location;
-        loc.pathname.includes('profile') ? loc.href = '/' : loc.reload();
+        loc.pathname.includes('profile') || loc.pathname.includes('watchlist') || loc.pathname.includes('history')? loc.href = '/' : loc.reload();
       }
     })
     .catch((e) => {

@@ -102,7 +102,6 @@ export default function AuthForm({
     pRef.addEventListener("change", validateAll);
 
     const title = document.getElementById("ls-title");
-    console.log(title);
     if (title) {
       const clickEvent = new MouseEvent("click", {
         bubbles: true,

@@ -7,7 +7,6 @@ const category: string = Astro.props.category;
 const usedTitlesAC2: string[] = Astro.props.usedTitlesAC2;
 
 const anime: any = thisYearTopByCategory(category, usedTitlesAC2);
-console.log(anime);
 if (!anime) return null;
 const { nanoid, slug } = anime;
 const epSlug = anime?.episodes?.[0]?.slug ?? "n-a";

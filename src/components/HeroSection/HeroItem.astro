@@ -11,7 +11,7 @@ title = "untitled",
 description,
 poster,
 backdrop,
-score,
+scoreAlt,
 logos_en,
 } = anime ?? {};
 
@@ -35,7 +35,7 @@ const language = "Subtitled";
                 <h2 class="hs-title">{title}</h2>
                 <img class="hs-title-img" src={logoUrl} loading="eager" decoding="async" alt={`Logo image for
                     ${title}`} />
-                <span class="dub-sub">{language} ➤ {score}</span>
+                <span class="dub-sub">{language} ➤ {scoreAlt}</span>
                 <p class="hero-description" set:html={description} />
                 <div class="hero-button-section">
                     <a class="start-watching-btn hero-play" href={`/episode/${nanoid}/${ep1Slug}`} aria-label={`Start

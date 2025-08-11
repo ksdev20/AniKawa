@@ -24,7 +24,7 @@ export default function BeforeLoginNav() {
         <div className="corner-box-btn-text">
           <div className="cbt-white">Log In</div>
           <div className="cbt-gray">
-            Already joined Frunchyroll? Welcome Back.
+            Welcome back to Anikawa !
           </div>
         </div>
       </a>
