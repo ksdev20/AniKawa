@@ -101,22 +101,6 @@ export default function AuthForm({
     eRef.addEventListener("change", validateAll);
     pRef.addEventListener("change", validateAll);
 
-    const title = document.getElementById("ls-title");
-    if (title) {
-      const clickEvent = new MouseEvent("click", {
-        bubbles: true,
-        cancelable: true,
-        view: window,
-      });
-
-      const dpEv = () => title.dispatchEvent(clickEvent);
-      dpEv();
-      dpEv();
-      setTimeout(dpEv, 500);
-    }
-
-    // requestAnimationFrame(validateAll);
-
     return () => {
       eRef.removeEventListener("input", validateAll);
       pRef.removeEventListener("input", validateAll);

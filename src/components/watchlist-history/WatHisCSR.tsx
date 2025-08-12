@@ -23,7 +23,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    const titleList= data.data;
+                    const titleList= localStorage.getItem('watchlist');
                     const finalList = caller == 'w' ? getWatchlistItems(titleList) : getHistoryItems(titleList);
                     caller == 'w' ? setWatchist(finalList) : setHistory(finalList);
                 } else {
