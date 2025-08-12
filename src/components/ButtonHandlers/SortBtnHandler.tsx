@@ -4,7 +4,7 @@ import './sortbuttons.css';
 
 type SbhProps = {
     watHisAsking?: boolean;
-    givenSort?: string;
+    givenSort?: string | null;
 }
 
 export default function SortBtnHandler({watHisAsking = false, givenSort}: SbhProps) {
@@ -13,7 +13,7 @@ export default function SortBtnHandler({watHisAsking = false, givenSort}: SbhPro
 
     useEffect(() => {
         const urlParams =  new URLSearchParams(location.search);
-        const sort = givenSort ? givenSort : urlParams.get("sort") ?? "old";
+        const sort = givenSort ? givenSort : urlParams.get("sort") ?? "new";
         setCurrentSort(sort);
 
         if (watHisAsking) return;

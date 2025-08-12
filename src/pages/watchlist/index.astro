@@ -1,7 +1,7 @@
 ---
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import WatHisCSRCopy from "../../components/watchlist-history/WatHisCSRcopy.astro";
+import WatHisCSR from "../../components/watchlist-history/WatHisCSR";
 ---
 
 <html lang="en">
@@ -18,7 +18,7 @@ import WatHisCSRCopy from "../../components/watchlist-history/WatHisCSRcopy.astr
     </head>
     <body>
         <Navbar client:load />
-        <WatHisCSRCopy caller="w"/>
+        <WatHisCSR caller="w" client:load/>
         <Footer />
     </body>
 </html>

@@ -9,7 +9,7 @@ export default function AnimeCardReact({ anime, forNewPop = false }: { anime: An
     const episodes = anime?.episodes.length;
     if (!title && !poster && !nanoid) return null;
     return (
-        <div className={`anime-card ${forNewPop ? 'new-pop-ac' : ''}`}>
+        <li className={`anime-card ${forNewPop ? 'new-pop-ac' : ''}`}>
             <div className={`anime-card-first ${forNewPop ? 'new-pop-anime-card' : ''}`}>
                 <img className="anime-card-image" src={poster} loading="lazy" decoding="async" alt={`Cover of ${title}`}/>
                 <div className="anime-card-title">{title}</div>
@@ -50,6 +50,6 @@ export default function AnimeCardReact({ anime, forNewPop = false }: { anime: An
                 </div>
                 <a href={`/show/${nanoid}/${slug}`} className="anime-card-link"></a>
             </div>
-        </div>
+        </li>
     )
 }
