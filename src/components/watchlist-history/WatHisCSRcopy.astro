@@ -11,6 +11,7 @@ import AnimeCardStatic from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 import { type Anime, type Episode } from "../../filters/mergedListTypes";
 import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
 import ClearHisBtn from "./ClearHisBtn";
+import AnimeCardStaticTmdbVer from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 const caller = Astro.props.caller;
@@ -50,7 +51,7 @@ try {
             // }else {
             //     enrichedList = getHistoryItems(titleList);
             //     history = enrichedList;
-            // }
+            // }s
             const enrichedList = forWatchlist
                 ? getWatchlistItems(titleList)
                 : getHistoryItems(titleList);
@@ -109,7 +110,7 @@ try {
                 {
                     forWatchlist &&
                         watchlist.map((anime, i) => (
-                            <AnimeCardStatic key={i} anime={anime} fornewpop={true}/>
+                            <AnimeCardStaticTmdbVer key={i} anime={anime} fornewpop={true}/>
                         ))
                 }
             </ul>
