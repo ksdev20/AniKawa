@@ -1,14 +1,7 @@
+export const prerender = true;
 import getAllUrlsForSitemap from "../filters/getAnimeForSitemap";
-let cachedXml: string | null = null;
-export async function GET() {
-    if (cachedXml){
-        return new Response(cachedXml, {
-            headers: {
-                'Content-Type': 'application/xml'
-            }
-        });
-    }
 
+export async function GET() {
     const urls = await getAllUrlsForSitemap();
 
     const finalUrls = urls.map(({ loc, lastmod }) => `
@@ -26,7 +19,8 @@ export async function GET() {
 
     return new Response(xml, {
         headers: {
-            "Content-Type": "application/xml"
+            'Content-Type': 'application/xml',
+            'Cache-Control': 'no-cache'
         }
     })
 }
