@@ -1,19 +1,19 @@
 export const prerender = true;
-import getAllUrlsForSitemap from "../filters/getAnimeForSitemap";
+import getSitemapUrls, { type urlListItem } from "../filters/getAnimeForSitemap";
 
 export async function GET() {
-    const urls = await getAllUrlsForSitemap();
+    const urls: urlListItem[] = await getSitemapUrls();
 
-    const finalUrls = urls.map(({ loc, lastmod }) => (
-`  <url>
+    const finalUrls = urls.map(({ loc, lastmod, priority }) => (
+        `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
-    <priority>0.8</priority>
+    <priority>${priority}</priority>
   </url>`
     )).join("\n");
 
     const xml =
-`<?xml version="1.0" encoding="UTF-8"?>
+        `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${finalUrls}
 </urlset>`;

@@ -3,6 +3,7 @@ import "../../../styles/category/category.css";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
+import SEOHead from "../../../components/SEO/SEOHead.astro";
 
 const { mainCategory } = Astro.params;
 
@@ -21,16 +22,26 @@ const categories = [
   "Supernatural",
   "Thriller",
 ];
+
+const pageTitle = `${mainCategory} Anime`;
+const pageDescription = `Explore the best ${mainCategory} anime handpicked for fans. Discover trending series, hidden gems, and timeless classics across genres.`;
+const keywords = `${mainCategory} anime, ${mainCategory} anime list, ${mainCategory} anime recommendations, watch ${mainCategory} anime online, Anikawa`;
+const pageUrl = `https://anikawa.vercel.app/category/${mainCategory}`;
+const backdrop = `https://anikawa.vercel.app/anikawa-category-og-img-pc.png`;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/icon.png" />
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <title>{mainCategory} Anime | Anikawa</title>
-  </head>
+  <SEOHead
+    title={pageTitle}
+    description={pageDescription}
+    keywords={keywords}
+    ,
+    ogDescription={pageDescription}
+    ,
+    url={pageUrl}
+    ,
+    imageUrl={backdrop}
+  />
   <body>
     <Navbar client:load />
     <main class="main-root">
@@ -64,4 +75,5 @@ const categories = [
     </main>
     <Footer />
   </body>
+
 </html>

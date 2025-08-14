@@ -12,15 +12,18 @@ export default function AnimeCardReact({
   const { nanoid, slug } = anime;
   const {
     title,
-    poster = anime?.season_poster ?? "/anime-image-alt.png",
+    season_poster = anime?.poster,
     description,
     scoreAlt,
+    season,
+    seasons
   } = anime ?? {};
+  const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
   const language =
     anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
   const episodes = anime?.episodes.length;
   const epSlug = anime?.episodes?.[0]?.slug;
-  if (!title && !poster && !nanoid) return null;
+  if (!title && !season_poster && !nanoid) return null;
   return (
     <li className={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
       <article
@@ -29,20 +32,20 @@ export default function AnimeCardReact({
         <a href={`/show/${nanoid}/${slug}`} className="anime-card-link"></a>
         <img
           className="anime-card-image"
-          src={poster}
+          src={season_poster ?? "/anime-image-alt.png"}
           loading="lazy"
           decoding="async"
           alt={`Cover of ${title}`}
         />
-        <h2 className="anime-card-title">{title}</h2>
+        <h2 className="anime-card-title">{titleAlt}</h2>
         <div className="anime-card-language">{language}</div>
 
         <div
           className="anime-card-hover"
-          style={{ backgroundImage: `url(${poster})` }}
+          style={{ backgroundImage: `url(${season_poster})` }}
         >
           <div className="anime-card-hover-details">
-            <h3 className="anime-card-hover-title">{title}</h3>
+            <h3 className="anime-card-hover-title">{titleAlt}</h3>
             <div className="anime-card-hover-rating">{scoreAlt}</div>
             <div className="anime-card-hover-episodes">{episodes} Episodes</div>
             <p className="anime-card-hover-description">

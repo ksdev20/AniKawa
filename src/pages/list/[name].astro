@@ -7,13 +7,22 @@ import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStaticTmdbVer.a
 import Footer from "../../components/Footer/Footer";
 import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
 import dayjs from "dayjs";
+import SEOHead from "../../components/SEO/SEOHead.astro";
 
 const { name } = Astro.params;
-const standardName = `${name?.[0]?.toUpperCase()}${name?.slice(1)}`
-const pageTitle = name
-  ? `${standardName} Anime List`
-  : "Anime List";
-const label = name == "new" ? "Newly Added Anime" : "Most Popular Anime";
+const standardName = `${name?.[0]?.toUpperCase()}${name?.slice(1)}`;
+let label;
+switch (name) {
+  case "new":
+    label = "Newly Added Anime";
+    break;
+  case "popular":
+    label = "Most Popular Anime";
+    break;
+  case "old":
+    label = "The Old Classic";
+    break;
+}
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
 let finalArray;
 
@@ -31,14 +40,11 @@ if (urlFilter == "sub") {
 
 const seen = new Map();
 finalArray = finalArray.filter((a) => {
-  const title = a?.title;
-  if (!title || seen.has(title)) return false;
-  seen.set(title, true);
+  const url = a?.episodes?.[0]?.url;
+  if (!url || seen.has(url)) return false;
+  seen.set(url, true);
   return true;
 });
-
-// dayjs.extend(customParseFormat);
-// const format = "D/M/YYYY";
 
 if (name == "new") {
   finalArray.sort((a, b) => {
@@ -52,16 +58,53 @@ if (name == "new") {
     const scoreB = b?.score ?? 1.0;
     return scoreB - scoreA;
   });
+} else if (name == "old") {
+  finalArray.sort((a, b) => {
+    const dateA = dayjs(a?.startDate ?? "2000-1-1");
+    const dateB = dayjs(b?.startDate ?? "2000-1-1");
+    return dateA.valueOf() - dateB.valueOf();
+  });
 }
+const pageTitle = `Watch ${label} Online Free | Anikawa`;
+let pageDescription;
+let keywords;
+switch (name) {
+  case "new":
+    pageDescription =
+      "Discover the latest anime releases added to Anikawa. Subbed and dubbed episodes, no ads, just pure anime streaming.";
+    keywords =
+      "new anime, latest anime releases, subbed anime, dubbed anime, watch new anime online, Anikawa";
+    break;
+  case "popular":
+    pageDescription =
+      "Explore the most popular anime ranked by fans. Watch top-rated subbed and dubbed series online, ad-free.";
+    keywords =
+      "popular anime, top anime, best anime series, subbed anime, dubbed anime, watch popular anime online, Anikawa";
+    break;
+  case "old":
+    pageDescription =
+      "Rediscover classic and nostalgic anime series from the past. Watch timeless subbed and dubbed episodes on Anikawa, ad-free.";
+    keywords =
+      "old anime, classic anime, nostalgic anime, retro anime, subbed anime, dubbed anime, watch old anime online, Anikawa";
+    break;
+  default:
+    pageDescription = "Stream anime online with Anikawa — subbed and dubbed episodes, no ads, just pure fan-powered content.";
+    keywords = "anime streaming, subbed anime, dubbed anime, watch anime online, Anikawa";
+}
+
+const pageUrl = `https://anikawa.vercel.app/list/${name}`;
+const backdrop = `https://anikawa.vercel.app/anikawa-${name}-og-img-pc.png`;
 ---
 
 <html lang="en">
-  <head>
-    <title>{pageTitle}</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/icon.png" />
-  </head>
+  <SEOHead
+    title={`Watch ${pageTitle} Online Free | Anikawa`}
+    description={pageDescription}
+    keywords={keywords}
+    ogDescription={pageDescription}
+    url={pageUrl}
+    imageUrl={backdrop}
+  />
   <body>
     <Navbar client:load />
     <main class="main-root">

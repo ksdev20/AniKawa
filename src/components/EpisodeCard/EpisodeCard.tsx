@@ -1,5 +1,12 @@
+import EDelBtn from "./EcDatabaseContact/EDelBtn";
 import "./episode-card.css";
-export default function EpisodeCard({ epData }: { epData: any }) {
+export default function EpisodeCard({
+  epData,
+  forHistory = false,
+}: {
+  epData: any;
+  forHistory?: boolean;
+}) {
   const {
     animeTitle = "Anime Title N/A",
     language = "Language N/A",
@@ -7,11 +14,9 @@ export default function EpisodeCard({ epData }: { epData: any }) {
     slug,
     epNum,
   } = epData;
-  const {
-    titleAlt,
-    img = epData.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
-    description = "No description",
-  } = epData ?? [];
+  const { titleAlt, description = "No description" } = epData ?? [];
+  const img =
+    epData?.img ?? epData.ytThumbnail ?? "/episode-thumbnail-alt-2.png";
   return (
     <li className="episode-card">
       <article className="episode-card-first">
@@ -51,6 +56,9 @@ export default function EpisodeCard({ epData }: { epData: any }) {
           className="episode-card-link"
         ></a>
       </article>
+      {forHistory && (
+        <EDelBtn animenanoid={animenanoid} slug={slug}/>
+      )}
     </li>
   );
 }

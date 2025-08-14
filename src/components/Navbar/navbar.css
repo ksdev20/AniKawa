@@ -1,14 +1,16 @@
 /* reset.css */
+:root{
+    --sb: 0.3s;
+}
+
+@media (max-width: 600px){
+    :root{
+        --sb: 0.4s;
+    }
+}
+
 * {
     box-sizing: border-box;
-}
-
-.hidden{
-    display: none !important;
-}
-
-.show{
-    display: flex !important;
 }
 
 .empty-top {
@@ -110,7 +112,41 @@
     max-width: 350px;
     background-color: #141519;
     padding-top: 10px;
-    height: auto;
+    height: 100%;
+}
+
+.hidden{
+    display: none !important;
+    transition: display var(--sb) allow-discrete;
+}
+
+.show{
+    display: flex !important;
+}
+
+.hidden .sidebar{
+    animation: vanish var(--sb) !important;
+}
+
+.show .sidebar{
+    animation: appear var(--sb) !important;
+}
+
+@keyframes appear{
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+@keyframes vanish{
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .sidebar-button {
@@ -203,7 +239,7 @@
         width: 100%;
     }
     .sidebar {
-        width: 50%;
+        width: 65%;
         max-width: unset;
     }
 }

@@ -94,7 +94,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
               {sort == "new" ? "Recently Added" : "Oldest added"}
             </h2>
             <div id="sort-btn-wat" className="new-first-right part">
-              <SortBtnHandler watHisAsking={true} givenSort={null} />
+              <SortBtnHandler watHisAsking={true}/>
             </div>
           </header>
           <ul id="watchlist-list" className="new-pop-anime-list">
@@ -114,7 +114,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
           </header>
           <ul id="history-list" className="episodes-list el-history">
             {!forWatchlist &&
-              history.map((epData) => <EpisodeCard epData={epData} />)}
+              history.map((epData) => <EpisodeCard epData={epData} forHistory={true}/>)}
           </ul>
         </section>
         <div id="empty-wh" className={`empty-wh ${listEmpty ? "active" : ""}`}>
@@ -140,7 +140,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
           >
             Your history is empty man come on watch something !
           </div>
-          <a className="goto-home-btn" href="../index.html">
+          <a className="goto-home-btn" href="/">
             GO TO HOME FEED
           </a>
         </div>

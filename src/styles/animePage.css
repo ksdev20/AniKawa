@@ -479,3 +479,13 @@ body {
 }
 
 /*top controls */
+
+
+/* metadata special */
+.cat-link-txt{
+    color: #8c52ff;
+}
+
+.cat-sep:last-child{
+    display: none;
+}

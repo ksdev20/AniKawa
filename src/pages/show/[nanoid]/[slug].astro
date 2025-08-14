@@ -164,7 +164,9 @@ const usedTitlesGlobal = [title, title, title];
                 </div>
                 <div class="metadata-value">
                   <dt class="metadata-label">Genres:</dt><dd>
-                    {genres.join(",")}
+                    {genres.map(g => (
+                      <a href={`/category/${g}`} class="cat-link-txt">{g}</a><b class="cat-sep">〡</b>
+                    ))}
                   </dd>
                 </div>
               </dl>

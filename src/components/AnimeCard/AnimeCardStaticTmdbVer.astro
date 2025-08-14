@@ -9,10 +9,13 @@ const {
     nanoid = 'n-a',
     slug,
     title = "Untitled",
-    poster = anime?.plThumbnail || "/anime-image-alt.png",
     scoreAlt = "Score N/A",
     description = "No Description",
+    season,
+    seasons
 } = anime ?? {};
+const season_poster = anime?.season_poster ?? anime?.poster ?? anime?.plThumbnail ?? "/anime-image-alt.png";
+const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
 const language = anime?.episodes?.[0]?.audio == 'ja' ? "Subtitled" : 'Sub|Dub';
 const episodes = anime?.episodes.length;
 const epSlug = anime?.episodes?.[0]?.slug;
@@ -21,16 +24,16 @@ const epSlug = anime?.episodes?.[0]?.slug;
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`} >
     <article class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
         <a href={`/show/${nanoid}/${slug}`} class="anime-card-link"></a>
-        <img class="anime-card-image" src={poster} alt={`Cover of ${title}`} loading="lazy" decoding="async"/>
-        <h2 class="anime-card-title">{title}</h2>
+        <img class="anime-card-image" src={season_poster} alt={`Cover of ${titleAlt}`} loading="lazy" decoding="async"/>
+        <h2 class="anime-card-title">{titleAlt}</h2>
         <div class="anime-card-language">{language}</div>
 
         <div
             class="anime-card-hover"
-            style={{ backgroundImage: `url(${poster})`, backgroundPosition: 'left'}}
+            style={{ backgroundImage: `url(${season_poster})`, backgroundPosition: 'left'}}
         >
             <div class="anime-card-hover-details">
-                <h3 class="anime-card-hover-title">{title}</h3>
+                <h3 class="anime-card-hover-title">{titleAlt}</h3>
                 <div class="anime-card-hover-rating">{scoreAlt}</div>
                 <div class="anime-card-hover-episodes">
                     {episodes} Episodes
@@ -42,7 +45,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
         </div>
         <div class="anime-card-hover-actions">
             <div class="tooltip" data-tip="Play S1 E1">
-                <a href={`/episode/${nanoid}/${epSlug}`} aria-label={`Watch ${title} Episode 1`}>
+                <a href={`/episode/${nanoid}/${epSlug}`} aria-label={`Watch ${titleAlt} Episode 1`}>
                     <svg
                         class="card-action-play"
                         xmlns="http://www.w3.org/2000/svg"

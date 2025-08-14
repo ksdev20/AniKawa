@@ -42,7 +42,11 @@ export default function NewPopButtons({ n }: { n: string | undefined }) {
                 },
                 {
                     filter: "new",
-                    text: "Newest"
+                    text: "Newest First"
+                },
+                {
+                    filter: "old",
+                    text: "Oldest First"
                 }
             ]
         },

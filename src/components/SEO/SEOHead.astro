@@ -75,7 +75,7 @@ const {
     />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <script type="application/ld+json">
+    {Astro.url.pathname === '/' && (<script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "WebSite",
@@ -94,7 +94,7 @@ const {
                 "url": "https://anikawa.vercel.app"
             }
         }
-    </script>
+    </script>)}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

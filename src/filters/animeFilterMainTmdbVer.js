@@ -177,6 +177,7 @@ const avoidTitlesAC2 = [
   "Solo Leveling",
   "Takopi's Original Sin",
   "Sword of the Demon Hunter",
+  "I'm Living with an Otaku NEET Kunoichi!?",
 ];
 
 export function thisYearTopByCategory(category, usedTitlesAC2) {

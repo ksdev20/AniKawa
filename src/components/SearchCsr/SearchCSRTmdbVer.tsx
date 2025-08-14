@@ -92,8 +92,10 @@ export default function SearchCSR() {
         const completeAnimeList = foundAnime.map((a: any) => {
             const title = a.title || 'Untitled';
             const anime = getAnimeById(a.nanoid);
-            if (!anime || !title || animeTitlesUsed.has(title)) return null;
-            animeTitlesUsed.add(title);
+            const ep1Url = anime?.episodes?.[0]?.url;
+            if (!ep1Url) return null;
+            if (!anime || !title || animeTitlesUsed.has(ep1Url)) return null;
+            animeTitlesUsed.add(ep1Url);
             return anime;
         }).filter(Boolean);
 

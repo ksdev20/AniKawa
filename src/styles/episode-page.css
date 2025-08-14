@@ -23,7 +23,7 @@
 }
 
 .episode-page-details {
-    margin-top: 30px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -61,11 +61,17 @@
 
 .first-part-anime-title {
     color: #8c52ff;
-    font-size: 17px;
+    font-size: 15px;
     font-weight: bold;
     text-decoration: none;
     transition: all 0.2s ease;
     cursor: pointer;
+}
+
+@media (max-width: 600px){
+    .first-part-anime-title {
+        font-size: 13px;
+    }
 }
 
 .first-part-anime-title:hover {
@@ -139,7 +145,7 @@
 }
 
 .eccc-heading {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
 }
 
@@ -206,7 +212,7 @@
     }
 
     .epd-ep-title {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .epd-description {
