@@ -61,7 +61,7 @@ export function getFilteredAnime(filterName, options = {}) {
       continue;
 
     const genresB = anime?.genres || [];
-    const keywords = anime?.keywords.split(",");
+    const keywords = anime?.keywords?.split(",");
     let toSend = false;
 
     if (mode == "genreCompare") {
@@ -205,8 +205,9 @@ export function thisYearTopByCategory(category, usedTitlesAC2) {
 }
 
 function sameMonthAnimeGen(anime) {
+  if (!anime) return false;
   const currentDate = getCurrentDate();
-  const startDate = anime?.startDate.split("-");
+  const startDate = anime?.startDate?.split("-");
   return currentDate[0] >= startDate[0] && currentDate[1] <= startDate[1];
 }
 
@@ -252,7 +253,7 @@ function getScore(anime) {
 }
 
 function getYear(anime) {
-  return anime?.startDate.split("-")[0];
+  return anime?.startDate?.split("-")[0];
 }
 
 function genreCheck(anime, genre) {

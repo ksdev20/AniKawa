@@ -21,7 +21,7 @@ export default function AnimeCardReact({
   const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
   const language =
     anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
-  const episodes = anime?.episodes.length;
+  const episodes = anime?.episodes?.length;
   const epSlug = anime?.episodes?.[0]?.slug;
   if (!title && !season_poster && !nanoid) return null;
   return (

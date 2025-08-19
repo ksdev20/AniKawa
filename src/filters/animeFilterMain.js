@@ -159,7 +159,7 @@ export function thisYearTopByCategory(category, usedTitlesAC2) {
 
 function sameMonthAnimeGen(anime) {
     const currentDate = getCurrentDate();
-    const startDate = anime?.anilist?.startDate.split('/');
+    const startDate = anime?.anilist?.startDate?.split('/');
 
     if ((currentDate[2] >= startDate[2]) && (currentDate[1] <= startDate[1])) {
         return true;
@@ -232,7 +232,7 @@ function getScore(anime) {
 }
 
 function getYear(anime) {
-    return anime?.anilist?.startDate.split('/')[2];
+    return anime?.anilist?.startDate?.split('/')[2];
 }
 
 function genreCheck(anime, genre) {

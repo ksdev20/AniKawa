@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 #dotenv
 .env
+
+#old unused assets
+/oldDataAssets

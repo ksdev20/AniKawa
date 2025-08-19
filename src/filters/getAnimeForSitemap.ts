@@ -28,7 +28,7 @@ export async function getShowEpUrls() {
 
         if (Array.isArray(episodes) && episodes?.length > 0) {
             for (const ep of episodes) {
-                const { slug: epSlug, air_date } = ep ?? {};
+                const { slug: epSlug = 'n-a', air_date } = ep ?? {};
                 if (!epSlug) continue;
                 urls.push({
                     loc: `https://anikawa.vercel.app/episode/${nanoid}/${epSlug}`,

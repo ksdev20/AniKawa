@@ -114,7 +114,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
           </header>
           <ul id="history-list" className="episodes-list el-history">
             {!forWatchlist &&
-              history.map((epData) => <EpisodeCard epData={epData} forHistory={true}/>)}
+              history.map((epData, i) => <EpisodeCard key={i} epData={epData} forHistory={true}/>)}
           </ul>
         </section>
         <div id="empty-wh" className={`empty-wh ${listEmpty ? "active" : ""}`}>

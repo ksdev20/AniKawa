@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
-    "@astrojs/vercel": "^8.2.5",
+    "@astrojs/vercel": "^8.2.6",
     "@nanostores/react": "^1.0.0",
     "dayjs": "^1.11.13",
     "fuse.js": "^7.1.0",
-    "lucide-react": "^0.539.0",
+    "lucide-react": "^0.540.0",
     "nanostores": "^1.0.1",
     "use-debounce": "^10.0.5"
   },
   "devDependencies": {
-    "astro": "^5.13.0",
+    "astro": "^5.13.2",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
   }
