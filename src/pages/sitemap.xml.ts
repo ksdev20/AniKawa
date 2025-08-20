@@ -1,10 +1,16 @@
 export const prerender = true;
-import getSitemapUrls, { type urlListItem } from "../filters/getAnimeForSitemap";
+import getSitemapUrls, { isValidLoc, type urlListItem } from "../filters/getAnimeForSitemap";
 
 export async function GET() {
     const urls: urlListItem[] = await getSitemapUrls();
 
-    const finalUrls = urls.map(({ loc }) => (
+    const validUrls = urls.filter(({ loc }) => {
+        const isValid = isValidLoc(loc);
+        if (!isValid) console.warn('🚨 Invalid loc skipped:', loc);
+        return isValid;
+    });
+
+    const finalUrls = validUrls.map(({ loc }) => (
         `  <url>
     <loc>${loc}</loc>
   </url>`

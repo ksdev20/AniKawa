@@ -4,13 +4,20 @@ export interface urlListItem {
     loc: string
 }
 
+export function isValidLoc(loc: string): boolean {
+    return typeof loc === 'string' &&
+        loc.startsWith('https://anikawa.vercel.app/') &&
+        !/\s/.test(loc) && // no whitespace
+        loc.length < 2048; // sanity limit
+}
+
 export default async function getSitemapUrls() {
     const [showEpUrls, categoryUrls, npoUrls] = await Promise.all([
         getShowEpUrls(),
         getCategoryUrls(),
         getNPOUrls()
     ]);
-    return [{loc: 'https://anikawa.vercel.app/'}, ...npoUrls, ...categoryUrls, ...showEpUrls]; 
+    return [{ loc: 'https://anikawa.vercel.app/' }, ...npoUrls, ...categoryUrls, ...showEpUrls];
 }
 
 export async function getShowEpUrls() {
