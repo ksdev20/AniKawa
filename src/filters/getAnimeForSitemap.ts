@@ -1,7 +1,7 @@
 import animeArray from '../data/mergedList.json';
 
 export interface urlListItem {
-    loc: string; lastmod: string, priority: number
+    loc: string
 }
 
 export default async function getSitemapUrls() {
@@ -10,7 +10,7 @@ export default async function getSitemapUrls() {
         getCategoryUrls(),
         getNPOUrls()
     ]);
-    return [...npoUrls, ...categoryUrls, ...showEpUrls]; 
+    return [{loc: 'https://anikawa.vercel.app/'}, ...npoUrls, ...categoryUrls, ...showEpUrls]; 
 }
 
 export async function getShowEpUrls() {
@@ -22,8 +22,6 @@ export async function getShowEpUrls() {
 
         urls.push({
             loc: `https://anikawa.vercel.app/show/${nanoid}/${slug}`,
-            lastmod: new Date(startDate ?? Date.now()).toISOString(),
-            priority: 0.8
         });
 
         if (Array.isArray(episodes) && episodes?.length > 0) {
@@ -32,8 +30,6 @@ export async function getShowEpUrls() {
                 if (!epSlug) continue;
                 urls.push({
                     loc: `https://anikawa.vercel.app/episode/${nanoid}/${epSlug}`,
-                    lastmod: new Date(air_date ?? Date.now()).toISOString(),
-                    priority: 0.8
                 })
             }
         }
@@ -53,8 +49,6 @@ export async function getCategoryUrls() {
             usedCategories.push(g);
             categoryUrls.push({
                 loc: `https://anikawa.vercel.app/category/${g}`,
-                lastmod: new Date().toISOString(),
-                priority: 0.8
             });
         });
     });
@@ -65,7 +59,5 @@ export async function getNPOUrls() {
     const npo = ['new', 'popular', 'old'];
     return npo.map(i => ({
         loc: `https://anikawa.vercel.app/list/${i}`,
-        lastmod: new Date().toISOString(),
-        priority: 1.0
     }));
 }

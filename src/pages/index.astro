@@ -1,110 +1,160 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar/Navbar";
-import HeroSection from "../components/HeroSection/HeroSection.astro";
-import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
-import AnimeCard2 from "../components/AnimeCard2/AnimeCard2.astro";
-import Footer from "../components/Footer/Footer";
+import SEOHead from "../components/SEO/SEOHead.astro";
 import FetchFromDb from "../components/auth/FetchFromDb";
+import Navbar from "../components/Navbar/Navbar";
 import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
+import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
 import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro";
+import Footer from "../components/Footer/Footer";
 
 const usedTitlesGlobal: string[] = [];
 const usedTitlesAC2: string[] = [];
 
 export interface Props {
-	info: {
-		bigH: string;
-		smallH: string;
-		filterName: string;
-		usedTitlesGlobal: string[];
-	};
-	anime: any;
-	category: string;
+  info: {
+    bigH: string;
+    smallH: string;
+    filterName: string;
+    usedTitlesGlobal: string[];
+  };
+  anime: any;
+  category: string;
 }
 
 const SliderData = [
   {
     bigH: "Watch Top-Rated Anime in HD – 100% Ad-Free!",
-    smallH: "Explore the most popular anime from the last 5 years, all in stunning high definition.",
+    smallH:
+      "Explore the most popular anime from the last 5 years, all in stunning high definition.",
     filterName: "topRatedLast5",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "Best Anime for Beginners",
-    smallH: "Start your anime journey with these easy-to-follow and highly rated series.",
+    smallH:
+      "Start your anime journey with these easy-to-follow and highly rated series.",
     filterName: "beginnerAnime",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "New Anime Releases This Month",
-    smallH: "Stay updated with the latest anime episodes and series airing this month.",
+    smallH:
+      "Stay updated with the latest anime episodes and series airing this month.",
     filterName: "sameMonthAnimeGen",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "Most Popular Anime Worldwide",
     smallH: "Fan-favorite anime loved by viewers across the globe.",
     filterName: "isPopular",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "Action-Packed Anime Series",
     smallH: "High-energy battles, epic storylines, and unforgettable heroes.",
     filterName: "actionPopular",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "Adventure Anime You Can’t Miss",
-    smallH: "Thrilling journeys, mysterious lands, and incredible worlds to explore.",
+    smallH:
+      "Thrilling journeys, mysterious lands, and incredible worlds to explore.",
     filterName: "adventurePopular",
-    usedTitlesGlobal
+    usedTitlesGlobal,
   },
   {
     bigH: "Top Romance Anime with 7★+ Ratings",
     smallH: "Heartwarming stories and emotional moments for romance lovers.",
     filterName: "romancePopular",
-    usedTitlesGlobal
-  }
+    usedTitlesGlobal,
+  },
 ];
 
-const AC2Data= ["Action", "Action", "Sports", "Romance", "Comedy", "Adventure", "Fantasy"];
+const AC2Data = [
+  "Action",
+  "Action",
+  "Sports",
+  "Romance",
+  "Comedy",
+  "Adventure",
+  "Fantasy",
+];
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<FetchFromDb client:load />
-	<Navbar client:load />
-	<HeroSectionTmdb />
-	<AnimeSliderStatic
-		info={SliderData[0]}
-	/>
-	<AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeSliderStatic
-		info={SliderData[1]}
-	/>
-	<AnimeSliderStatic
-		info={SliderData[2]}
-	/>
-	<AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeSliderStatic
-		info={SliderData[3]}
-	/>
-	<AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeSliderStatic
-		info={SliderData[4]}
-	/>
-	<AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2}/>
-	<AnimeSliderStatic
-		info={SliderData[5]}
-	/>
-	<AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
-	<AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
-	<AnimeSliderStatic
-		info={SliderData[6]}
-	/>
-	<Footer />
-</Layout>
+<!doctype html>
+<html lang="en">
+  <SEOHead />
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      font-family: "Sansation", "Cal Sans", "Open Sans", "Roboto";
+      background-color: black;
+      color: white;
+      overflow-y: visible;
+    }
+
+    .stop-overflow {
+      overflow-y: hidden;
+    }
+
+    .loader {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #fff;
+      border-bottom-color: #8c52ff;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loader.hidden {
+      display: none;
+    }
+  </style>
+  <body>
+    <FetchFromDb client:load />
+    <Navbar client:load />
+    <HeroSectionTmdb />
+    <AnimeSliderStatic info={SliderData[0]} />
+    <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeSliderStatic info={SliderData[1]} />
+    <AnimeSliderStatic info={SliderData[2]} />
+    <AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeSliderStatic info={SliderData[3]} />
+    <AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeSliderStatic info={SliderData[4]} />
+    <AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeSliderStatic info={SliderData[5]} />
+    <AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
+    <AnimeSliderStatic info={SliderData[6]} />
+    <Footer />
+  </body>
+</html>

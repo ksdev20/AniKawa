@@ -16,7 +16,7 @@ const {
     description = metadata.description,
     keywords = metadata.keywords,
     ogDescription = metadata.openGraph.description,
-    url = metadata.metadataBase.href,
+    url = metadata.metadataBase,
     imageUrl = metadata.openGraph.images[0].url,
     author = metadata.author.name,
 } = Astro.props as SeoHeadProps;

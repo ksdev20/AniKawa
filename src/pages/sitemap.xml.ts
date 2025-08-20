@@ -4,11 +4,9 @@ import getSitemapUrls, { type urlListItem } from "../filters/getAnimeForSitemap"
 export async function GET() {
     const urls: urlListItem[] = await getSitemapUrls();
 
-    const finalUrls = urls.map(({ loc, lastmod, priority }) => (
+    const finalUrls = urls.map(({ loc }) => (
         `  <url>
     <loc>${loc}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <priority>${priority}</priority>
   </url>`
     )).join("\n");
 
