@@ -1,6 +1,5 @@
 import aniOneAsia from "../data/mergedList.json";
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 const filters = {
   sameMonthAnimeGen,

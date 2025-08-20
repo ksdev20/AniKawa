@@ -12,6 +12,7 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.6",
     "@nanostores/react": "^1.0.0",
+    "@vercel/speed-insights": "^1.2.0",
     "dayjs": "^1.11.13",
     "fuse.js": "^7.1.0",
     "lucide-react": "^0.540.0",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "astro": "^5.13.2",
+    "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
   }
