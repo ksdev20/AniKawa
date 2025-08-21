@@ -19,7 +19,8 @@ const epSlug = anime?.videos?.[0]?.slug;
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`} >
     <div class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
-        <a href={`/show/${nanoid}/${anime.slug}`} class="anime-card-link"></a>
+        <a href={`/show/${nanoid}/${anime.slug}`} class="anime-card-link">
+        <span class="sr-only">Go to {title} Anime Page</span></a>
         <img class="anime-card-image" src={coverImage} alt={`Cover of ${title}`} loading="lazy" decoding="async"/>
         <h4 class="anime-card-title">{title}</h4>
         <div class="anime-card-language">{language}</div>

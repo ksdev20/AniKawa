@@ -1,6 +1,7 @@
 ---
 import HeroCSR from "./HeroCSR";
-const HERO_TITLES = ["JUJUTSU KAISEN", "Dr. STONE", "KONOSUBA - God's blessing on this wonderful world!", "Takopi's Original Sin", "Haikyu!!"];
+// const HERO_TITLES = ["JUJUTSU KAISEN", "Dr. STONE", "KONOSUBA - God's blessing on this wonderful world!", "Takopi's Original Sin", "Haikyu!!"];
+const HERO_NANOIDS = ['Ll5EAiRTAiELlKO','esT-Wg6BmzxMiqB','3eZ7GbrMIriv2ap','5Z7qwy51WLHEyZu','8n-ES8yeTKR1rAM'];
 import animeArray from "../../data/mergedList.json";
 import './HeroSection.css';
 import '../../styles/config.css';
@@ -11,8 +12,8 @@ import HeroItem from "./HeroItem.astro";
     <h1 id="hero-title" class="ht-hidden">Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles</h1>
     <ul id="hs-slider" class="hs-slider">
         {
-            HERO_TITLES.map(titleLS => (
-                <HeroItem titleLs={titleLS} />
+            HERO_NANOIDS.map(nId => (
+                <HeroItem nId={nId} />
             ))
         }
     </ul>
@@ -21,8 +22,8 @@ import HeroItem from "./HeroItem.astro";
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
-        "itemListElement": HERO_TITLES.map((t, i)  => {
-            const anime = animeArray.find(a => a.title == t);
+        "itemListElement": HERO_NANOIDS.map((n, i)  => {
+            const anime = animeArray.find(a => a.nanoid == n);
             if (!anime) return null;
             const {nanoid, slug} = anime;
             return {

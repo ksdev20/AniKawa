@@ -2,58 +2,95 @@
 import animeArray from "../../data/mergedList.json";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 
-const { titleLs } = Astro.props;
-const anime = animeArray.find((a) => a.title == titleLs);
+const { nId } = Astro.props;
+const anime = animeArray.find((a) => a.nanoid == nId);
 const { nanoid, slug } = anime!;
 const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
 const {
-title = "untitled",
-description,
-poster,
-backdrop,
-scoreAlt,
-logos_en,
+  title = "untitled",
+  description,
+  poster,
+  backdrop,
+  scoreAlt,
+  logos_en,
 } = anime ?? {};
 
 const validLogo = logos_en ? (logos_en[0] ?? logos_en[1] ?? logos_en[2]) : "";
 const logoUrl = `https://image.tmdb.org/t/p/original${validLogo}`;
-const extraBd =
-titleLs == "JUJUTSU KAISEN"
-? `https://image.tmdb.org/t/p/original${anime?.extra_backdrops[1]}`
-: null;
+let extraBd = null;
+switch (nId) {
+  case "3eZ7GbrMIriv2ap":
+    extraBd = `https://image.tmdb.org/t/p/original${anime?.extra_backdrops[1]}`;
+    break;
+  case "EeRKboXUJK4bsgb":
+    extraBd = `https://image.tmdb.org/t/p/original${anime?.extra_backdrops[2]}`;
+    break;
+  default:
+    extraBd = null;
+    break;
+}
 
 const language = "Subtitled";
 ---
 
 <li class="hero-section-root">
-    <article>
-        <div class="hs-img-section">
-            <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img">
-                <img class="hs-anime-img" src={poster} alt={`Cover of ${title}`} loading="lazy" decoding="async" />
-            </a>
-            <div class="hero-section-overlay">
-                <h2 class="hs-title">{title}</h2>
-                <img class="hs-title-img" src={logoUrl} loading="eager" decoding="async" alt={`Logo image for
-                    ${title}`} />
-                <span class="dub-sub">{language} ➤ {scoreAlt}</span>
-                <p class="hero-description" set:html={description} />
-                <div class="hero-button-section">
-                    <a class="start-watching-btn hero-play" href={`/episode/${nanoid}/${ep1Slug}`} aria-label={`Start
-                        watching ${title}, episode 1`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px"
-                            fill="#000000">
-                            <path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"></path>
-                        </svg>
-                        START WATCHING S1 E1
-                    </a>
-                    <div class="watchlist-btn">
-                        <AnimeWBtn nanoid={nanoid} client:load />
-                    </div>
-                </div>
-            </div>
+  <article>
+    <div class="hs-img-section">
+      <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img">
+        <img
+          class="hs-anime-img"
+          src={poster}
+          alt={`Cover of ${title}`}
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <div class="hero-section-overlay">
+        <h2 class="hs-title">{title}</h2>
+        <img
+          class="hs-title-img"
+          src={logoUrl}
+          loading="eager"
+          decoding="async"
+          alt={`Logo image for
+                    ${title}`}
+        />
+        <span class="dub-sub">{language} ➤ {scoreAlt}</span>
+        <p class="hero-description" set:html={description} />
+        <div class="hero-button-section">
+          <a
+            class="start-watching-btn hero-play"
+            href={`/episode/${nanoid}/${ep1Slug}`}
+            aria-label={`Start
+                        watching ${title}, episode 1`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="28px"
+              viewBox="0 -960 960 960"
+              width="28px"
+              fill="#000000"
+            >
+              <path
+                d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"
+              ></path>
+            </svg>
+            START WATCHING S1 E1
+          </a>
+          <div class="watchlist-btn">
+            <AnimeWBtn nanoid={nanoid} client:load />
+          </div>
         </div>
-    </article>
-    <img class="hs-anime-banner" src={extraBd ?? backdrop} loading="lazy" decoding="async" alt={`Backdrop of
-        ${title}`} />
-    <div class="hero-gradient-left"></div>
+      </div>
+    </div>
+  </article>
+  <img
+    class="hs-anime-banner"
+    src={extraBd ?? backdrop}
+    loading="lazy"
+    decoding="async"
+    alt={`Backdrop of
+        ${title}`}
+  />
+  <div class="hero-gradient-left"></div>
 </li>

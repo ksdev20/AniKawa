@@ -29,7 +29,9 @@ export default function AnimeCardReact({
       <article
         className={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}
       >
-        <a href={`/show/${nanoid}/${slug}`} className="anime-card-link"></a>
+        <a href={`/show/${nanoid}/${slug}`} className="anime-card-link">
+        <span className="sr-only">Go to {title} Anime Page</span>
+        </a>
         <img
           className="anime-card-image"
           src={season_poster ?? "/anime-image-alt.png"}
