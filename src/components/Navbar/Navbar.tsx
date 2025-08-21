@@ -11,6 +11,8 @@ import "./navbar.css";
 import { type ALNames, type UserData, type RefNames } from "./NavbarTs/navbar";
 import AfterLoginNav from "./UserSidebar/AfterLoginNav";
 import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -125,7 +127,7 @@ export default function Navbar() {
     });
 
     return () => {
-      cleapups.forEach(cleanupFn => cleanupFn());
+      cleapups.forEach((cleanupFn) => cleanupFn());
     };
   }, []);
 
@@ -383,6 +385,8 @@ export default function Navbar() {
           <BeforeLoginNav />
         )}
       </aside>
+      <SpeedInsights />
+      <Analytics />
     </header>
   );
 }

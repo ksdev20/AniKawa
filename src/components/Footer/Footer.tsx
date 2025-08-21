@@ -1,6 +1,4 @@
 import "./footer.css";
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { Analytics } from "@vercel/analytics/react";
 
 export default function Footer() {
   return (
@@ -14,8 +12,6 @@ export default function Footer() {
         </ul>
       </nav>
       <p className="footer-disclaimer">Anikawa is a fan-powered, non-commercial project. We are not affiliated with, endorsed by, or officially connected to any anime studios, publishers, or licensors. All trademarks and copyrights belong to their respective owners.</p>
-      <SpeedInsights />
-      <Analytics />
     </footer>
   );
 }
