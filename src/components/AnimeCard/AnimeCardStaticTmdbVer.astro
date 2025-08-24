@@ -2,6 +2,7 @@
 import "./animecard.css";
 import AnimeWBtn from "./AnimeWBtn";
 import { type Anime } from "../../filters/mergedListTypes";
+import { getOptimizedImageUrl } from "../../utils/imageSizing";
 const anime = Astro.props.anime as Anime;
 if (anime?.episodes?.length == 0) return null;
 const forNewPop = Astro.props.fornewpop ?? false;
@@ -32,7 +33,8 @@ const epSlug = anime?.episodes?.[0]?.slug;
     </a>
     <img
       class="anime-card-image"
-      src={season_poster}
+      srcset={`${getOptimizedImageUrl(season_poster, 185)} 185w, ${getOptimizedImageUrl(season_poster, 342)} 342w`}
+      sizes="(max-width: 500px) calc(185px - 20px), calc(clamp(185px, 18vw, 290px) - 20px)"
       alt={`Cover of ${titleAlt}`}
       loading="lazy"
       decoding="async"
@@ -43,7 +45,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
     <div
       class="anime-card-hover"
       style={{
-        backgroundImage: `url(${season_poster})`,
+        backgroundImage: `url(${getOptimizedImageUrl(season_poster, 342)})`,
         backgroundPosition: "left",
       }}
     >

@@ -10,6 +10,7 @@ import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import { getAnimeById } from "../../../filters/getAnimeById";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
+import { getOptimizedImageUrl } from "../../../utils/imageSizing";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 let anime = getAnimeById(nanoid) as Anime | null;
@@ -35,7 +36,7 @@ const {
   title = "Untitled",
   tagline,
   backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
-  poster = anime?.season_poster ?? "/anime-image-alt.png",
+  season_poster = anime?.poster ?? "/anime-image-alt.png",
   description = "No Description",
   scoreAlt,
   runtime = "N/A",
@@ -103,7 +104,7 @@ const usedTitlesGlobal = [title, title, title];
             <img
               id="card-image"
               class="card-image"
-              src={poster}
+              src={getOptimizedImageUrl(season_poster, 500)}
               loading="lazy"
               decoding="async"
               alt={`Cover of ${title}`}

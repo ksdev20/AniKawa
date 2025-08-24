@@ -1,4 +1,5 @@
 import type { Anime } from "../../filters/mergedListTypes";
+import { getOptimizedImageUrl } from "../../utils/imageSizing";
 import "./animecard.css";
 import AnimeWBtn from "./AnimeWBtn";
 
@@ -16,7 +17,7 @@ export default function AnimeCardReact({
     description,
     scoreAlt,
     season,
-    seasons
+    seasons,
   } = anime ?? {};
   const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
   const language =
@@ -24,27 +25,28 @@ export default function AnimeCardReact({
   const episodes = anime?.episodes?.length;
   const epSlug = anime?.episodes?.[0]?.slug;
   if (!title && !season_poster && !nanoid) return null;
+  const optImg = getOptimizedImageUrl(season_poster, 342);
   return (
     <li className={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
       <article
         className={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}
       >
         <a href={`/show/${nanoid}/${slug}`} className="anime-card-link">
-        <span className="sr-only">Go to {title} Anime Page</span>
+          <span className="sr-only">Go to {title} Anime Page</span>
         </a>
         <img
           className="anime-card-image"
-          src={season_poster ?? "/anime-image-alt.png"}
+          src={optImg}
+          alt={`Cover of ${title}`}
           loading="lazy"
           decoding="async"
-          alt={`Cover of ${title}`}
         />
         <h2 className="anime-card-title">{titleAlt}</h2>
         <div className="anime-card-language">{language}</div>
 
         <div
           className="anime-card-hover"
-          style={{ backgroundImage: `url(${season_poster})` }}
+          style={{ backgroundImage: `url(${optImg})` }}
         >
           <div className="anime-card-hover-details">
             <h3 className="anime-card-hover-title">{titleAlt}</h3>
