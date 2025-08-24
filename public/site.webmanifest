@@ -2,6 +2,7 @@
     "name": "Anikawa",
     "short_name": "Anikawa",
     "start_url": "/",
+    "id": "/",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -15,6 +16,9 @@
         }
     ],
     "theme_color": "#23252b",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "background_color": "#23252b",
+    "display_override": ["standalone","fullscreen", "minimal-ui", "browser"],
+    "display": "standalone",
+    "categories": ["entertainment"],
+    "description": "Watch your Favourite Anime completely Ad-Free. Anikawa is 'For Fans, By Fans'"
 }
