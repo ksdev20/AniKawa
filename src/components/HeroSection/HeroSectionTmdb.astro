@@ -12,8 +12,8 @@ import HeroItem from "./HeroItem.astro";
     <h1 id="hero-title" class="ht-hidden">Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles</h1>
     <ul id="hs-slider" class="hs-slider">
         {
-            HERO_NANOIDS.map(nId => (
-                <HeroItem nId={nId} />
+            HERO_NANOIDS.map((nId, i) => (
+                <HeroItem nId={nId} i={i} />
             ))
         }
     </ul>

@@ -2,7 +2,7 @@
 import animeArray from "../../data/mergedList.json";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 
-const { nId } = Astro.props;
+const { nId, i } = Astro.props;
 const anime = animeArray.find((a) => a.nanoid == nId);
 const { nanoid, slug } = anime!;
 const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
@@ -31,6 +31,9 @@ switch (nId) {
 }
 
 const language = "Subtitled";
+
+const imgL = i == 0 ? "eager" : "lazy";
+const imgD = i == 0 ? "async" : "async";
 ---
 
 <li class="hero-section-root">
@@ -41,8 +44,9 @@ const language = "Subtitled";
           class="hs-anime-img"
           src={poster}
           alt={`Cover of ${title}`}
-          loading="lazy"
-          decoding="async"
+          loading={imgL}
+          decoding={imgD}
+          fetchpriority="high"
         />
       </a>
       <div class="hero-section-overlay">
@@ -50,10 +54,11 @@ const language = "Subtitled";
         <img
           class="hs-title-img"
           src={logoUrl}
-          loading="eager"
-          decoding="async"
           alt={`Logo image for
                     ${title}`}
+          loading={imgL}
+          decoding={imgD}
+          fetchpriority="high"
         />
         <span class="dub-sub">{language} ➤ {scoreAlt}</span>
         <p class="hero-description" set:html={description} />
@@ -87,10 +92,11 @@ const language = "Subtitled";
   <img
     class="hs-anime-banner"
     src={extraBd ?? backdrop}
-    loading="lazy"
-    decoding="async"
     alt={`Backdrop of
         ${title}`}
+    loading={imgL}
+    decoding={imgD}
+    fetchpriority="high"
   />
   <div class="hero-gradient-left"></div>
 </li>
