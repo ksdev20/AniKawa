@@ -33,8 +33,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
     </a>
     <img
       class="anime-card-image"
-      srcset={`${getOptimizedImageUrl(season_poster, 185)} 185w, ${getOptimizedImageUrl(season_poster, 342)} 342w`}
-      sizes="(max-width: 500px) calc(185px - 20px), calc(clamp(185px, 18vw, 290px) - 20px)"
+      src={getOptimizedImageUrl(season_poster, 342)}
       alt={`Cover of ${titleAlt}`}
       loading="lazy"
       decoding="async"

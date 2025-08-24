@@ -22,7 +22,7 @@ export default async function fetchUserDetails() {
             }
         }
     } catch (e) {
-        console.error("Error : ", e);
+        console.warn("Error : ", e);
     }
 }
 
@@ -44,7 +44,7 @@ export async function checkCookie(){
             localStorage.setItem('isLoggedIn', 'false');
         }
     } catch (e){
-        console.error(e);
+        console.warn(e);
         localStorage.setItem('isLoggedIn', 'false');
     }
 }
