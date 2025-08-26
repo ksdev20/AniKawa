@@ -12,14 +12,15 @@
     "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.6",
     "@nanostores/react": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.12",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "dayjs": "^1.11.13",
     "fuse.js": "^7.1.0",
-    "lucide-react": "^0.541.0",
+    "lucide-react": "^0.542.0",
     "nanostores": "^1.0.1",
     "use-debounce": "^10.0.5",
-    "vercel": "^46.0.2"
+    "vercel": "^46.0.3"
   },
   "devDependencies": {
     "astro": "^5.13.3",

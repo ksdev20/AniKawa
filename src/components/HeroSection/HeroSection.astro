@@ -1,9 +1,8 @@
 ---
 import HeroCSR from "./HeroCSR";
 const HERO_TITLES = ["JUJUTSU KAISEN Season2", "Dr. STONE Season 4", "Astra Lost in Space", "BLEACH: Thousand-Year Blood War - The Conflict", "Umamusume: Pretty Derby Season 2"];
-import animeArray from "../../data/aniOneData2.json";
+import animeArray from "../../data/mergedList.json";
 import './HeroSection.css';
-import '../../styles/config.css';
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 ---
 
@@ -14,16 +13,16 @@ import AnimeWBtn from "../AnimeCard/AnimeWBtn";
             HERO_TITLES.map((t, i) => {
                 const anime = animeArray.find((a) => a.cleanTitle == t);
                 const { nanoid, slug } = anime!;
-                const ep1Slug = anime?.videos?.[0]?.slug ?? "n-a";
+                const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
                 const {
                     title,
-                    language,
                     description,
-                    coverImage,
-                    bannerImage,
-                    color,
+                    poster,
+                    backdrop,
                     score
-                } = anime!.anilist;
+                } = anime ?? {};
+                const language = '';
+                const color = '#ffffff'
                 return (
                     <li class="hero-section-root" >
                         <article>
@@ -31,7 +30,7 @@ import AnimeWBtn from "../AnimeCard/AnimeWBtn";
                                 <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img">
                                     <img
                                         class="hs-anime-img"
-                                        src={coverImage}
+                                        src={poster}
                                         alt={`Cover of ${title}`}
                                         loading="lazy" decoding="async"
                                     />
@@ -66,7 +65,7 @@ import AnimeWBtn from "../AnimeCard/AnimeWBtn";
                                 </div>
                             </div>
                         </div>
-                        <img class="hs-anime-banner" src={bannerImage!} loading="lazy" decoding="async" alt={`Backdrop of ${title}`}/>
+                        <img class="hs-anime-banner" src={backdrop!} loading="lazy" decoding="async" alt={`Backdrop of ${title}`}/>
                         <div
                             class="hero-gradient-left"
                             style={{

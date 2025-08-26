@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import './pb.css';
-import '../../styles/config.css';
 
 export default function HeroCSR(){
     const sliderRef = useRef<HTMLDivElement>(null);

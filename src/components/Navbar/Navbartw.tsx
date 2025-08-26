@@ -3,7 +3,6 @@ import React, {
   useEffect,
   useRef,
   useCallback,
-  type ReactEventHandler,
 } from "react";
 import { Menu, X } from "lucide-react";
 import "../../styles/config.css";
