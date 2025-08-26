@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+.progress-container {
+    @apply relative z-[5] flex h-[10px] gap-[10px] w-full justify-center mb-5 bottom-[30px];
+}
+
+.progress-bar {
+    transition: width 0.3s ease-in-out;
+    @apply bg-[#888] w-[30px] h-full rounded-[10px] cursor-pointer;
+}
+
+.progress-bar.active {
+    background-color: #8c52ff;
+}
+
+@media (max-width: 600px) {
+    .progress-bar {
+        width: 25px;
+    }
+}

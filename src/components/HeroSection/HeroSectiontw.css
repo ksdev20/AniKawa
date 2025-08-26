@@ -1,0 +1,188 @@
+@import 'tailwindcss';
+
+.ht-hidden {
+    @apply sr-only;
+}
+
+.hs-slider {
+    @apply relative flex overflow-hidden pointer-events-auto w-full select-none;
+}
+
+.hs-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.hero-section-root {
+    @apply flex relative w-full h-[60vw] min-h-[400px] max-h-[800px] min-w-full;
+}
+
+.hero-anime-pic {
+    @apply absolute w-full h-full z-0 object-cover;
+}
+
+.hs-img-section {
+    @apply absolute z-[5] flex w-full h-full py-[80px] bg-transparent;
+}
+
+.hs-anime-img {
+    @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none;
+}
+
+.hs-anime-banner {
+    @apply absolute z-[-5] w-full h-full object-cover object-center;
+}
+
+.hero-section-overlay {
+    @apply flex flex-col w-[40%] h-fit self-center ml-[30px] p-[50px];
+}
+
+.hs-title {
+    @apply text-[28px] text-center ml-[10px] mr-[25px] rounded-[30px] p-[10px] bg-[#00000066] backdrop-blur-[10px];
+}
+
+.hs-title-img {
+    @apply w-[80%] h-auto max-w-[400px];
+}
+
+@media (max-width: 600px) {
+    .hs-title-img {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    .hs-title {
+        @apply sr-only;
+    }
+}
+
+.hero-anime-title {
+    @apply w-[20%] h-auto cursor-pointer;
+}
+
+.hero-gradient-left {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+    @apply w-full h-full z-[1] pointer-events-none;
+}
+
+.dub-sub {
+    @apply w-fit text-[15px] text-[#fff] mt-[32px] rounded-[6px] p-[5px] backdrop-blur-[12px] bg-[#0000005b];
+}
+
+.hero-description {
+    @apply line-clamp-4 text-ellipsis leading-6 mt-2 text-base text-white w-full rounded-xl p-[5px] backdrop-blur-md bg-[#0000005b];
+}
+
+.hero-button-section {
+    @apply flex items-center gap-[8px] mt-[32px];
+}
+
+.start-watching-btn {
+    @apply flex items-center justify-center bg-[#8c52ff] text-[black] font-[600] text-[15px] w-auto h-10 pr-[5px] cursor-pointer;
+}
+
+.start-watching-btn:hover {
+    @apply bg-[#712ff5];
+}
+
+.watch-logo {
+    @apply h-[30px] w-[30px];
+}
+
+.watchlist-btn {
+    @apply flex justify-center items-center bg-transparent h-10 w-10 cursor-pointer border-2 border-[#8c52ff];
+}
+
+.watchlist-btn:hover {
+    border-color: #794cd3;
+}
+
+.watchlist-btn:hover .hero-action-watchlist {
+    fill: #8c52ff;
+}
+
+@media screen and (max-width: 600px) {
+    .hero-section-root {
+        @apply w-full h-[130vw] max-h-[1000px];
+    }
+
+    .hs-img-section {
+        @apply p-0 m-0;
+    }
+
+    .hs-anime-img {
+        @apply h-full w-full rounded-[0px] ml-0;
+    }
+
+    .hs-anime-banner {
+        display: none;
+    }
+
+    .hero-section-overlay {
+        @apply absolute z-[8] p-0 m-0 pb-[10%] mt-0 h-fit items-center self-baseline-last w-full;
+    }
+
+    .hero-anime-title {
+        @apply w-[35%] h-auto;
+    }
+
+    .hero-description {
+        display: none;
+    }
+
+    .dub-sub {
+        margin-top: 8px;
+    }
+
+    .hero-button-section {
+        margin-top: 16px;
+    }
+
+    .start-watching-btn {
+        width: 1fr;
+    }
+
+    .hero-gradient-left {
+        display: none;
+    }
+
+    .hero-gradient-bottom {
+        max-height: 70%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+    .hero-description {
+        display: none;
+    }
+
+    .hs-des-loading {
+        display: none;
+    }
+
+    .hero-section-overlay {
+        padding: 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .hs-anime-img {
+        width: 100%
+    }
+
+    .hs-des-loading {
+        display: none;
+    }
+
+    .hs-title-loading {
+        width: 80%;
+    }
+
+    .dub-sub-loading {
+        width: 50px;
+    }
+}
+
+.hero-play {
+    @apply h-10 w-[220px];
+}
