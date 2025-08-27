@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useLayoutEffect } from 'react';
-import './slider-btn-sec.css';
+import './slider-btn-sectw.css';
 
 export default function AnimeSliderCSR() {
     const markerRef = useRef<HTMLDivElement | null>(null);

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "./log-sign.css";
+import "./log-signtw.css";
 import fetchUserDetails from "../../global_assets/FetchUserDetails";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
@@ -33,19 +33,19 @@ function LinksElement({ keyword }: { keyword: string }) {
           </a>
         </p>
         <p className="terms-para">
-          By creating an account you're agreeing to our
+          By creating an account you're agreeing to our 
           <a className="term-policy-link" href="/legal/tos/" target="_blank">
-            Terms
-          </a>
+             Terms 
+          </a> 
           &
           <a
             className="term-policy-link"
             href="/legal/privacy-policy/"
             target="_blank"
           >
-            Privacy Policy
-          </a>{" "}
-          <b>,</b>
+            Privacy Policy 
+          </a>
+          <b>, </b>
           and you confirm that you are at least 18 years of age.
         </p>
       </>
@@ -53,8 +53,7 @@ function LinksElement({ keyword }: { keyword: string }) {
   } else {
     return (
       <div className="after-next-links">
-        <a className="to-login">FORGOT PASSWORD?</a>
-        <b className="after-next-separator">|</b>
+        <a className="to-login" href="/404">FORGOT PASSWORD?</a>
         <a className="to-login" href="/signup">
           CREATE ACCOUNT
         </a>

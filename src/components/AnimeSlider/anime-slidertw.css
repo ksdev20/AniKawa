@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+.slider-section-text-big {
+    @apply text-white text-[28px] font-[600];
+}
+
+.cat-slider-heading-big {
+    @apply ml-[10px] text-2xl;
+}
+
+.slider-section-text-small {
+    @apply text-lg text-[gray]
+}
+
+@media screen and (max-width: 600px) {
+    .slider-section-text-big {
+        font-size: 22px;
+    }
+
+    .slider-section-text-small {
+        font-size: 14px;
+    }
+}
+
+.anime-slider-section {
+    @apply flex flex-col w-full cursor-pointer mb-12;
+}
+
+.cat-slider {
+    @apply mt-10;
+}
+
+.slider-heading {
+    @apply flex flex-col w-full gap-2 mb-4 pl-5;
+}
+
+.cat-slider-heading {
+    @apply mb-1 flex-row gap-0 justify-between items-center;
+}
+
+.slider-content-wrapper {
+    @apply relative z-[9] w-full block;
+}
+
+.slider-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    @apply relative z-[10] flex scroll-smooth w-full gap-2.5 cursor-pointer select-none items-start overflow-auto px-5 list-none;
+}
+
+.slider-container.disable-clicks {
+    pointer-events: none;
+}

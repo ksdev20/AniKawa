@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+
+.anime-card {
+    @apply relative no-underline select-none cursor-pointer pb-2.5;
+}
+
+.anime-card-first {
+    @apply relative flex flex-col h-auto w-[18vw] min-w-[185px] max-w-[290px] gap-3 p-2.5;
+}
+
+.anime-card-image {
+    @apply w-full aspect-[2/3] object-cover;
+}
+
+.anime-card-title {
+    @apply line-clamp-3 text-ellipsis text-[14px] text-white;
+}
+
+.anime-card-language {
+    font-size: 14px;
+    color: gray;
+}
+
+/*ANIME CARD FOR MOBILE*/
+@media screen and (max-width: 600px) {
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .anime-card-hover {
+        display: none;
+    }
+
+    .anime-card-first:active {
+        background-color: rgba(0, 162, 255, 0.342);
+    }
+}
+
+/*ANIME CARD LOADING HANDLER*/
+
+.skeletons.hidden {
+    display: none;
+}
+
+.loading-e {
+    background: linear-gradient(90deg, #141519 0%, #1a1b1f 50%, #141519 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+}
+
+.anime-loading-image {
+    width: 100%;
+    aspect-ratio: 2/ 3;
+}
+
+.anime-loading-title {
+    width: 120px;
+    height: 20px;
+}
+
+.anime-loading-language {
+    width: 90px;
+    height: 15px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/*LOADING HANDLER ENDS*/
+
+
+.anime-card-hover {
+    transition: opacity 0.3s ease;
+    @apply absolute z-[2] inset-0 opacity-0 bg-cover bg-center bg-no-repeat
+}
+
+.anime-card-hover-details {
+    @apply flex flex-col p-2.5 w-full h-full bg-[#141519f5];
+}
+
+.anime-card-hover-title {
+    @apply line-clamp-3 mt-2.5 text-[15px] text-white;
+}
+
+.anime-card-hover-rating {
+    @apply mt-2 text-sm text-zinc-400;
+}
+
+.anime-card-hover-episodes {
+    @apply mt-2 text-sm text-zinc-400;
+}
+
+.anime-card-hover-description {
+    @apply line-clamp-[7] text-ellipsis text-sm leading-5 mt-2;
+}
+
+.anime-card-hover-actions {
+    transition: opacity 0.3s ease;
+    @apply absolute z-10 left-0 bottom-0 opacity-0 flex items-center gap-2.5 mt-auto;
+}
+
+.card-action-watchlist {
+    @apply w-7.5 h-7.5;
+}
+
+.card-action-play {
+    @apply w-10 h-10;
+}
+
+.tooltip {
+    @apply relative z-10 inline-block cursor-pointer;
+}
+
+.tooltip:after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #5c5c5c;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease;
+    z-index: 10;
+}
+
+.tooltip:before {
+    content: "";
+    position: absolute;
+    bottom: 73%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 12px solid transparent;
+    border-top-color: #5c5c5c;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 15;
+}
+
+.tooltip.w:before{
+    content: "";
+    position: absolute;
+    bottom: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 12px solid transparent;
+    border-top-color: #5c5c5c;
+    opacity: 0;
+    transition: opacity 0.1s;
+    z-index: 15;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
+}
+
+.anime-card-first:hover .anime-card-hover {
+    opacity: 1;
+}
+
+.anime-card-first:hover .anime-card-hover-actions {
+    opacity: 1;
+}
+
+.new-pop-anime-card {
+    width: unset;
+    max-width: 200px;
+}
+
+@media (max-width: 312px) {
+    .anime-card-first {
+        min-width: unset;
+    }
+}
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .anime-card-first {
+        min-width: 155px;
+    }
+
+    .new-pop-anime-card {
+        min-width: 155px;
+    }
+}
+
+.anime-card-link{
+    @apply absolute inset-0 z-[3] cursor-pointer;
+}
+
+.anime-wbtn-main{
+    pointer-events: all;
+}
+
+@media (max-width: 600px){
+    .anime-card-hover-actions{
+        display: none;
+    }
+}
+
+/*for anime card links accessbility and lighthouse*/
+.sr-only {
+  @apply sr-only;
+}

@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+footer{
+    @apply py-10 px-5 bg-black text-base text-[gray] border-t border-t-[#ccc];
+}
+
+.footer-disclaimer{
+    @apply text-sm text-center mt-7.5;
+}
+
+.footer-links {
+    @apply flex flex-wrap justify-center gap-6 list-none;
+}
+
+.footer-links li{
+    @apply relative pr-4;
+}
+
+.footer-links li:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 1px;
+    background-color: gray;
+}
+
+.footer-links li:hover {
+    color: white;
+}
+
+.sf-separator {
+    @apply py-5;
+}
