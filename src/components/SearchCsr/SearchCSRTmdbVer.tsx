@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Anime } from '../../filters/mergedListTypes';
-import './search.css';
+import './searchtw.css';
 import '../../styles/NewPopALStyles.css';
 import animeArray from '../../data/mergedList.json';
 import AnimeCardStatic from '../AnimeCard/AnimeCardStaticTmdbVer.astro';

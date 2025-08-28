@@ -1,9 +1,5 @@
 @import 'tailwindcss';
 
-.ht-hidden {
-    @apply sr-only;
-}
-
 .hs-slider {
     @apply relative flex overflow-hidden pointer-events-auto w-full select-none;
 }

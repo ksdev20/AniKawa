@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../styles/config.css";
-import "./wat-his.css";
+import "./wat-histw.css";
 import SortBtnHandler from "../ButtonHandlers/SortBtnHandler";
 import {
   getWatchlistItems,

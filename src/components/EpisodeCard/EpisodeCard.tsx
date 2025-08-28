@@ -1,5 +1,5 @@
 import EDelBtn from "./EcDatabaseContact/EDelBtn";
-import "./episode-card.css";
+import "./episode-cardtw.css";
 export default function EpisodeCard({
   epData,
   forHistory = false,

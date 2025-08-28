@@ -7,7 +7,7 @@ import type { Banner } from "../../filters/AnimeDataTypes";
 import characterArray from '../../data/characterAvatarsFinal.json';
 import bannerArray from '../../data/bannerList.json';
 import '../../styles/profile.css';
-import './bco-aco.css';
+import './bco-acotw.css';
 import { useState, useEffect, useRef } from 'react';
 import fetchUserDetails, { setOnlyUserData } from "../../global_assets/FetchUserDetails";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
@@ -160,7 +160,7 @@ export default function ProfileCSR() {
                             }}>DONE</div>
                         </div>
                     </div>
-                    <div id="banners-list" className="banners-list">
+                    <div id="banners-list" className="banners-list wk-sb">
                         {bannerArray.map((banner, i) => (
                             <BannerCard key={i} bc={banner} />
                         ))}
@@ -203,7 +203,7 @@ export default function ProfileCSR() {
                             </svg>
                         </div>
                     </div>
-                    <div id="avatars-list" className="avatars-list">
+                    <div id="avatars-list" className="avatars-list wk-sb">
                         {characterArray.map((character, i) => (
                             <CharacterCard key={i} character={character} />
                         ))}

@@ -114,7 +114,7 @@ const backdrop = `https://anikawa.vercel.app/anikawa-${name}-og-img-pc.png`;
           <NewPopButtons n={name} client:load />
         </header>
         <section>
-          <h2 class="ht-hidden">{standardName} Anime List</h2>
+          <h2 class="sr-only">{standardName} Anime List</h2>
           <ul class="new-pop-anime-list">
             {
               finalArray?.map((ani, i) => {

@@ -8,7 +8,15 @@ export default {
     extend: {
       fontFamily : {
         winky: ['Winky Sans', 'sans-serif'],
-      }
+      },
+      colors: {
+        primary: '#8c52ff',
+        secondary: '#141519',
+        sort: '#242424',
+        gray:{
+          DEFAULT: '#888',
+        },
+      },
     },
   },
   plugins: [],

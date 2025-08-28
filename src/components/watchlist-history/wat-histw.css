@@ -1,0 +1,263 @@
+@import 'tailwindcss';
+
+.profile-main {
+    @apply h-auto w-full flex flex-col items-center;
+}
+
+.wat-his-main-box {
+    @apply px-5 mt-7 flex flex-col w-full max-w-[1200px] mb-[75px];
+}
+
+.wh-top {
+    @apply flex items-center justify-center
+    w-full gap-4;
+}
+
+.wh-t-heading {
+    font-size: 35px;
+}
+
+.buttons-section {
+    @apply relative z-[0] mt-10 flex justify-center border-b-2 border-b-[gray] w-full;
+}
+
+.wh-btn {
+    transition: border-bottom 0.1s ease;
+    @apply translate-y-[3%] relative z-[1] flex py-5 px-7 text-[gray] font-bold text-base border-b-4 border-b-transparent
+    cursor-pointer select-none;
+}
+
+.wh-btn.active {
+    @apply text-white border-[var(--c-main)];
+}
+
+.wh-btn:hover {
+    @apply text-white bg-[var(--c-whb)] bg-clip-padding;
+}
+
+.watchlist-main {
+    @apply p-0 hidden mt-7 mb-0;
+}
+
+.watchlist-main.active{
+    display: flex;
+}
+
+.wm-top {
+    @apply flex items-center justify-between;
+}
+
+.left-heading {
+    @apply text-2xl;
+}
+
+.watchlist-list {
+    @apply mt-5 flex flex-wrap w-full gap-4;
+}
+
+.history-main {
+    @apply p-0 hidden mt-7 mb-0;
+}
+
+.history-main.active{
+    display: flex;
+}
+
+.clear-history {
+    transition: color 0.1s ease;
+    @apply text-[gray] text-sm font-bold cursor-pointer select-none;
+}
+
+.clear-history:hover {
+    color: white;
+}
+
+.empty-wh {
+    margin-top: 30px;
+    border: 1px dashed white;
+    width: 100%;
+    height: clamp(300px, 300px, 400px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 75px;
+}
+
+.empty-wh.active{
+    display: flex;
+}
+
+.wat-des {
+    display: none;
+    padding: 30px 0;
+    max-width: 400px;
+    line-height: 25px;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.wat-des.active {
+    display: flex;
+    flex-direction: row;
+}
+
+.goto-home-btn {
+    display: flex;
+    background-color: #8c52ff;
+    padding: 10px 20px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.goto-home-btn:hover {
+    background-color: #8759e4;
+}
+
+.wh-ac {
+    max-width: 240px;
+}
+
+.wh-ec {
+    min-width: 240px;
+}
+
+/* .ec-del-icon {
+    position: absolute;
+    z-index: 3;
+    bottom: 5px;
+    right: 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+*/
+.ec-del-icon:hover {
+    fill: #ffffff;
+}
+
+.ec-del-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    bottom: 5px;
+    right: 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.ec-del-btn:focus{
+    border: 2px solid white;
+}
+
+.episode-card-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-dropdown-wat {
+    position: absolute;
+    z-index: 10;
+
+}
+
+.wh-top-bar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/*lists*/
+.new-pop-anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.np-watchlist {
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+}
+
+@media (max-width: 312px) {
+    .anime-card-first {
+        min-width: unset;
+    }
+
+    .np-watchlist {
+        grid-template-columns: repeat(auto-fill, 100%);
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+
+    .new-first-heading {
+        font-size: 15px;
+    }
+
+    .filter-name {
+        display: none;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        justify-content: unset;
+        gap: 5px;
+    }
+
+    .sf-separator {
+        display: none;
+    }
+}
+
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .anime-card-first {
+        min-width: 155px;
+    }
+
+    .new-pop-anime-card{
+        min-width: 155px;
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
+    }
+
+    .np-watchlist {
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
+    }
+
+    .slider-btn {
+        padding: 5px;
+    }
+
+    .new-first-heading {
+        font-size: 22px;
+    }
+
+    .filter-name {
+        display: none;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        justify-content: unset;
+        gap: 10px;
+    }
+
+    .sf-separator {
+        display: none;
+    }
+}
+

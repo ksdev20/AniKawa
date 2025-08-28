@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+
+.new-first-right {
+    @apply flex items-center w-fit gap-1 p-1;
+}
+
+.new-first-right.active {
+    @apply bg-[--c-com];
+}
+
+.new-first-right.active .filter-name,
+.new-first-right.active .part-icon{
+    @apply text-white fill-white;
+}
+
+.part {
+    @apply p-0 flex-col select-none relative inline-block z-10 cursor-pointer;
+}
+
+.filter-name {
+    @apply text-sm text-[gray] font-bold;
+}
+
+.filter-by-sub-dub {
+    @apply text-sm text-[gray];
+}
+
+.part:hover {
+    background-color: var(--c-com);
+}
+
+.part:hover .part-icon,
+.part:hover .filter-name {
+    @apply text-white fill-white;
+}
+
+.part.active {
+    background-color: var(--c-com);
+}
+
+.part.active .part-icon,
+.part.active .filter-name {
+    @apply text-white fill-white;
+}
+
+.n-f-r-icon {
+    @apply w-7.5 h-7.5;
+}
+
+.dropdown-new-pop {
+    @apply absolute top-[100%] right-0 w-50 z-10 hidden flex-col bg-[var(--c-com)] py-2.5;
+}
+
+.dropdown-new-pop.active {
+    display: flex;
+}
+
+.dropdown-new-pop-btn {
+    @apply flex items-center w-full py-3 px-5 gap-2.5 bg-transparent text-[#888] text-sm font-medium;
+}
+
+.dropdown-new-pop-btn.active{
+    color: var(--c-main);
+}
+
+.dropdown-new-pop-btn:hover {
+    @apply text-white bg-[var(--c-sec)];
+}
+
+.dropdown-new-pop-btn.active:hover{
+    @apply text-[var(--c-main)] bg-[var(--c-sec)];
+}
+
+.dropdown-new-pop-btn:hover .radio-btn-dropdown {
+    fill: white;
+}

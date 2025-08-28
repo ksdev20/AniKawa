@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../styles/animePage.css";
-import "./sortbuttons.css";
+import "./sortbuttonstw.css";
 
 type SbhProps = {
   watHisAsking?: boolean;

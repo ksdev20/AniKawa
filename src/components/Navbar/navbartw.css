@@ -1,9 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 /* @import "tailwindcss/preflight";
 @import "tailwindcss/utilities"; */
 
 :root {
     --sb: 0.3s;
+    --c-main: #8c52ff;
+    --c-sec: #141519;
+    --c-com: #242424;
+    --c-whb: #25262bc4;
 }
 
 @media (max-width: 600px) {
@@ -12,7 +17,7 @@
     }
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
