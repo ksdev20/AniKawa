@@ -6,6 +6,7 @@ import React, {
   type ReactEventHandler,
 } from "react";
 import { Menu, X } from "lucide-react";
+import '../../styles/custom-utilities.css';
 import "../../styles/config.css";
 import "./navbartw.css";
 import { type ALNames, type UserData, type RefNames } from "./NavbarTs/navbar";

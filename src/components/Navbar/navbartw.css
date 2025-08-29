@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
-/* @import "tailwindcss/preflight";
-@import "tailwindcss/utilities"; */
+@import '../../styles/custom-utilities.css';
 
 :root {
     --sb: 0.3s;
@@ -9,6 +8,11 @@
     --c-sec: #141519;
     --c-com: #242424;
     --c-whb: #25262bc4;
+}
+
+/*many pages use this style*/
+.main-root {
+    @apply w-full flex flex-col items-center;
 }
 
 @media (max-width: 600px) {

@@ -3,6 +3,7 @@ export default {
   content: [
     './src/**/*.{astro,html,js,jsx,ts,tsx}',
     './components/**/*.{astro,html,js,jsx,ts,tsx,css}',
+    './src/styles/**/*.{css}', 
   ],
   theme: {
     extend: {

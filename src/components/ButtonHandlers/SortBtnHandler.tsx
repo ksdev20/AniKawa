@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../styles/animePage.css";
+import "../../styles/animePagetw.css";
 import "./sortbuttonstw.css";
 
 type SbhProps = {

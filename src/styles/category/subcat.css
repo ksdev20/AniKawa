@@ -1,83 +1,36 @@
-.ht-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.main-root {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+@import 'tailwindcss';
 
 .sub-cat-main {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    align-items: center;
-    margin-top: 0px;
+    @apply flex flex-col w-full max-w-[1200px] p-5 items-center mt-0;
 }
 
 .sub-cat-top {
-    display: flex;
-    gap: 12px;
-    color: gray;
-    font-size: 25px;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: center;
+    @apply flex text-[gray] text-2xl w-full items-center mb-5 justify-center;
 }
 
 .main-cat-link {
-    font-size: 28px;
-    color: gray;
-    text-decoration: none;
+    @apply text-[gray] no-underline;
 }
 
 .main-cat-link:hover {
-    color: white;
-    text-decoration: underline;
+    @apply text-white underline;
 }
 
-.sub-cat-name {
-    color: white;
-    font-size: 25px;
+.sub-cat-name::before{
+    content: '/';
+    @apply px-2 text-[gray] text-2xl no-underline;
 }
 
 .sub-cat-anime-list {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+    @apply flex w-full flex-wrap gap-4 justify-center;
 }
 
-/*.sub-cat-anime-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    width: 100%;
-    gap: 12px;
-    justify-content: center;
-}*/
-
 .sub-cat-anime-card {
-    width: 25vw;
-    max-width: 214px;
+    @apply w-[25vw] max-w-[214px];
 }
 
 @media screen and (max-width: 700px) {
     .sub-cat-anime-card {
-        width: 39vw;
-        max-width: 210px;
+        @apply w-[39vw] max-w-[210px];
     }
 }

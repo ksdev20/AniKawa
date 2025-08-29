@@ -6,7 +6,7 @@ import { type Character } from "../../filters/AnimeDataTypes";
 import type { Banner } from "../../filters/AnimeDataTypes";
 import characterArray from '../../data/characterAvatarsFinal.json';
 import bannerArray from '../../data/bannerList.json';
-import '../../styles/profile.css';
+import '../../styles/profiletw.css';
 import './bco-acotw.css';
 import { useState, useEffect, useRef } from 'react';
 import fetchUserDetails, { setOnlyUserData } from "../../global_assets/FetchUserDetails";
