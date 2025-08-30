@@ -18,6 +18,9 @@ export default {
           DEFAULT: '#888',
         },
       },
+      screens: {
+        'xs': {'max': '600px'},
+      },
     },
   },
   plugins: [],

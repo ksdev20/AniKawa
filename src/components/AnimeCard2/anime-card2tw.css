@@ -1,13 +1,5 @@
 @import 'tailwindcss';
 
-.mid-section {
-    @apply flex  w-[100vw] justify-center items-center;
-}
-
-.anime-card-2 {
-    @apply w-full max-w-[1370px];
-}
-
 .wrapper {
     @apply flex w-full max-w-[1370px] mb-12.5;
 }

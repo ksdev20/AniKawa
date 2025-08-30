@@ -4,10 +4,6 @@
     @apply absolute z-[11] w-full pointer-events-none inset-0;
 }
 
-.sbs-category {
-    @apply pl-0 pr-3;
-}
-
 .slider-btn {
     transition: display 0.5s ease-out;
     @apply absolute z-[11] border-2 border-white rounded-[4px] flex flex-col items-center

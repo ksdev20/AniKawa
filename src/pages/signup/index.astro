@@ -4,25 +4,20 @@ import AuthForm from "../../components/auth/AuthForm";
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width initial-scale=1.0" />
-        <title>Register for Anikawa</title>
-        <link rel="icon" type="image/png" href="/icon.png" />
-    </head>
-    <body>
-        <header class="topbar">
-            <a href="/" class="website-logo"
-                ><img class="website-logo" src="/logo.png" alt="Website logo of Anikawa"/></a
-            >
-        </header>
-        <AuthForm
-            keyword="s"
-            title="Create Account"
-            buttonLabel="SIGN UP"
-            apiEndPoint="signup"
-            client:load
-        />
-        <Footer />
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <title>Register for Anikawa</title>
+    <link rel="icon" type="image/png" href="/icon.png" />
+  </head>
+  <body>
+    <AuthForm
+      keyword="s"
+      title="Create Account"
+      buttonLabel="SIGN UP"
+      apiEndPoint="signup"
+      client:load
+    />
+    <Footer />
+  </body>
 </html>

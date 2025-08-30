@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import "./log-signtw.css";
 import fetchUserDetails from "../../global_assets/FetchUserDetails";
+import Footer from "../Footer/Footer";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 type AuthFormProps = {
@@ -33,17 +34,17 @@ function LinksElement({ keyword }: { keyword: string }) {
           </a>
         </p>
         <p className="terms-para">
-          By creating an account you're agreeing to our 
+          By creating an account you're agreeing to our
           <a className="term-policy-link" href="/legal/tos/" target="_blank">
-             Terms 
-          </a> 
+            Terms
+          </a>
           &
           <a
             className="term-policy-link"
             href="/legal/privacy-policy/"
             target="_blank"
           >
-            Privacy Policy 
+            Privacy Policy
           </a>
           <b>, </b>
           and you confirm that you are at least 18 years of age.
@@ -53,7 +54,9 @@ function LinksElement({ keyword }: { keyword: string }) {
   } else {
     return (
       <div className="after-next-links">
-        <a className="to-login" href="/404">FORGOT PASSWORD?</a>
+        <a className="to-login" href="/404">
+          FORGOT PASSWORD?
+        </a>
         <a className="to-login" href="/signup">
           CREATE ACCOUNT
         </a>
@@ -68,6 +71,8 @@ export default function AuthForm({
   buttonLabel,
   apiEndPoint,
 }: AuthFormProps) {
+  const pageTitle =
+    keyword == "l" ? "Login to Your Account" : "Sign up for Anikawa";
   const [validEmail, setValidEmail] = useState(true);
   const [validPassword, setValidPassword] = useState(true);
   const [validButton, setValidButton] = useState(false);
@@ -149,67 +154,79 @@ export default function AuthForm({
   }, []);
 
   return (
-    <main className="main">
-      <section className="main-content">
-        <h1 id="ls-title" className="main-heading">
-          {title}
-        </h1>
-        <div className="form-section">
-          <div className="form-section email">
-            <input
-              ref={emailRef}
-              type="email"
-              id="email"
-              placeholder=" "
-              autoComplete="email"
-              required
-            />
-            <label
-              htmlFor="email"
-              id="email-label"
-              className={`${!validEmail ? "invalid" : ""}`}
-            >
-              {validEmail ? "Email Address" : "Invalid Email Address"}
-            </label>
+    <>
+      <header className="topbar">
+        <a href="/" className="website-logo">
+          <img
+            className="website-logo"
+            src="/logo.png"
+            alt="Website logo of Anikawa"
+          />
+        </a>
+      </header>
+      <main className="main">
+        <section className="main-content">
+          <h1 id="ls-title" className="main-heading">
+            {title}
+          </h1>
+          <div className="form-section">
+            <div className="form-section email">
+              <input
+                ref={emailRef}
+                type="email"
+                id="email"
+                placeholder=" "
+                autoComplete="email"
+                required
+              />
+              <label
+                htmlFor="email"
+                id="email-label"
+                className={`${!validEmail ? "invalid" : ""}`}
+              >
+                {validEmail ? "Email Address" : "Invalid Email Address"}
+              </label>
+            </div>
+            <div className="form-section password">
+              <input
+                ref={passwordRef}
+                type="password"
+                id="password"
+                placeholder=" "
+                autoComplete="password"
+                required
+              />
+              <label
+                htmlFor="password"
+                className={`floating-label ${!validPassword ? "invalid" : ""}`}
+                id="password-label"
+              >
+                Password
+              </label>
+            </div>
+            {keyword == "s" ? (
+              <label className="password-note">
+                Use at least 6 characters, do not use empty spaces
+              </label>
+            ) : (
+              <div></div>
+            )}
           </div>
-          <div className="form-section password">
-            <input
-              ref={passwordRef}
-              type="password"
-              id="password"
-              placeholder=" "
-              autoComplete="password"
-              required
-            />
-            <label
-              htmlFor="password"
-              className={`floating-label ${!validPassword ? "invalid" : ""}`}
-              id="password-label"
-            >
-              Password
-            </label>
-          </div>
-          {keyword == "s" ? (
-            <label className="password-note">
-              Use at least 6 characters, do not use empty spaces
-            </label>
-          ) : (
-            <div></div>
-          )}
-        </div>
-        <button
-          ref={actionBtn}
-          className={`create-account-btn ${validButton ? "active" : ""}`}
-          onClick={() => {
-            if (validButton) {
-              apiCall();
-            }
-          }}
-        >
-          {buttonLabel}
-        </button>
-        <LinksElement keyword={keyword} />
-      </section>
-    </main>
+          <button
+            ref={actionBtn}
+            className={`create-account-btn ${validButton ? "active" : ""}`}
+            onClick={() => {
+              if (validButton) {
+                apiCall();
+              }
+            }}
+          >
+            {buttonLabel}
+          </button>
+          <LinksElement keyword={keyword} />
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

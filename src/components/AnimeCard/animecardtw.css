@@ -13,12 +13,7 @@
 }
 
 .anime-card-title {
-    @apply line-clamp-3 text-ellipsis text-[14px] text-white;
-}
-
-.anime-card-language {
-    font-size: 14px;
-    color: gray;
+    @apply line-clamp-3 text-ellipsis text-sm font-bold text-white;
 }
 
 /*ANIME CARD FOR MOBILE*/
@@ -37,46 +32,6 @@
     }
 }
 
-/*ANIME CARD LOADING HANDLER*/
-
-.skeletons.hidden {
-    display: none;
-}
-
-.loading-e {
-    background: linear-gradient(90deg, #141519 0%, #1a1b1f 50%, #141519 100%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s infinite;
-}
-
-.anime-loading-image {
-    width: 100%;
-    aspect-ratio: 2/ 3;
-}
-
-.anime-loading-title {
-    width: 120px;
-    height: 20px;
-}
-
-.anime-loading-language {
-    width: 90px;
-    height: 15px;
-}
-
-@keyframes shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/*LOADING HANDLER ENDS*/
-
-
 .anime-card-hover {
     transition: opacity 0.3s ease;
     @apply absolute z-[2] inset-0 opacity-0 bg-cover bg-center bg-no-repeat
@@ -87,14 +42,10 @@
 }
 
 .anime-card-hover-title {
-    @apply line-clamp-3 mt-2.5 text-[15px] text-white;
+    @apply line-clamp-3 mt-2.5 text-[15px];
 }
 
-.anime-card-hover-rating {
-    @apply mt-2 text-sm text-zinc-400;
-}
-
-.anime-card-hover-episodes {
+.ach-text {
     @apply mt-2 text-sm text-zinc-400;
 }
 
@@ -105,14 +56,6 @@
 .anime-card-hover-actions {
     transition: opacity 0.3s ease;
     @apply absolute z-10 left-0 bottom-0 opacity-0 flex items-center gap-2.5 mt-auto;
-}
-
-.card-action-watchlist {
-    @apply w-7.5 h-7.5;
-}
-
-.card-action-play {
-    @apply w-10 h-10;
 }
 
 .tooltip {

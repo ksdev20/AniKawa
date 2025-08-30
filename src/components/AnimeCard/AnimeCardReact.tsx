@@ -42,16 +42,16 @@ export default function AnimeCardReact({
           decoding="async"
         />
         <h2 className="anime-card-title">{titleAlt}</h2>
-        <div className="anime-card-language">{language}</div>
+        <div className="text-sm text-[gray]">{language}</div>
 
         <div
           className="anime-card-hover"
           style={{ backgroundImage: `url(${optImg})` }}
         >
           <div className="anime-card-hover-details">
-            <h3 className="anime-card-hover-title">{titleAlt}</h3>
-            <div className="anime-card-hover-rating">{scoreAlt}</div>
-            <div className="anime-card-hover-episodes">{episodes} Episodes</div>
+            <h3 className="line-clamp-3 mt-2.5 text-[15px]">{titleAlt}</h3>
+            <div className="ach-text">{scoreAlt}</div>
+            <div className="ach-text">{episodes} Episodes</div>
             <p className="anime-card-hover-description">
               {description ?? "No description"}
             </p>
@@ -64,7 +64,7 @@ export default function AnimeCardReact({
               aria-label={`Watch ${title} Episode 1`}
             >
               <svg
-                className="card-action-play"
+                className="w-10 h-10"
                 xmlns="http://www.w3.org/2000/svg"
                 height="35px"
                 viewBox="0 -960 960 960"
