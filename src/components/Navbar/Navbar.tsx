@@ -1,19 +1,14 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  type ReactEventHandler,
-} from "react";
-import { Menu, X } from "lucide-react";
-import '../../styles/custom-utilities.css';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Icon } from "../../icons/icons";
+import "../../styles/custom-utilities.css";
 import "../../styles/config.css";
 import "./navbartw.css";
-import { type ALNames, type UserData, type RefNames } from "./NavbarTs/navbar";
-import AfterLoginNav from "./UserSidebar/AfterLoginNav";
+import { type UserData, type RefNames } from "./NavbarTs/navbar";
+import AfterLoginNav, { logout } from "./UserSidebar/AfterLoginNav";
 import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
+import { categoryItems, legalItems, npoItems } from "./config/items";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -155,24 +150,25 @@ export default function Navbar() {
     }
   }
 
-  const categories = [
-    "Action",
-    "Adventure",
-    "Comedy",
-    "Drama",
-    "Fantasy",
-    "Music",
-    "Romance",
-    "Sci-Fi",
-    "Sports",
-    "Supernatural",
-    "Thriller",
-  ];
-
-  const handleClickWatHis = (name: ALNames) => {
-    window.location.pathname.includes(name)
-      ? setPersonOpen(false)
-      : (window.location.href = "/" + name);
+  const handleClickWatHis = (name: string) => {
+    const href = () => {
+      if (!window.location.pathname.includes(name)) {
+        window.location.href = "/" + name;
+      } else {
+        setPersonOpen(false);
+      }
+    };
+    switch (name) {
+      case "watchlist":
+        href();
+        break;
+      case "history":
+        href();
+        break;
+      case "logout":
+        logout();
+        break;
+    }
   };
 
   return (
@@ -188,7 +184,7 @@ export default function Navbar() {
               setMenuOpen(!menuOpen);
             }}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <Icon name="close" /> : <Icon name="menu" />}
           </button>
           <a aria-label="Homepage" href="/">
             <img src="/logo.png" alt="Website Logo" className="website-logo" />
@@ -196,17 +192,7 @@ export default function Navbar() {
         </div>
         <div className="nav-right">
           <a aria-label="Search" className="nav-right-block" href="/search">
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-              fill="#ffffff"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-            </svg>
+            <Icon name="search" />
           </a>
           <button
             aria-label="Watchlist"
@@ -216,17 +202,7 @@ export default function Navbar() {
               if (isLoggedIn) window.location.href = "/watchlist";
             }}
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-              fill="#ffffff"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z" />
-            </svg>
+            <Icon name="watchlist" />
           </button>
           <button
             aria-label="Account Menu/Login-Signup Menu"
@@ -237,17 +213,7 @@ export default function Navbar() {
               setPersonOpen(!personOpen);
             }}
           >
-            <svg
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-              fill="#ffffff"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9c2.97 0 6.1 1.46 6.1 2.1v1.1H5.9V17c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z" />
-            </svg>
+            <Icon name="person" />
           </button>
         </div>
       </nav>
@@ -260,36 +226,22 @@ export default function Navbar() {
         }}
       >
         <nav className="sidebar" id="sidebar" role="menubar">
-          <a
-            role="menuitem"
-            ref={setRef(0, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 0, "sidebar")}
-            aria-label="New Anime List Page"
-            className="sidebar-button"
-            href="/list/new"
-          >
-            New
-          </a>
-          <a
-            role="menuitem"
-            ref={setRef(1, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 1, "sidebar")}
-            aria-label="Old Anime List Page"
-            className="sidebar-button"
-            href="/list/old"
-          >
-            Old
-          </a>
-          <a
-            role="menuitem"
-            ref={setRef(2, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 2, "sidebar")}
-            aria-label="Popular Anime List Page"
-            className="sidebar-button"
-            href="/list/popular"
-          >
-            Popular
-          </a>
+          {npoItems.map((obj, i) => {
+            const { label, href } = obj;
+            return (
+              <a
+                key={i}
+                role="menuitem"
+                ref={setRef(i, "sidebar")}
+                onKeyDown={(e) => handleKeyDown(e, i, "sidebar")}
+                aria-label={`${label} Anime List Page`}
+                className="sidebar-button"
+                href={href}
+              >
+                {label}
+              </a>
+            );
+          })}
           <button
             role="menuitem"
             ref={setRef(3, "sidebar")}
@@ -303,25 +255,17 @@ export default function Navbar() {
             onClick={() => setCatdd(!catddOpen)}
           >
             Categories
-            <svg
-              aria-hidden="true"
-              id="category-arrow"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 -960 960 960"
-              width="24px"
-              fill="#ffffff"
-            >
-              <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
-            </svg>
+            {catddOpen ? <Icon name="keyup" /> : <Icon name="keydown" />}
           </button>
           <nav
+            role="menu"
             className={`category-dropdown ${catddOpen ? "show" : "hidden"}`}
             id="category-dropdown"
           >
-            {categories.map((cat, i) => {
+            {categoryItems.map((cat, i) => {
               return (
                 <a
+                  role="menuitem"
                   key={i}
                   href={`/category/${cat}`}
                   className="catdd-btn"
@@ -333,44 +277,21 @@ export default function Navbar() {
               );
             })}
           </nav>
-          <a
-            role="menuitem"
-            className="sidebar-button bd-top"
-            href="/legal/about/"
-            ref={setRef(4, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 4, "sidebar")}
-          >
-            About Us
-          </a>
-          <a
-            role="menuitem"
-            className="sidebar-button"
-            href="/legal/tos/"
-            target="_blank"
-            ref={setRef(5, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 5, "sidebar")}
-          >
-            Terms of Service
-          </a>
-          <a
-            role="menuitem"
-            className="sidebar-button"
-            href="/legal/privacy-policy/"
-            target="_blank"
-            ref={setRef(6, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 6, "sidebar")}
-          >
-            Privacy Policies
-          </a>
-          <a
-            role="menuitem"
-            className="sidebar-button"
-            href="/legal/credits/"
-            ref={setRef(7, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 7, "sidebar")}
-          >
-            Credits
-          </a>
+          {legalItems.map((obj) => {
+            const { idx, label, href } = obj;
+            return (
+              <a
+                key={idx}
+                role="menuitem"
+                className="sidebar-button"
+                href={href}
+                ref={setRef(idx, "sidebar")}
+                onKeyDown={(e) => handleKeyDown(e, idx, "sidebar")}
+              >
+                {label}
+              </a>
+            );
+          })}
         </nav>
       </aside>
       <aside

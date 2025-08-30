@@ -124,6 +124,10 @@
     @apply flex items-center w-full h-[50px] pl-[20px] bg-transparent cursor-pointer text-[17px] text-[#ffffff] no-underline select-none;
 }
 
+.sidebar-button:is(:nth-last-child(4)){
+    border-top: 1px solid gray;
+}
+
 .category {
     @apply pr-[10px] justify-between;
 }
@@ -200,6 +204,10 @@
 .cbb-whl {
     gap: 20px;
     height: 60px;
+}
+
+.cbb-whl:is(:nth-child(4)){
+    border-top: 1px solid gray;
 }
 
 .account-box {

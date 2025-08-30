@@ -3,11 +3,9 @@ export interface UserData {
     profilePic: string
 }
 
-export type ALNames = 'watchlist' | 'history';
-
 export interface AfterLoginProps{
     userData: UserData | null;
-    clickHandler: (name: ALNames) => void;
+    clickHandler: (name: string) => void;
 }
 
 export type RefNames = 'navbar' | 'sidebar' | 'category';
