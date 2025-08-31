@@ -6,7 +6,13 @@ export default function BeforeLoginNav() {
       {blnItems.map((obj, i) => {
         const { h1, h2, label, href } = obj;
         return (
-          <a key={i} aria-label={label} className="corner-box-btn" href={href}>
+          <a
+            {...(i == 0 ? { id: "person-first-btn" } : {})}
+            key={i}
+            aria-label={label}
+            className="corner-box-btn"
+            href={href}
+          >
             <div className="corner-box-btn-text">
               <div className="cbt-white">{h1}</div>
               <div className="cbt-gray">{h2}</div>

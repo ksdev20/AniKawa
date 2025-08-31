@@ -51,15 +51,17 @@ const imgD = i == 0 ? "async" : "async";
       </a>
       <div class="hero-section-overlay">
         <h2 class="hs-title">{title}</h2>
-        <img
-          class="hs-title-img"
-          src={logoUrl}
-          alt={`Logo image for
-                    ${title}`}
-          loading={imgL}
-          decoding={imgD}
-          fetchpriority="high"
-        />
+        <a href={`/show/${nanoid}/${slug}`}>
+          <img
+            class="hs-title-img"
+            src={logoUrl}
+            alt={`Logo image for
+                      ${title}`}
+            loading={imgL}
+            decoding={imgD}
+            fetchpriority="high"
+          />
+        </a>
         <span class="dub-sub">{language} ➤ {scoreAlt}</span>
         <p class="hero-description" set:html={description} />
         <div class="hero-button-section">

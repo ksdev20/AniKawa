@@ -4,6 +4,7 @@
 
 :root {
     --sb: 0.3s;
+    --lso: 0.5s;
     --c-main: #8c52ff;
     --c-sec: #141519;
     --c-com: #242424;
@@ -88,36 +89,43 @@
     transition: display var(--sb) allow-discrete;
 }
 
+.log-sign-overlay.hidden {
+    display: none !important;
+    transition: display var(--lso) allow-discrete;
+}
+
 .show {
     display: flex !important;
 }
 
 .hidden .sidebar {
+    --dir: -100%;
     animation: vanish var(--sb) !important;
 }
 
 .show .sidebar {
+    --dir: -100%;
     animation: appear var(--sb) !important;
 }
 
-@keyframes appear {
-    from {
-        transform: translateX(-100%);
-    }
+.hidden .corner-box {
+    --dir: 100%;
+    animation: vanish var(--lso) !important;
+}
 
-    to {
-        transform: translateX(0);
-    }
+.show .corner-box {
+    --dir: 100%;
+    animation: appear var(--lso) !important;
+}
+
+@keyframes appear {
+    from {transform: translateX(var(--dir));}
+    to {transform: translateX(0);}
 }
 
 @keyframes vanish {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-100%);
-    }
+    from {transform: translateX(0);}
+    to {transform: translateX(var(--dir));}
 }
 
 .sidebar-button {
@@ -167,7 +175,7 @@
 }
 
 .corner-box {
-    @apply flex flex-col py-[10px] w-[375px] h-fit bg-[#141519];
+    @apply flex flex-col py-[10px] w-[400px] h-fit bg-[#141519];
 }
 
 @media screen and (max-width: 600px) {

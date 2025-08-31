@@ -1,55 +1,26 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Icon } from "../../icons/icons";
-import "../../styles/custom-utilities.css";
 import "../../styles/config.css";
 import "./navbartw.css";
-import { type UserData, type RefNames } from "./NavbarTs/navbar";
+import { useState, useEffect } from "react";
+import { categoryItems, legalItems, npoItems } from "./config/items";
+import { Icon } from "../../icons/icons";
+import { type UserData } from "./NavbarTs/navbar";
 import AfterLoginNav, { logout } from "./UserSidebar/AfterLoginNav";
 import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
-import { categoryItems, legalItems, npoItems } from "./config/items";
+
+function getEl(id: string) {
+  return document.getElementById(id);
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [catddOpen, setCatdd] = useState(false);
   const [personOpen, setPersonOpen] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState<UserData | null>(null);
 
-  const navItemRefs = useRef<Array<HTMLElement>>([]);
-  const sidebarItemRefs = useRef<Array<HTMLElement>>([]);
-  const categoryRefs = useRef<Array<HTMLElement>>([]);
-
-  function getCorrectArray(name: RefNames) {
-    let arr: HTMLElement[] = [];
-    switch (name) {
-      case "navbar":
-        arr = navItemRefs.current;
-        break;
-      case "sidebar":
-        arr = sidebarItemRefs.current;
-        break;
-      case "category":
-        arr = categoryRefs.current;
-        break;
-      default:
-        console.error("name or arrays invalid.");
-    }
-    return arr;
-  }
-
-  const setRef = (i: number, name: RefNames) => {
-    return useCallback((el: HTMLElement | null) => {
-      const arr = getCorrectArray(name);
-      if (el) {
-        arr[i] = el;
-      } else {
-        delete arr[i];
-      }
-    }, []);
-  };
-
+  //check login status and update ui
   useEffect(() => {
     const loadUserData = () => {
       const isLogIn = localStorage.getItem("isLoggedIn") == "true";
@@ -69,88 +40,39 @@ export default function Navbar() {
     };
   }, []);
 
+  //disable scroll on sidebar open
   useEffect(() => {
     document.body.style.overflowY = menuOpen || personOpen ? "hidden" : "";
   }, [menuOpen, personOpen]);
 
+  //to focus on sidebar first button on its opening
   useEffect(() => {
-    navItemRefs.current.forEach((el, idx) => {
-      if (el) el.tabIndex = idx === 0 ? 0 : -1;
-    });
-  }, []);
+    menuOpen ? getEl("sb-first-btn")?.focus() : null;
+    personOpen ? getEl("person-first-btn")?.focus() : null;
+  }, [menuOpen, personOpen]);
 
-  function closePopups() {
-    [setCatdd, setMenuOpen, setPersonOpen].forEach((fn) => {
-      fn(false);
-    });
-  }
+  //to close the sidebars on reaching respective last buttons and one tab click
+  const closeFnPerson = (e: any) => {
+    e.preventDefault();
+    getEl("person-menu")?.focus();
+    setPersonOpen(false);
+  };
 
-  const escHandle = [
-    {
-      containerId: "sidebar-overlay",
-      buttonId: "main-menu",
-      closeFn: setMenuOpen,
-    },
-    {
-      containerId: "category-dropdown",
-      buttonId: "category-button",
-      closeFn: setCatdd,
-    },
-  ];
+  const closeFnSidebar = (e: any) => {
+    e.preventDefault();
+    getEl("main-menu")?.focus();
+    setMenuOpen(false);
+    e.stopPropagation();
+  };
 
-  //support for escaping the dropdowns for kb users
-  useEffect(() => {
-    const cleapups: (() => void)[] = [];
+  const closeFnCatdd = (e: any) => {
+    e.preventDefault();
+    getEl("category-button")?.focus();
+    setCatdd(false);
+    e.stopPropagation();
+  };
 
-    escHandle.forEach((obj) => {
-      const { containerId, buttonId, closeFn } = obj;
-      const button = document.getElementById(buttonId);
-      const container = document.getElementById(containerId);
-      if (!button || !container) return;
-
-      const handleEsc = (e: KeyboardEvent) => {
-        if (e.key !== "Escape") return;
-
-        if (container.contains(document.activeElement)) {
-          closeFn(false);
-          button.focus();
-          e.stopPropagation();
-        }
-      };
-
-      container.addEventListener("keydown", handleEsc);
-      cleapups.push(() => container.removeEventListener("keydown", handleEsc));
-    });
-
-    return () => {
-      cleapups.forEach((cleanupFn) => cleanupFn());
-    };
-  }, []);
-
-  function handleKeyDown(e: React.KeyboardEvent, idx: number, name: RefNames) {
-    const arr = getCorrectArray(name);
-    const total = arr.length;
-    let next = idx;
-
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-      next = (idx + 1) % total;
-      e.preventDefault();
-    }
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-      next = (idx - 1 + total) % total;
-      e.preventDefault();
-    }
-
-    const nextEl = arr[next];
-    if (nextEl) {
-      arr.forEach((el, i) => {
-        if (el) el.tabIndex = i === next ? 0 : -1;
-      });
-      nextEl.focus(); //main task of the whole function
-    }
-  }
-
-  const handleClickWatHis = (name: string) => {
+  const handleClickWatHis = (name: any) => {
     const href = () => {
       if (!window.location.pathname.includes(name)) {
         window.location.href = "/" + name;
@@ -158,17 +80,14 @@ export default function Navbar() {
         setPersonOpen(false);
       }
     };
-    switch (name) {
-      case "watchlist":
-        href();
-        break;
-      case "history":
-        href();
-        break;
-      case "logout":
-        logout();
-        break;
-    }
+
+    const clicks: Record<string, () => void> = {
+      watchlist: href,
+      history: href,
+      logout: logout,
+    };
+
+    clicks[name]?.();
   };
 
   return (
@@ -224,6 +143,9 @@ export default function Navbar() {
         onClick={(e) => {
           if (e.target == e.currentTarget) setMenuOpen(false);
         }}
+        onKeyDown={(e) => {
+          if (e.key == "Escape") closeFnSidebar(e);
+        }}
       >
         <nav className="sidebar" id="sidebar" role="menubar">
           {npoItems.map((obj, i) => {
@@ -232,11 +154,10 @@ export default function Navbar() {
               <a
                 key={i}
                 role="menuitem"
-                ref={setRef(i, "sidebar")}
-                onKeyDown={(e) => handleKeyDown(e, i, "sidebar")}
                 aria-label={`${label} Anime List Page`}
                 className="sidebar-button"
                 href={href}
+                {...(i == 0 ? { id: "sb-first-btn" } : {})}
               >
                 {label}
               </a>
@@ -244,8 +165,6 @@ export default function Navbar() {
           })}
           <button
             role="menuitem"
-            ref={setRef(3, "sidebar")}
-            onKeyDown={(e) => handleKeyDown(e, 3, "sidebar")}
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="dropdown-menu"
@@ -261,6 +180,9 @@ export default function Navbar() {
             role="menu"
             className={`category-dropdown ${catddOpen ? "show" : "hidden"}`}
             id="category-dropdown"
+            onKeyDown={(e) => {
+              if (e.key == "Escape") closeFnCatdd(e);
+            }}
           >
             {categoryItems.map((cat, i) => {
               return (
@@ -269,24 +191,23 @@ export default function Navbar() {
                   key={i}
                   href={`/category/${cat}`}
                   className="catdd-btn"
-                  ref={setRef(i, "category")}
-                  onKeyDown={(e) => handleKeyDown(e, i, "category")}
                 >
                   {cat}
                 </a>
               );
             })}
           </nav>
-          {legalItems.map((obj) => {
+          {legalItems.map((obj, i) => {
             const { idx, label, href } = obj;
+            const isLast = i == legalItems.length - 1;
+
             return (
               <a
                 key={idx}
                 role="menuitem"
                 className="sidebar-button"
                 href={href}
-                ref={setRef(idx, "sidebar")}
-                onKeyDown={(e) => handleKeyDown(e, idx, "sidebar")}
+                onKeyDown={isLast ? closeFnSidebar : () => {}}
               >
                 {label}
               </a>
@@ -300,9 +221,16 @@ export default function Navbar() {
         onClick={(e) => {
           if (e.target == e.currentTarget) setPersonOpen(false);
         }}
+        onKeyDown={(e) => {
+          if (e.key == "Escape") closeFnPerson(e);
+        }}
       >
         {isLoggedIn ? (
-          <AfterLoginNav userData={userData} clickHandler={handleClickWatHis} />
+          <AfterLoginNav
+            closeFn={closeFnPerson}
+            userData={userData}
+            clickHandler={handleClickWatHis}
+          />
         ) : (
           <BeforeLoginNav />
         )}

@@ -30,10 +30,12 @@ export function logout() {
 export default function AfterLoginNav({
   userData,
   clickHandler,
+  closeFn,
 }: AfterLoginProps) {
   return (
     <nav id="after-login" className={`corner-box`}>
       <a
+        id="person-first-btn"
         aria-label="Profile Page"
         href="/profile"
         className="corner-box-btn cbb-account bd-bottom"
@@ -57,7 +59,8 @@ export default function AfterLoginNav({
       </a>
       {alnItems.map((obj, i) => {
         const { label } = obj;
-        const lowered= label.toLowerCase();
+        const lowered = label.toLowerCase();
+        const isLast = i == alnItems.length - 1;
         return (
           <button
             key={i}
@@ -66,6 +69,13 @@ export default function AfterLoginNav({
             onClick={() => {
               clickHandler(lowered);
             }}
+            onKeyDown={
+              isLast
+                ? (e) => {
+                    closeFn(e);
+                  }
+                : (e) => {}
+            }
           >
             <Icon name={lowered} size={26} />
             <div className="cbt-white">{label}</div>
