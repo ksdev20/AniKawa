@@ -7,31 +7,26 @@ type AnimeWbtnProps = {
 };
 
 type MainBtnProps = {
-  ref: any;
   addedStatus: boolean;
-  onClick?: () => void;
-  noTab?: boolean;
 };
 
-function MainWBtn({ addedStatus, onClick, ref, noTab }: MainBtnProps) {
+function MainWBtn({ addedStatus }: MainBtnProps) {
   return (
-    <button type="button" ref={ref} onClick={onClick} className="ac-wbtn" tabIndex={noTab ? -1 : 0}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height={28}
-        viewBox="0 -960 960 960"
-        width={28}
-        fill="#8c52ff"
-      >
-        <path
-          d={`${
-            addedStatus
-              ? "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z"
-              : "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"
-          }`}
-        ></path>
-      </svg>
-    </button>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height={28}
+      viewBox="0 -960 960 960"
+      width={28}
+      fill="#8c52ff"
+    >
+      <path
+        d={`${
+          addedStatus
+            ? "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Z"
+            : "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"
+        }`}
+      ></path>
+    </svg>
   );
 }
 
@@ -39,7 +34,7 @@ export default function AnimeWBtn({
   nanoid = "xyzxyz",
   forAC2 = false,
 }: AnimeWbtnProps) {
-  const markerRef = useRef<HTMLDivElement>(null);
+  const markerRef = useRef<HTMLButtonElement | null>(null);
   const tooltipRef = useRef<Element | null | undefined>(null);
   const [addedStatus, setAddedStatus] = useState(false);
 
@@ -50,11 +45,12 @@ export default function AnimeWBtn({
     if (watchlist.includes(nanoid)) setAddedStatus(true);
 
     const parent = markerRef.current?.closest(".tooltip.w");
-    tooltipRef.current = parent;
+    if (parent) tooltipRef.current = parent;
   }, []);
 
   useEffect(() => {
     const ttp = tooltipRef.current;
+    if (!ttp) return;
     addedStatus
       ? ttp?.setAttribute("data-tip", "Remove From Watchlist")
       : ttp?.setAttribute("data-tip", "Add To Watchlist");
@@ -92,16 +88,21 @@ export default function AnimeWBtn({
 
   return forAC2 ? (
     <button className="anime-card-2-watchlist-btn" onClick={fetchFunction}>
-      <MainWBtn ref={markerRef} addedStatus={addedStatus} noTab={true}/>
+      <div><MainWBtn addedStatus={addedStatus}/></div>
       <div className="anime-card-2-watchlist-text">
         {addedStatus ? "IN WATCHLIST" : "ADD TO WATCHLIST"}
       </div>
     </button>
   ) : (
-    <MainWBtn
+    <button
+      type="button"
       ref={markerRef}
-      addedStatus={addedStatus}
       onClick={fetchFunction}
-    />
+      className="ac-wbtn"
+    >
+      <MainWBtn
+        addedStatus={addedStatus}
+      />
+    </button>
   );
 }

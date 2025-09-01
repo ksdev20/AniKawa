@@ -64,7 +64,7 @@
 
 .anime-card-hover-actions {
     transition: opacity 0.3s ease;
-    @apply absolute z-10 left-0 bottom-0 opacity-0 flex items-center gap-2.5 mt-auto;
+    @apply absolute z-10 left-0 bottom-0 opacity-0 flex items-center gap-1 mt-auto;
 }
 
 /*ANIME CARD FOR MOBILE*/
