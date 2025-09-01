@@ -127,28 +127,28 @@ export default function SearchCSR() {
                 </div>
             </div>
             <div className="profile-main">
-                <ul className="profile-main search-results">
+                <div className="profile-main search-results">
                     {animeResults.length > 0 && (
-                        <div id="ar-box" className="mov-ser-section show">
-                            <div className="mss-heading">Series</div>
-                            <div id="anime-results" className="new-pop-anime-list">
+                        <section id="ar-box" className="mov-ser-section show">
+                            <h2 className="mss-heading">Series</h2>
+                            <ul id="anime-results" className="new-pop-anime-list">
                                 {animeResults.map((an, i) => (
                                     <AnimeCardReact key={i} anime={an} forNewPop={true} />
                                 ))}
-                            </div>
-                        </div>
+                            </ul>
+                        </section>
                     )}
                     {episodeResults.length > 0 && (
-                        <div id="er-box" className="mov-ser-section show">
-                            <div className="mss-heading">Episodes</div>
-                            <div id="episode-results" className="episodes-list el-history">
+                        <section id="er-box" className="mov-ser-section show">
+                            <h2 className="mss-heading">Episodes</h2>
+                            <ul id="episode-results" className="episodes-list el-history">
                                 {episodeResults.map((episode, i) => (
                                     <EpisodeCard key={i} epData={episode} />
                                 ))}
-                            </div>
-                        </div>
+                            </ul>
+                        </section>
                     )}
-                </ul>
+                </div>
             </div>
         </>
     )

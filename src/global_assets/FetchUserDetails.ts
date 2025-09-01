@@ -4,18 +4,28 @@ async function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function setLogin(val: string) {
+    const set = val == 't' ? 'true' : 'false';
+    localStorage.setItem('isLoggedIn', set);
+}
+
+function createEvent() {
+    window.dispatchEvent(new Event("userDataUpdated"));
+}
+
 async function retryFUD(retries: number, delayMs: number): Promise<boolean> {
     if (retries > 0) {
         console.warn(`Retrying FUD... retries left : ${retries}`);
         await delay(delayMs);
         return await fetchUserDetails(retries - 1, delayMs);
     } else {
+        createEvent();
         console.warn("FUD failed after retries");
         return false;
     }
 }
 
-export default async function fetchUserDetails(retries =  3, delayMs = 1000) {
+export default async function fetchUserDetails(retries = 3, delayMs = 1000) {
     try {
         const res = await fetch(`${backendUrl}/api/user`, {
             method: 'GET',
@@ -28,9 +38,9 @@ export default async function fetchUserDetails(retries =  3, delayMs = 1000) {
                 localStorage.setItem('userData', JSON.stringify(data.userData));
                 localStorage.setItem('watchlist', JSON.stringify(data.watchlist));
                 localStorage.setItem('history', JSON.stringify(data.history));
-                localStorage.setItem('isLoggedIn', 'true');
+                setLogin('t');
 
-                window.dispatchEvent(new Event("userDataUpdated"));
+                createEvent();
                 return true;
             }
         }
@@ -55,15 +65,18 @@ export async function checkCookie() {
         if (!data) throw new Error("Data undefined/null");
 
         if (data.success) {
-            localStorage.setItem('isLoggedIn', 'true');
+            setLogin('t');
+            createEvent();
             return true;
         } else {
-            localStorage.setItem('isLoggedIn', 'false');
+            setLogin('f');
+            createEvent();
             return false;
         }
     } catch (e) {
         console.warn(e);
-        localStorage.setItem('isLoggedIn', 'false');
+        setLogin('f');
+        createEvent();
         return false;
     }
 }
@@ -75,4 +88,5 @@ export function setOnlyUserData(profileName: string, profilePic: string | null) 
     }
 
     localStorage.setItem('userData', JSON.stringify(userData));
+    createEvent();
 }

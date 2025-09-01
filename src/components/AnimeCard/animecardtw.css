@@ -4,6 +4,31 @@
     @apply relative no-underline select-none cursor-pointer pb-2.5;
 }
 
+.new-pop-anime-card {
+    width: unset;
+    max-width: 200px;
+}
+
+@media (max-width: 312px) {
+    .anime-card-first {
+        min-width: unset;
+    }
+}
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .anime-card-first {
+        min-width: 155px;
+    }
+
+    .new-pop-anime-card {
+        min-width: 155px;
+    }
+}
+
+.anime-card-link {
+    @apply absolute inset-0 z-[3] cursor-pointer outline-none;
+}
+
 .anime-card-first {
     @apply relative flex flex-col h-auto w-[18vw] min-w-[185px] max-w-[290px] gap-3 p-2.5;
 }
@@ -14,22 +39,6 @@
 
 .anime-card-title {
     @apply line-clamp-3 text-ellipsis text-sm font-bold text-white;
-}
-
-/*ANIME CARD FOR MOBILE*/
-@media screen and (max-width: 600px) {
-    * {
-        outline: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .anime-card-hover {
-        display: none;
-    }
-
-    .anime-card-first:active {
-        background-color: rgba(0, 162, 255, 0.342);
-    }
 }
 
 .anime-card-hover {
@@ -56,6 +65,26 @@
 .anime-card-hover-actions {
     transition: opacity 0.3s ease;
     @apply absolute z-10 left-0 bottom-0 opacity-0 flex items-center gap-2.5 mt-auto;
+}
+
+/*ANIME CARD FOR MOBILE*/
+@media (max-width: 600px) {
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .anime-card-hover {
+        display: none;
+    }
+
+    .anime-card-first:active {
+        background-color: rgba(0, 162, 255, 0.342);
+    }
+
+    .anime-card-hover-actions {
+        display: none;
+    }
 }
 
 .tooltip {
@@ -93,10 +122,10 @@
     z-index: 15;
 }
 
-.tooltip.w:before{
+.tooltip.w:before {
     content: "";
     position: absolute;
-    bottom: 55%;
+    bottom: 70%;
     left: 50%;
     transform: translateX(-50%);
     border: 12px solid transparent;
@@ -106,58 +135,47 @@
     z-index: 15;
 }
 
-.tooltip:hover::after {
+.tooltip:hover::after,
+.tooltip:focus-within::after {
     opacity: 1;
 }
 
-.tooltip:hover::before {
+.tooltip:hover::before,
+.tooltip:focus-within::before {
     opacity: 1;
 }
 
-.anime-card-first:hover .anime-card-hover {
+.tooltip.w:hover::before {
+    opacity: 1;
+    bottom: 70%;
+}
+
+.tooltip.w:focus-within::before {
+    bottom: 70%;
     opacity: 1;
 }
 
-.anime-card-first:hover .anime-card-hover-actions {
+.ac-wbtn{
+    @apply p-1;
+}
+
+.anime-card-first a,
+.anime-card-first button {
+    transition: border 0.2s ease;
+    @apply block outline-none border-2 border-transparent;
+}
+
+.anime-card-first a:focus-visible,
+.anime-card-first button:focus-visible {
+    @apply border-2 border-white;
+}
+
+.anime-card-first:hover .anime-card-hover,
+.anime-card-first:focus-within .anime-card-hover {
     opacity: 1;
 }
 
-.new-pop-anime-card {
-    width: unset;
-    max-width: 200px;
-}
-
-@media (max-width: 312px) {
-    .anime-card-first {
-        min-width: unset;
-    }
-}
-
-@media (min-width: 313px) and (max-width: 500px) {
-    .anime-card-first {
-        min-width: 155px;
-    }
-
-    .new-pop-anime-card {
-        min-width: 155px;
-    }
-}
-
-.anime-card-link{
-    @apply absolute inset-0 z-[3] cursor-pointer;
-}
-
-.anime-wbtn-main{
-    pointer-events: all;
-}
-
-@media (max-width: 600px){
-    .anime-card-hover-actions{
-        display: none;
-    }
-}
-
-/*for anime card links accessbility and lighthouse*/
-.sr-only {
-  @apply sr-only;
+.anime-card-first:hover .anime-card-hover-actions,
+.anime-card-first:focus-within .anime-card-hover-actions {
+    opacity: 1;
 }

@@ -13,6 +13,14 @@ function getEl(id: string) {
   return document.getElementById(id);
 }
 
+const pd = (e: any) => {
+  e.preventDefault();
+};
+
+const sp = (e: any) => {
+  e.stopPropagation();
+};
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [catddOpen, setCatdd] = useState(false);
@@ -25,7 +33,6 @@ export default function Navbar() {
     const loadUserData = () => {
       const isLogIn = localStorage.getItem("isLoggedIn") == "true";
       setLoggedIn(isLogIn);
-
       if (!isLogIn) return;
       const user = localStorage.getItem("userData");
       if (user) setUserData(JSON.parse(user));
@@ -34,7 +41,6 @@ export default function Navbar() {
     loadUserData();
 
     window.addEventListener("userDataUpdated", loadUserData);
-
     return () => {
       window.removeEventListener("userDataUpdated", loadUserData);
     };
@@ -53,31 +59,38 @@ export default function Navbar() {
 
   //to close the sidebars on reaching respective last buttons and one tab click
   const closeFnPerson = (e: any) => {
-    e.preventDefault();
+    pd(e);
     getEl("person-menu")?.focus();
     setPersonOpen(false);
   };
 
   const closeFnSidebar = (e: any) => {
-    e.preventDefault();
+    pd(e);
     getEl("main-menu")?.focus();
     setMenuOpen(false);
-    e.stopPropagation();
+    sp(e);
   };
 
   const closeFnCatdd = (e: any) => {
-    e.preventDefault();
+    pd(e);
     getEl("category-button")?.focus();
     setCatdd(false);
-    e.stopPropagation();
+    sp(e);
+  };
+
+  const onKd = (handler: any, key: string) => {
+    return (e: any) => {
+      if (e.key !== key) return;
+      handler(e);
+    };
   };
 
   const handleClickWatHis = (name: any) => {
     const href = () => {
-      if (!window.location.pathname.includes(name)) {
-        window.location.href = "/" + name;
-      } else {
+      if (window.location.pathname.includes(name)) {
         setPersonOpen(false);
+      } else {
+        window.location.href = "/" + name;
       }
     };
 
@@ -143,9 +156,7 @@ export default function Navbar() {
         onClick={(e) => {
           if (e.target == e.currentTarget) setMenuOpen(false);
         }}
-        onKeyDown={(e) => {
-          if (e.key == "Escape") closeFnSidebar(e);
-        }}
+        onKeyDown={onKd(closeFnSidebar, "Escape")}
       >
         <nav className="sidebar" id="sidebar" role="menubar">
           {npoItems.map((obj, i) => {
@@ -180,9 +191,7 @@ export default function Navbar() {
             role="menu"
             className={`category-dropdown ${catddOpen ? "show" : "hidden"}`}
             id="category-dropdown"
-            onKeyDown={(e) => {
-              if (e.key == "Escape") closeFnCatdd(e);
-            }}
+            onKeyDown={onKd(closeFnCatdd, "Escape")}
           >
             {categoryItems.map((cat, i) => {
               return (
@@ -207,7 +216,7 @@ export default function Navbar() {
                 role="menuitem"
                 className="sidebar-button"
                 href={href}
-                onKeyDown={isLast ? closeFnSidebar : () => {}}
+                onKeyDown={isLast ? onKd(closeFnSidebar, "Tab") : undefined}
               >
                 {label}
               </a>
@@ -221,18 +230,16 @@ export default function Navbar() {
         onClick={(e) => {
           if (e.target == e.currentTarget) setPersonOpen(false);
         }}
-        onKeyDown={(e) => {
-          if (e.key == "Escape") closeFnPerson(e);
-        }}
+        onKeyDown={onKd(closeFnPerson, "Escape")}
       >
         {isLoggedIn ? (
           <AfterLoginNav
-            closeFn={closeFnPerson}
+            closeFn={onKd(closeFnPerson, "Tab")}
             userData={userData}
             clickHandler={handleClickWatHis}
           />
         ) : (
-          <BeforeLoginNav />
+          <BeforeLoginNav closeFn={onKd(closeFnPerson, "Tab")} />
         )}
       </aside>
       <SpeedInsights />

@@ -18,3 +18,7 @@
         width: 25px;
     }
 }
+
+.progress-bar:focus-visible{
+    @apply outline-none p-1 border-3 border-white;
+}

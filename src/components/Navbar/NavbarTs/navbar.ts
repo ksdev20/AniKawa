@@ -6,11 +6,16 @@ export interface UserData {
 }
 
 export type closeFnType = (e: KeyboardEvent<HTMLButtonElement>) => void;
+export type closeFnAnchor = (e: KeyboardEvent<HTMLAnchorElement>) => void;
 
 export interface AfterLoginProps {
     userData: UserData | null;
     clickHandler: (name: string) => void;
     closeFn: closeFnType;
+}
+
+export interface BeforeLoginProps{
+    closeFn: closeFnAnchor;
 }
 
 export type RefNames = 'navbar' | 'sidebar' | 'category';

@@ -69,13 +69,7 @@ export default function AfterLoginNav({
             onClick={() => {
               clickHandler(lowered);
             }}
-            onKeyDown={
-              isLast
-                ? (e) => {
-                    closeFn(e);
-                  }
-                : (e) => {}
-            }
+            onKeyDown={isLast ? closeFn : undefined}
           >
             <Icon name={lowered} size={26} />
             <div className="cbt-white">{label}</div>

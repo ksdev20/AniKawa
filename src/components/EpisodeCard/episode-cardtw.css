@@ -55,9 +55,9 @@
 }
 
 .ec-del-btn{
-    @apply flex justify-center items-center;
-}
+    @apply flex justify-center items-center absolute z-[3] bottom-1 right-1 pointer-events-auto cursor-pointer;
+} 
 
-.ec-del-btn:focus{
-    @apply absolute z-[3] bottom-1 right-1 pointer-events-none cursor-pointer border-2;
+.ec-del-btn:focus-visible{
+    @apply border-2;
 }

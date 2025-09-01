@@ -38,7 +38,7 @@ export default function HeroCSR(){
         <div className='progress-container'>
             {[0, 1, 2, 3, 4].map((i) => {
                 return (
-                    <div key={i} className={`progress-bar ${ activeIdx == i ? 'active' : ''}`} onClick={() => { onBarClick(i) }}></div>
+                    <button key={i} className={`progress-bar ${ activeIdx == i ? 'active' : ''}`} onClick={() => { onBarClick(i) }}></button>
                 )
             })}
         </div>
