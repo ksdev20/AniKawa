@@ -8,6 +8,8 @@ import AfterLoginNav, { logout } from "./UserSidebar/AfterLoginNav";
 import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
+import Popup1 from "../Popups/Popup1";
+import { usePopup } from "../Popups/usePopup";
 
 function getEl(id: string) {
   return document.getElementById(id);
@@ -27,6 +29,7 @@ export default function Navbar() {
   const [personOpen, setPersonOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [userData, setUserData] = useState<UserData | null>(null);
+  const loginGate = usePopup();
 
   //check login status and update ui
   useEffect(() => {
@@ -103,10 +106,17 @@ export default function Navbar() {
     clicks[name]?.();
   };
 
+  const openLoginPopup = () => {
+    if (personOpen) setPersonOpen(false);
+    if (menuOpen) setMenuOpen(false);
+    if (catddOpen) setCatdd(false);
+    loginGate.openPopup();
+  };
+
   return (
     <header>
       <nav className="navbar">
-        <div className="nav-left">
+        <section className="nav-left" aria-label="Nav Left">
           <button
             aria-label="Open Menu"
             id="main-menu"
@@ -121,21 +131,31 @@ export default function Navbar() {
           <a aria-label="Homepage" href="/">
             <img src="/logo.png" alt="Website Logo" className="website-logo" />
           </a>
-        </div>
-        <div className="nav-right">
+        </section>
+        <section className="nav-right" aria-label="Nav Right">
           <a aria-label="Search" className="nav-right-block" href="/search">
             <Icon name="search" />
           </a>
-          <button
-            aria-label="Watchlist"
-            id="watchlist-btn-index"
-            className="nav-right-block w-navbar"
-            onClick={() => {
-              if (isLoggedIn) window.location.href = "/watchlist";
-            }}
-          >
-            <Icon name="watchlist" />
-          </button>
+          {isLoggedIn ? (
+            <a
+              aria-label="Watchlist"
+              id="watchlist-btn-index"
+              className="nav-right-block w-navbar"
+              href="/watchlist"
+            >
+              <Icon name="watchlist" />
+            </a>
+          ) : (
+            <button
+              aria-label="Watchlist"
+              id="watchlist-btn-index"
+              className="nav-right-block w-navbar"
+              onClick={openLoginPopup}
+            >
+              <Icon name="watchlist" />
+            </button>
+          )}
+          <Popup1 isOpen={loginGate.isOpen} onClose={loginGate.closePopup} />
           <button
             aria-label="Account Menu/Login-Signup Menu"
             className="nav-right-block"
@@ -147,7 +167,7 @@ export default function Navbar() {
           >
             <Icon name="person" />
           </button>
-        </div>
+        </section>
       </nav>
       <div className="empty-top"></div>
       <aside

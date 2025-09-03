@@ -57,7 +57,9 @@ export default function AnimeWBtn({
   }, [addedStatus]);
 
   function fetchFunction() {
-    if (localStorage.getItem("isLoggedIn") == "false") return;
+    if (localStorage.getItem("isLoggedIn") == "false"){
+      return;
+    }
     const action = addedStatus ? "deleteFromList" : "addToList";
     const successLog = addedStatus
       ? "Removed from watchlist✅"

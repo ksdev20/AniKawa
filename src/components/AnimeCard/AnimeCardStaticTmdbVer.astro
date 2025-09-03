@@ -3,6 +3,8 @@ import "./animecardtw.css";
 import AnimeWBtn from "./AnimeWBtn";
 import { type Anime } from "../../filters/mergedListTypes";
 import { getOptimizedImageUrl } from "../../utils/imageSizing";
+import { Icon, IconW } from "../../icons/icons";
+import WBtn2 from "./WBtn2";
 const anime = Astro.props.anime as Anime;
 if (anime?.episodes?.length == 0) return null;
 const forNewPop = Astro.props.fornewpop ?? false;
@@ -75,7 +77,7 @@ const epSlug = anime?.episodes?.[0]?.slug;
         </a>
       </div>
       <div class="tooltip w" data-tip="Add to Watchlist">
-        <AnimeWBtn nanoid={nanoid} client:load />
+        <WBtn2 nanoid={nanoid} client:load/>
       </div>
     </div>
   </article>
