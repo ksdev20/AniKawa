@@ -1,12 +1,13 @@
 ---
 import animeArray from "../../data/mergedList.json";
+import { Icon } from "../../icons/icons";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 
 const { nId, i } = Astro.props;
 const anime = animeArray.find((a) => a.nanoid == nId);
-const { nanoid, slug } = anime!;
-const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
 const {
+  nanoid = 'n-a',
+  slug,
   title = "untitled",
   description,
   poster,
@@ -15,15 +16,23 @@ const {
   logos_en,
 } = anime ?? {};
 
+const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
+
+const getImg = (suffix: string | undefined) => {
+  return imgPrefix + suffix;
+};
+
 const validLogo = logos_en ? (logos_en[0] ?? logos_en[1] ?? logos_en[2]) : "";
-const logoUrl = `https://image.tmdb.org/t/p/original${validLogo}`;
+const imgPrefix = "https://image.tmdb.org/t/p/original";
+const logoUrl = getImg(validLogo);
+
 let extraBd = null;
 switch (nId) {
   case "3eZ7GbrMIriv2ap":
-    extraBd = `https://image.tmdb.org/t/p/original${anime?.extra_backdrops[1]}`;
+    extraBd = getImg(anime?.extra_backdrops[1]);
     break;
   case "EeRKboXUJK4bsgb":
-    extraBd = `https://image.tmdb.org/t/p/original${anime?.extra_backdrops[2]}`;
+    extraBd = getImg(anime?.extra_backdrops[2]);
     break;
   default:
     extraBd = null;
@@ -63,7 +72,7 @@ const imgD = i == 0 ? "async" : "async";
           />
         </a>
         <span class="dub-sub">{language} ➤ {scoreAlt}</span>
-        <p class="hero-description" set:html={description} />
+        <p class="hero-description">{description}</p>
         <div class="hero-button-section">
           <a
             class="start-watching-btn hero-play"
@@ -71,17 +80,7 @@ const imgD = i == 0 ? "async" : "async";
             aria-label={`Start
                         watching ${title}, episode 1`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="28px"
-              viewBox="0 -960 960 960"
-              width="28px"
-              fill="#000000"
-            >
-              <path
-                d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"
-              ></path>
-            </svg>
+            <Icon name="play" size={28} color="#000000"/>
             START WATCHING S1 E1
           </a>
           <div class="watchlist-btn">

@@ -9,6 +9,11 @@ const B = "0 0 24 24";
 
 export const iconJson: IconJsonProps[] = [
     {
+        name: 'play',
+        path: "M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z",
+        viewbox: A
+    },
+    {
         name: 'menu',
         path: "M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z",
         viewbox: A
@@ -56,11 +61,6 @@ export const iconJson: IconJsonProps[] = [
     {
         name: 'logout',
         path: "M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z",
-        viewbox: A
-    },
-    {
-        name: '',
-        path: '',
         viewbox: A
     },
     {

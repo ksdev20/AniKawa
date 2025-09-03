@@ -29,5 +29,5 @@
 }
 
 .popup-btn:hover{
-    @apply bg-[var(--c-main-h)] text-black border-transparent;
+    @apply bg-[#00000048];
 }

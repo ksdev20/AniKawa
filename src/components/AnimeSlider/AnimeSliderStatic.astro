@@ -19,7 +19,7 @@ let filteredAnimeList;
 const forCategory = filterName == "matchCategories" && !forAnimePage;
 
 if (filterName == "matchCategories") {
-    if (genresA && genresA.length > 0) {
+    if (genresA?.length > 0) {
         filteredAnimeList = getFilteredAnime("matchCategories", {
             genresA: genresA,
             usedTitlesGlobal,
@@ -41,6 +41,21 @@ if (filteredAnimeList) {
         return;
     }
 }
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": bigH,
+    "itemListElement": filteredAnimeList?.map((a, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+            "@type": "TVSeries",
+            "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
+            "name": a.title ||  a.slug || 'Untitled'
+        }
+    }))
+}
 ---
 
 {
@@ -55,20 +70,7 @@ if (filteredAnimeList) {
                 <SliderContainer animeArray={filteredAnimeList} />
             </div>
         </section>
-        <script type="application/ld+json" set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": bigH,
-            "itemListElement": filteredAnimeList?.map((a, i) => ({
-                "@type": "ListItem",
-                "position": i + 1,
-                "item": {
-                    "@type": "TVSeries",
-                    "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
-                    "name": a.title ||  a.slug || 'Untitled'
-                }
-            }))
-        })}></script>
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     ) : (
         <section class="anime-slider-section cat-slider">
             <div class="slider-heading cat-slider-heading">
@@ -96,19 +98,6 @@ if (filteredAnimeList) {
                 <SliderContainer animeArray={filteredAnimeList} />
             </div>
         </section>
-        <script type="application/ld+json" set:html={JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": bigH,
-            "itemListElement": filteredAnimeList?.map((a, i) => ({
-                "@type": "ListItem",
-                "position": i + 1,
-                "item": {
-                    "@type": "TVSeries",
-                    "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
-                    "name": a.title || a.slug || 'Untitled'
-                }
-            }))
-        })}></script>
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     )
 }
