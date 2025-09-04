@@ -53,9 +53,8 @@ export function getFilteredAnime(filterName, options = {}) {
     if (usedTitles.length >= 25 && !forSubCatPage) break;
     if (usedTitles.includes(title) || !anime) continue;
     if (
-      usedTitlesGlobal &&
-      usedTitlesGlobal.length > 0 &&
-      usedTitlesGlobal.filter((i) => i == title).length == 1
+      usedTitlesGlobal?.length > 0 &&
+      usedTitlesGlobal?.filter((i) => i == title)?.length == 1
     )
       continue;
 
@@ -86,7 +85,7 @@ export function getFilteredAnime(filterName, options = {}) {
     if (toSend) {
       result.push(anime);
       usedTitles.push(title);
-      if (usedTitlesGlobal) usedTitlesGlobal.push(title);
+      usedTitlesGlobal?.push(title);
     }
   }
   const sortThese = ["sameMonthAnimeGen", "matchCategories"];
@@ -279,7 +278,7 @@ function matchCategories(genresA, genresB, keywords = null) {
   return genresA.some((x) => {
     const lowered = x.toLowerCase();
     if (genresB.includes(x)) count++;
-    if (keywords && keywords.includes(lowered)) count++;
+    if (keywords?.includes(lowered)) count++;
     if (genresA.length == 1) return count == 1;
     return count == 2;
   });

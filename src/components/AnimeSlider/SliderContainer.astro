@@ -1,5 +1,5 @@
 ---
-import type { Anime } from "../../filters/AnimeDataTypes";
+import type { Anime } from "../../types/mergedListTypes";
 import AnimeCardStatic from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 import AnimeSliderCSR from "./AnimeSliderCSR";
 
@@ -8,7 +8,7 @@ const animeArray = (Astro.props.animeArray || []) as Anime[];
 
 <ul class="slider-container">
     {
-        animeArray?.map((a, i) => {
+        animeArray?.map((a) => {
             return <AnimeCardStatic anime={a} />;
         })
     }

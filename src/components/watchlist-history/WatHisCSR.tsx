@@ -6,10 +6,8 @@ import {
   getWatchlistItems,
   getHistoryItems,
 } from "../../filters/wat-his-match-logic";
-import AnimeCardStatic from "../AnimeCard/AnimeCardStatic.astro";
-import { type Anime, type Episode } from "../../filters/mergedListTypes";
+import { type Anime, type Episode } from "../../types/mergedListTypes";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
-import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
 import AnimeCardReact from "../AnimeCard/AnimeCardReact";
 import ClearHisBtn from "./ClearHisBtn";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;

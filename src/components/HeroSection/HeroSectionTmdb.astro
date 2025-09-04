@@ -1,9 +1,28 @@
 ---
 import './HeroSectiontw.css';
-import animeArray from "../../data/mergedList.json";
 import HeroItem from "./HeroItem.astro";
 import HeroCSR from "./HeroCSR";
-const HERO_NANOIDS = ['9WkGNACrSv0K1Hn', 'oTj8mEu-vJvJQa1','3eZ7GbrMIriv2ap','5Z7qwy51WLHEyZu','8n-ES8yeTKR1rAM'];
+import { getAnimeById } from '../../filters/getAnimeById';
+
+const HERO_NANOIDS = ['5Z7qwy51WLHEyZu', '9WkGNACrSv0K1Hn', 'oTj8mEu-vJvJQa1','3eZ7GbrMIriv2ap','8n-ES8yeTKR1rAM'];
+
+const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
+        "itemListElement": HERO_NANOIDS.map((n, i)  => {
+            const anime = getAnimeById(n);
+            if (!anime) return null;
+            const {nanoid, slug} = anime;
+            return {
+                "@type": "ListItem",
+                "position": i + 1,
+                "item":{
+                    "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
+                }
+            };
+        }).filter(Boolean)
+    }
 ---
 
 <section aria-labelledby="hero-title" role="region">
@@ -16,22 +35,6 @@ const HERO_NANOIDS = ['9WkGNACrSv0K1Hn', 'oTj8mEu-vJvJQa1','3eZ7GbrMIriv2ap','5Z
         }
     </ul>
     <HeroCSR client:load />
-    <script type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
-        "itemListElement": HERO_NANOIDS.map((n, i)  => {
-            const anime = animeArray.find(a => a.nanoid == n);
-            if (!anime) return null;
-            const {nanoid, slug} = anime;
-            return {
-                "@type": "ListItem",
-                "position": i + 1,
-                "item":{
-                    "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
-                }
-            };
-        }).filter(Boolean)
-    })}>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}>
     </script>
 </section>

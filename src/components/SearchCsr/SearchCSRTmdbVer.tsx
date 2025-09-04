@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { Anime } from '../../filters/mergedListTypes';
+import type { Anime } from '../../types/mergedListTypes';
 import './searchtw.css';
 import '../../styles/NewPopALStyles.css';
 import animeArray from '../../data/mergedList.json';

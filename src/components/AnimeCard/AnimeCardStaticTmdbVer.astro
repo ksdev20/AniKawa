@@ -1,13 +1,12 @@
 ---
 import "./animecardtw.css";
-import AnimeWBtn from "./AnimeWBtn";
-import { type Anime } from "../../filters/mergedListTypes";
 import { getOptimizedImageUrl } from "../../utils/imageSizing";
-import { Icon, IconW } from "../../icons/icons";
 import WBtn2 from "./WBtn2";
-const anime = Astro.props.anime as Anime;
+import { Icon } from "../../icons/icons";
+
+const { anime, forNewPop = false } = Astro.props;
 if (anime?.episodes?.length == 0) return null;
-const forNewPop = Astro.props.fornewpop ?? false;
+
 const {
   nanoid = "n-a",
   slug,
@@ -17,15 +16,18 @@ const {
   season,
   seasons,
 } = anime ?? {};
+
+//cover image fallback
 const season_poster =
   anime?.season_poster ??
   anime?.poster ??
   anime?.plThumbnail ??
   "/anime-image-alt.png";
+
 const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
-const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
+const language = "Eng Sub";
 const episodes = anime?.episodes?.length;
-const epSlug = anime?.episodes?.[0]?.slug;
+const ep1Slug = anime?.episodes?.[0]?.slug;
 ---
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
@@ -41,9 +43,9 @@ const epSlug = anime?.episodes?.[0]?.slug;
       decoding="async"
     />
     <h2 class="anime-card-title">{titleAlt}</h2>
-    <div class="text-sm text-[gray]">{language}</div>
+    <span class="text-sm text-[gray]">{language}</span>
 
-    <div
+    <section
       class="anime-card-hover"
       style={{
         backgroundImage: `url(${getOptimizedImageUrl(season_poster, 342)})`,
@@ -51,34 +53,25 @@ const epSlug = anime?.episodes?.[0]?.slug;
     >
       <div class="anime-card-hover-details">
         <h3 class="line-clamp-3 mt-2.5 text-[15px]">{titleAlt}</h3>
-        <div class="ach-text">{scoreAlt}</div>
-        <div class="ach-text">
+        <span class="ach-text">{scoreAlt}</span>
+        <span class="ach-text">
           {episodes} Episodes
-        </div>
+        </span>
         <p class="anime-card-hover-description">{description}</p>
       </div>
-    </div>
-    <div class="anime-card-hover-actions">
-      <div class="tooltip" data-tip="Play S1 E1">
+    </section>
+    <nav class="anime-card-hover-actions">
+      <div class="tooltip" data-tip={`Play S${season} E1`}>
         <a
-          href={`/episode/${nanoid}/${epSlug}`}
+          href={`/episode/${nanoid}/${ep1Slug}`}
           aria-label={`Watch ${titleAlt} Episode 1`}
         >
-          <svg
-            class="w-10 h-10"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-            fill="#8c52ff"
-          >
-            <path
-              d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"
-            ></path>
-          </svg>
+          <Icon name="play" size={40} color="#8c52ff" />
         </a>
       </div>
       <div class="tooltip w" data-tip="Add to Watchlist">
-        <WBtn2 nanoid={nanoid} client:load/>
+        <WBtn2 nanoid={nanoid} client:load />
       </div>
-    </div>
+    </nav>
   </article>
 </li>

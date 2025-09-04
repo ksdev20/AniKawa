@@ -2,8 +2,7 @@
 // import ACO from "../../components/profile-components/ACO";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import { type Character } from "../../filters/AnimeDataTypes";
-import type { Banner } from "../../filters/AnimeDataTypes";
+import { type Character, type Banner } from "../../types/profileResTypes";
 import characterArray from '../../data/characterAvatarsFinal.json';
 import bannerArray from '../../data/bannerList.json';
 import '../../styles/profiletw.css';

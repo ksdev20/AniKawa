@@ -1,7 +1,6 @@
 // import aniOneData2 from '../data/aniOneData2.json';
 import aniOneData2 from '../data/mergedList.json';
-import type { Video } from './AnimeDataTypes';
-import type { Episode } from './mergedListTypes';
+import type { Episode } from '../types/mergedListTypes';
 
 export function getAnimeById(nanoid: string | undefined): any{
     if (nanoid == undefined) return [];

@@ -31,7 +31,7 @@ export default function HeroCSR() {
   }
 
   return (
-    <div className="progress-container">
+    <section className="progress-container">
       {[0, 1, 2, 3, 4].map((i) => {
         return (
           <button
@@ -43,6 +43,6 @@ export default function HeroCSR() {
           ></button>
         );
       })}
-    </div>
+    </section>
   );
 }

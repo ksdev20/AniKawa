@@ -64,8 +64,8 @@ export const iconJson: IconJsonProps[] = [
         viewbox: A
     },
     {
-        name: '',
-        path: '',
+        name: 'keyright',
+        path: "m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z",
         viewbox: A
     },
     {

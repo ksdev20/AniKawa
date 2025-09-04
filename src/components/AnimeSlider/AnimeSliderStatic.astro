@@ -1,5 +1,7 @@
 ---
+import { getOtherSeasons } from "../../filters/anime-page-filters";
 import { getFilteredAnime } from "../../filters/animeFilterMainTmdbVer";
+import { Icon } from "../../icons/icons";
 import SliderContainer from "./SliderContainer.astro";
 import "./anime-slidertw.css";
 
@@ -11,36 +13,41 @@ const {
     categoryA = "",
     categoryB = "",
     usedTitlesGlobal,
-    forAnimePage = false,
+    forCategoryPage = false,
+    forAnimePageSeasons,
+    animeTitle,
+    toNotInclude,
 } = Astro.props.info;
 
 let filteredAnimeList;
 
-const forCategory = filterName == "matchCategories" && !forAnimePage;
-
 if (filterName == "matchCategories") {
-    if (genresA?.length > 0) {
-        filteredAnimeList = getFilteredAnime("matchCategories", {
-            genresA: genresA,
-            usedTitlesGlobal,
-        });
-    }
-    if (categoryA != "" && categoryB != "") {
+    if (forCategoryPage) {
         filteredAnimeList = getFilteredAnime("matchCategories", {
             categoryA: categoryA,
             categoryB: categoryB,
             usedTitlesGlobal,
         });
+    } else {
+        filteredAnimeList = getFilteredAnime("matchCategories", {
+            genresA: genresA,
+            usedTitlesGlobal,
+        });
     }
-} else {
+} else if (forAnimePageSeasons){
+    filteredAnimeList = getOtherSeasons(animeTitle, toNotInclude);
+}
+else {
     filteredAnimeList = getFilteredAnime(filterName, { usedTitlesGlobal });
 }
 
 if (filteredAnimeList) {
     if (filteredAnimeList.length == 0) {
-        return;
+        return null;
     }
 }
+
+if (!filteredAnimeList) return;
 
 const structuredData = {
     "@context": "https://schema.org",
@@ -59,21 +66,21 @@ const structuredData = {
 ---
 
 {
-    !forCategory ? (
+    !forCategoryPage ? (
         <section
             class="anime-slider-section">
-            <div class="slider-heading">
+            <header class="slider-heading">
                 <h2 class="slider-section-text-big">{bigH}</h2>
                 <h3 class="slider-section-text-small">{smallH}</h3>
-            </div>
-            <div class="slider-content-wrapper">
+            </header>
+            <section class="slider-content-wrapper">
                 <SliderContainer animeArray={filteredAnimeList} />
-            </div>
+            </section>
         </section>
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     ) : (
         <section class="anime-slider-section cat-slider">
-            <div class="slider-heading cat-slider-heading">
+            <header class="slider-heading cat-slider-heading">
                 <h2 class="slider-section-text-big cat-slider-heading-big">
                     {bigH}
                 </h2>
@@ -82,21 +89,12 @@ const structuredData = {
                     href={`/category/${categoryA}/${bigH}`}
                 >
                     VIEW ALL
-                    <svg
-                        class="view-all-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="17px"
-                        viewBox="0 -960 960 960"
-                        width="17px"
-                        fill="#666666"
-                    >
-                        <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
-                    </svg>
+                    <Icon name="keyright" size={17} color="#666666" className='view-all-icon'/>
                 </a>
-            </div>
-            <div class="slider-content-wrapper">
+            </header>
+            <section class="slider-content-wrapper">
                 <SliderContainer animeArray={filteredAnimeList} />
-            </div>
+            </section>
         </section>
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     )
