@@ -1,6 +1,6 @@
 import { Icon } from "../../../icons/icons";
-import { alnItems } from "../config/items";
-import type { AfterLoginProps } from "../NavbarTs/navbar";
+import { alnItems } from "../../../config/navItems";
+import type { AfterLoginProps } from "../../../types/navbarTypes";
 
 export default function AfterLoginNav({
   userData,

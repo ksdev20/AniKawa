@@ -1,0 +1,32 @@
+---
+import { getEpImg } from "../../utils/getEpImgFallback";
+
+const { Obj, Obj2 } = Astro.props;
+if (!Obj) return null;
+
+const { slug, epNum, titleAlt = `Episode ${epNum}` } = Obj ?? {};
+const { h4, animeTitle, nanoid, language } = Obj2;
+const thumbnail = getEpImg(Obj);
+---
+
+<section class="episode-change-card-container">
+  <h4 class="eccc-heading">{h4}</h4>
+  <div class="episode-change-card">
+    <img
+      class="ecc-image"
+      src={thumbnail}
+      loading="lazy"
+      decoding="async"
+      alt={`Cover of episode ${titleAlt} of anime ${animeTitle}`}
+    />
+    <div class="episode-change-card-container ecc-text-section">
+      <h2 class="epd-ep-title for-card">
+        {titleAlt}
+      </h2>
+      <p class="epd-language ecc-language">
+        {language}
+      </p>
+    </div>
+  </div>
+  <a href={`/episode/${nanoid}/${slug}`} class="eccc-link"></a>
+</section>

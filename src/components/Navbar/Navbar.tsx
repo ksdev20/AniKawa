@@ -1,9 +1,9 @@
 import "../../styles/config.css";
 import "./navbartw.css";
 import { useState, useEffect } from "react";
-import { categoryItems, legalItems, npoItems } from "./config/items";
+import { categoryItems, legalItems, npoItems } from "../../config/navItems";
 import { Icon } from "../../icons/icons";
-import { type UserData } from "./NavbarTs/navbar";
+import { type UserData } from "../../types/navbarTypes";
 import AfterLoginNav from "./UserSidebar/AfterLoginNav";
 import logout from "../../DbFunctions/logout";
 import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";

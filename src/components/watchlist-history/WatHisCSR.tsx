@@ -10,6 +10,7 @@ import { type Anime, type Episode } from "../../types/mergedListTypes";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import AnimeCardReact from "../AnimeCard/AnimeCardReact";
 import ClearHisBtn from "./ClearHisBtn";
+import { Icon } from "../../icons/icons";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 export default function WatHisCSR({ caller }: { caller: string }) {
@@ -57,15 +58,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
     <main className="profile-main">
       <section className="wat-his-main-box">
         <div className="wh-top">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="38px"
-            viewBox="0 -960 960 960"
-            width="38px"
-            fill="#ffffff"
-          >
-            <path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"></path>
-          </svg>
+          <Icon name="watchlist" size={38} />
           <h1 style={{ fontSize: "30px" }}>My Lists</h1>
         </div>
         <nav className="buttons-section">
@@ -116,15 +109,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
           </ul>
         </section>
         <div id="empty-wh" className={`empty-wh ${listEmpty ? "active" : ""}`}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="70px"
-            viewBox="0 -960 960 960"
-            width="70px"
-            fill="#ffffff"
-          >
-            <path d="M520-400h80v-120h120v-80H600v-120h-80v120H400v80h120v120ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"></path>
-          </svg>
+          <Icon name="library-add" size={70} />
           <div
             id="watchlist-des"
             className={`wat-des ${caller == "w" ? "active" : ""}`}

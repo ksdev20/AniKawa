@@ -1,5 +1,5 @@
-import { blnItems } from "../config/items";
-import type { BeforeLoginProps } from "../NavbarTs/navbar";
+import { blnItems } from "../../../config/navItems";
+import type { BeforeLoginProps } from "../../../types/navbarTypes";
 
 export default function BeforeLoginNav({closeFn}: BeforeLoginProps) {
   return (

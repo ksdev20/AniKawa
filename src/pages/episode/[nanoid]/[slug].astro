@@ -7,14 +7,13 @@ import Footer from "../../../components/Footer/Footer";
 import { getAnimeById } from "../../../filters/getAnimeById";
 import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/HandleECClick";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
+import { getEpImg } from "../../../utils/getEpImgFallback";
+import EpisodeChangeCard from "../../../components/EpisodeCard/EpisodeChangeCard.astro";
 const { nanoid, slug } = Astro.params;
-let anime = getAnimeById(nanoid) as Anime | null;
-if (
-  !anime?.episodes ||
-  anime?.episodes?.length == 0 ||
-  !Array.isArray(anime?.episodes) ||
-  slug == "n-a"
-) {
+const anime = getAnimeById(nanoid) as Anime | null;
+const episode = anime?.episodes?.find((e) => e?.slug == slug);
+
+if (!anime || !episode || slug == "n-a") {
   return new Response(null, {
     status: 302,
     headers: {
@@ -23,46 +22,37 @@ if (
   });
 }
 
-let episode = anime?.episodes?.find((e) => e?.slug == slug);
+//anime details
+const {
+  slug: animeslug = "n-a",
+  title: animeTitle = "Untitled",
+  scoreAlt = "Score N/A",
+} = anime ?? {};
+const language = "Subtitled";
 
-const { slug: animeslug = "n-a", keywords } = anime;
-const { title: animeTitle = "Untitled", scoreAlt = "Score N/A" } = anime ?? {};
-const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
-
+//current episode details
 const {
   epNum,
   url,
-  img: currentThumbnail = episode?.ytThumbnail ??
-    "/episode-thumbnail-alt-2.png",
   titleAlt: episodeTitle,
   description = "No description",
 } = episode ?? {};
 
-const prevIdx = epNum ? epNum - 2 : -1;
-const nextIdx = epNum ?? 1;
+const currentThumbnail = getEpImg(episode);
 
-const prevObj = anime?.episodes?.[prevIdx];
-const nextObj = anime?.episodes?.[nextIdx];
+//to send to episode change cards
+const prevObj = anime?.episodes?.[epNum - 2];
+const nextObj = anime?.episodes?.[epNum];
 
-const {
-  slug: prevSlug,
-  epNum: pEpNo,
-  titleAlt: previousTitle = `Episode ${pEpNo}`,
-  img: previousThumbnail = prevObj?.ytThumbnail ??
-    "/episode-thumbnail-alt-2.png",
-} = prevObj ?? {};
+const animeDetails = {
+  animeTitle,
+  nanoid,
+  language,
+};
 
-const {
-  slug: nextSlug,
-  epNum: nEpNo,
-  titleAlt: nextTitle = `Episode ${nEpNo}`,
-  img: nextThumbnail = nextObj?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
-} = nextObj ?? {};
-
-const hasPrev = prevIdx <= -1 ? false : true;
-const hasNext = anime?.episodes?.length <= nextIdx ? false : true;
-
-const siteUrl = `https://anikawa.vercel.app`;
+//SeoHead details
+const prevSlug = prevObj?.slug;
+const nextSlug = nextObj?.slug;
 const pageUrl = `https://anikawa.vercel.app/episode/${nanoid}/${slug}`;
 const prevUrl = `https://anikawa.vercel.app/episode/${nanoid}/${prevSlug}`;
 const nextUrl = `https://anikawa.vercel.app/episode/${nanoid}/${nextSlug}`;
@@ -79,8 +69,8 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
     url={pageUrl}
     keywords={pageKw}
   >
-    {hasPrev && <link rel="prev" href={prevUrl} />}
-    {hasNext && <link rel="next" href={nextUrl} />}
+    {prevObj && <link rel="prev" href={prevUrl} />}
+    {nextObj && <link rel="next" href={nextUrl} />}
   </SEOHead>
   <body>
     <HandleECClick animenanoid={nanoid} slug={slug} client:load />
@@ -98,7 +88,7 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen></iframe>
       </section>
-      <div class="episode-page-details">
+      <article class="episode-page-details">
         <section class="episode-page-details epd-first">
           <div class="epd-first-top">
             <div class="epd-first-top first-part">
@@ -115,65 +105,17 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
           <div class="episode-list-endline"></div>
         </section>
         <nav class="episode-change-section">
-          <section
-            class={`episode-change-card-container ${hasPrev ? "" : "hidden"}`}
-            id="previous-episode"
-          >
-            <h4 class="eccc-heading">PREVIOUS EPISODE</h4>
-            <div class="episode-change-card">
-              <img
-                id="p-ep-img"
-                class="ecc-image"
-                src={previousThumbnail}
-                loading="lazy"
-                decoding="async"
-                alt={`Cover of episode ${previousTitle} of anime ${animeTitle}`}
-              />
-              <div
-                class="episode-change-card-container ecc-text-section"
-                id="epd-text-section"
-              >
-                <h2 id="p-ep-title" class="epd-ep-title for-card">
-                  {previousTitle}
-                </h2>
-                <p id="ecc-p-language" class="epd-language ecc-language">
-                  {language}
-                </p>
-              </div>
-            </div>
-            <a href={`/episode/${nanoid}/${prevSlug}`} class="eccc-link"></a>
-          </section>
-          <section
-            class={`episode-change-card-container ${hasNext ? "" : "hidden"}`}
-            id="next-episode"
-          >
-            <h4 class="eccc-heading">NEXT EPISODE</h4>
-            <div class="episode-change-card">
-              <img
-                id="n-ep-img"
-                class="ecc-image"
-                src={nextThumbnail}
-                loading="lazy"
-                decoding="async"
-                alt={`Cover of episode ${nextTitle} of anime ${animeTitle}`}
-              />
-              <div
-                class="episode-change-card-container ecc-text-section"
-                id="epd-text-section"
-              >
-                <h2 id="n-ep-title" class="epd-ep-title for-card">
-                  {nextTitle}
-                </h2>
-                <p id="ecc-n-language" class="epd-language ecc-language">
-                  {language}
-                </p>
-              </div>
-            </div>
-            <a href={`/episode/${nanoid}/${nextSlug}`} class="eccc-link"></a>
-          </section>
+          <EpisodeChangeCard
+            Obj={prevObj}
+            Obj2={{ h4: "PREVIOUS EPISODE", ...animeDetails }}
+          />
+          <EpisodeChangeCard
+            Obj={nextObj}
+            Obj2={{ h4: "NEXT EPISODE", ...animeDetails }}
+          />
         </nav>
         <Footer />
-      </div>
+      </article>
     </main>
   </body>
 </html>

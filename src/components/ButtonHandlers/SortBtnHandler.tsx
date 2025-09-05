@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../styles/animePagetw.css";
 import "./sortbuttonstw.css";
+import { Icon } from "../../icons/icons";
 
 type SbhProps = {
   watHisAsking?: boolean;
@@ -45,16 +46,7 @@ export default function SortBtnHandler({ watHisAsking = false }: SbhProps) {
           setShowDd(!showDd);
         }}
       >
-        <svg
-          className="part-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          height="30px"
-          viewBox="0 -960 960 960"
-          width="30px"
-          fill="#666666"
-        >
-          <path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"></path>
-        </svg>
+        <Icon name="sort" color="#666666" size={30} className={'part-icon' } />
         <div className="filter-name">SORT</div>
       </div>
       <div className={`dropdown-new-pop ${showDd ? "active" : ""}`}>

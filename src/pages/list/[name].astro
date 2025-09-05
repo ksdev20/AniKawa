@@ -1,99 +1,39 @@
 ---
-import aniOneAsia2 from "../../data/mergedList.json";
-import "../../components/ButtonHandlers/sortbuttons.css";
+import { validNames, listConfig, filterMap } from "../../config/listConfig";
 import "../../styles/new-poptw.css";
+import SEOHead from "../../components/SEO/SEOHead.astro";
 import Navbar from "../../components/Navbar/Navbar";
+import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
 import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import Footer from "../../components/Footer/Footer";
-import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
-import dayjs from "dayjs";
-import SEOHead from "../../components/SEO/SEOHead.astro";
 
 const { name } = Astro.params;
-const standardName = `${name?.[0]?.toUpperCase()}${name?.slice(1)}`;
-let label;
-switch (name) {
-  case "new":
-    label = "Newly Added Anime";
-    break;
-  case "popular":
-    label = "Most Popular Anime";
-    break;
-  case "old":
-    label = "The Old Classic";
-    break;
-}
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
-let finalArray;
-
-if (urlFilter == "sub") {
-  finalArray = aniOneAsia2.slice().filter((a) => {
-    return a?.episodes?.[0]?.audio == "ja";
-  });
-} else if (urlFilter == "dub") {
-  finalArray = aniOneAsia2.slice().filter((a) => {
-    return a?.episodes?.[0]?.audio !== "ja";
-  });
-} else {
-  finalArray = aniOneAsia2.slice();
-}
-
-const seen = new Map();
-finalArray = finalArray.filter((a) => {
-  const url = a?.episodes?.[0]?.url;
-  if (!url || seen.has(url)) return false;
-  seen.set(url, true);
-  return true;
-});
-
-if (name == "new") {
-  finalArray.sort((a, b) => {
-    const dateA = dayjs(a?.startDate ?? "2000-1-1");
-    const dateB = dayjs(b?.startDate ?? "2000-1-1");
-    return dateB.valueOf() - dateA.valueOf();
-  });
-} else if (name == "popular") {
-  finalArray.sort((a, b) => {
-    const scoreA = a?.score ?? 0.0;
-    const scoreB = b?.score ?? 1.0;
-    return scoreB - scoreA;
-  });
-} else if (name == "old") {
-  finalArray.sort((a, b) => {
-    const dateA = dayjs(a?.startDate ?? "2000-1-1");
-    const dateB = dayjs(b?.startDate ?? "2000-1-1");
-    return dateA.valueOf() - dateB.valueOf();
+//redirect to /404 if not the valid name for which this page is configured
+if (!name || !validNames.includes(name as string)) {
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: "/404",
+    },
   });
 }
-const pageTitle = `Watch ${label} Online Free | Anikawa`;
-let pageDescription;
-let keywords;
-switch (name) {
-  case "new":
-    pageDescription =
-      "Discover the latest anime releases added to Anikawa. Subbed and dubbed episodes, no ads, just pure anime streaming.";
-    keywords =
-      "new anime, latest anime releases, subbed anime, dubbed anime, watch new anime online, Anikawa";
-    break;
-  case "popular":
-    pageDescription =
-      "Explore the most popular anime ranked by fans. Watch top-rated subbed and dubbed series online, ad-free.";
-    keywords =
-      "popular anime, top anime, best anime series, subbed anime, dubbed anime, watch popular anime online, Anikawa";
-    break;
-  case "old":
-    pageDescription =
-      "Rediscover classic and nostalgic anime series from the past. Watch timeless subbed and dubbed episodes on Anikawa, ad-free.";
-    keywords =
-      "old anime, classic anime, nostalgic anime, retro anime, subbed anime, dubbed anime, watch old anime online, Anikawa";
-    break;
-  default:
-    pageDescription = "Stream anime online with Anikawa — subbed and dubbed episodes, no ads, just pure fan-powered content.";
-    keywords = "anime streaming, subbed anime, dubbed anime, watch anime online, Anikawa";
-}
 
-const pageUrl = `https://anikawa.vercel.app/list/${name}`;
-const backdrop = `https://anikawa.vercel.app/anikawa-${name}-og-img-pc.png`;
+//values assignment as per config
+const currentConfig = listConfig.find((i) => i.name == name);
+const {
+  srOnly,
+  label,
+  animeList,
+  pageTitle,
+  pageDescription,
+  keywords,
+  pageUrl,
+  backdrop,
+} = currentConfig ?? {};
+const filterFn = filterMap[urlFilter];
+
+const finalArray = animeList?.filter(filterFn);
 ---
 
 <html lang="en">
@@ -114,10 +54,10 @@ const backdrop = `https://anikawa.vercel.app/anikawa-${name}-og-img-pc.png`;
           <NewPopButtons n={name} client:load />
         </header>
         <section>
-          <h2 class="sr-only">{standardName} Anime List</h2>
+          <h2 class="sr-only">{srOnly}</h2>
           <ul class="new-pop-anime-list">
             {
-              finalArray?.map((ani, i) => {
+              finalArray?.map((ani) => {
                 return <AnimeCardStatic anime={ani} fornewpop={true} />;
               })
             }

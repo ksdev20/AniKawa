@@ -9,6 +9,7 @@ import { getAnimeById, getEpisodebySlug } from '../../filters/getAnimeById';
 import Fuse from 'fuse.js';
 import AnimeCardReact from '../AnimeCard/AnimeCardReact';
 import { useDebounce } from 'use-debounce';
+import { Icon } from '../../icons/icons';
 
 const animeOptions = {
     keys: [
@@ -117,13 +118,9 @@ export default function SearchCSR() {
             <div className="search-top">
                 <div className="st-bar-div">
                     <input className="search-input" type="search" placeholder="Search..." value={query} onChange={(e) => setQuery(e.target.value)} autoFocus />
-                    <div onClick={() => { setQuery('') }}>
-                        <svg className="search-clear-btn" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960"
-                            width="28px" fill="#ffffff">
-                            <path
-                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                        </svg>
-                    </div>
+                    <button onClick={() => { setQuery('') }} className={`search-clear-btn ${query == '' ? 'hidden' : ''}`}>
+                        <Icon name='close' size={28} />
+                    </button>
                 </div>
             </div>
             <div className="profile-main">

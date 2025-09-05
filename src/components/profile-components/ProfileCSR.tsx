@@ -9,6 +9,7 @@ import '../../styles/profiletw.css';
 import './bco-acotw.css';
 import { useState, useEffect, useRef } from 'react';
 import fetchUserDetails, { setOnlyUserData } from "../../global_assets/FetchUserDetails";
+import { Icon } from "../../icons/icons";
 const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
 
 export default function ProfileCSR() {
@@ -136,11 +137,7 @@ export default function ProfileCSR() {
                             setOpenBco(false);
                             if (profileBanner) setSB(profileBanner);
                         }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#ffffff">
-                                <path
-                                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                            </svg>
+                            <Icon name="close" />
                         </div>
                     </div>
                     <div className="choose-section">
@@ -195,11 +192,7 @@ export default function ProfileCSR() {
                             setOpenAco(false);
                             if (profileAvatar) setSA(profileAvatar);
                         }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#ffffff">
-                                <path
-                                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-                            </svg>
+                            <Icon name="close" />
                         </div>
                     </div>
                     <div id="avatars-list" className="avatars-list wk-sb">

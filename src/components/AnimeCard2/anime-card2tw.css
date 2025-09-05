@@ -14,7 +14,7 @@
 }
 
 .anime-card-2-heading {
-    @apply text-[30px] font-[500] mb-3 max-w-fit cursor-pointer;
+    @apply text-[30px] font-[500] mb-3 cursor-pointer max-w-fit;
 }
 
 .anime-card-2-heading:hover {

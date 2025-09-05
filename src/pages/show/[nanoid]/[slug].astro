@@ -1,19 +1,20 @@
 ---
-import "../../../styles/animePagetw.css";
-import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
-import { type Anime } from "../../../types/mergedListTypes";
-//, type EpisodeCardProps
-import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
-import Navbar from "../../../components/Navbar/Navbar";
-import Footer from "../../../components/Footer/Footer";
-import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import { getAnimeById } from "../../../filters/getAnimeById";
-import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
+import { type Anime } from "../../../types/mergedListTypes";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
+import "../../../styles/animePagetw.css";
+import Navbar from "../../../components/Navbar/Navbar";
 import { getOptimizedImageUrl } from "../../../utils/imageSizing";
+import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
+import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
+import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
+import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
+import Footer from "../../../components/Footer/Footer";
+import { Icon } from "../../../icons/icons";
+
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
-let anime = getAnimeById(nanoid) as Anime | null;
+const anime = getAnimeById(nanoid) as Anime | null;
 
 if (anime == null || !anime.episodes == null) {
   return new Response(null, {
@@ -23,14 +24,6 @@ if (anime == null || !anime.episodes == null) {
     },
   });
 }
-
-let episodeList = anime?.episodes ?? [];
-
-if (sort == "new") {
-  episodeList = [...episodeList].reverse();
-}
-
-const genresA = anime?.genres ?? [];
 
 const {
   title = "Untitled",
@@ -44,35 +37,26 @@ const {
   startDate = "N/A",
   endDate = "N/A",
   seasons = 1,
-  genres = ["N/A"],
+  genres,
+  genres: genresA = [],
   season,
+  episodes: episodeList,
   keywords,
 } = anime ?? {};
 
+if (sort == "new") {
+  episodeList.reverse();
+}
+
 const titleAlt = seasons > 1 ? `${title} Season - ${season}` : title;
-const language = anime?.episodes?.[0]?.audio == "ja" ? "Subtitled" : "Sub|Dub";
-const episodes = episodeList.length ?? "N/A";
+const language = "Subtitled";
+const episodes = episodeList.length;
 const type = "Anime";
+const usedTitlesGlobal = [title, title, title];
 
 const siteUrl = `https://anikawa.vercel.app`;
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
 const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: title, item: pageUrl },
-      ],
-    },
-    {},
-  ],
-};
-
-const usedTitlesGlobal = [title, title, title];
 ---
 
 <html lang="en">
@@ -187,16 +171,11 @@ const usedTitlesGlobal = [title, title, title];
         <section id="episodes-section" class="episodes-section">
           <header class="top-controls">
             <div class="top-controls-btn">
-              <svg
-                class="arrow-down"
-                xmlns="http://www.w3.org/2000/svg"
-                height="30px"
-                viewBox="0 -960 960 960"
-                width="30px"
-                fill="#ffffff"
-              >
-                <path d="M480-360 280-560h400L480-360Z"></path>
-              </svg>
+              <Icon
+                name="arrowdown"
+                size={30}
+                className="arrow-down"
+              />
               <h2 id="season-text" class="season-text">
                 S{season}: {title}
               </h2>
@@ -221,32 +200,22 @@ const usedTitlesGlobal = [title, title, title];
           <div class="episode-list-endline"></div>
           <div class="season-change-section">
             <div class="season-change-section scs-part">
-              <svg
-                class="chevron-arrow"
-                xmlns="http://www.w3.org/2000/svg"
-                height="15px"
-                viewBox="0 -960 960 960"
-                width="15px"
-                fill="#808080"
-              >
-                <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"
-                ></path>
-              </svg>
+              <Icon
+                name="keyleft"
+                color="#808080"
+                size={15}
+                className="chevron-arrow"
+              />
               PREVIOUS SEASON
             </div>
             <div class="season-change-section scs-part">
               NEXT SEASON
-              <svg
-                class="chevron-arrow"
-                xmlns="http://www.w3.org/2000/svg"
-                height="15px"
-                viewBox="0 -960 960 960"
-                width="15px"
-                fill="#808080"
-              >
-                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"
-                ></path>
-              </svg>
+              <Icon
+                name="keyright"
+                color="#808080"
+                size={15}
+                className="chevron-arrow"
+              />
             </div>
           </div>
         </section>
@@ -257,7 +226,7 @@ const usedTitlesGlobal = [title, title, title];
               bigH: "Other Seasons",
               forAnimePageSeasons: true,
               animeTitle: title,
-              toNotInclude: nanoid
+              toNotInclude: nanoid,
             }}
           />
         </section>

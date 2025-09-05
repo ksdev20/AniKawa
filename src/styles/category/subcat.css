@@ -16,6 +16,10 @@
     @apply text-white underline;
 }
 
+.sub-cat-name{
+    color: white;
+}
+
 .sub-cat-name::before{
     content: '/';
     @apply px-2 text-[gray] text-2xl no-underline;

@@ -74,8 +74,28 @@ export const iconJson: IconJsonProps[] = [
         viewbox: A
     },
     {
+        name: 'arrowdown',
+        path: "M480-360 280-560h400L480-360Z",
+        viewbox: A
+    },
+    {
+        name: 'library-add',
+        path: "M520-400h80v-120h120v-80H600v-120h-80v120H400v80h120v120ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z",
+        viewbox: A
+    },
+    {
+        name: 'delete',
+        path: "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z",
+        viewbox: A
+    },
+    {
+        name: 'sort',
+        path: "M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z",
+        viewbox: A
+    },
+    {
         name: '',
-        path: '',
+        path: "",
         viewbox: A
     },
 ]

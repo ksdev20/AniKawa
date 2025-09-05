@@ -16,10 +16,6 @@ export default function AnimeSliderCSR() {
     clientW: 700,
   });
 
-  function getSl() {
-    return sliderRef.current;
-  }
-
   //sets sliderRef
   useLayoutEffect(() => {
     if (markerRef.current) {
