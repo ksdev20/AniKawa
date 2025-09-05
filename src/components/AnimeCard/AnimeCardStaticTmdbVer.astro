@@ -4,7 +4,7 @@ import { getOptimizedImageUrl } from "../../utils/imageSizing";
 import WBtn2 from "./WBtn2";
 import { Icon } from "../../icons/icons";
 
-const { anime, forNewPop = false } = Astro.props;
+const { anime, forNewPop = false, forCategory = false } = Astro.props;
 if (anime?.episodes?.length == 0) return null;
 
 const {
@@ -31,7 +31,7 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
 ---
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
-  <article class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""}`}>
+  <article class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""} ${forCategory ? 'ac-for-cat' : ''}`}>
     <a href={`/show/${nanoid}/${slug}`} class="anime-card-link">
       <span class="sr-only">Go to {title} Anime Page</span>
     </a>

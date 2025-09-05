@@ -27,6 +27,10 @@
 }
 
 .cat-slider {
+    @apply mt-4 mb-0;
+}
+
+.cat-slider:is(:first-child){
     @apply mt-10;
 }
 

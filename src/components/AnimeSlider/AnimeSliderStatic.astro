@@ -93,7 +93,7 @@ const structuredData = {
                 </a>
             </header>
             <section class="slider-content-wrapper">
-                <SliderContainer animeArray={filteredAnimeList} />
+                <SliderContainer animeArray={filteredAnimeList} forCategory={forCategoryPage}/>
             </section>
         </section>
         <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>

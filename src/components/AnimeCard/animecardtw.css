@@ -30,7 +30,11 @@
 }
 
 .anime-card-first {
-    @apply relative flex flex-col h-auto w-[18vw] min-w-[185px] max-w-[290px] gap-3 p-2.5;
+    @apply relative flex flex-col h-auto w-[18vw] min-w-[170px] max-w-[290px] gap-3 p-2.5;
+}
+
+.anime-card-first.ac-for-cat{
+    @apply max-w-[180px];
 }
 
 .anime-card-image {

@@ -4,12 +4,13 @@ import AnimeCardStatic from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 import AnimeSliderCSR from "./AnimeSliderCSR";
 
 const animeArray = (Astro.props.animeArray || []) as Anime[];
+const { forCategory } = Astro.props;
 ---
 
 <ul class="slider-container">
     {
         animeArray?.map((a) => {
-            return <AnimeCardStatic anime={a} />;
+            return <AnimeCardStatic anime={a} forCategory={forCategory}/>;
         })
     }
 </ul>

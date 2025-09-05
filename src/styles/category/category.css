@@ -8,6 +8,12 @@
     @apply list-none w-full max-w-[1250px] px-10 flex flex-col;
 }
 
+@media (max-width: 500px) {
+    .category-main{
+        @apply px-0
+    }
+}
+
 .category-top {
     @apply mt-12 w-full flex flex-col items-center justify-center;
 }
