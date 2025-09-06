@@ -1,24 +1,21 @@
 ---
 import "../../../../styles/category/subcat.css";
-import "../../../../components/watchlist-history/wat-his.css";
+import '../../../../styles/lists/n-p-a-l.css';
 import Navbar from "../../../../components/Navbar/Navbar";
 import Footer from "../../../../components/Footer/Footer";
 import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer";
 import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import SEOHead from "../../../../components/SEO/SEOHead.astro";
+import { getSubCatHead } from "../../../../config/headConfig";
 
 const { mainCategory, subCategory } = Astro.params;
 const finalArray = getFilteredAnime("matchCategories", {
   categoryA: mainCategory,
   categoryB: subCategory,
-  forSubCategory: true,
+  forSubCatPage: true,
 });
 
-const pageTitle = `${mainCategory} / ${subCategory} Anime`;
-const pageDescription = `Browse the ultimate list of ${mainCategory} + ${subCategory} anime. From cult classics to new releases, Anikawa brings you a fan-curated experience with no ads.`;
-const keywords = `${mainCategory} ${subCategory} anime, ${mainCategory} anime, ${subCategory} anime, watch ${mainCategory} ${subCategory} anime online, Anikawa`;
-const pageUrl = `https://anikawa.vercel.app/category/${mainCategory}/${subCategory}`;
-const backdrop = `https://anikawa.vercel.app/anikawa-sub-category-og-img-pc.png`;
+const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getSubCatHead(mainCategory, subCategory);
 ---
 
 <html>
@@ -52,10 +49,10 @@ const backdrop = `https://anikawa.vercel.app/anikawa-sub-category-og-img-pc.png`
             </span>
           </div>
         </header>
-        <ul id="sub-cat-anime-list" class="new-pop-anime-list">
+        <ul class="new-pop-anime-list">
           {
             finalArray.map((anime, i) => (
-              <AnimeCardStatic anime={anime} fornewpop={true} />
+              <AnimeCardStatic anime={anime} forNewPop={true} />
             ))
           }
         </ul>

@@ -16,40 +16,7 @@
     @apply antialiased text-2xl;
 }
 
-.new-first-right {
-    @apply flex items-center w-fit gap-1 p-1;
-}
-
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24
-}
-
-.new-pop-ac {
-    width: 100%;
-}
-
-.new-pop-anime-list {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    @apply grid gap-3 mt-5 w-full max-w-full justify-center list-none;
-}
-
-.np-watchlist {
-    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-}
-
 @media (max-width: 312px) {
-    .np-watchlist {
-        grid-template-columns: repeat(auto-fill, 100%);
-    }
-
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fit, 100%);
-    }
-
     .new-first-heading {
         font-size: 15px;
     }
@@ -60,15 +27,6 @@
 }
 
 @media (min-width: 313px) and (max-width: 500px) {
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
-    }
-
-    .np-watchlist {
-        gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
-    }
-
     .new-first-heading {
         font-size: 22px;
     }
@@ -76,14 +34,4 @@
     .filter-name {
         display: none;
     }
-}
-
-.np-watchlist.skeletons.hidden {
-    display: none;
-}
-
-/*LOADING CONTENT N MAIN CONTENT LAYOUT HANDLER*/
-
-.new-pop-anime-list.hidden {
-    display: none;
 }

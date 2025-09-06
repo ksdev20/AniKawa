@@ -1,12 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500..600&display=swap');
 @import 'tailwindcss';
 
 .anime-card {
     @apply relative no-underline select-none cursor-pointer pb-2.5;
 }
 
+.new-pop-ac {
+    width: 100%;
+}
+
+.anime-card-link {
+    @apply absolute inset-0 z-[3] cursor-pointer outline-none;
+}
+
+.anime-card-first {
+    @apply relative flex flex-col h-auto w-[18vw] min-w-[170px] max-w-[290px] gap-3 p-2.5;
+}
+
 .new-pop-anime-card {
     width: unset;
     max-width: 200px;
+}
+
+.anime-card-first.ac-for-cat {
+    @apply max-w-[180px];
 }
 
 @media (max-width: 312px) {
@@ -25,24 +42,19 @@
     }
 }
 
-.anime-card-link {
-    @apply absolute inset-0 z-[3] cursor-pointer outline-none;
-}
-
-.anime-card-first {
-    @apply relative flex flex-col h-auto w-[18vw] min-w-[170px] max-w-[290px] gap-3 p-2.5;
-}
-
-.anime-card-first.ac-for-cat{
-    @apply max-w-[180px];
-}
-
 .anime-card-image {
     @apply w-full aspect-[2/3] object-cover;
 }
 
 .anime-card-title {
-    @apply line-clamp-3 text-ellipsis text-sm font-bold text-white;
+    font-family: 'Montserrat';
+    @apply line-clamp-3 text-ellipsis text-sm font-medium text-white;
+}
+
+@media (min-width: 1400px){
+    .anime-card-title{
+        @apply text-base font-semibold;
+    }
 }
 
 .anime-card-hover {
@@ -159,7 +171,7 @@
     opacity: 1;
 }
 
-.ac-wbtn{
+.ac-wbtn {
     @apply p-1;
 }
 

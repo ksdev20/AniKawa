@@ -36,11 +36,7 @@
 }
 
 .watchlist-main {
-    @apply p-0 hidden mt-7 mb-0;
-}
-
-.watchlist-main.active{
-    display: flex;
+    @apply p-0 mt-7 mb-0;
 }
 
 .wm-top {
@@ -56,11 +52,7 @@
 }
 
 .history-main {
-    @apply p-0 hidden mt-7 mb-0;
-}
-
-.history-main.active{
-    display: flex;
+    @apply p-0 mt-7 mb-0;
 }
 
 .clear-history {
@@ -74,15 +66,11 @@
 
 .empty-wh {
     height: clamp(300px, 300px, 400px);
-    @apply mt-7 border border-dashed w-full hidden flex-col items-center justify-center mb-[75px];
-}
-
-.empty-wh.active{
-    display: flex;
+    @apply mt-7 border border-dashed w-full flex flex-col items-center justify-center mb-[75px];
 }
 
 .wat-des {
-    @apply hidden py-7 max-w-[400px] leading-6 text-[#f5f5f5] text-center;
+    @apply py-7 max-w-[400px] leading-6 text-[#f5f5f5] text-center;
 }
 
 .wat-des.active {
@@ -127,86 +115,4 @@
 
 .wh-top-bar{
     @apply flex items-center w-full justify-between;
-}
-
-/*lists*/
-.new-pop-anime-list {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    @apply grid gap-2 mt-5 w-full max-w-full justify-center list-none;
-}
-
-.np-watchlist {
-    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-}
-
-@media (max-width: 312px) {
-    .anime-card-first {
-        min-width: unset;
-    }
-
-    .np-watchlist {
-        grid-template-columns: repeat(auto-fill, 100%);
-    }
-
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fit, 100%);
-    }
-
-    .new-first-heading {
-        font-size: 15px;
-    }
-
-    .filter-name {
-        display: none;
-    }
-
-    .site-footer {
-        justify-content: unset;
-        @apply flex-col gap-1;
-    }
-
-    .sf-separator {
-        display: none;
-    }
-}
-
-
-@media (min-width: 313px) and (max-width: 500px) {
-    .anime-card-first {
-        min-width: 155px;
-    }
-
-    .new-pop-anime-card{
-        min-width: 155px;
-    }
-
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fill, minmax(170px, 170px));
-    }
-
-    .np-watchlist {
-        gap: 10px;
-        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
-    }
-
-    .slider-btn {
-        padding: 5px;
-    }
-
-    .new-first-heading {
-        font-size: 22px;
-    }
-
-    .filter-name {
-        display: none;
-    }
-
-    .site-footer {
-        justify-content: unset;
-        @apply flex-col gap-2;
-    }
-
-    .sf-separator {
-        display: none;
-    }
 }

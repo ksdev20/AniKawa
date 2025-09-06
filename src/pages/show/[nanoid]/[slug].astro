@@ -44,9 +44,7 @@ const {
   keywords,
 } = anime ?? {};
 
-if (sort == "new") {
-  episodeList.reverse();
-}
+const sortedEpList = sort == 'new' ? [...episodeList].reverse() : episodeList;
 
 const titleAlt = seasons > 1 ? `${title} Season - ${season}` : title;
 const language = "Subtitled";
@@ -54,7 +52,6 @@ const episodes = episodeList.length;
 const type = "Anime";
 const usedTitlesGlobal = [title, title, title];
 
-const siteUrl = `https://anikawa.vercel.app`;
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
 const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
 ---
@@ -184,7 +181,7 @@ const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
           </header>
           <ul class="episodes-list">
             {
-              episodeList?.map((e: any) => {
+              sortedEpList?.map((e: any) => {
                 const epData: any = {
                   animeTitle: title,
                   language,

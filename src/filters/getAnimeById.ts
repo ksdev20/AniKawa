@@ -1,10 +1,9 @@
-// import aniOneData2 from '../data/aniOneData2.json';
-import aniOneData2 from '../data/mergedList.json';
+import animeArray from '../data/mergedList.json';
 import type { Episode } from '../types/mergedListTypes';
 
 export function getAnimeById(nanoid: string | undefined): any{
     if (nanoid == undefined) return [];
-    return aniOneData2.find(a => a.nanoid == nanoid);
+    return animeArray.find(a => a.nanoid == nanoid);
 }
 
 export function getEpisodebySlug(animeId : string, epSlug: string): any{

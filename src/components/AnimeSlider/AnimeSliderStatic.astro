@@ -21,21 +21,21 @@ const {
 
 let filteredAnimeList;
 
-if (filterName == "matchCategories") {
-    if (forCategoryPage) {
-        filteredAnimeList = getFilteredAnime("matchCategories", {
-            categoryA: categoryA,
-            categoryB: categoryB,
-            usedTitlesGlobal,
-        });
-    } else {
-        filteredAnimeList = getFilteredAnime("matchCategories", {
-            genresA: genresA,
-            usedTitlesGlobal,
-        });
-    }
-} else if (forAnimePageSeasons){
+if (forCategoryPage) {
+    filteredAnimeList = getFilteredAnime("matchCategories", {
+        categoryA: categoryA,
+        categoryB: categoryB,
+        usedTitlesGlobal,
+    });
+}
+else if (forAnimePageSeasons){
     filteredAnimeList = getOtherSeasons(animeTitle, toNotInclude);
+}
+else if (filterName == "matchCategories") {
+    filteredAnimeList = getFilteredAnime("matchCategories", {
+        genresA: genresA,
+        usedTitlesGlobal,
+    });
 }
 else {
     filteredAnimeList = getFilteredAnime(filterName, { usedTitlesGlobal });

@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 
 .new-first-right {
-    @apply flex items-center w-fit gap-1 p-1;
+    @apply flex items-center w-fit gap-1 p-1 cursor-pointer;
 }
 
 .new-first-right.active {
-    @apply bg-[--c-com];
+    @apply bg-[var(--c-com)];
 }
 
 .new-first-right.active .filter-name,
@@ -14,15 +14,11 @@
 }
 
 .part {
-    @apply p-0 flex-col select-none relative inline-block z-10 cursor-pointer;
+    @apply p-0 flex-col select-none relative block z-10 cursor-pointer;
 }
 
 .filter-name {
     @apply text-sm text-[gray] font-bold;
-}
-
-.filter-by-sub-dub {
-    @apply text-sm text-[gray];
 }
 
 .part:hover {

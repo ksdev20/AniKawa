@@ -1,0 +1,15 @@
+export const categories = [
+    "Popular",
+    "New",
+    "Action",
+    "Adventure",
+    "Comedy",
+    "Drama",
+    "Fantasy",
+    "Music",
+    "Romance",
+    "Sci-Fi",
+    "Sports",
+    "Supernatural",
+    "Thriller",
+];

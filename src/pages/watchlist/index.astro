@@ -1,22 +1,12 @@
 ---
+import SEOHead from "../../components/SEO/SEOHead.astro";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
 import WatHisCSR from "../../components/watchlist-history/WatHisCSR";
+import Footer from "../../components/Footer/Footer";
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Your Watchlist | Anikawa</title>
-        <link rel="icon" type="image/png" href="/icon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
-			rel="stylesheet"
-		/>
-    </head>
+    <SEOHead title="Your Watchlist | Anikawa" />
     <body>
         <Navbar client:load />
         <WatHisCSR caller="w" client:load/>

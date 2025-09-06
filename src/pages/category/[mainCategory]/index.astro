@@ -1,33 +1,15 @@
 ---
+import { categories } from "../../../config/categoryConfig";
 import "../../../styles/category/category.css";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
-
+import { getCatHead } from "../../../config/headConfig";
 const { mainCategory } = Astro.params;
 
-const categories = [
-  "Popular",
-  "New",
-  "Action",
-  "Adventure",
-  "Comedy",
-  "Drama",
-  "Fantasy",
-  "Music",
-  "Romance",
-  "Sci-Fi",
-  "Sports",
-  "Supernatural",
-  "Thriller",
-];
-
-const pageTitle = `${mainCategory} Anime`;
-const pageDescription = `Explore the best ${mainCategory} anime handpicked for fans. Discover trending series, hidden gems, and timeless classics across genres.`;
-const keywords = `${mainCategory} anime, ${mainCategory} anime list, ${mainCategory} anime recommendations, watch ${mainCategory} anime online, Anikawa`;
-const pageUrl = `https://anikawa.vercel.app/category/${mainCategory}`;
-const backdrop = `https://anikawa.vercel.app/anikawa-category-og-img-pc.png`;
+const { pageTitle, pageDescription, keywords, pageUrl, backdrop } =
+  getCatHead(mainCategory as string);
 ---
 
 <html lang="en">
@@ -50,7 +32,9 @@ const backdrop = `https://anikawa.vercel.app/anikawa-category-og-img-pc.png`;
           <h2 class="category-text">
             {mainCategory}
           </h2>
-          <h3 class="category-text cat-des">Start Watching {mainCategory} Hits</h3>
+          <h3 class="category-text cat-des">
+            Start Watching {mainCategory} Hits
+          </h3>
         </header>
       </section>
       <div class="category-main">
@@ -66,7 +50,7 @@ const backdrop = `https://anikawa.vercel.app/anikawa-category-og-img-pc.png`;
                   filterName: "matchCategories",
                   categoryA: mainCategory,
                   categoryB: cat,
-                  forCategoryPage: true
+                  forCategoryPage: true,
                 }}
               />
             );
@@ -76,5 +60,4 @@ const backdrop = `https://anikawa.vercel.app/anikawa-category-og-img-pc.png`;
     </main>
     <Footer />
   </body>
-
 </html>

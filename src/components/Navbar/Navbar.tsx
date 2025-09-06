@@ -1,4 +1,3 @@
-import "../../styles/config.css";
 import "./navbartw.css";
 import { useState, useEffect } from "react";
 import { categoryItems, legalItems, npoItems } from "../../config/navItems";

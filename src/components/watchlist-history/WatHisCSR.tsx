@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
-import "../../styles/config.css";
-import "./wat-histw.css";
-import SortBtnHandler from "../ButtonHandlers/SortBtnHandler";
-import {
-  getWatchlistItems,
-  getHistoryItems,
-} from "../../filters/wat-his-match-logic";
 import { type Anime, type Episode } from "../../types/mergedListTypes";
-import EpisodeCard from "../EpisodeCard/EpisodeCard";
-import AnimeCardReact from "../AnimeCard/AnimeCardReact";
-import ClearHisBtn from "./ClearHisBtn";
+import "./wat-histw.css";
+import "../../styles/lists/n-p-a-l.css";
+import "../../styles/lists/e-l.css";
 import { Icon } from "../../icons/icons";
-const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+import SortBtnHandler from "../ButtonHandlers/SortBtnHandler";
+import AnimeCardReact from "../AnimeCard/AnimeCardReact";
+import EpisodeCard from "../EpisodeCard/EpisodeCard";
+import ClearHisBtn from "./ClearHisBtn";
+import { backendUrl } from "../../global_assets/globalPaths";
+import { getAnimeById, getEpisodebySlug } from "../../filters/getAnimeById";
+
+function Loader({ show }: { show: boolean }) {
+  if (!show) return null;
+  return (
+    <div className="relative h-[20vh] w-full">
+      <div className="absolute top-[50%] left-[50%] translate-[-50%] w-6 h-6 border-4 border-t-transparent border-[var(--c-main)] rounded-full animate-spin"></div>
+    </div>
+  );
+}
 
 export default function WatHisCSR({ caller }: { caller: string }) {
-  const field = caller == "w" ? "watchlist" : "history";
   const forWatchlist = caller == "w";
+  const field = forWatchlist ? "watchlist" : "history";
   const [watchlist, setWatchist] = useState<Anime[]>([]);
   const [history, setHistory] = useState<Episode[]>([]);
+  const [showLoader, setShowLoader] = useState(true);
   const [sort, setSort] = useState("new");
-  const [listEmpty, setLE] = useState(false);
+  const [listEmpty, setListEmpty] = useState(false);
 
   const getList = (sortParam: string) => {
     fetch(`${backendUrl}/api/getList?field=${field}`, {
@@ -29,20 +37,26 @@ export default function WatHisCSR({ caller }: { caller: string }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          const titleList = data.data;
-          const finalList =
-            caller == "w"
-              ? getWatchlistItems(titleList)
-              : getHistoryItems(titleList);
-          if (sortParam == "new") finalList.reverse();
-          caller == "w" ? setWatchist(finalList) : setHistory(finalList);
-          if (finalList.length == 0) setLE(true);
+          setShowLoader(false);
+          const dbList = data.data;
+          let finalList;
+          if (forWatchlist) {
+            if (sortParam == "new") dbList.reverse();
+            finalList = dbList.map((id: string) => getAnimeById(id));
+            setWatchist(finalList);
+          } else {
+            finalList = dbList.map((obj: any) =>
+              getEpisodebySlug(obj.animeId, obj.slug)
+            );
+            setHistory(finalList);
+          }
+          if (finalList.length == 0) setListEmpty(true);
         } else {
           alert(`Failed to fetch ${field.toUpperCase()}`);
         }
       })
       .catch((e) => {
-        console.error(e.message);
+        console.warn(e.message);
       });
   };
 
@@ -63,70 +77,76 @@ export default function WatHisCSR({ caller }: { caller: string }) {
         </div>
         <nav className="buttons-section">
           <a
-            className={`wh-btn ${caller == "w" ? "active" : ""}`}
-            href={`${caller == "h" ? "/watchlist" : "javascript:void(0)"}`}
+            className={`wh-btn ${forWatchlist ? "active" : ""}`}
+            {...(!forWatchlist ? { href: "/watchlist" } : undefined)}
             aria-label="Watchlist page"
           >
             WATCHLIST
           </a>
           <a
-            className={`wh-btn ${caller == "h" ? "active" : ""}`}
-            href={`${caller == "w" ? "/history" : "javascript:void(0)"}`}
+            className={`wh-btn ${!forWatchlist ? "active" : ""}`}
+            {...(forWatchlist ? { href: "/history" } : undefined)}
             aria-label="History page"
           >
             HISTORY
           </a>
         </nav>
-        <section
-          className={`wat-his-main-box watchlist-main ${caller == "w" && !listEmpty ? "active" : ""}`}
-        >
-          <header className="wh-top-bar">
-            <h2 className="left-heading">
-              {sort == "new" ? "Recently Added" : "Oldest added"}
-            </h2>
-            <div id="sort-btn-wat" className="new-first-right part">
-              <SortBtnHandler watHisAsking={true}/>
-            </div>
-          </header>
-          <ul id="watchlist-list" className="new-pop-anime-list">
-            {forWatchlist &&
-              watchlist.map((anime, i) => (
-                <AnimeCardReact key={i} anime={anime} forNewPop={true} />
-              ))}
-          </ul>
-        </section>
-        <section
-          id="history-main"
-          className={`wat-his-main-box history-main ${caller == "h" && !listEmpty ? "active" : ""}`}
-        >
-          <header className="wm-top hm-top">
-            <h2 className="left-heading">Most Recent</h2>
-            <ClearHisBtn />
-          </header>
-          <ul id="history-list" className="episodes-list el-history">
-            {!forWatchlist &&
-              history.map((epData, i) => <EpisodeCard key={i} epData={epData} forHistory={true}/>)}
-          </ul>
-        </section>
-        <div id="empty-wh" className={`empty-wh ${listEmpty ? "active" : ""}`}>
-          <Icon name="library-add" size={70} />
-          <div
-            id="watchlist-des"
-            className={`wat-des ${caller == "w" ? "active" : ""}`}
+        {forWatchlist && !listEmpty && (
+          <section className={`wat-his-main-box watchlist-main`}>
+            <header className="wh-top-bar">
+              <h2 className="left-heading">
+                {sort == "new" ? "Recently Added" : "Oldest added"}
+              </h2>
+              <div id="sort-btn-wat" className="new-first-right part">
+                <SortBtnHandler watHisAsking={true} />
+              </div>
+            </header>
+            <Loader show={showLoader} />
+            <ul id="watchlist-list" className="new-pop-anime-list">
+              {forWatchlist &&
+                watchlist.map((anime, i) => (
+                  <AnimeCardReact key={i} anime={anime} forNewPop={true} />
+                ))}
+            </ul>
+          </section>
+        )}
+        {!forWatchlist && !listEmpty && (
+          <section
+            id="history-main"
+            className={`wat-his-main-box history-main`}
           >
-            Nothing is added in your watchlist.Come on let's add some amazing
-            anime to watch !
-          </div>
-          <div
-            id="history-des"
-            className={`wat-des ${caller == "h" ? "active" : ""}`}
-          >
-            Your history is empty man come on watch something !
-          </div>
-          <a className="goto-home-btn" href="/">
-            GO TO HOME FEED
-          </a>
-        </div>
+            <header className="wm-top hm-top">
+              <h2 className="left-heading">Most Recent</h2>
+              <ClearHisBtn />
+            </header>
+            <Loader show={showLoader} />
+            <ul id="history-list" className="episodes-list el-history">
+              {!forWatchlist &&
+                history.map((epData, i) => (
+                  <EpisodeCard key={i} epData={epData} forHistory={true} />
+                ))}
+            </ul>
+          </section>
+        )}
+        {listEmpty && (
+          <section id="empty-wh" className={`empty-wh`}>
+            <Icon name="library-add" size={70} />
+            {forWatchlist && (
+              <h2 className={`wat-des`}>
+                Nothing is added in your watchlist.Come on let's add some
+                amazing anime to watch !
+              </h2>
+            )}
+            {!forWatchlist && (
+              <h2 className={`wat-des`}>
+                Your history is empty man come on watch something !
+              </h2>
+            )}
+            <a className="goto-home-btn" href="/">
+              GO TO HOME FEED
+            </a>
+          </section>
+        )}
       </section>
     </main>
   );

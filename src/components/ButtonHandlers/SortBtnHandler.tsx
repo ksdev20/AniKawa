@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import "../../styles/animePagetw.css";
 import "./sortbuttonstw.css";
 import { Icon } from "../../icons/icons";
 
-type SbhProps = {
+interface prop{
   watHisAsking?: boolean;
 };
 
-export default function SortBtnHandler({ watHisAsking = false }: SbhProps) {
-  const [currentSort, setCurrentSort] = useState<string | null>(null);
+export default function SortBtnHandler({ watHisAsking = false }: prop) {
+  const [currentSort, setCurrentSort] = useState<string>('old');
   const [showDd, setShowDd] = useState(false);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const sort = watHisAsking ? (urlParams.get("sort") ??  "new") : (urlParams.get("sort") ??  "old");
+    const fallback = watHisAsking ? 'new' : 'old';
+    const sort = urlParams.get("sort") ??  fallback;
     setCurrentSort(sort);
 
     if (watHisAsking) return;
@@ -23,7 +23,7 @@ export default function SortBtnHandler({ watHisAsking = false }: SbhProps) {
       const yOffset = -100;
       const y =
         elDiv.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: "instant" });
     }
   }, []);
 
@@ -55,7 +55,7 @@ export default function SortBtnHandler({ watHisAsking = false }: SbhProps) {
             <a
               key={btn.filter}
               href={`?sort=${btn.filter}#scroll`}
-              className={`dropdown-new-pop-btn pop-new ${currentSort && currentSort == btn.filter ? "active" : ""}`}
+              className={`dropdown-new-pop-btn ${currentSort == btn.filter ? "active" : ""}`}
             >
               {btn.text}
             </a>

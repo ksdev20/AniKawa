@@ -25,10 +25,6 @@
     @apply px-2 text-[gray] text-2xl no-underline;
 }
 
-.sub-cat-anime-list {
-    @apply flex w-full flex-wrap gap-4 justify-center;
-}
-
 .sub-cat-anime-card {
     @apply w-[25vw] max-w-[214px];
 }

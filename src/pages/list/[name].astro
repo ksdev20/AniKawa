@@ -1,6 +1,7 @@
 ---
 import { validNames, listConfig, filterMap } from "../../config/listConfig";
 import "../../styles/new-poptw.css";
+import '../../styles/lists/n-p-a-l.css';
 import SEOHead from "../../components/SEO/SEOHead.astro";
 import Navbar from "../../components/Navbar/Navbar";
 import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
@@ -9,6 +10,7 @@ import Footer from "../../components/Footer/Footer";
 
 const { name } = Astro.params;
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
+
 //redirect to /404 if not the valid name for which this page is configured
 if (!name || !validNames.includes(name as string)) {
   return new Response(null, {
@@ -51,14 +53,14 @@ const finalArray = animeList?.filter(filterFn);
       <section class="main-content" aria-labelledby="anime-list-heading">
         <header class="new-first">
           <h1 class="new-first-heading">{label}</h1>
-          <NewPopButtons n={name} client:load />
+          <NewPopButtons listName={name} client:load />
         </header>
         <section>
           <h2 class="sr-only">{srOnly}</h2>
           <ul class="new-pop-anime-list">
             {
-              finalArray?.map((ani) => {
-                return <AnimeCardStatic anime={ani} fornewpop={true} />;
+              finalArray?.map((anime) => {
+                return <AnimeCardStatic anime={anime} forNewPop={true} />;
               })
             }
           </ul>

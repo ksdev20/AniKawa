@@ -23,13 +23,12 @@
 }
 
 .category-text {
-    font-weight: 400;
-    font-size: 30px;
+    font-family: 'Winky Sans';
+    @apply text-3xl font-medium;
 }
 
 .cat-des {
-    margin-top: 10px;
-    font-size: 15px;
+    @apply mt-2 text-base text-[gray];
 }
 
 
