@@ -1,18 +1,10 @@
 ---
+import SEOHead from '../../components/SEO/SEOHead.astro';
 import ProfileCSR from '../../components/profile-components/ProfileCSR';
 ---
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Your Profile | Anikawa</title>
-        <link rel="icon" type="image/png" href="/icon.png" />
-        <link
-			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
-			rel="stylesheet"
-		/>
-    </head>
+    <SEOHead title="Your Profile | Anikawa" description="Profile page of User of Anikawa"/>
     <body>
         <ProfileCSR client:load />
     </body>

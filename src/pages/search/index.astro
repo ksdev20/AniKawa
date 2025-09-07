@@ -2,20 +2,14 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import SearchCSR from "../../components/SearchCsr/SearchCSRTmdbVer";
+import SEOHead from "../../components/SEO/SEOHead.astro";
 ---
 
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href="/icon.png" />
-        <title>Search Anime</title>
-    </head>
-
-    <body>
-        <Navbar client:load />
-        <SearchCSR client:load />
-        <div></div>
-        <Footer />
-    </body>
+  <SEOHead title="Search Anime & Episodes | Anikawa" />
+  <body>
+    <Navbar client:load />
+    <SearchCSR client:load />
+    <Footer />
+  </body>
 </html>

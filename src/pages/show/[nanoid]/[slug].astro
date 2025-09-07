@@ -44,7 +44,7 @@ const {
   keywords,
 } = anime ?? {};
 
-const sortedEpList = sort == 'new' ? [...episodeList].reverse() : episodeList;
+const sortedEpList = sort == "new" ? [...episodeList].reverse() : episodeList;
 
 const titleAlt = seasons > 1 ? `${title} Season - ${season}` : title;
 const language = "Subtitled";
@@ -54,6 +54,37 @@ const usedTitlesGlobal = [title, title, title];
 
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
 const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
+
+const metedataConfig = [
+  {
+    dt: "Type:",
+    dd: type,
+  },
+  {
+    dt: "Episodes:",
+    dd: episodes,
+  },
+  {
+    dt: "Status",
+    dd: status,
+  },
+  {
+    dt: "Duration:",
+    dd: runtime,
+  },
+  {
+    dt: "Aired:",
+    dd: `${startDate} to ${endDate}`,
+  },
+  {
+    dt: "This Season:",
+    dd: season,
+  },
+  {
+    dt: "Total Seasons:",
+    dd: seasons,
+  },
+];
 ---
 
 <html lang="en">
@@ -114,39 +145,19 @@ const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
             </div>
             <article class="description-section">
               <div class="des-only">
-                <p
-                  id="description-anime-hero"
-                  class="description-anime-hero"
-                  set:html={description}
-                />
+                <p id="description-anime-hero" class="description-anime-hero">
+                  {description}
+                </p>
               </div>
               <dl id="other-metadata" class="other-metadata">
-                <div class="metadata-value">
-                  <dt class="metadata-label">Type:</dt>
-                  <dd>{type}</dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">Episodes:</dt><dd>{episodes}</dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">Status:</dt><dd>{status}</dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">Duration:</dt><dd>{runtime}</dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">Aired:</dt><dd>
-                    {startDate} to {endDate}
-                  </dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">This Season:</dt><dd>{season}</dd>
-                </div>
-                <div class="metadata-value">
-                  <dt class="metadata-label">Total seasons:</dt><dd>
-                    {seasons}
-                  </dd>
-                </div>
+                {
+                  metedataConfig.map((obj) => (
+                    <div class="metadata-value">
+                      <dt class="metadata-label">{obj.dt}</dt>
+                      <dd>{obj.dd}</dd>
+                    </div>
+                  ))
+                }
                 <div class="metadata-value">
                   <dt class="metadata-label">Genres:</dt><dd>
                     {
@@ -168,11 +179,7 @@ const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
         <section id="episodes-section" class="episodes-section">
           <header class="top-controls">
             <div class="top-controls-btn">
-              <Icon
-                name="arrowdown"
-                size={30}
-                className="arrow-down"
-              />
+              <Icon name="arrowdown" size={30} className="arrow-down" />
               <h2 id="season-text" class="season-text">
                 S{season}: {title}
               </h2>

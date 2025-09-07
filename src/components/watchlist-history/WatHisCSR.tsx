@@ -20,14 +20,40 @@ function Loader({ show }: { show: boolean }) {
   );
 }
 
+type listsType = {
+  watchlist: Anime[];
+  history: Episode[];
+  showLoader: boolean;
+  listEmpty: boolean;
+};
+
 export default function WatHisCSR({ caller }: { caller: string }) {
   const forWatchlist = caller == "w";
+
   const field = forWatchlist ? "watchlist" : "history";
-  const [watchlist, setWatchist] = useState<Anime[]>([]);
-  const [history, setHistory] = useState<Episode[]>([]);
-  const [showLoader, setShowLoader] = useState(true);
+
+  const [states, setStates] = useState<listsType>({
+    watchlist: [],
+    history: [],
+    showLoader: true,
+    listEmpty: false
+  });
+  
   const [sort, setSort] = useState("new");
-  const [listEmpty, setListEmpty] = useState(false);
+
+  function onSuccess(sortParam: string, data: any) {
+    const dbList = data.data;
+    let finalList;
+    if (forWatchlist) {
+      if (sortParam == "new") dbList.reverse();
+      finalList = dbList.map((id: string) => getAnimeById(id));
+    } else {
+      finalList = dbList.map((obj: any) =>
+        getEpisodebySlug(obj.animeId, obj.slug)
+      );
+    }
+    setStates(prev => ({...prev, showLoader: false, [field]: finalList, listEmpty: finalList.length == 0 }))
+  }
 
   const getList = (sortParam: string) => {
     fetch(`${backendUrl}/api/getList?field=${field}`, {
@@ -37,20 +63,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          setShowLoader(false);
-          const dbList = data.data;
-          let finalList;
-          if (forWatchlist) {
-            if (sortParam == "new") dbList.reverse();
-            finalList = dbList.map((id: string) => getAnimeById(id));
-            setWatchist(finalList);
-          } else {
-            finalList = dbList.map((obj: any) =>
-              getEpisodebySlug(obj.animeId, obj.slug)
-            );
-            setHistory(finalList);
-          }
-          if (finalList.length == 0) setListEmpty(true);
+          onSuccess(sortParam, data);
         } else {
           alert(`Failed to fetch ${field.toUpperCase()}`);
         }
@@ -91,7 +104,7 @@ export default function WatHisCSR({ caller }: { caller: string }) {
             HISTORY
           </a>
         </nav>
-        {forWatchlist && !listEmpty && (
+        {forWatchlist && !states.listEmpty && (
           <section className={`wat-his-main-box watchlist-main`}>
             <header className="wh-top-bar">
               <h2 className="left-heading">
@@ -101,16 +114,16 @@ export default function WatHisCSR({ caller }: { caller: string }) {
                 <SortBtnHandler watHisAsking={true} />
               </div>
             </header>
-            <Loader show={showLoader} />
+            <Loader show={states.showLoader} />
             <ul id="watchlist-list" className="new-pop-anime-list">
               {forWatchlist &&
-                watchlist.map((anime, i) => (
+                states.watchlist.map((anime, i) => (
                   <AnimeCardReact key={i} anime={anime} forNewPop={true} />
                 ))}
             </ul>
           </section>
         )}
-        {!forWatchlist && !listEmpty && (
+        {!forWatchlist && !states.listEmpty && (
           <section
             id="history-main"
             className={`wat-his-main-box history-main`}
@@ -119,16 +132,16 @@ export default function WatHisCSR({ caller }: { caller: string }) {
               <h2 className="left-heading">Most Recent</h2>
               <ClearHisBtn />
             </header>
-            <Loader show={showLoader} />
+            <Loader show={states.showLoader} />
             <ul id="history-list" className="episodes-list el-history">
               {!forWatchlist &&
-                history.map((epData, i) => (
+                states.history.map((epData, i) => (
                   <EpisodeCard key={i} epData={epData} forHistory={true} />
                 ))}
             </ul>
           </section>
         )}
-        {listEmpty && (
+        {states.listEmpty && (
           <section id="empty-wh" className={`empty-wh`}>
             <Icon name="library-add" size={70} />
             {forWatchlist && (

@@ -75,7 +75,7 @@
 .banners-list {
     column-count: 2;
     column-gap: 10px;
-    @apply relative z-[4] p-5 bg-[var(--c-sec)] w-full py-7.5 px-2.5 select-none overflow-y-auto;
+    @apply relative z-[4] p-5 bg-[var(--c-sec)] w-full py-7.5 px-2.5 select-none overflow-y-auto list-none;
 }
 
 @media (max-width: 600px){
@@ -140,7 +140,7 @@
 ;}
 
 .avatars-list {
-    @apply flex flex-wrap w-full py-5 px-7 bg-[var(--c-sec)] gap-10 select-none max-h-[100%] overflow-y-auto;
+    @apply flex flex-wrap w-full py-5 px-7 bg-[var(--c-sec)] gap-10 select-none max-h-[100%] overflow-y-auto list-none;
 }
 
 .avatar-section {

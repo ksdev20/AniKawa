@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import "./log-signtw.css";
 import fetchUserDetails from "../../global_assets/FetchUserDetails";
-import Footer from "../Footer/Footer";
-const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
+import { backendUrl } from "../../global_assets/globalPaths";
+import { Icon } from "../../icons/icons";
 
 type AuthFormProps = {
   keyword: string;
@@ -71,52 +71,40 @@ export default function AuthForm({
   buttonLabel,
   apiEndPoint,
 }: AuthFormProps) {
-  const pageTitle =
-    keyword == "l" ? "Login to Your Account" : "Sign up for Anikawa";
-  const [validEmail, setValidEmail] = useState(true);
-  const [validPassword, setValidPassword] = useState(true);
-  const [validButton, setValidButton] = useState(false);
-
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const [formState, setFormState] = useState({
+    email: "",
+    password: "",
+    validEmail: true,
+    validPassword: true,
+    validButton: false,
+  });
+  const [showPassword, setShowPassword] = useState(false);
   const actionBtn = useRef<HTMLButtonElement | null>(null);
 
-  const validateAll = () => {
-    const emailVal = emailRef?.current?.value ?? "";
-    const passwordVal = passwordRef?.current?.value ?? "";
+  const validate = (email: string, password: string) => ({
+    validEmail: isValidEmail(email),
+    validPassword: isValidPassword(password),
+  });
 
-    const emailOk = isValidEmail(emailVal);
-    const passwordOk = isValidPassword(passwordVal);
-
-    setValidEmail(emailOk);
-    setValidPassword(passwordOk);
-    setValidButton(emailOk && passwordOk);
-  };
-
-  useEffect(() => {
-    const eRef = emailRef.current;
-    const pRef = passwordRef.current;
-
-    if (!eRef || !pRef) return;
-
-    eRef.addEventListener("input", validateAll);
-    pRef.addEventListener("input", validateAll);
-
-    eRef.addEventListener("change", validateAll);
-    pRef.addEventListener("change", validateAll);
-
-    return () => {
-      eRef.removeEventListener("input", validateAll);
-      pRef.removeEventListener("input", validateAll);
-      eRef.removeEventListener("change", validateAll);
-      pRef.removeEventListener("change", validateAll);
+  const handleChange =
+    (field: "email" | "password") =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      const updated = { ...formState, [field]: value };
+      const { validEmail, validPassword } = validate(
+        updated.email,
+        updated.password
+      );
+      setFormState({
+        ...updated,
+        validEmail,
+        validPassword,
+        validButton: validEmail && validPassword,
+      });
     };
-  }, []);
 
   function apiCall() {
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
-
+    const { email, password } = formState;
     if (!email || !password) return;
 
     fetch(`${backendUrl}/api/${apiEndPoint}`, {
@@ -151,6 +139,9 @@ export default function AuthForm({
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
   }, []);
 
   return (
@@ -169,10 +160,14 @@ export default function AuthForm({
           <h1 id="ls-title" className="main-heading">
             {title}
           </h1>
-          <div className="form-section">
-            <div className="form-section email">
+          <section className="form-section">
+            <form
+              className="form-section email"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
-                ref={emailRef}
+                value={formState.email}
+                onChange={handleChange("email")}
                 type="email"
                 id="email"
                 placeholder=" "
@@ -182,15 +177,21 @@ export default function AuthForm({
               <label
                 htmlFor="email"
                 id="email-label"
-                className={`${!validEmail ? "invalid" : ""}`}
+                className={`${!formState.validEmail ? "invalid" : ""}`}
               >
-                {validEmail ? "Email Address" : "Invalid Email Address"}
+                {formState.validEmail
+                  ? "Email Address"
+                  : "Invalid Email Address"}
               </label>
-            </div>
-            <div className="form-section password">
+            </form>
+            <form
+              className="form-section password"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
-                ref={passwordRef}
-                type="password"
+                value={formState.password}
+                onChange={handleChange("password")}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 placeholder=" "
                 autoComplete="password"
@@ -198,25 +199,37 @@ export default function AuthForm({
               />
               <label
                 htmlFor="password"
-                className={`floating-label ${!validPassword ? "invalid" : ""}`}
+                className={`floating-label ${!formState.validPassword ? "invalid" : ""}`}
                 id="password-label"
               >
-                Password
+                {formState.validPassword ? "Pasword" : "Invalid Password"}
               </label>
-            </div>
-            {keyword == "s" ? (
+              <button
+                type="button"
+                className="show-hide-btn"
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  setShowPassword((prev) => !prev);
+                }}
+              >
+                {showPassword ? (
+                  <Icon name="visibility" color="#666" />
+                ) : (
+                  <Icon name="visibility-off" color="#666" />
+                )}
+              </button>
+            </form>
+            {keyword == "s" && (
               <label className="password-note">
                 Use at least 6 characters, do not use empty spaces
               </label>
-            ) : (
-              <div></div>
             )}
-          </div>
+          </section>
           <button
             ref={actionBtn}
-            className={`create-account-btn ${validButton ? "active" : ""}`}
+            className={`create-account-btn ${formState.validButton ? "active" : ""}`}
             onClick={() => {
-              if (validButton) {
+              if (formState.validButton) {
                 apiCall();
               }
             }}
@@ -226,7 +239,6 @@ export default function AuthForm({
           <LinksElement keyword={keyword} />
         </section>
       </main>
-      <Footer />
     </>
   );
 }
