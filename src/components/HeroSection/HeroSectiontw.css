@@ -21,7 +21,7 @@
 }
 
 .hs-anime-img {
-    @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none;
+    @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none border-3 border-transparent group-focus-visible:border-white;
 }
 
 .hs-anime-banner {
@@ -37,7 +37,7 @@
 }
 
 .hs-title-img {
-    @apply w-[80%] h-auto max-w-[400px];
+    @apply w-[80%] h-auto max-w-[400px]  border-2 border-transparent group-focus-visible:border-white;
 }
 
 @media (max-width: 600px) {

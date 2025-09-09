@@ -5,8 +5,15 @@
 }
 
 .anime-card-2-image {
-    @apply block w-full min-w-[250px] max-w-[275px] object-cover object-center
-    aspect-square cursor-pointer ml-5 rounded-full;
+    @apply block w-full min-w-[250px] max-w-[275px] object-cover object-center aspect-square cursor-pointer ml-5 border-4 border-transparent rounded-full;
+}
+
+.a-ac2-img:focus-visible .anime-card-2-image {
+    @apply outline-0 border-[var(--c-main)];
+}
+
+.a-ac2-title:focus-visible .anime-card-2-heading{
+    @apply underline;
 }
 
 .anime-card-2-details {
@@ -18,7 +25,7 @@
 }
 
 .anime-card-2-heading:hover {
-    @apply no-underline;
+    @apply underline;
 }
 
 .anime-card-2-para {
@@ -48,8 +55,7 @@
 }
 
 .anime-card-2-watchlist-btn {
-    @apply flex justify-center items-center w-[200px] h-11 gap-1
-    border-2 border-[#8c52ff] bg-transparent cursor-pointer;
+    @apply flex justify-center items-center w-[200px] h-11 gap-1 border-2 border-[#8c52ff] bg-transparent cursor-pointer;
 }
 
 .anime-card-2-watchlist-text {
