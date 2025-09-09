@@ -4,6 +4,7 @@ import fetchUserDetails from "../../global_assets/FetchUserDetails";
 type AnimeWbtnProps = {
   nanoid: string;
   forAC2?: boolean;
+  tabIndex: number;
 };
 
 type MainBtnProps = {
@@ -33,6 +34,7 @@ function MainWBtn({ addedStatus }: MainBtnProps) {
 export default function AnimeWBtn({
   nanoid = "xyzxyz",
   forAC2 = false,
+  tabIndex = 0,
 }: AnimeWbtnProps) {
   const markerRef = useRef<HTMLButtonElement | null>(null);
   const tooltipRef = useRef<Element | null | undefined>(null);
@@ -90,6 +92,7 @@ export default function AnimeWBtn({
 
   return forAC2 ? (
     <button
+      tabIndex={tabIndex}
       className="anime-card-2-watchlist-btn"
       onClick={fetchFunction}
       aria-label="Add Anime to Watchlist."
@@ -103,6 +106,7 @@ export default function AnimeWBtn({
     </button>
   ) : (
     <button
+      tabIndex={tabIndex}
       aria-label="Add Anime to Watchlist"
       type="button"
       ref={markerRef}

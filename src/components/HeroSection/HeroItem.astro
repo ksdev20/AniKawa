@@ -5,8 +5,9 @@ import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 
 const { nId, i } = Astro.props;
 const anime = getAnimeById(nId);
+const isFirst = i == 0;
 const {
-  nanoid = 'n-a',
+  nanoid = "n-a",
   slug,
   title = "untitled",
   description,
@@ -48,7 +49,11 @@ const imgD = "async";
 <li class="hero-section-root">
   <article>
     <div class="hs-img-section">
-      <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img outline-0 group">
+      <a
+        href={`/show/${nanoid}/${slug}`}
+        class="hs-anime-img outline-0 group"
+        tabindex={isFirst ? 0 : -1}
+      >
         <div class="sr-only">Go to Anime {title} Page</div>
         <img
           class="hs-anime-img"
@@ -61,7 +66,11 @@ const imgD = "async";
       </a>
       <div class="hero-section-overlay">
         <h2 class="hs-title">{title}</h2>
-        <a href={`/show/${nanoid}/${slug}`} class="w-fit outline-0 group">
+        <a
+          href={`/show/${nanoid}/${slug}`}
+          class="w-fit outline-0 group"
+          tabindex={isFirst ? 0 : -1}
+        >
           <div class="sr-only">Go to Anime {title} Page</div>
           <img
             class="hs-title-img"
@@ -81,12 +90,17 @@ const imgD = "async";
             href={`/episode/${nanoid}/${ep1Slug}`}
             aria-label={`Start
                         watching ${title}, episode 1`}
+            tabindex={isFirst ? 0 : -1}
           >
-            <Icon name="play" size={28} color="#000000"/>
+            <Icon name="play" size={28} color="#000000" />
             START WATCHING S1 E1
           </a>
-          <div class="watchlist-btn">
-            <AnimeWBtn nanoid={nanoid} client:load />
+          <div class="watchlist-btn" tabindex={isFirst ? 0 : -1}>
+            <AnimeWBtn
+              nanoid={nanoid}
+              client:load
+              tabIndex={isFirst ? 0 : -1}
+            />
           </div>
         </div>
       </div>
