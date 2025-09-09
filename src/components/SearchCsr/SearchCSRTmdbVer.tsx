@@ -125,6 +125,7 @@ export default function SearchCSR() {
             autoFocus
           />
           <button
+            aria-label="Clear Search Field"
             onClick={() => setQuery("")}
             className={`search-clear-btn ${query == "" ? "hidden" : ""}`}
           >
@@ -133,13 +134,15 @@ export default function SearchCSR() {
         </div>
       </section>
       <section className="profile-main">
-        {hasSearched && animeResults.length == 0 && episodeResults.length == 0 && (
-          <div className="relative w-full h-30">
-            <span className="absolute top-[50%] left-[50%] translate-x-[-50%] text-base text-[gray]">
-              No results found, try different search.
-            </span>
-          </div>
-        )}
+        {hasSearched &&
+          animeResults.length == 0 &&
+          episodeResults.length == 0 && (
+            <div className="relative w-full h-30">
+              <span className="absolute top-[50%] left-[50%] translate-x-[-50%] text-base text-[gray]">
+                No results found, try different search.
+              </span>
+            </div>
+          )}
         <div className="profile-main search-results">
           {animeResults.length > 0 && (
             <section id="ar-box" className="mov-ser-section show">

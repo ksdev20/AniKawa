@@ -127,7 +127,7 @@ export default function AuthForm({
         }
       })
       .catch((e) => {
-        console.error(e.message);
+        console.warn(e.message);
       });
   }
 
@@ -147,10 +147,10 @@ export default function AuthForm({
   return (
     <>
       <header className="topbar">
-        <a href="/" className="website-logo">
+        <a href="/" className="website-logo" aria-label="Website Logo">
           <img
             className="website-logo"
-            src="/logo.png"
+            src="/logo.webp"
             alt="Website logo of Anikawa"
           />
         </a>
@@ -205,6 +205,7 @@ export default function AuthForm({
                 {formState.validPassword ? "Pasword" : "Invalid Password"}
               </label>
               <button
+                aria-label={showPassword ? "Hide Password" : "Show Password"}
                 type="button"
                 className="show-hide-btn"
                 onMouseDown={(e) => {
@@ -226,6 +227,7 @@ export default function AuthForm({
             )}
           </section>
           <button
+            aria-label={`Submit Form to ${apiEndPoint}`}
             ref={actionBtn}
             className={`create-account-btn ${formState.validButton ? "active" : ""}`}
             onClick={() => {

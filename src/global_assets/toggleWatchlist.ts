@@ -40,7 +40,7 @@ const toggleWatchlist = (nanoid: string, btn: HTMLButtonElement) => {
       }
     })
     .catch((e) => {
-      console.error(e.message);
+      console.warn(e.message);
     }).finally(updatePath);
 };
 

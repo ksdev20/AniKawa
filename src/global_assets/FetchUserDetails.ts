@@ -26,6 +26,7 @@ async function retryFUD(retries: number, delayMs: number): Promise<boolean> {
 }
 
 export default async function fetchUserDetails(retries = 3, delayMs = 1000) {
+    console.log("fud called");
     try {
         const res = await fetch(`${backendUrl}/api/user`, {
             method: 'GET',
@@ -67,16 +68,19 @@ export async function checkCookie() {
         if (data.success) {
             setLogin('t');
             createEvent();
+            console.log("logged in");
             return true;
         } else {
             setLogin('f');
             createEvent();
+            console.log("not logged in");
             return false;
         }
     } catch (e) {
         console.warn(e);
         setLogin('f');
         createEvent();
+        console.log("not logged in");
         return false;
     }
 }

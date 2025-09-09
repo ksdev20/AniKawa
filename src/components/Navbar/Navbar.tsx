@@ -129,7 +129,7 @@ export default function Navbar() {
             {menuOpen ? <Icon name="close" /> : <Icon name="menu" />}
           </button>
           <a aria-label="Homepage" href="/">
-            <img src="/logo.png" alt="Website Logo" className="website-logo" />
+            <img src="/logo.webp" alt="Website Logo" className="website-logo" />
           </a>
         </section>
         <section className="nav-right" aria-label="Nav Right">

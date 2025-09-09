@@ -42,7 +42,7 @@ const {
                 PLAY
             </div>
         </div>
-        <a href={`/episode/${animenanoid}/${slug}`} class="episode-card-link"></a>
+        <a href={`/episode/${animenanoid}/${slug}`} class="episode-card-link"> <div class="sr-only">Go to {titleAlt} of {animeTitle}</div></a>
     </article>
     {forHistory && (
         <EDelBtn animenanoid={animenanoid} slug={slug} client:load />

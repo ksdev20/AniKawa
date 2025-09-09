@@ -10,34 +10,35 @@ const anime: any = thisYearTopByCategory(category, usedTitlesAC2);
 if (!anime) return null;
 const { nanoid, slug, title, description, poster } = anime ?? {};
 const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
-const language = 'Subtitled';
+const language = "Subtitled";
 ---
 
 <section class="wrapper">
+  <a href={`/show/${nanoid}/${slug}`}
+    ><img
+      class="anime-card-2-image"
+      src={poster}
+      loading="lazy"
+      decoding="async"
+      alt={`Cover of ${title}`}
+    />
+    <div class="sr-only">Go to {title} Page</div>
+  </a>
+  <div class="anime-card-2-details">
     <a href={`/show/${nanoid}/${slug}`}
-        ><img
-            class="anime-card-2-image"
-            src={poster}
-            loading="lazy"
-            decoding="async"
-            alt={`Cover of ${title}`}
-        /></a
+      ><h2 class="anime-card-2-heading">{title}</h2></a
     >
-    <div class="anime-card-2-details">
-        <a href={`/show/${nanoid}/${slug}`}
-            ><h2 class="anime-card-2-heading">{title}</h2></a
-        >
-        <span class="anime-card-sub-dub">{language}</span>
-        <p class="anime-card-2-para">{description}</p>
-        <div class="anime-card-2-btn-section">
-            <a
-                href={`/episode/${nanoid}/${ep1Slug}`}
-                class="start-watching-btn card-2"
-            >
-                <Icon name="play" size={28} color="#000000" />
-                START WATCHING S1 E1
-            </a>
-            <AnimeWBtn client:load nanoid={nanoid} forAC2={true} />
-        </div>
+    <span class="anime-card-sub-dub">{language}</span>
+    <p class="anime-card-2-para">{description}</p>
+    <div class="anime-card-2-btn-section">
+      <a
+        href={`/episode/${nanoid}/${ep1Slug}`}
+        class="start-watching-btn card-2"
+      >
+        <Icon name="play" size={28} color="#000000" />
+        START WATCHING S1 E1
+      </a>
+      <AnimeWBtn client:load nanoid={nanoid} forAC2={true} />
     </div>
+  </div>
 </section>

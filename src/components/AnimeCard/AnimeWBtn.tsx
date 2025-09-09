@@ -57,7 +57,7 @@ export default function AnimeWBtn({
   }, [addedStatus]);
 
   function fetchFunction() {
-    if (localStorage.getItem("isLoggedIn") == "false"){
+    if (localStorage.getItem("isLoggedIn") == "false") {
       return;
     }
     const action = addedStatus ? "deleteFromList" : "addToList";
@@ -84,27 +84,32 @@ export default function AnimeWBtn({
         }
       })
       .catch((e) => {
-        console.error(e.message);
+        console.warn(e.message);
       });
   }
 
   return forAC2 ? (
-    <button className="anime-card-2-watchlist-btn" onClick={fetchFunction}>
-      <div><MainWBtn addedStatus={addedStatus}/></div>
+    <button
+      className="anime-card-2-watchlist-btn"
+      onClick={fetchFunction}
+      aria-label="Add Anime to Watchlist."
+    >
+      <div>
+        <MainWBtn addedStatus={addedStatus} />
+      </div>
       <div className="anime-card-2-watchlist-text">
         {addedStatus ? "IN WATCHLIST" : "ADD TO WATCHLIST"}
       </div>
     </button>
   ) : (
     <button
+      aria-label="Add Anime to Watchlist"
       type="button"
       ref={markerRef}
       onClick={fetchFunction}
       className="ac-wbtn"
     >
-      <MainWBtn
-        addedStatus={addedStatus}
-      />
+      <MainWBtn addedStatus={addedStatus} />
     </button>
   );
 }

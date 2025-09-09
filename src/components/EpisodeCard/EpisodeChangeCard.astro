@@ -28,5 +28,7 @@ const thumbnail = getEpImg(Obj);
       </p>
     </div>
   </div>
-  <a href={`/episode/${nanoid}/${slug}`} class="eccc-link"></a>
+  <a href={`/episode/${nanoid}/${slug}`} class="eccc-link">
+    <div class="sr-only">Go to {titleAlt} of {animeTitle}</div>
+  </a>
 </section>

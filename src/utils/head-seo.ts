@@ -24,5 +24,18 @@ export const metadata = {
         description: 'Stream anime in HD — powered by AniList',
         creator: '@AnikawaTeam',
         images: ['/og-image.jpg'],
+    },
+    jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Anikawa",
+        "url": "https://anikawa.vercel.app",
+        "image": "https://anikawa.vercel.app/anikawa-og-img-pc.png",
+        "description": "AniKawa is the fastest, cleanest way to stream anime online — no ads, no popups, no BS. Just subbed and dubbed episodes.",
+        "alternateName": "Anikawa Anime hub",
+        "publisher": {
+            "name": "Anikawa",
+            "url": "https://anikawa.vercel.app"
+        }
     }
 }

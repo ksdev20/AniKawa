@@ -8,6 +8,7 @@ export default function EpisodeCard({
   epData: any;
   forHistory?: boolean;
 }) {
+  if (!epData) return null;
   const {
     animeTitle = "Anime Title N/A",
     language = "Language N/A",
@@ -47,11 +48,13 @@ export default function EpisodeCard({
         <a
           href={`/episode/${animenanoid}/${slug}`}
           className="episode-card-link"
-        ></a>
+        >
+          <div className="sr-only">
+            Go to Episode{epNum} of Anime {animeTitle}
+          </div>
+        </a>
       </article>
-      {forHistory && (
-        <EDelBtn animenanoid={animenanoid} slug={slug}/>
-      )}
+      {forHistory && <EDelBtn animenanoid={animenanoid} slug={slug} />}
     </li>
   );
 }

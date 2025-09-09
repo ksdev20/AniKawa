@@ -234,6 +234,7 @@ export default function ProfileCSR() {
               alt={`Current selected banner`}
             />
             <button
+              aria-label="Close Banner Change Section"
               id="sbs-cross-btn"
               className="sbs-cross-btn"
               onClick={handleBcoClose}
@@ -308,6 +309,7 @@ export default function ProfileCSR() {
               </div>
             </div>
             <button
+              aria-label="Close Avatar Change Section"
               id="cross-btn-avatar"
               className="cross-btn-avatar"
               onClick={handleAcoClose}
@@ -338,6 +340,7 @@ export default function ProfileCSR() {
                 alt={`Saved banner of user ${name}`}
               />
               <button
+                aria-label="Open Banner Change Section"
                 className="profile-banner-hover"
                 onClick={() => {
                   setMainStates((prev) => ({ ...prev, openBco: true }));
@@ -361,6 +364,7 @@ export default function ProfileCSR() {
                 alt={`Saved profile picture of user ${name}`}
               />
               <button
+              aria-label="Open Avatar Change Section"
                 className="profile-pic-hover"
                 onClick={() => {
                   setMainStates((prev) => ({ ...prev, openAco: true }));

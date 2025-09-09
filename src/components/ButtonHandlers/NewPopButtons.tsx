@@ -3,7 +3,11 @@ import "./sortbuttonstw.css";
 import { Icon } from "../../icons/icons";
 import { buttons } from "../../config/npButtonsConfig";
 
-export default function NewPopButtons({ listName }: { listName: string | undefined }) {
+export default function NewPopButtons({
+  listName,
+}: {
+  listName: string | undefined;
+}) {
   const [activeIdx, setActiveIdx] = useState(-1);
   const [showSortDd, setSortDd] = useState(false);
   const [showFilterDd, setFilterDd] = useState(false);
@@ -57,7 +61,8 @@ export default function NewPopButtons({ listName }: { listName: string | undefin
       aria-label="Sorting and Filtering Button Section"
     >
       {buttons.map((btn, i) => {
-        const filter = btn.filter;
+        const { filter, text } = btn;
+        const lowered = text.toLowerCase();
         return (
           <section
             key={i}
@@ -65,13 +70,14 @@ export default function NewPopButtons({ listName }: { listName: string | undefin
             data-filter={filter}
           >
             <button
+              aria-label={`${lowered} button`}
               className={`new-first-right ${activeIdx == i ? "active" : ""}`}
               onClick={() => {
                 handleMainBtnClick(i, filter);
               }}
             >
               <Icon {...btn.iconProps} />
-              <span className="filter-name">{btn.text}</span>
+              <span className="filter-name">{text}</span>
             </button>
             <aside
               className={`dropdown-new-pop ${activeIdx == i && (showSortDd || showFilterDd) ? "active" : ""}`}
@@ -81,6 +87,7 @@ export default function NewPopButtons({ listName }: { listName: string | undefin
                 const isActive = subFilter == activeFilter;
                 return (
                   <button
+                    aria-label={`${subFilter} Button of dropdown for ${lowered}`}
                     key={idx}
                     className={`dropdown-new-pop-btn ${subFilter == listName ? "active" : ""}`}
                     data-filter={subFilter}

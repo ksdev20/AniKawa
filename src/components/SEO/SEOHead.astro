@@ -1,104 +1,100 @@
 ---
 import { metadata } from "../../utils/head-seo";
 
-interface SeoHeadProps{
-    title: string,
-    description: string,
-    keywords: string,
-    ogDescription: string,
-    url: string,
-    imageUrl: string,
-    author: string,
+interface SeoHeadProps {
+  title: string;
+  description: string;
+  keywords: string;
+  ogDescription: string;
+  url: string;
+  imageUrl: string;
+  author: string;
+  jsonLd: any;
 }
 
 const {
-    title = metadata.title,
-    description = metadata.description,
-    keywords = metadata.keywords,
-    ogDescription = metadata.openGraph.description,
-    url = metadata.metadataBase,
-    imageUrl = metadata.openGraph.images[0].url,
-    author = metadata.author.name,
+  title = metadata.title,
+  description = metadata.description,
+  keywords = metadata.keywords,
+  ogDescription = metadata.openGraph.description,
+  url = metadata.metadataBase,
+  imageUrl = metadata.openGraph.images[0].url,
+  author = metadata.author.name,
+  jsonLd,
 } = Astro.props as SeoHeadProps;
+
+const isHomepage = Astro.url.pathname === "/";
 ---
 
 <head>
-    <meta name="google-site-verification" content="vEH7rFp5e6T6_isjgXCBKERLRSojxPC2-SoB1sfLJwA" />
-    <title>{title}</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <meta name="author" content={author} />
-    <meta
-        name="robots"
-        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-    />
+  <meta
+    name="google-site-verification"
+    content="vEH7rFp5e6T6_isjgXCBKERLRSojxPC2-SoB1sfLJwA"
+  />
+  <title>{title}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={author} />
+  <meta
+    name="robots"
+    content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+  />
 
-    <meta name="og:type" content="website" />
-    <meta name="og:url" content={url} />
-    <meta name="og:title" content={title} />
-    <meta name="og:description" content={ogDescription} />
-    <meta name="og:site_name" content="Anikawa" />
-    <meta
-        name="og:image"
-        content="https://anikawa.vercel.app/anikawa-og-img-pc.png"
-    />
-    <meta name="og:image:width" content="1200" />
-    <meta name="og:image:height" content="630" />
-    <meta name="og:image:alt" content="AniKawa - Watch Anime Free in HD" />
+  <meta name="og:type" content="website" />
+  <meta name="og:url" content={url} />
+  <meta name="og:title" content={title} />
+  <meta name="og:description" content={ogDescription} />
+  <meta name="og:site_name" content="Anikawa" />
+  <meta
+    name="og:image"
+    content="https://anikawa.vercel.app/anikawa-og-img-pc.png"
+  />
+  <meta name="og:image:width" content="1200" />
+  <meta name="og:image:height" content="630" />
+  <meta name="og:image:alt" content="AniKawa - Watch Anime Free in HD" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@anikawa" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta
-        name="twitter:image"
-        content={imageUrl}
-    />
-    <meta name="twitter:creator" content="Anikawa Team" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@anikawa" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
+  <meta name="twitter:creator" content="Anikawa Team" />
 
-    <link rel="canonical" href={url} />
-    <link rel="sitemap" type="application/xml" title="AniKawa Sitemap" href="https://anikawa.vercel.app/sitemap.xml" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="192x192"
-        href="/android-chrome-192x192"
-    />
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="512x512"
-        href="/android-chrome-512x512"
-    />
-    <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href={url} />
+  <link
+    rel="sitemap"
+    type="application/xml"
+    title="AniKawa Sitemap"
+    href="https://anikawa.vercel.app/sitemap.xml"
+  />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/android-chrome-192x192"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="/android-chrome-512x512"
+  />
+  <link rel="manifest" href="/site.webmanifest" />
 
-    {Astro.url.pathname === '/' && (<script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Anikawa",
-            "url": "https://anikawa.vercel.app",
-            "image": "https://anikawa.vercel.app/anikawa-og-img-pc.png",
-            "description": "AniKawa is the fastest, cleanest way to stream anime online — no ads, no popups, no BS. Just subbed and dubbed episodes.",
-            "alternateName": "Anikawa Anime hub",
-            "publisher": {
-                "@type": "Organisation",
-                "name": "Anikawa",
-                "url": "https://anikawa.vercel.app"
-            }
-        }
-    </script>)}
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/josefinsans/v20/..." type="font/woff2" crossorigin="anonymous" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=LXGW+Marker+Gothic&family=Monoton&family=Poetsen+One&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet"
-    />
-    <slot />
+  {
+    isHomepage && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )
+  }
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500..600&family=Poetsen+One&family=Winky+Sans&display=swap"
+    as="style"
+    onload="this.onLoad=null;this.rel='stylesheet'"
+  />
+  <slot />
 </head>

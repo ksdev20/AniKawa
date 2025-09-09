@@ -49,6 +49,7 @@ const imgD = "async";
   <article>
     <div class="hs-img-section">
       <a href={`/show/${nanoid}/${slug}`} class="hs-anime-img">
+        <div class="sr-only">Go to Anime {title} Page</div>
         <img
           class="hs-anime-img"
           src={poster}
@@ -61,6 +62,7 @@ const imgD = "async";
       <div class="hero-section-overlay">
         <h2 class="hs-title">{title}</h2>
         <a href={`/show/${nanoid}/${slug}`}>
+          <div class="sr-only">Go to Anime {title} Page</div>
           <img
             class="hs-title-img"
             src={logoUrl}

@@ -1,14 +1,17 @@
 import { useRef, useEffect, useState, useLayoutEffect } from "react";
 import "./slider-btn-sectw.css";
 import { Icon } from "../../icons/icons";
-import { getSliderDimensions } from "./getSliderDimensions";
 
 export default function AnimeSliderCSR() {
   const markerRef = useRef<HTMLDivElement | null>(null);
-  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const sliderRef = useRef<Element | null>(null);
+  const timeoutRef = useRef<number | null>(null);
   const [scrollLock, setScrollLock] = useState(true);
-  const [hideLeft, setHideLeft] = useState(true);
-  const [hideRight, setHideRight] = useState(false);
+  const [toggle, setToggle] = useState({
+    hideLeft: true,
+    hideRight: false,
+  });
+
   const [dimensions, setDimensions] = useState({
     paddingLeft: 20,
     paddingRight: 20,
@@ -18,27 +21,24 @@ export default function AnimeSliderCSR() {
 
   //sets sliderRef
   useLayoutEffect(() => {
-    if (markerRef.current) {
-      const parent = markerRef.current.closest(".slider-content-wrapper");
-      if (parent) {
-        sliderRef.current = parent.querySelector(".slider-container");
-        setScrollLock(false);
-      }
-    }
-  }, []);
+    const marker = markerRef.current;
+    const parent = marker?.closest(".slider-content-wrapper");
+    const slider = parent?.querySelector(".slider-container");
+    if (!marker || !slider || !parent) return;
 
-  //setDimensions of sliderRef
-  useLayoutEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-    const style = getComputedStyle(slider);
+    sliderRef.current = slider;
+    setScrollLock(false);
+
+    //setDimensions of sliderRef
+    const { paddingLeft, paddingRight } = getComputedStyle(slider);
+    const { scrollWidth, clientWidth } = slider;
     setDimensions({
-      paddingLeft: parseFloat(style.paddingLeft),
-      paddingRight: parseFloat(style.paddingRight),
-      totalW: Math.round(slider.scrollWidth),
-      clientW: Math.round(slider.clientWidth),
+      paddingLeft: parseFloat(paddingLeft),
+      paddingRight: parseFloat(paddingRight),
+      totalW: Math.round(scrollWidth),
+      clientW: Math.round(clientWidth),
     });
-  }, [sliderRef]);
+  }, []);
 
   //locks clicks
   useEffect(() => {
@@ -51,17 +51,29 @@ export default function AnimeSliderCSR() {
     const leftW = Math.round(slider.scrollLeft);
     const { paddingLeft, paddingRight, totalW, clientW } = dimensions;
 
-    setHideLeft(leftW <= paddingLeft + 1);
-    setHideRight(leftW + clientW >= totalW - paddingRight - 1);
+    const EPSILON = 2;
+    setToggle({
+      hideLeft: leftW <= paddingLeft + EPSILON,
+      hideRight: leftW + clientW >= totalW - EPSILON,
+    });
   };
 
   const lock = () => {
     setScrollLock(true);
-    setTimeout(() => {
+    const timeout = timeoutRef.current;
+    if (timeout) clearTimeout(timeout);
+    timeoutRef.current = window.setTimeout(() => {
       setScrollLock(false);
       update();
     }, 500);
   };
+
+  //timeout cleanup
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const handleScroll = (btn: "left" | "right") => {
     if (scrollLock || !sliderRef.current) return;
@@ -74,13 +86,15 @@ export default function AnimeSliderCSR() {
   return (
     <nav ref={markerRef} className="slider-btn-section">
       <button
-        className={`slider-btn left ${hideLeft ? "hidden" : ""}`}
+        aria-label="Scroll Left"
+        className={`slider-btn left ${toggle.hideLeft ? "hidden" : ""}`}
         onClick={() => handleScroll("left")}
       >
         <Icon name="keyleft" size={30} className="s-btn" />
       </button>
       <button
-        className={`slider-btn right ${hideRight ? "hidden" : ""}`}
+        aria-label="Scroll Right"
+        className={`slider-btn right ${toggle.hideRight ? "hidden" : ""}`}
         onClick={() => handleScroll("right")}
       >
         <Icon name="keyright" size={30} className="s-btn" />

@@ -17,7 +17,7 @@ export default function Popup1({ isOpen = true, onClose }: Popup1Props) {
       }}
     >
       <dialog className="popup-1">
-        <button className="popup-close" onClick={onClose}>
+        <button aria-label="Close Popup" className="popup-close" onClick={onClose}>
           <Icon name="close" size={22} />
         </button>
         <span className="popup-msg">

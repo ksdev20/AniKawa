@@ -35,6 +35,7 @@ export default function HeroCSR() {
       {[0, 1, 2, 3, 4].map((i) => {
         return (
           <button
+            aria-label={`Show ${i} of 5 Anime in the Hero Section`}
             key={i}
             className={`progress-bar ${activeIdx == i ? "active" : ""}`}
             onClick={() => {
