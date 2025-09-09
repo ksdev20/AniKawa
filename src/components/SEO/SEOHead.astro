@@ -20,10 +20,10 @@ const {
   url = metadata.metadataBase,
   imageUrl = metadata.openGraph.images[0].url,
   author = metadata.author.name,
-  jsonLd,
+  jsonLd = metadata.jsonLd,
 } = Astro.props as SeoHeadProps;
 
-const isHomepage = Astro.url.pathname === "/";
+const isHomepage = Astro.url.pathname == "/";
 ---
 
 <head>
