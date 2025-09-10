@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { type Character, type Banner } from "../../types/profileResTypes";
-import characterArray from "../../data/characterAvatarsFinal.json";
+import characterArray from "../../data/characterNewArray.json";
 import bannerArray from "../../data/bannerList.json";
 import "../../styles/profiletw.css";
 import "./bco-acotw.css";
@@ -103,19 +103,13 @@ export default function ProfileCSR() {
       });
   }, []);
 
-  function CharacterCard({ character }: { character: Character }) {
-    const name =
-      character.name?.first ||
-      character.name?.full ||
-      character.name?.userPreferred ||
-      character.name?.native ||
-      "N/A";
-    const img = character?.image;
-    if (!img) return null;
+  //<h3 className="avatar-name">{name}</h3>
 
+  function CharacterCard({ character }: { character: Character }) {
+    const img = character?.img;
+    if (!img) return null;
     return (
       <li className="avatar-section">
-        <h3 className="avatar-name">{name}</h3>
         <img
           className="avatar-list-img"
           src={img}
@@ -321,6 +315,12 @@ export default function ProfileCSR() {
             {characterArray.map((character, i) => (
               <CharacterCard key={i} character={character} />
             ))}
+            <div className="flex gap-1">
+              <div>Note : All avatars are Designed by</div>
+              <a href="www.freepik.com">
+                <div className="text-[cyan] underline">Freepik</div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -364,7 +364,7 @@ export default function ProfileCSR() {
                 alt={`Saved profile picture of user ${name}`}
               />
               <button
-              aria-label="Open Avatar Change Section"
+                aria-label="Open Avatar Change Section"
                 className="profile-pic-hover"
                 onClick={() => {
                   setMainStates((prev) => ({ ...prev, openAco: true }));
@@ -417,6 +417,12 @@ export default function ProfileCSR() {
             </a>
           </div>
         </section>
+        <div className="flex gap-1">
+          <div>Note : All avatars are Designed by</div>
+          <a href="https://www.freepik.com">
+            <div className="text-[cyan] underline">Freepik</div>
+          </a>
+        </div>
       </main>
       <Footer />
     </>

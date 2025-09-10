@@ -7,8 +7,9 @@ export interface Name{
 }
 
 export interface Character{
-    name: Name | null,
-    image: string | null
+    // name: Name | null,
+    // image: string | null,
+    img: string;
 }
 
 export interface Banner{
