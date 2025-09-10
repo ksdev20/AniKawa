@@ -317,7 +317,7 @@ export default function ProfileCSR() {
             ))}
             <div className="flex gap-1">
               <div>Note : All avatars are Designed by</div>
-              <a href="www.freepik.com">
+              <a href="https://www.freepik.com">
                 <div className="text-[cyan] underline">Freepik</div>
               </a>
             </div>
