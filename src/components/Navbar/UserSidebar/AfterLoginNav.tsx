@@ -20,7 +20,7 @@ export default function AfterLoginNav({
             className="account-pic"
             src={
               userData?.profilePic ??
-              "https://s4.anilist.co/file/anilistcdn/character/large/b88572-IzTwXEHSobRs.jpg"
+              "https://ik.imagekit.io/nwstforna/avatars/a1.jpg"
             }
             alt={`Profile picture of logged in user ${userData?.profileName}`}
             loading="lazy"

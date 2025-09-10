@@ -21,7 +21,7 @@ export const metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'AniKawa',
-        description: 'Stream anime in HD — powered by AniList',
+        description: 'Stream anime in HD — powered by Anikawa',
         creator: '@AnikawaTeam',
         images: ['/og-image.jpg'],
     },
