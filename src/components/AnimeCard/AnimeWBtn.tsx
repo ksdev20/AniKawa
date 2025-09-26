@@ -4,7 +4,7 @@ import fetchUserDetails from "../../global_assets/FetchUserDetails";
 type AnimeWbtnProps = {
   nanoid: string;
   forAC2?: boolean;
-  tabIndex: number;
+  tabIndex?: number;
 };
 
 type MainBtnProps = {
