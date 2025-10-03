@@ -42,7 +42,7 @@ export const listConfig = [
         keywords: "new anime, latest anime releases, subbed anime, dubbed anime, watch new anime online, Anikawa",
         pageTitle: `Watch Newly Added Anime Online Free | Anikawa`,
         pageUrl: "https://anikawa.vercel.app/list/new",
-        backdrop: "https://anikawa.vercel.app/anikawa-new-og-img-pc.png",
+        backdrop: "https://anikawa.vercel.app/anikawa-new-og-img-pc.webp",
         animeList: getALFinal('new')
     },
     {
@@ -53,7 +53,7 @@ export const listConfig = [
         keywords: "popular anime, top anime, best anime series, subbed anime, dubbed anime, watch popular anime online, Anikawa",
         pageTitle: `Watch Most Popular Anime Online Free | Anikawa`,
         pageUrl: "https://anikawa.vercel.app/list/popular",
-        backdrop: "https://anikawa.vercel.app/anikawa-popular-og-img-pc.png",
+        backdrop: "https://anikawa.vercel.app/anikawa-popular-og-img-pc.webp",
         animeList: getALFinal('popular')
     },
     {
@@ -64,7 +64,7 @@ export const listConfig = [
         keywords: "old anime, classic anime, nostalgic anime, retro anime, subbed anime, dubbed anime, watch old anime online, Anikawa",
         pageTitle: `Watch The Old Classic Online Free | Anikawa`,
         pageUrl: "https://anikawa.vercel.app/list/old",
-        backdrop: "https://anikawa.vercel.app/anikawa-old-og-img-pc.png",
+        backdrop: "https://anikawa.vercel.app/anikawa-old-og-img-pc.webp",
         animeList: getALFinal('old')
     },
 ];
