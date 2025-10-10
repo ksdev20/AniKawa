@@ -31,3 +31,6 @@ pnpm-debug.log*
 
 #old unused assets
 /Old
+
+safetyOFData.txt
+robots.txt
