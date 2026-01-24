@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import animeArray from '../data/mergedList.json';
+import { frontendUrl } from "../global_assets/globalPaths";
 export const validNames = ["new", "popular", "old"];
 
 export const sortMap: Record<string, (a: any, b: any) => number> = {
@@ -41,8 +42,8 @@ export const listConfig = [
         pageDescription: "Discover the latest anime releases added to Anikawa. Subbed and dubbed episodes, no ads, just pure anime streaming.",
         keywords: "new anime, latest anime releases, subbed anime, dubbed anime, watch new anime online, Anikawa",
         pageTitle: `Watch Newly Added Anime Online Free | Anikawa`,
-        pageUrl: "https://anikawa.vercel.app/list/new",
-        backdrop: "https://anikawa.vercel.app/anikawa-new-og-img-pc.webp",
+        pageUrl: `${frontendUrl}/list/new`,
+        backdrop: `${frontendUrl}/anikawa-new-og-img-pc.webp`,
         animeList: getALFinal('new')
     },
     {
@@ -52,8 +53,8 @@ export const listConfig = [
         pageDescription: "Explore the most popular anime ranked by fans. Watch top-rated subbed and dubbed series online, ad-free.",
         keywords: "popular anime, top anime, best anime series, subbed anime, dubbed anime, watch popular anime online, Anikawa",
         pageTitle: `Watch Most Popular Anime Online Free | Anikawa`,
-        pageUrl: "https://anikawa.vercel.app/list/popular",
-        backdrop: "https://anikawa.vercel.app/anikawa-popular-og-img-pc.webp",
+        pageUrl: `${frontendUrl}/list/popular`,
+        backdrop: `${frontendUrl}/anikawa-popular-og-img-pc.webp`,
         animeList: getALFinal('popular')
     },
     {
@@ -63,8 +64,8 @@ export const listConfig = [
         pageDescription: "Rediscover classic and nostalgic anime series from the past. Watch timeless subbed and dubbed episodes on Anikawa, ad-free.",
         keywords: "old anime, classic anime, nostalgic anime, retro anime, subbed anime, dubbed anime, watch old anime online, Anikawa",
         pageTitle: `Watch The Old Classic Online Free | Anikawa`,
-        pageUrl: "https://anikawa.vercel.app/list/old",
-        backdrop: "https://anikawa.vercel.app/anikawa-old-og-img-pc.webp",
+        pageUrl: `${frontendUrl}/list/old`,
+        backdrop: `${frontendUrl}/anikawa-old-og-img-pc.webp`,
         animeList: getALFinal('old')
     },
 ];

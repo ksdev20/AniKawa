@@ -8,6 +8,7 @@ import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/Han
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 import { getEpImg } from "../../../utils/getEpImgFallback";
 import EpisodeChangeCard from "../../../components/EpisodeCard/EpisodeChangeCard.astro";
+import { frontendUrl } from "../../../global_assets/globalPaths";
 const { nanoid, slug } = Astro.params;
 const anime = getAnimeById(nanoid) as Anime | null;
 const episode = anime?.episodes?.find((e) => e?.slug == slug);
@@ -52,9 +53,9 @@ const animeDetails = {
 //SeoHead details
 const prevSlug = prevObj?.slug;
 const nextSlug = nextObj?.slug;
-const pageUrl = `https://anikawa.vercel.app/episode/${nanoid}/${slug}`;
-const prevUrl = `https://anikawa.vercel.app/episode/${nanoid}/${prevSlug}`;
-const nextUrl = `https://anikawa.vercel.app/episode/${nanoid}/${nextSlug}`;
+const pageUrl = `${frontendUrl}/episode/${nanoid}/${slug}`;
+const prevUrl = `${frontendUrl}/episode/${nanoid}/${prevSlug}`;
+const nextUrl = `${frontendUrl}/episode/${nanoid}/${nextSlug}`;
 const pageKw = `${animeTitle}, ${episodeTitle}, Episode ${epNum}, ${language}, free anime, HD anime streaming`;
 const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${language} — No ads, no popups. ${description.slice(0, 160)}`;
 ---

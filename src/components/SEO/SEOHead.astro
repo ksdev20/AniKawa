@@ -1,7 +1,9 @@
 ---
+import { frontendUrl } from "../../global_assets/globalPaths";
 import { metadata } from "../../utils/head-seo";
 
 interface SeoHeadProps {
+  name?: string;
   title: string;
   description: string;
   keywords: string;
@@ -13,6 +15,7 @@ interface SeoHeadProps {
 }
 
 const {
+  name = metadata.name,
   title = metadata.title,
   description = metadata.description,
   keywords = metadata.keywords,
@@ -42,28 +45,28 @@ const isHomepage = Astro.url.pathname == "/";
   <meta name="og:url" content={url} />
   <meta name="og:title" content={title} />
   <meta name="og:description" content={ogDescription} />
-  <meta name="og:site_name" content="Anikawa" />
+  <meta name="og:site_name" content={name} />
   <meta
     name="og:image"
-    content="https://anikawa.vercel.app/anikawa-og-img-pc.webp"
+    content={imageUrl}
   />
   <meta name="og:image:width" content="1200" />
   <meta name="og:image:height" content="630" />
   <meta name="og:image:alt" content="AniKawa - Watch Anime Free in HD" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@anikawa" />
+  <meta name="twitter:site" content={'@' + name.toLowerCase()} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
-  <meta name="twitter:creator" content="Anikawa Team" />
+  <meta name="twitter:creator" content={author} />
 
   <link rel="canonical" href={url} />
   <link
     rel="sitemap"
     type="application/xml"
     title="AniKawa Sitemap"
-    href="https://anikawa.vercel.app/sitemap.xml"
+    href={frontendUrl + "/sitemap.xml"}
   />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

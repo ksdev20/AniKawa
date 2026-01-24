@@ -1,4 +1,5 @@
 import animeArray from '../data/mergedList.json';
+import { frontendUrl } from '../global_assets/globalPaths';
 
 export interface urlListItem {
     loc: string
@@ -6,7 +7,7 @@ export interface urlListItem {
 
 export function isValidLoc(loc: string): boolean {
     return typeof loc === 'string' &&
-        loc.startsWith('https://anikawa.vercel.app/') &&
+        loc.startsWith(frontendUrl) &&
         !/\s/.test(loc) && // no whitespace
         loc.length < 2048; // sanity limit
 }
@@ -17,7 +18,7 @@ export default async function getSitemapUrls() {
         getCategoryUrls(),
         getNPOUrls()
     ]);
-    return [{ loc: 'https://anikawa.vercel.app/' }, ...npoUrls, ...categoryUrls, ...showEpUrls];
+    return [{ loc: frontendUrl }, ...npoUrls, ...categoryUrls, ...showEpUrls];
 }
 
 export async function getShowEpUrls() {
@@ -28,7 +29,7 @@ export async function getShowEpUrls() {
         if (!nanoid || !slug) continue;
 
         urls.push({
-            loc: `https://anikawa.vercel.app/show/${nanoid}/${slug}`,
+            loc: `${frontendUrl}/show/${nanoid}/${slug}`,
         });
 
         if (Array.isArray(episodes) && episodes?.length > 0) {
@@ -36,7 +37,7 @@ export async function getShowEpUrls() {
                 const { slug: epSlug = 'n-a', air_date } = ep ?? {};
                 if (!epSlug) continue;
                 urls.push({
-                    loc: `https://anikawa.vercel.app/episode/${nanoid}/${epSlug}`,
+                    loc: `${frontendUrl}/episode/${nanoid}/${epSlug}`,
                 })
             }
         }
@@ -55,7 +56,7 @@ export async function getCategoryUrls() {
             if (usedCategories.includes(g)) return;
             usedCategories.push(g);
             categoryUrls.push({
-                loc: `https://anikawa.vercel.app/category/${g}`,
+                loc: `${frontendUrl}/category/${g}`,
             });
         });
     });
@@ -65,6 +66,6 @@ export async function getCategoryUrls() {
 export async function getNPOUrls() {
     const npo = ['new', 'popular', 'old'];
     return npo.map(i => ({
-        loc: `https://anikawa.vercel.app/list/${i}`,
+        loc: `${frontendUrl}/list/${i}`,
     }));
 }

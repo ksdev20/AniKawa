@@ -11,6 +11,7 @@ import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import Footer from "../../../components/Footer/Footer";
 import { Icon } from "../../../icons/icons";
+import { frontendUrl } from "../../../global_assets/globalPaths";
 
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
@@ -53,7 +54,7 @@ const type = "Anime";
 const usedTitlesGlobal = [title, title, title];
 
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
-const pageUrl = `https://anikawa.vercel.app/show/${nanoid}/${slug}`;
+const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
 
 const metedataConfig = [
   {
