@@ -30,7 +30,6 @@ const isHomepage = Astro.url.pathname == "/";
 ---
 
 <head>
-<meta name="yandex-verification" content="0a5c02a02e1630a1" />
   <title>{title}</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,16 +46,13 @@ const isHomepage = Astro.url.pathname == "/";
   <meta name="og:title" content={title} />
   <meta name="og:description" content={ogDescription} />
   <meta name="og:site_name" content={name} />
-  <meta
-    name="og:image"
-    content={imageUrl}
-  />
+  <meta name="og:image" content={imageUrl} />
   <meta name="og:image:width" content="1200" />
   <meta name="og:image:height" content="630" />
   <meta name="og:image:alt" content="AniKawa - Watch Anime Free in HD" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content={'@' + name.toLowerCase()} />
+  <meta name="twitter:site" content={"@" + name.toLowerCase()} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
