@@ -6,7 +6,8 @@ import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
 import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
 import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro";
 import Footer from "../components/Footer/Footer";
-import ManageACW from '../global_assets/ManageACW';
+import ManageACW from "../global_assets/ManageACW";
+import { GoogleAnalyticsTag } from "../components/SEO/GoogleAnalyticsTag";
 
 const usedTitlesGlobal: string[] = [];
 const usedTitlesAC2: string[] = [];
@@ -157,7 +158,8 @@ const AC2Data = [
     <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
     <AnimeSliderStatic info={SliderData[6]} />
     <Footer />
-    <ManageACW client:load/>
+    <ManageACW client:load />
+    <!-- Google tag (gtag.js) -->
+    <GoogleAnalyticsTag client:load />
   </body>
-  </html>
-  
+</html>
