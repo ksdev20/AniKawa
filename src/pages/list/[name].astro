@@ -1,12 +1,11 @@
 ---
 import { validNames, listConfig, filterMap } from "../../config/listConfig";
 import "../../styles/new-poptw.css";
-import '../../styles/lists/n-p-a-l.css';
+import "../../styles/lists/n-p-a-l.css";
 import SEOHead from "../../components/SEO/SEOHead.astro";
-import Navbar from "../../components/Navbar/Navbar";
 import NewPopButtons from "../../components/ButtonHandlers/NewPopButtons";
 import AnimeCardStatic from "../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
-import Footer from "../../components/Footer/Footer";
+import Layout from "../../layouts/Layout.astro";
 
 const { name } = Astro.params;
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
@@ -38,35 +37,33 @@ const filterFn = filterMap[urlFilter];
 const finalArray = animeList?.filter(filterFn);
 ---
 
-<html lang="en">
+<Fragment slot="head">
   <SEOHead
-    title={`Watch ${pageTitle} Online Free | Anikawa`}
+    title={pageTitle}
     description={pageDescription}
     keywords={keywords}
     ogDescription={pageDescription}
     url={pageUrl}
     imageUrl={backdrop}
   />
-  <body>
-    <Navbar client:load />
-    <main class="main-root">
-      <section class="main-content" aria-labelledby="anime-list-heading">
-        <header class="new-first">
-          <h1 class="new-first-heading">{label}</h1>
-          <NewPopButtons listName={name} client:load />
-        </header>
-        <section>
-          <h2 class="sr-only">{srOnly}</h2>
-          <ul class="new-pop-anime-list">
-            {
-              finalArray?.map((anime) => {
-                return <AnimeCardStatic anime={anime} forNewPop={true} />;
-              })
-            }
-          </ul>
-        </section>
+</Fragment>
+<Layout>
+  <main class="main-root">
+    <section class="main-content" aria-labelledby="anime-list-heading">
+      <header class="new-first">
+        <h1 class="new-first-heading">{label}</h1>
+        <NewPopButtons listName={name} client:load />
+      </header>
+      <section>
+        <h2 class="sr-only">{srOnly}</h2>
+        <ul class="new-pop-anime-list">
+          {
+            finalArray?.map((anime) => {
+              return <AnimeCardStatic anime={anime} forNewPop={true} />;
+            })
+          }
+        </ul>
       </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+    </section>
+  </main>
+</Layout>

@@ -1,5 +1,4 @@
 ---
-import SEOHead from "../components/SEO/SEOHead.astro";
 import FetchFromDb from "../components/auth/FetchFromDb";
 import Navbar from "../components/Navbar/Navbar";
 import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
@@ -8,6 +7,8 @@ import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro"
 import Footer from "../components/Footer/Footer";
 import ManageACW from "../global_assets/ManageACW";
 import { GoogleAnalyticsTag } from "../components/SEO/GoogleAnalyticsTag";
+import Layout from "../layouts/Layout.astro";
+import SEOHead from "../components/SEO/SEOHead.astro";
 
 const usedTitlesGlobal: string[] = [];
 const usedTitlesAC2: string[] = [];
@@ -81,85 +82,23 @@ const AC2Data = [
   "Adventure",
   "Fantasy",
 ];
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<!doctype html>
-<html lang="en">
-  <SEOHead />
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      font-family: "Sansation", "Cal Sans", "Open Sans", "Roboto";
-      background-color: black;
-      color: white;
-      overflow-y: visible;
-    }
-
-    .stop-overflow {
-      overflow-y: hidden;
-    }
-
-    .loader {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #fff;
-      border-bottom-color: #8c52ff;
-      border-radius: 50%;
-      display: inline-block;
-      box-sizing: border-box;
-      animation: rotation 1s linear infinite;
-    }
-
-    @keyframes rotation {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .loader.hidden {
-      display: none;
-    }
-  </style>
-  <body>
-    <FetchFromDb client:load />
-    <Navbar client:load />
-    <HeroSectionTmdb />
-    <AnimeSliderStatic info={SliderData[0]} />
-    <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeSliderStatic info={SliderData[1]} />
-    <AnimeSliderStatic info={SliderData[2]} />
-    <AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeSliderStatic info={SliderData[3]} />
-    <AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeSliderStatic info={SliderData[4]} />
-    <AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeSliderStatic info={SliderData[5]} />
-    <AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
-    <AnimeSliderStatic info={SliderData[6]} />
-    <Footer />
-    <ManageACW client:load />
-    <!-- Google tag (gtag.js) -->
-    <GoogleAnalyticsTag client:load />
-  </body>
-</html>
+<Layout>
+  <HeroSectionTmdb />
+  <AnimeSliderStatic info={SliderData[0]} />
+  <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeSliderStatic info={SliderData[1]} />
+  <AnimeSliderStatic info={SliderData[2]} />
+  <AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeSliderStatic info={SliderData[3]} />
+  <AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeSliderStatic info={SliderData[4]} />
+  <AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeSliderStatic info={SliderData[5]} />
+  <AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
+  <AnimeSliderStatic info={SliderData[6]} />
+  <ManageACW client:load />
+</Layout>

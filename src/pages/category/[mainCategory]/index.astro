@@ -1,18 +1,18 @@
 ---
 import { categories } from "../../../config/categoryConfig";
 import "../../../styles/category/category.css";
-import Navbar from "../../../components/Navbar/Navbar";
-import Footer from "../../../components/Footer/Footer";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 import { getCatHead } from "../../../config/headConfig";
+import Layout from "../../../layouts/Layout.astro";
 const { mainCategory } = Astro.params;
 
-const { pageTitle, pageDescription, keywords, pageUrl, backdrop } =
-  getCatHead(mainCategory as string);
+const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getCatHead(
+  mainCategory as string,
+);
 ---
 
-<html lang="en">
+<Fragment slot="head">
   <SEOHead
     title={pageTitle}
     description={pageDescription}
@@ -24,40 +24,38 @@ const { pageTitle, pageDescription, keywords, pageUrl, backdrop } =
     ,
     imageUrl={backdrop}
   />
-  <body>
-    <Navbar client:load />
-    <main class="main-root">
-      <section class="category-main">
-        <header class="category-top">
-          <h2 class="category-text">
-            {mainCategory}
-          </h2>
-          <h3 class="category-text cat-des">
-            Start Watching {mainCategory} Hits
-          </h3>
-        </header>
-      </section>
-      <div class="category-main">
-        {
-          categories.map((cat) => {
-            if (cat == mainCategory) return null;
+</Fragment>
+<Layout>
+  <main class="main-root">
+    <section class="category-main">
+      <header class="category-top">
+        <h2 class="category-text">
+          {mainCategory}
+        </h2>
+        <h3 class="category-text cat-des">
+          Start Watching {mainCategory} Hits
+        </h3>
+      </header>
+    </section>
+    <div class="category-main">
+      {
+        categories.map((cat) => {
+          if (cat == mainCategory) return null;
 
-            return (
-              <AnimeSliderStatic
-                info={{
-                  bigH: cat,
-                  smallH: "",
-                  filterName: "matchCategories",
-                  categoryA: mainCategory,
-                  categoryB: cat,
-                  forCategoryPage: true,
-                }}
-              />
-            );
-          })
-        }
-      </div>
-    </main>
-    <Footer />
-  </body>
-</html>
+          return (
+            <AnimeSliderStatic
+              info={{
+                bigH: cat,
+                smallH: "",
+                filterName: "matchCategories",
+                categoryA: mainCategory,
+                categoryB: cat,
+                forCategoryPage: true,
+              }}
+            />
+          );
+        })
+      }
+    </div>
+  </main>
+</Layout>

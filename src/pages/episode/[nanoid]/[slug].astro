@@ -1,14 +1,13 @@
 ---
 import "../../../styles/episode-pagetw.css";
 import { type Anime } from "../../../types/mergedListTypes";
-import Navbar from "../../../components/Navbar/Navbar";
-import Footer from "../../../components/Footer/Footer";
 import { getAnimeById } from "../../../filters/getAnimeById";
 import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/HandleECClick";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 import { getEpImg } from "../../../utils/getEpImgFallback";
 import EpisodeChangeCard from "../../../components/EpisodeCard/EpisodeChangeCard.astro";
 import { frontendUrl } from "../../../global_assets/globalPaths";
+import Layout from "../../../layouts/Layout.astro";
 const { nanoid, slug } = Astro.params;
 const anime = getAnimeById(nanoid) as Anime | null;
 const episode = anime?.episodes?.find((e) => e?.slug == slug);
@@ -60,7 +59,7 @@ const pageKw = `${animeTitle}, ${episodeTitle}, Episode ${epNum}, ${language}, f
 const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${language} — No ads, no popups. ${description.slice(0, 160)}`;
 ---
 
-<html lang="en">
+<Fragment slot="head">
   <SEOHead
     title={`Watch {Ad-Free} ${animeTitle} - Episode ${epNum}: ${episodeTitle} | AniKawa`}
     description={pageDes}
@@ -72,50 +71,48 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
     {prevObj && <link rel="prev" href={prevUrl} />}
     {nextObj && <link rel="next" href={nextUrl} />}
   </SEOHead>
-  <body>
+</Fragment>
+<Layout>
+  <main id="main-episode-page" class="main-episode-page">
     <HandleECClick animenanoid={nanoid} slug={slug} client:load />
-    <Navbar client:load />
-    <main id="main-episode-page" class="main-episode-page">
-      <section aria-labelledby="e-title" class="video-container">
-        <iframe
-          id="episode-iframe"
-          width="560"
-          height="315"
-          src={url}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;  web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen></iframe>
-      </section>
-      <article class="episode-page-details">
-        <section class="episode-page-details epd-first">
-          <div class="epd-first-top">
-            <div class="epd-first-top first-part">
-              <a href={`/show/${nanoid}/${animeslug}`} id="a-title"
-                ><h2 class="first-part-anime-title">{animeTitle}</h2></a
-              >
-              |
-              <p class="first-part-rating" id="a-score">{scoreAlt}</p>
-            </div>
+    <section aria-labelledby="e-title" class="video-container">
+      <iframe
+        id="episode-iframe"
+        width="560"
+        height="315"
+        src={url}
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;  web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </section>
+    <article class="episode-page-details">
+      <section class="episode-page-details epd-first">
+        <div class="epd-first-top">
+          <div class="epd-first-top first-part">
+            <a href={`/show/${nanoid}/${animeslug}`} id="a-title"
+              ><h2 class="first-part-anime-title">{animeTitle}</h2></a
+            >
+            |
+            <p class="first-part-rating" id="a-score">{scoreAlt}</p>
           </div>
-          <h1 id="e-title" class="epd-ep-title">{episodeTitle}</h1>
-          <p id="e-language" class="epd-language">{language}</p>
-          <p id="e-des" class="epd-description">{description}</p>
-          <div class="episode-list-endline"></div>
-        </section>
-        <nav class="episode-change-section">
-          <EpisodeChangeCard
-            Obj={prevObj}
-            Obj2={{ h4: "PREVIOUS EPISODE", ...animeDetails }}
-          />
-          <EpisodeChangeCard
-            Obj={nextObj}
-            Obj2={{ h4: "NEXT EPISODE", ...animeDetails }}
-          />
-        </nav>
-        <Footer />
-      </article>
-    </main>
-  </body>
-</html>
+        </div>
+        <h1 id="e-title" class="epd-ep-title">{episodeTitle}</h1>
+        <p id="e-language" class="epd-language">{language}</p>
+        <p id="e-des" class="epd-description">{description}</p>
+        <div class="episode-list-endline"></div>
+      </section>
+      <nav class="episode-change-section">
+        <EpisodeChangeCard
+          Obj={prevObj}
+          Obj2={{ h4: "PREVIOUS EPISODE", ...animeDetails }}
+        />
+        <EpisodeChangeCard
+          Obj={nextObj}
+          Obj2={{ h4: "NEXT EPISODE", ...animeDetails }}
+        />
+      </nav>
+    </article>
+  </main>
+</Layout>

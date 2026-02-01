@@ -1,15 +1,12 @@
 ---
 import SEOHead from "../../components/SEO/SEOHead.astro";
-import Navbar from "../../components/Navbar/Navbar";
 import WatHisCSR from "../../components/watchlist-history/WatHisCSR";
-import Footer from "../../components/Footer/Footer";
+import Layout from "../../layouts/Layout.astro";
 ---
 
-<html lang="en">
-    <SEOHead title="Your History | Anikawa" />
-    <body>
-        <Navbar client:load />
-        <WatHisCSR caller="h" client:load/>
-        <Footer />
-    </body>
-</html>
+<Fragment slot="head">
+  <SEOHead title="Your History | Anikawa" />
+</Fragment>
+<Layout>
+  <WatHisCSR caller="h" client:load />
+</Layout>

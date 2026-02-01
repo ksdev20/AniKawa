@@ -1,12 +1,11 @@
 ---
 import "../../../../styles/category/subcat.css";
-import '../../../../styles/lists/n-p-a-l.css';
-import Navbar from "../../../../components/Navbar/Navbar";
-import Footer from "../../../../components/Footer/Footer";
+import "../../../../styles/lists/n-p-a-l.css";
 import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer";
 import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import SEOHead from "../../../../components/SEO/SEOHead.astro";
 import { getSubCatHead } from "../../../../config/headConfig";
+import Layout from "../../../../layouts/Layout.astro";
 
 const { mainCategory, subCategory } = Astro.params;
 const finalArray = getFilteredAnime("matchCategories", {
@@ -15,10 +14,11 @@ const finalArray = getFilteredAnime("matchCategories", {
   forSubCatPage: true,
 });
 
-const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getSubCatHead(mainCategory, subCategory);
+const { pageTitle, pageDescription, keywords, pageUrl, backdrop } =
+  getSubCatHead(mainCategory, subCategory);
 ---
 
-<html>
+<Fragment slot="head">
   <SEOHead
     title={pageTitle}
     description={pageDescription}
@@ -30,34 +30,32 @@ const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getSubCatHea
     ,
     imageUrl={backdrop}
   />
-  <body>
-    <Navbar client:load />
-    <main class="main-root">
-      <section class="sub-cat-main">
-        <header class="sub-cat-main">
-          <div class="sub-cat-top">
-            <h1 class="sr-only">
-              {mainCategory} + {subCategory} Anime List | Anikawa
-            </h1>
-            <a
-              id="main-cat-name"
-              class="main-cat-link"
-              href={`/category/${mainCategory}`}>{mainCategory}</a
-            >
-            <span id="sub-cat-name" class="sub-cat-name">
-              {subCategory}
-            </span>
-          </div>
-        </header>
-        <ul class="new-pop-anime-list">
-          {
-            finalArray.map((anime, i) => (
-              <AnimeCardStatic anime={anime} forNewPop={true} />
-            ))
-          }
-        </ul>
-      </section>
-    </main>
-    <Footer />
-  </body>
-</html>
+</Fragment>
+<Layout>
+  <main class="main-root">
+    <section class="sub-cat-main">
+      <header class="sub-cat-main">
+        <div class="sub-cat-top">
+          <h1 class="sr-only">
+            {mainCategory} + {subCategory} Anime List | Anikawa
+          </h1>
+          <a
+            id="main-cat-name"
+            class="main-cat-link"
+            href={`/category/${mainCategory}`}>{mainCategory}</a
+          >
+          <span id="sub-cat-name" class="sub-cat-name">
+            {subCategory}
+          </span>
+        </div>
+      </header>
+      <ul class="new-pop-anime-list">
+        {
+          finalArray.map((anime, i) => (
+            <AnimeCardStatic anime={anime} forNewPop={true} />
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</Layout>
