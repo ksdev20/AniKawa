@@ -46,3 +46,15 @@
   .loader.hidden {
     display: none;
   }
+
+.announcement-bar-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+}
+
+.abt-container{
+  color: #fff;
+  font-size: large;
+}
