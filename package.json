@@ -10,28 +10,46 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
-    "@astrojs/vercel": "^8.0.4",
+    "@astrojs/vercel": "^10.0.8",
     "@nanostores/react": "^1.0.0",
     "@tailwindcss/vite": "^4.1.18",
     "@vercel/analytics": "^1.6.1",
+    "@vercel/build-utils": "^13.30.0",
+    "@vercel/node": "^5.8.17",
+    "@vercel/routing-utils": "^6.3.0",
     "@vercel/speed-insights": "^1.3.1",
     "dayjs": "^1.11.19",
     "fuse.js": "^7.1.0",
     "nanostores": "^1.1.0",
     "string-similarity": "^4.0.4",
     "use-debounce": "^10.1.0",
-    "vercel": "^41.0.2"
+    "vercel": "^54.12.2"
   },
   "devDependencies": {
     "@types/string-similarity": "^4.0.2",
-    "astro": "^5.17.1",
+    "astro": "^6.4.6",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1"
   },
-  "resolutions": {
-    "esbuild": "0.25.8",
-    "path-to-regexp": "6.3.0",
-    "undici": "5.29.0"
+  "pnpm": {
+    "overrides": {
+      "tar": "^7.5.11",
+      "path-to-regexp": "^6.2.1",
+      "smol-toml": "^1.6.1",
+      "srvx": "^0.11.13",
+      "undici": "^6.23.1",
+      "ajv": "^8.17.2",
+      "minimatch": "^10.2.5",
+      "@tootallnate/once": "^2.0.1"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "postinstall-postinstall",
+      "sharp"
+    ]
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

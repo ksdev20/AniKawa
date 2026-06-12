@@ -12,7 +12,7 @@ import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic
 import Footer from "../../../components/Footer/Footer";
 import { Icon } from "../../../icons/icons";
 import { frontendUrl } from "../../../global_assets/globalPaths";
-
+import '../../../styles/index.css';
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 const anime = getAnimeById(nanoid) as Anime | null;
