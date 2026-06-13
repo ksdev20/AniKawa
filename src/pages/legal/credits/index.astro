@@ -1,70 +1,193 @@
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Credits & Attributions | Anikawa</title>
+
     <link rel="icon" type="image/png" href="/icon.png" />
-    <title>API Credits</title>
+
+    <meta
+      name="description"
+      content="Credits and attributions for third-party services and resources used by Anikawa."
+    />
+
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
+        margin: 0;
+        padding: 40px 20px;
         background: #000;
         color: #f1f1f1;
-        font-family: Arial, sans-serif;
-        max-width: 960px;
-        margin: auto;
-        padding: 40px;
+        font-family: Arial, Helvetica, sans-serif;
         line-height: 1.7;
       }
 
-      h1,
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #ffcc00;
+        margin-bottom: 10px;
+      }
+
       h2 {
         color: #ffcc00;
+        margin-top: 40px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin: 12px 0;
       }
 
       a {
         color: #66ccff;
+        text-decoration: none;
       }
 
-      img {
-        max-width: 150px;
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .logo {
+        max-width: 180px;
+        height: auto;
         display: block;
-        margin: 10px 0;
+        margin: 15px 0;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      footer {
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid #333;
+        color: #bdbdbd;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 25px 15px;
+        }
+
+        .logo {
+          max-width: 150px;
+        }
       }
     </style>
   </head>
 
   <body>
-    <h1>Credits</h1>
-    <p>Anikawa would not be possible without these platforms and APIs:</p>
+    <div class="container">
+      <h1>Credits & Attributions</h1>
 
-    <h2>TMDB</h2>
-    <a
-      href="https://www.themoviedb.org"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img
-        src="/tmdb-full.svg"
-        alt="TMDB Logo"
-        loading="lazy"
-        decoding="async"
-      />
-      Visit TMDB
-    </a>
-    <p>Used for anime and episode metadata, descriptions, and images.</p>
-    <p>
-      This website uses TMDB and the TMDB APIs but is not endorsed, certified,
-      or otherwise approved by TMDB.
-    </p>
+      <p>
+        Anikawa relies on various third-party platforms and services to provide
+        certain features and visual content. We acknowledge and appreciate these
+        services and comply with their applicable attribution requirements.
+      </p>
 
-    <h2>YouTube</h2>
-    <p>
-      Video content is embedded from AniOneAsia’s official YouTube channel using
-      the YouTube Data API. Only publicly embeddable videos are displayed.
-    </p>
+      <div class="section">
+        <h2>TMDB (The Movie Database)</h2>
 
-    <footer>
-      API data is used in compliance with each platform’s attribution
-      requirements.
-    </footer>
+        <a
+          href="https://www.themoviedb.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/tmdb-full.svg"
+            alt="TMDB Logo"
+            class="logo"
+            loading="lazy"
+            decoding="async"
+          />
+
+          Visit TMDB
+        </a>
+
+        <p>
+          Anikawa uses TMDB to display certain visual assets and metadata,
+          including anime images and related information.
+        </p>
+
+        <p>
+          Original written descriptions and editorial content published on
+          Anikawa may be independently created and may not originate from TMDB.
+        </p>
+
+        <p>
+          <strong>
+            This product uses the TMDB API but is not endorsed or certified by
+            TMDB.
+          </strong>
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>YouTube</h2>
+
+        <p>
+          Certain videos displayed on Anikawa are embedded directly from YouTube
+          using YouTube's official embedding functionality.
+        </p>
+
+        <p>
+          Only content made publicly embeddable by its respective publishers is
+          displayed.
+        </p>
+
+        <p>
+          All rights to such video content remain with their respective
+          copyright owners and publishers.
+        </p>
+
+        <p>
+          YouTube content is subject to YouTube's own Terms of Service and
+          Privacy Policy.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>Contact</h2>
+
+        <p>
+          If you have any questions regarding these attributions or believe any
+          information on this page requires correction, please contact us:
+        </p>
+
+        <p>
+          📧 Email:
+          <a href="mailto:ksdev20official@gmail.com">
+            ksdev20official@gmail.com
+          </a>
+        </p>
+      </div>
+
+      <footer>
+        <p>
+          All trademarks, logos, images, and other intellectual property
+          referenced on this page remain the property of their respective
+          owners.
+        </p>
+
+        <p>
+          If you believe any attribution is inaccurate, incomplete, or requires
+          modification, please contact us and we will review the matter
+          promptly.
+        </p>
+
+        <p>© Anikawa. All rights reserved.</p>
+      </footer>
+    </div>
   </body>
 </html>
