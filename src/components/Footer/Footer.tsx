@@ -8,7 +8,9 @@ export default function Footer() {
           <li><a href="/legal/tos/" rel="noopener noreferrer" target="_blank">Terms of Service</a></li>
           <li><a href="/legal/privacy-policy/" rel="noopener noreferrer" target="_blank">Privacy Policy</a></li>
           <li><a href="/legal/about/">About</a></li>
-          <li><a href="/legal/credits" className="no-bd">Credits</a></li>
+          <li><a href="/legal/credits">Credits</a></li>
+          <li><a href="/legal/contact">Contact</a></li>
+          <li><a href="/legal/disclaimer" className="no-bd">Disclaimer</a></li>
         </ul>
       </nav>
       <p className="footer-disclaimer">Anikawa is a fan-powered, non-commercial project. We are not affiliated with, endorsed by, or officially connected to any anime studios, publishers, or licensors. All trademarks and copyrights belong to their respective owners.</p>
