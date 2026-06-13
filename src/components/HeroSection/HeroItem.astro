@@ -70,16 +70,11 @@ const fetchP = i == 0 ? "high" : null;
     ${getPosterType(poster, "w185")} 185w,
     ${getPosterType(poster, "w342")} 342w,
     ${getPosterType(poster, "w500")} 500w,
-    ${getPosterType(poster, "w780")} 780w,
-    ${poster} 
+    ${getPosterType(poster, "w780")} 780w
   `}
           sizes="
-    (max-width: 92px) 92w,
-    (max-width: 154px) 154w,
-    (max-width: 185px) 185w,
-    (max-width: 342px) 342w,
-    (max-width: 500px) 500w,
-    (max-width: 780px) 780w,
+    (max-width: 600px) 100vw,
+    185px
   "
           alt={`Cover of ${title}`}
           loading={imgL}
