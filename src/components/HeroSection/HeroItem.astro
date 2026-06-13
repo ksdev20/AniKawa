@@ -4,6 +4,7 @@ import { getAnimeById } from "../../filters/getAnimeById";
 import { Icon } from "../../icons/icons";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 import { getPosterType } from "../../utils/imageSizing";
+import WBtn2 from "../AnimeCard/WBtn2";
 
 const { nId, i } = Astro.props;
 const anime = getAnimeById(nId);
@@ -114,7 +115,7 @@ const fetchP = i == 0 ? "high" : null;
           <div class="watchlist-btn" tabindex={isFirst ? 0 : -1}>
             <AnimeWBtn
               nanoid={nanoid}
-              client:load
+              client:idle
               tabIndex={isFirst ? 0 : -1}
             />
           </div>

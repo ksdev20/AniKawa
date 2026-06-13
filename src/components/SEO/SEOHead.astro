@@ -92,5 +92,7 @@ const isHomepage = Astro.url.pathname == "/";
     as="style"
     onload="this.onLoad=null;this.rel='stylesheet'"
   />
+  <link rel="preconnect" href="https://image.tmdb.org" crossorigin>
+  <link rel="dns-prefetch" href="//image.tmdb.org">
   <slot />
 </head>
