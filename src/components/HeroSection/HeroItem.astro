@@ -1,4 +1,5 @@
 ---
+import { undefined } from "astro:schema";
 import { getAnimeById } from "../../filters/getAnimeById";
 import { Icon } from "../../icons/icons";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
@@ -40,10 +41,14 @@ switch (nId) {
     break;
 }
 
+const getBackdropType = (backdrop: string, backdropType: string) =>
+  backdrop.slice(0).replace("original", backdropType);
+
 const language = "Subtitled";
 
 const imgL = i == 0 ? "eager" : "lazy";
 const imgD = "async";
+const fetchP = i == 0 ? "high" : null;
 ---
 
 <li class="hero-section-root">
@@ -106,14 +111,32 @@ const imgD = "async";
       </div>
     </div>
   </article>
-  <img
-    class="hs-anime-banner"
-    src={extraBd ?? backdrop}
-    alt={`Backdrop of
+  <picture class="hs-anime-banner">
+    <source
+      media="(max-width: 300px)"
+      srcset={getBackdropType(backdrop, "w300")}
+    />
+    <source
+      media="(max-width: 780px)"
+      srcset={getBackdropType(backdrop, "w780")}
+    />
+    <source
+      media="(max-width: 1281px)"
+      srcset={getBackdropType(backdrop, "w1280")}
+    />
+
+    <img
+      class="hs-anime-banner"
+      width="1280"
+      height="720"
+      src={extraBd ?? backdrop}
+      alt={`Backdrop of
         ${title}`}
-    loading={imgL}
-    decoding={imgD}
-    fetchpriority="high"
-  />
+      loading={imgL}
+      decoding={imgD}
+      fetchpriority={fetchP}
+    />
+  </picture>
+
   <div class="hero-gradient-left"></div>
 </li>

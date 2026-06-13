@@ -12,7 +12,7 @@ import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic
 import Footer from "../../../components/Footer/Footer";
 import { Icon } from "../../../icons/icons";
 import { frontendUrl } from "../../../global_assets/globalPaths";
-import '../../../styles/index.css';
+import "../../../styles/index.css";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 const anime = getAnimeById(nanoid) as Anime | null;
@@ -86,6 +86,9 @@ const metedataConfig = [
     dd: seasons,
   },
 ];
+
+const getBackdropType = (backdrop: string | null, backdropType: string) =>
+  backdrop?.slice(0).replace("original", backdropType);
 ---
 
 <html lang="en">
@@ -105,11 +108,35 @@ const metedataConfig = [
     <Navbar client:load />
 
     <main id="main" class="main">
-      <header
-        id="top-banner"
-        class="top-banner"
-        style={{ backgroundImage: `url(${backdrop})` }}
-      >
+      <header id="top-banner" class="top-banner">
+        <div class="top-banner-image-ap">
+          <picture>
+            <source
+              media="(max-width: 300px)"
+              srcset={getBackdropType(backdrop, "w300")}
+            />
+            <source
+              media="(max-width: 780px)"
+              srcset={getBackdropType(backdrop, "w780")}
+            />
+            <source
+              media="(max-width: 1280px)"
+              srcset={getBackdropType(backdrop, "w1280")}
+            />
+
+            <img
+              class="hs-anime-banner"
+              width="1280"
+              height="720"
+              src={backdrop}
+              alt={`Backdrop of
+        ${title}`}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
         <div class="overlay-gradient"></div>
         <div class="bottom-gradient"></div>
       </header>

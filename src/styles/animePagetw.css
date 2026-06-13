@@ -12,7 +12,7 @@ body {
 
 body {
     font-family: "Cal Sans", "Open Sans", "Roboto";
-    @apply overflow-x-hidden bg-black text-white antialiased; 
+    @apply overflow-x-hidden bg-black text-white antialiased;
 }
 
 .main {
@@ -33,7 +33,7 @@ body {
     @apply absolute z-[1] w-full h-[70%] flex flex-col bg-cover bg-center bg-no-repeat;
 }
 
-.overlay-gradient{
+.overlay-gradient {
     background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.884));
     @apply absolute z-[2] inset-0;
 }
@@ -48,7 +48,7 @@ body {
 }
 
 .empty-top-banner {
-    @apply w-full aspect-[3/1];
+    @apply w-full aspect-[3/1] max-h-[400px];
 }
 
 .anime-hero-section {
@@ -332,10 +332,20 @@ body {
 }
 
 /* metadata special */
-.cat-link-txt{
+.cat-link-txt {
     color: #8c52ff;
 }
 
-.cat-sep:last-child{
+.cat-sep:last-child {
     display: none;
+}
+
+/*for top banner image responsiveness*/
+.top-banner-image-ap {
+    @apply absolute z-1 w-full h-full inset-0 flex;
+}
+
+.top-banner-image-ap picture,
+.top-banner-image-ap img {
+    @apply w-full block sm:h-full sm:object-cover sm:object-center;
 }
