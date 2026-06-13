@@ -5,3 +5,5 @@ export const getOptimizedImageUrl = (path: string | null, width: number): string
     if (width <= 500) return path.replace('original', 'w500');
     return path;
 };
+
+export const getPosterType = (poster: string, type: string) => poster.slice(0).replace("original", type);

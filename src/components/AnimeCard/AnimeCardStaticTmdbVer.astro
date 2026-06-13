@@ -1,6 +1,6 @@
 ---
 import "./animecardtw.css";
-import { getOptimizedImageUrl } from "../../utils/imageSizing";
+import { getOptimizedImageUrl, getPosterType } from "../../utils/imageSizing";
 import WBtn2 from "./WBtn2";
 import { Icon } from "../../icons/icons";
 
@@ -31,26 +31,56 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
 ---
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
-  <article class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""} ${forCategory ? 'ac-for-cat' : ''}`}>
+  <article
+    class={`anime-card-first ${forNewPop ? "new-pop-anime-card" : ""} ${forCategory ? "ac-for-cat" : ""}`}
+  >
     <a href={`/show/${nanoid}/${slug}`} class="anime-card-link">
       <span class="sr-only">Go to {title} Anime Page</span>
     </a>
     <img
       class="anime-card-image"
-      src={getOptimizedImageUrl(season_poster, 342)}
-      alt={`Cover of ${titleAlt}`}
+      src={getPosterType(season_poster, "w342")}
+      srcset={`
+    ${getPosterType(season_poster, "w92")} 92w,
+    ${getPosterType(season_poster, "w154")} 154w,
+    ${getPosterType(season_poster, "w185")} 185w,
+    ${getPosterType(season_poster, "w342")} 342w,
+    ${getPosterType(season_poster, "w500")} 500w,
+    ${getPosterType(season_poster, "w780")} 780w
+  `}
+      sizes="
+    (max-width: 640px) 45vw,
+    (max-width: 1024px) 30vw,
+    180px
+  "
+      alt={`Cover of ${title}`}
       loading="lazy"
       decoding="async"
     />
     <h2 class="anime-card-title">{titleAlt}</h2>
     <span class="text-sm text-[gray]">{language}</span>
 
-    <section
-      class="anime-card-hover"
-      style={{
-        backgroundImage: `url(${getOptimizedImageUrl(season_poster, 342)})`,
-      }}
-    >
+    <section class="anime-card-hover">
+      <img
+        class="ach-image"
+        src={getPosterType(season_poster, "w342")}
+        srcset={`
+    ${getPosterType(season_poster, "w92")} 92w,
+    ${getPosterType(season_poster, "w154")} 154w,
+    ${getPosterType(season_poster, "w185")} 185w,
+    ${getPosterType(season_poster, "w342")} 342w,
+    ${getPosterType(season_poster, "w500")} 500w,
+    ${getPosterType(season_poster, "w780")} 780w
+  `}
+        sizes="
+    (max-width: 640px) 45vw,
+    (max-width: 1024px) 30vw,
+    180px
+  "
+        alt={`Cover of ${title}`}
+        loading="lazy"
+        decoding="async"
+      />
       <div class="anime-card-hover-details">
         <h3 class="line-clamp-3 mt-2.5 text-[15px]">{titleAlt}</h3>
         <span class="ach-text">{scoreAlt}</span>

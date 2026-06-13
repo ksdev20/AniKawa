@@ -20,7 +20,7 @@
     @apply absolute z-[5] flex w-full h-full py-[80px] bg-transparent;
 }
 
-.hs-anime-img {
+.hs-anime-img{
     @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none border-3 border-transparent group-focus-visible:border-white;
 }
 

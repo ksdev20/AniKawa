@@ -3,6 +3,7 @@ import { undefined } from "astro:schema";
 import { getAnimeById } from "../../filters/getAnimeById";
 import { Icon } from "../../icons/icons";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
+import { getPosterType } from "../../utils/imageSizing";
 
 const { nId, i } = Astro.props;
 const anime = getAnimeById(nId);
@@ -62,11 +63,28 @@ const fetchP = i == 0 ? "high" : null;
         <div class="sr-only">Go to Anime {title} Page</div>
         <img
           class="hs-anime-img"
-          src={poster}
+          src={getPosterType(poster, "w342")}
+          srcset={`
+    ${getPosterType(poster, "w92")} 92w,
+    ${getPosterType(poster, "w154")} 154w,
+    ${getPosterType(poster, "w185")} 185w,
+    ${getPosterType(poster, "w342")} 342w,
+    ${getPosterType(poster, "w500")} 500w,
+    ${getPosterType(poster, "w780")} 780w,
+    ${poster} 
+  `}
+          sizes="
+    (max-width: 92px) 92w,
+    (max-width: 154px) 154w,
+    (max-width: 185px) 185w,
+    (max-width: 342px) 342w,
+    (max-width: 500px) 500w,
+    (max-width: 780px) 780w,
+  "
           alt={`Cover of ${title}`}
           loading={imgL}
           decoding={imgD}
-          fetchpriority="high"
+          fetchpriority={fetchP}
         />
       </a>
       <div class="hero-section-overlay">

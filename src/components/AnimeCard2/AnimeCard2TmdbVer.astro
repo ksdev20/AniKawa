@@ -3,6 +3,7 @@ import "./anime-card2tw.css";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
 import { thisYearTopByCategory } from "../../filters/animeFilterMainTmdbVer";
 import { Icon } from "../../icons/icons";
+import { getPosterType } from "../../utils/imageSizing";
 
 const { category, usedTitlesAC2 } = Astro.props;
 
@@ -14,13 +15,26 @@ const language = "Subtitled";
 ---
 
 <section class="wrapper">
-  <a href={`/show/${nanoid}/${slug}`} class="outline-0 a-ac2-img"
-    ><img
+  <a href={`/show/${nanoid}/${slug}`} class="outline-0 a-ac2-img">
+    <img
       class="anime-card-2-image"
-      src={poster}
+      src={getPosterType(poster, "w342")}
+      srcset={`
+    ${getPosterType(poster, "w92")} 92w,
+    ${getPosterType(poster, "w154")} 154w,
+    ${getPosterType(poster, "w185")} 185w,
+    ${getPosterType(poster, "w342")} 342w,
+    ${getPosterType(poster, "w500")} 500w,
+    ${getPosterType(poster, "w780")} 780w
+  `}
+      sizes="
+    (max-width: 640px) 45vw,
+    (max-width: 1024px) 30vw,
+    180px
+  "
+      alt={`Cover of ${title}`}
       loading="lazy"
       decoding="async"
-      alt={`Cover of ${title}`}
     />
     <div class="sr-only">Go to {title} Page</div>
   </a>

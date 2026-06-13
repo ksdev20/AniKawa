@@ -61,8 +61,12 @@
     @apply absolute z-[2] inset-0 opacity-0 bg-cover bg-center bg-no-repeat
 }
 
+.ach-image{
+    @apply absolute z-[3] inset-0 w-full h-full;
+}
+
 .anime-card-hover-details {
-    @apply flex flex-col p-2.5 w-full h-full bg-[#141519f5];
+    @apply absolute z-[4] flex flex-col p-2.5 w-full h-full bg-[#141519f5];
 }
 
 .anime-card-hover-title {
