@@ -39,6 +39,8 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
     </a>
     <img
       class="anime-card-image"
+      width="342"
+      height="513"
       src={getPosterType(season_poster, "w342")}
       srcset={`
     ${getPosterType(season_poster, "w92")} 92w,
@@ -56,6 +58,7 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
       alt={`Cover of ${title}`}
       loading="lazy"
       decoding="async"
+      fetchpriority="auto"
     />
     <h2 class="anime-card-title">{titleAlt}</h2>
     <span class="text-sm text-[gray]">{language}</span>
@@ -63,6 +66,8 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
     <section class="anime-card-hover">
       <img
         class="ach-image"
+        width="342"
+        height="513"
         src={getPosterType(season_poster, "w342")}
         srcset={`
     ${getPosterType(season_poster, "w342")} 342w,

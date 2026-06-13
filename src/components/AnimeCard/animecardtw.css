@@ -42,7 +42,7 @@
 }
 
 .anime-card-image {
-    @apply w-full aspect-[2/3] object-cover;
+    @apply w-full block aspect-[2/3] object-cover;
 }
 
 .anime-card-title {
