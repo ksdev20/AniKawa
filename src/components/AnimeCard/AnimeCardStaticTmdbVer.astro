@@ -43,46 +43,27 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
       height="513"
       src={getPosterType(season_poster, "w342")}
       srcset={`
-    ${getPosterType(season_poster, "w92")} 92w,
-    ${getPosterType(season_poster, "w154")} 154w,
-    ${getPosterType(season_poster, "w185")} 185w,
-    ${getPosterType(season_poster, "w342")} 342w,
-    ${getPosterType(season_poster, "w500")} 500w,
-    ${getPosterType(season_poster, "w780")} 780w
-  `}
+  ${getPosterType(season_poster, "w185")} 185w,
+  ${getPosterType(season_poster, "w342")} 342w,
+  ${getPosterType(season_poster, "w500")} 500w,
+  ${getPosterType(season_poster, "w780")} 780w
+`}
       sizes="
-    (max-width: 640px) 45vw,
-    (max-width: 1024px) 30vw,
-    180px
-  "
+  (max-width: 600px) 45vw,
+  (max-width: 1200px) 18vw,
+  180px
+"
       alt={`Cover of ${title}`}
       loading="lazy"
-      decoding="async"
-      fetchpriority="auto"
+      decoding="sync"
     />
     <h2 class="anime-card-title">{titleAlt}</h2>
     <span class="text-sm text-[gray]">{language}</span>
 
-    <section class="anime-card-hover">
-      <img
-        class="ach-image"
-        width="342"
-        height="513"
-        src={getPosterType(season_poster, "w342")}
-        srcset={`
-    ${getPosterType(season_poster, "w342")} 342w,
-    ${getPosterType(season_poster, "w500")} 500w,
-    ${getPosterType(season_poster, "w780")} 780w
-  `}
-        sizes="
-    (max-width: 640px) 45vw,
-    (max-width: 1024px) 30vw,
-    180px
-  "
-        alt={`Cover of ${title}`}
-        loading="lazy"
-        decoding="async"
-      />
+    <section
+      class="anime-card-hover"
+      style={`background-image: url(${getPosterType(season_poster, "w342")})`}
+    >
       <div class="anime-card-hover-details">
         <h3 class="line-clamp-3 mt-2.5 text-[15px]">{titleAlt}</h3>
         <span class="ach-text">{scoreAlt}</span>

@@ -13,7 +13,7 @@
 }
 
 .anime-card-first {
-    @apply relative flex flex-col h-auto w-[18vw] min-w-[170px] max-w-[290px] gap-3 p-2.5;
+    @apply relative flex flex-col h-auto w-[18vw] min-w-[170px] max-w-[290px] gap-3 p-2.5 aspect-[2/3];
 }
 
 .new-pop-anime-card {
@@ -42,7 +42,7 @@
 }
 
 .anime-card-image {
-    @apply w-full block aspect-[2/3] object-cover;
+    @apply w-full block h-auto object-cover;
 }
 
 .anime-card-title {
@@ -57,16 +57,13 @@
 }
 
 .anime-card-hover {
+    @apply absolute z-[2] inset-0 opacity-0 bg-cover bg-center bg-no-repeat;
     transition: opacity 0.3s ease;
-    @apply absolute z-[2] inset-0 opacity-0 bg-cover bg-center bg-no-repeat
-}
-
-.ach-image{
-    @apply absolute z-[3] inset-0 w-full h-full;
+    will-change: opacity;
 }
 
 .anime-card-hover-details {
-    @apply absolute z-[4] flex flex-col p-2.5 w-full h-full bg-[#141519f5];
+    @apply flex flex-col p-2.5 w-full h-full bg-[#141519f5];
 }
 
 .anime-card-hover-title {
