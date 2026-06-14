@@ -102,7 +102,19 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
     url={pageUrl}
     ,
     imageUrl={backdrop}
-  />
+  >
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KH21EQ579T"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-KH21EQ579T");
+    </script>
+  </SEOHead>
 
   <body>
     <Navbar client:load />
