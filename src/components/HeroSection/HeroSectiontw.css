@@ -24,6 +24,25 @@
     @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none border-3 border-transparent group-focus-visible:border-white;
 }
 
+@media (max-width: 342px){
+    .hs-anime-img.mobile{
+        display: block;
+    }
+    .hs-anime-img.pc{
+        display: none;
+    }
+}
+
+@media (min-width: 343px){
+    .hs-anime-img.mobile{
+        display: none;
+    }
+
+    .hs-anime-img.pc{
+        display: block;
+    }
+}
+
 .hs-anime-banner {
     @apply absolute z-[-5] w-full h-full object-cover object-center;
 }

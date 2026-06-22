@@ -63,11 +63,21 @@ const fetchP = i == 0 ? "high" : null;
       >
         <div class="sr-only">Go to Anime {title} Page</div>
         <img
-          class="hs-anime-img"
+          class="hs-anime-img mobile"
           src={getPosterType(poster, "w342")}
+          height="300"
+          width="200"
+          alt={`Cover of ${title}`}
+          loading={imgL}
+          decoding={imgD}
+          fetchpriority={fetchP}
+        />
+        <img
+          class="hs-anime-img pc"
+          src={getPosterType(poster, "w342")}
+          width="200"
+          height="300"
           srcset={`
-    ${getPosterType(poster, "w92")} 92w,
-    ${getPosterType(poster, "w154")} 154w,
     ${getPosterType(poster, "w500")} 500w,
     ${getPosterType(poster, "w780")} 780w
   `}
