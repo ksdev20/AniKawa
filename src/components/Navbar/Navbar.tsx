@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
 import Popup1 from "../Popups/Popup1";
 import { usePopup } from "../Popups/usePopup";
+import FetchFromDb from "../auth/FetchFromDb";
 
 function getEl(id: string) {
   return document.getElementById(id);
@@ -115,6 +116,7 @@ export default function Navbar() {
 
   return (
     <header>
+    <FetchFromDb />
       <nav className="navbar">
         <section className="nav-left" aria-label="Nav Left">
           <button

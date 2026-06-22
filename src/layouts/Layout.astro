@@ -1,5 +1,4 @@
 ---
-import FetchFromDb from "../components/auth/FetchFromDb";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import { GoogleAnalyticsTag } from "../components/SEO/GoogleAnalyticsTag";
@@ -12,7 +11,6 @@ import "../styles/index.css";
   <SEOHead />
   {Astro.url.pathname == "/" ? <SEOHead /> : <slot name="head" />}
   <body>
-    <FetchFromDb client:load />
     <Navbar client:load />
     <slot />
     <Footer />
