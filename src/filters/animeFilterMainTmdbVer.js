@@ -13,7 +13,23 @@ const filters = {
     mode: "genreCompare",
   },
   romancePopular,
+  recommendedByAnikawa,
 };
+
+const recommendedAnimeNanoIds = [
+  "lLIJIsO39FWYFtg",
+  "xEjlkrTP7Ccp2EF",
+  "PzUiA7d2vtMJMo9",
+  "5Z7qwy51WLHEyZu",
+  "38pr1sDYWL5DT4J",
+  "HgHI9gfwdzgwjZp",
+  "8n-ES8yeTKR1rAM",
+  "4SnuL7GiJiAGnW2",
+  "su_DPYWQYS3OchJ",
+  "SBJntSz0jhVrrr6",
+  "XuPhC3vPost7qJO",
+  "4mA6aduyBCW348y",
+];
 
 function sortByDate(arr) {
   arr.sort((a, b) => {
@@ -88,14 +104,22 @@ export function getFilteredAnime(filterName, options = {}) {
       usedTitlesGlobal?.push(title);
     }
   }
-  const sortThese = ["sameMonthAnimeGen", "matchCategories"];
+  const sortThese = [
+    "sameMonthAnimeGen",
+    "matchCategories",
+    "recommendedByAnikawa",
+  ];
   const skipSort = sortThese.includes(filterName);
 
   if (!skipSort) {
     sortByScore(result);
   }
 
-  if (skipSort && diffGenre.includes(categoryB)) {
+  if (
+    skipSort &&
+    diffGenre.includes(categoryB) &&
+    filterName !== "recommendedByAnikawa"
+  ) {
     categoryB == "New" ? sortByDate(result) : sortByScore(result);
   }
 
@@ -244,6 +268,29 @@ function topRatedLast5(anime) {
     startDate >= getCurrentDate()[0] - 10 &&
     anime?.score >= 7.5
   );
+}
+
+function recommendedByAnikawa(anime) {
+  return recommendedAnimeNanoIds.includes(anime.nanoid);
+}
+
+export function getNewest15Anime() {
+  return [...aniOneAsia]
+    .sort((a, b) => {
+      const dateA = dayjs(a?.startDate || "2000-01-01").valueOf();
+      const dateB = dayjs(b?.startDate || "2000-01-01").valueOf();
+      return dateB - dateA;
+    })
+    .slice(0, 15);
+}
+
+export function getNewest15Episodes() {
+  return getNewest15Anime().map((anime) => ({
+    animeTitle: anime.title,
+    animenanoid: anime.nanoid,
+    language: anime.episodes?.[0]?.audio ?? "unknown",
+    ...(anime.episodes?.slice(-1)[0] ?? {}),
+  }));
 }
 
 function getScore(anime) {

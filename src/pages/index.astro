@@ -1,14 +1,23 @@
 ---
-import FetchFromDb from "../components/auth/FetchFromDb";
-import Navbar from "../components/Navbar/Navbar";
 import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
 import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
 import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro";
-import Footer from "../components/Footer/Footer";
 import ManageACW from "../global_assets/ManageACW";
-import { GoogleAnalyticsTag } from "../components/SEO/GoogleAnalyticsTag";
 import Layout from "../layouts/Layout.astro";
-import SEOHead from "../components/SEO/SEOHead.astro";
+//blog
+import { getCollection } from "astro:content";
+import BlogsSectionHP from "../components/Blog/BlogsSectionHP.astro";
+import WhyAnikawa from "../components/HomePageValueSections/WhyAnikawa.astro";
+import BrowseByCategory from "../components/HomePageValueSections/BrowseByCategory.astro";
+import LatestEpisodes from "../components/HomePageValueSections/LatestEpisodes.astro";
+import PopularAnimeSection from "../components/HomePageValueSections/PopularAnimeSection.astro";
+import NewReleasesSection from "../components/HomePageValueSections/NewReleasesSection.astro";
+import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
+import RecommendedByAnikawa from "../components/HomePageValueSections/RecommendedByAnikawa.astro";
+import HomepageIntroSection from "../components/HomePageValueSections/HomepageIntroSection.astro";
+
+const posts = await getCollection("blog");
+//blog
 
 const usedTitlesGlobal: string[] = [];
 const usedTitlesAC2: string[] = [];
@@ -33,10 +42,9 @@ const SliderData = [
     usedTitlesGlobal,
   },
   {
-    bigH: "Best Anime for Beginners",
-    smallH:
-      "Start your anime journey with these easy-to-follow and highly rated series.",
-    filterName: "beginnerAnime",
+    bigH: "",
+    smallH: "",
+    filterName: "recommendedByAnikawa",
     usedTitlesGlobal,
   },
   {
@@ -82,18 +90,41 @@ const AC2Data = [
   "Adventure",
   "Fantasy",
 ];
+
+const BlogSection1 = {
+  heading: "Anime Guides, Rankings & Recommendations",
+  subheading:
+    "Anime recommendations, rankings, watch guides, and hidden gems curated for passionate fans.",
+  btnText: "View All",
+  btnLink: "/blog",
+  posts: posts,
+};
+
+const BlogSections = [BlogSection1];
+console.log("index usedTitlesGlobal:", usedTitlesGlobal);
 ---
 
 <Layout>
   <div class="announcement-bar-top">
     <div class="abt-container">
-      <p>Big Update Coming Soon ! Latest Anime Series and Episodes will be added</p>
+      <p>
+        Big Update Coming Soon ! Latest Anime Series and Episodes will be added
+      </p>
     </div>
   </div>
   <HeroSectionTmdb />
+  <HomepageIntroSection />
   <AnimeSliderStatic info={SliderData[0]} />
+  <WhyAnikawa />
+  <RecommendedByAnikawa info={SliderData[1]}/>
+  <BrowseByCategory />
+  <LatestEpisodes />
+  <PopularAnimeSection />
+  <NewReleasesSection />
+  <BlogsSectionHP info={BlogSection1} />
+  <FaqSection />
+  <!-- <AnimeSliderStatic info={SliderData[1]} />
   <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[1]} />
   <AnimeSliderStatic info={SliderData[2]} />
   <AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2} />
   <AnimeSliderStatic info={SliderData[3]} />
@@ -104,6 +135,6 @@ const AC2Data = [
   <AnimeSliderStatic info={SliderData[5]} />
   <AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
   <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[6]} />
+  <AnimeSliderStatic info={SliderData[6]} /> -->
   <ManageACW client:load />
 </Layout>

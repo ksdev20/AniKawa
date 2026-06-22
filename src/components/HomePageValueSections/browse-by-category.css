@@ -1,0 +1,32 @@
+@import 'tailwindcss';
+@config '../../../tailwind.config.mjs';
+
+.browse-categories-section {
+    @apply py-12 md:py-16;
+}
+
+.browse-categories-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.browse-categories-grid {
+    @apply mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6;
+}
+
+.browse-category-card {
+    @apply flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-300;
+}
+
+.browse-category-card:hover {
+    border-color: rgb(140 82 255 / 0.5);
+    background: rgb(140 82 255 / 0.08);
+    transform: translateY(-2px);
+}
+
+.browse-category-icon {
+    @apply text-xl;
+}
+
+.browse-category-name {
+    @apply text-sm font-semibold text-white;
+}

@@ -4,10 +4,12 @@ import react from "@astrojs/react";
 import vercelAdapter from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
     adapter: vercelAdapter(),
-    integrations: [react()],
+    integrations: [react(), mdx()],
     output: 'server',
     devToolbar: {
         enabled: false

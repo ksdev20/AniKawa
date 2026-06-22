@@ -1,0 +1,34 @@
+---
+import AnimeSliderStatic from "../AnimeSlider/AnimeSliderStatic.astro";
+import "./popular-anime.css";
+
+const sliderObj = {
+  bigH: "",
+  smallH: "",
+  filterName: "isPopular",
+};
+---
+
+<section class="popular-anime-section">
+  <div class="popular-anime-container">
+    <div class="popular-anime-header">
+      <div class="popular-anime-heading">
+        <span class="section-badge"> 🏆 Anime Hall of Fame </span>
+
+        <h2 class="section-title">Popular Anime</h2>
+
+        <p class="section-subtitle">
+          Legendary series and fan-favorite classics that every anime enthusiast
+          should experience at least once.
+        </p>
+      </div>
+
+      <a href="/popular-anime" class="popular-anime-view-all">
+        Explore Popular Anime →
+      </a>
+    </div>
+
+    <AnimeSliderStatic info={sliderObj} />
+  </div>
+</section>
+

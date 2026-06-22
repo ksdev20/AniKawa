@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.category-section{
+    @apply mt-2 flex items-center gap-2;
+}
+
+.category-span{
+    @apply p-1 bg-[#b7410e]  rounded-2xl text-white  text-xs font-medium px-3 py-1;
+}
+
+.category-span:nth-child(even){
+    @apply bg-[#008080] ;
+}

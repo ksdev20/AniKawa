@@ -35,17 +35,17 @@ export const legalItems = [
     },
     {
         label: 'Terms of Services',
-        href: '/legal/about',
+        href: '/legal/tos',
         idx: 5
     },
     {
         label: 'Privacy Policy',
-        href: '/legal/about',
+        href: '/legal/privacy-policy',
         idx: 6
     },
     {
         label: 'Credits',
-        href: '/legal/about',
+        href: '/legal/credits',
         idx: 7
     },
 ];

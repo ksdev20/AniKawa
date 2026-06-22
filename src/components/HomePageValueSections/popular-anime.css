@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+@config '../../../tailwind.config.mjs';
+
+.popular-anime-section {
+    @apply py-0 md:py-3 2xl:py-6;
+}
+
+.popular-anime-container {
+    @apply px-4 md:px-6;
+}
+
+.popular-anime-header {
+    @apply mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between;
+}
+
+.popular-anime-heading {
+    @apply max-w-2xl;
+}
+
+.popular-anime-view-all {
+    @apply text-sm font-semibold transition-all duration-300;
+    color: #8c52ff;
+}
+
+.popular-anime-view-all:hover {
+    color: #a97cff;
+    transform: translateX(3px);
+}
+
+/*why we recommend these*/
+.editors-note-section {
+    @apply py-12 md:py-16;
+}
+
+.editors-note-container {
+    @apply mx-auto max-w-5xl px-5 sm:px-6 lg:px-8;
+}
+
+.editors-note-card {
+    @apply rounded-3xl border border-white/10 p-6 md:p-8;
+
+    background: linear-gradient(180deg,
+            rgb(140 82 255 / 0.08),
+            rgb(255 255 255 / 0.03));
+}
+
+.editors-note-content {
+    @apply mt-6 space-y-5;
+}
+
+.editors-note-content p {
+    @apply leading-8 text-gray;
+}
+
+.editors-note-content strong {
+    color: white;
+    font-weight: 600;
+}

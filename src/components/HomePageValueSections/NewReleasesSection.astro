@@ -1,0 +1,41 @@
+---
+import {
+  getNewest15Anime,
+} from "../../filters/animeFilterMainTmdbVer";
+import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
+import AnimeCardStaticTmdbVer from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
+
+const latestAnime = getNewest15Anime();
+---
+
+<section class="popular-anime-section">
+  <div class="popular-anime-container">
+    <div class="popular-anime-header">
+      <div class="popular-anime-heading">
+        <span class="section-badge"> 🚀 Fresh From Japan </span>
+
+        <h2 class="section-title">New Releases</h2>
+
+        <p class="section-subtitle">
+          Discover newly released anime series, fresh seasons, and the latest
+          additions making waves in the anime community.
+        </p>
+      </div>
+
+      <a href="/new-releases" class="popular-anime-view-all">
+        Explore New Releases →
+      </a>
+    </div>
+
+    <section class="slider-content-wrapper">
+      <ul class="slider-container">
+        {
+          latestAnime.map((anime: any) => {
+            return <AnimeCardStaticTmdbVer anime={anime} />;
+          })
+        }
+      </ul>
+      <AnimeSliderCSR client:load />
+    </section>
+  </div>
+</section>

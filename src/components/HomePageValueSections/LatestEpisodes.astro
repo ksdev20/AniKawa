@@ -1,0 +1,41 @@
+---
+import {
+  getNewest15Episodes,
+} from "../../filters/animeFilterMainTmdbVer";
+import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
+import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
+import "./latest-episodes.css";
+
+const latestEpisodes = getNewest15Episodes();
+---
+
+<section class="latest-episodes-section">
+  <div class="latest-episodes-container">
+    <div class="latest-episodes-header">
+      <div class="latest-episodes-heading">
+        <span class="section-badge"> ⚡ Fresh Releases </span>
+
+        <h2 class="section-title">Latest Episodes</h2>
+
+        <p class="section-subtitle">
+          Catch the newest anime episodes and stay up to date with currently
+          airing series.
+        </p>
+      </div>
+
+      <!-- <a href="/latest-episodes" class="latest-episodes-view-all">
+        View All Episodes →
+      </a> -->
+    </div>
+    <section class="slider-content-wrapper">
+      <ul class="slider-container">
+        {
+          latestEpisodes.map((episode: any) => {
+            return <EpisodeCardStatic epData={episode} />;
+          })
+        }
+      </ul>
+      <AnimeSliderCSR client:load />
+    </section>
+  </div>
+</section>

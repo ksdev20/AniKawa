@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+@config '../../../tailwind.config.mjs';
+
+.latest-episodes-section {
+  @apply py-12 md:py-16;
+}
+
+.latest-episodes-container {
+  @apply mx-auto px-5 sm:px-6 lg:px-8;
+}
+
+.latest-episodes-header {
+  @apply mb-8 flex flex-col gap-4
+         lg:flex-row lg:items-end lg:justify-between;
+}
+
+.latest-episodes-heading {
+  @apply max-w-2xl;
+}
+
+.latest-episodes-view-all {
+  @apply text-sm font-semibold transition-colors duration-300;
+  
+  color: #8c52ff;
+}
+
+.latest-episodes-view-all:hover {
+  color: #a97cff;
+}
+
+.latest-episodes-section .episode-card{
+  @apply min-w-[200px] sm:min-w-[250px] lg:min-w-[300px] 2xl:min-w-[400px];
+}

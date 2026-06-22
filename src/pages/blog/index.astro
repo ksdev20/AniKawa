@@ -1,0 +1,27 @@
+---
+import BlogCard from "../../components/Blog/BlogCard/BlogCard";
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { BcObject } from "../../types/blogcard";
+
+const posts = await getCollection("blog");
+---
+
+<Layout>
+  <main class="blog-page">
+    <header>
+      <h1>Anime Insights, Rankings & Recommendations</h1>
+      <h2>
+        Discover hidden gems, watch guides, character deep dives, and the best
+        anime worth your time.
+      </h2>
+    </header>
+    <section class="blog-cards-list">
+      {
+        posts.map((post: BcObject) => {
+          return <BlogCard BcObject={post} />;
+        })
+      }
+    </section>
+  </main>
+</Layout>

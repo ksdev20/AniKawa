@@ -73,8 +73,8 @@ export default function ProfileCSR() {
       .then((res) => res.json())
       .then((data) => {
         if (!data.success) {
-          console.error("User data could not be fetched.");
-          console.error(data.error);
+          console.warn("User data could not be fetched.");
+          console.warn(data.error);
           return;
         }
 

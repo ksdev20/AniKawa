@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+@config '../../../tailwind.config.mjs';
+
+.why-anikawa-section {
+    @apply relative overflow-hidden py-8 md:py-24;
+}
+
+.why-anikawa-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.why-anikawa-bg-glow {
+    @apply absolute inset-0 -z-10;
+}
+
+.why-anikawa-header {
+    @apply mx-auto max-w-3xl text-center;
+}
+
+.why-anikawa-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary;
+}
+
+.why-anikawa-title {
+    @apply mt-5 text-4xl font-extrabold text-white md:text-5xl;
+}
+
+.why-anikawa-title span {
+    @apply text-primary;
+}
+
+.why-anikawa-subtitle {
+    @apply mt-4 text-lg leading-relaxed text-gray;
+}
+
+.why-anikawa-grid {
+    @apply mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5;
+}
+
+.why-anikawa-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition-all duration-300 select-none cursor-pointer;
+}
+
+.why-anikawa-card:hover {
+    @apply border-primary/50 bg-primary/10;
+    transform: translateY(-4px);
+}
+
+.why-anikawa-icon {
+    @apply mb-3 text-4xl;
+}
+
+.why-anikawa-card h3 {
+    @apply text-xl font-bold text-white;
+}
+
+.why-anikawa-card p {
+    @apply mt-2 text-sm leading-relaxed text-gray;
+}
+
+.why-anikawa-content {
+    @apply mx-auto mt-14 max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10 backdrop-blur-md;
+}
+
+.why-anikawa-content p {
+    @apply text-base leading-8 text-gray;
+}
+
+.why-anikawa-content p+p {
+    @apply mt-5;
+}

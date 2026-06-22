@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+.blogs-section-hp {
+    @apply flex flex-col justify-center w-full h-auto mb-12;
+}
+
+.blogs-section-hp header {
+    @apply flex flex-row justify-between p-5 w-full;
+}
+
+.blogs-section-hp header.part-1 {
+    @apply flex flex-col;
+}
+
+.blogs-section-hp h2 {
+    @apply mb-2;
+}
+
+.blogs-section-hp header a {
+    @apply flex flex-row items-center gap-2;
+}
+
+.blogs-slider-container {
+    @apply flex items-start gap-5 h-auto w-auto;
+}
+
+.blogs-slider-container .blog-card {
+    @apply min-w-[400px]
+}
+
+@media (max-width: 650px) {
+    .blogs-slider-container .blog-card {
+        @apply min-w-[350px]
+    }
+}
+
+@media (max-width: 1200px) {
+    .blogs-slider-container .blog-card {
+        @apply min-w-[275px]
+    }
+}
+
+@media (max-width: 700px) {
+    .part-1 {
+        @apply max-w-[400px]
+    }
+    .part-1 p{
+        @apply hidden;
+    }
+}
