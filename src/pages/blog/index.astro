@@ -1,27 +1,22 @@
 ---
-import BlogCard from "../../components/Blog/BlogCard/BlogCard";
 import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
-import type { BcObject } from "../../types/blogcard";
-
-const posts = await getCollection("blog");
+import HeroSection from "../../components/Blog/BlogPageComponents/HeroSection.astro";
+import FeaturedArticle from "../../components/Blog/BlogPageComponents/FeaturedArticle.astro";
+import BrowseTopics from "../../components/Blog/BlogPageComponents/BrowseTopics.astro";
+import DiscoverAnime from "../../components/Blog/BlogPageComponents/DiscoverAnime.astro";
+import LatestAnimeGrid from "../../components/Blog/BlogPageComponents/LatestAnimeGrid.astro";
+import AnimeDiscoveryCta from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
+import BlogIntro from "../../components/Blog/BlogPageComponents/BlogIntro.astro";
+import BlogFaqSection from "../../components/Blog/BlogPageComponents/BlogFaqSection.astro";
 ---
 
 <Layout>
-  <main class="blog-page">
-    <header>
-      <h1>Anime Insights, Rankings & Recommendations</h1>
-      <h2>
-        Discover hidden gems, watch guides, character deep dives, and the best
-        anime worth your time.
-      </h2>
-    </header>
-    <section class="blog-cards-list">
-      {
-        posts.map((post: BcObject) => {
-          return <BlogCard BcObject={post} />;
-        })
-      }
-    </section>
-  </main>
+  <HeroSection />
+  <FeaturedArticle />
+  <DiscoverAnime />
+  <LatestAnimeGrid />
+  <BrowseTopics />
+  <AnimeDiscoveryCta />
+  <BlogIntro />
+  <BlogFaqSection />
 </Layout>

@@ -15,6 +15,7 @@ import NewReleasesSection from "../components/HomePageValueSections/NewReleasesS
 import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
 import RecommendedByAnikawa from "../components/HomePageValueSections/RecommendedByAnikawa.astro";
 import HomepageIntroSection from "../components/HomePageValueSections/HomepageIntroSection.astro";
+import BlogsSectionHomepage from "../components/Blog/BlogsSectionHomepage.astro";
 
 const posts = await getCollection("blog");
 //blog
@@ -100,6 +101,15 @@ const BlogSection1 = {
   posts: posts,
 };
 
+const BlogSection2 = {
+  heading: "Anime Stories & Recommendations",
+  subheading:
+    "Thoughtfully crafted guides, recommendations, and anime deep-dives curated by the AniKawa team.",
+  btnText: "Read More Articles",
+  btnLink: "/blog",
+  posts: posts
+};
+
 const BlogSections = [BlogSection1];
 console.log("index usedTitlesGlobal:", usedTitlesGlobal);
 ---
@@ -116,12 +126,12 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
   <HomepageIntroSection />
   <AnimeSliderStatic info={SliderData[0]} />
   <WhyAnikawa />
-  <RecommendedByAnikawa info={SliderData[1]}/>
+  <RecommendedByAnikawa info={SliderData[1]} />
   <BrowseByCategory />
   <LatestEpisodes />
   <PopularAnimeSection />
   <NewReleasesSection />
-  <BlogsSectionHP info={BlogSection1} />
+  <BlogsSectionHomepage info={BlogSection2} />
   <FaqSection />
   <!-- <AnimeSliderStatic info={SliderData[1]} />
   <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />

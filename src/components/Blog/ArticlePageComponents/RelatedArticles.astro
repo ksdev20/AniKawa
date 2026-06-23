@@ -1,0 +1,60 @@
+---
+import type { BcObject } from "../../../types/blogcard";
+import "./related-articles.css";
+
+const { posts } = Astro.props;
+
+if (!posts?.length) return null;
+---
+
+<section class="related-articles-section">
+  <div class="related-articles-container">
+    <div class="related-articles-header">
+      <span class="section-badge"> 📚 Recommended Reading </span>
+
+      <h2 class="section-title">You May Also Enjoy</h2>
+
+      <p class="section-subtitle">
+        More anime recommendations, guides, and editorials selected from the
+        AniKawa blog.
+      </p>
+    </div>
+
+    <div class="related-articles-grid">
+      {
+        posts.map((post: BcObject) => (
+          <a href={`/blog/${post.data.slug}`} class="related-article-card">
+            <div class="related-article-image-wrapper">
+              <img
+                src={post.data.img}
+                alt={post.data.title}
+                class="related-article-image"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="related-article-content">
+              <div class="related-article-tags">
+                {post.data.categoryList.slice(0, 2).map((category: string) => (
+                  <span>{category}</span>
+                ))}
+              </div>
+
+              <h3 class="related-article-title">{post.data.title}</h3>
+
+              <p class="related-article-subtitle">{post.data.subTitle}</p>
+
+              <div class="related-article-meta">
+                <span>📅 {post.data.date}</span>
+
+                {post.data.readMinutes && (
+                  <span>⏱️ {post.data.readMinutes} min read</span>
+                )}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

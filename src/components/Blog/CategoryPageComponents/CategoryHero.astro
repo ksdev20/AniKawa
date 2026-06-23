@@ -1,0 +1,61 @@
+---
+import './category-hero.css';
+const { categoryInfo, posts }= Astro.props;
+---
+<section class="category-hero-section">
+
+  <div class="category-hero-container">
+
+    <div class="category-hero-content">
+
+      <span class="category-hero-badge">
+        {categoryInfo.emoji} Blog Category
+      </span>
+
+      <h1 class="category-hero-title">
+        {categoryInfo.title}
+      </h1>
+
+      <p class="category-hero-description">
+        {categoryInfo.description}
+      </p>
+
+      <div class="category-hero-stats">
+
+        <div class="category-stat">
+          <span class="category-stat-value">
+            {posts.length}
+          </span>
+
+          <span class="category-stat-label">
+            Articles
+          </span>
+        </div>
+
+        <div class="category-stat">
+          <span class="category-stat-value">
+            Curated
+          </span>
+
+          <span class="category-stat-label">
+            By AniKawa
+          </span>
+        </div>
+
+        <div class="category-stat">
+          <span class="category-stat-value">
+            Updated
+          </span>
+
+          <span class="category-stat-label">
+            Regularly
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

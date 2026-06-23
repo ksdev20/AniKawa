@@ -1,0 +1,84 @@
+---
+export const prerender = true;
+
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import '../../styles/blog-page-styles.css';
+import ArticleHero from "../../components/Blog/ArticlePageComponents/ArticleHero.astro";
+import TableOfContents from "../../components/Blog/ArticlePageComponents/TableOfContents.astro";
+import ContinueExploring from "../../components/Blog/ArticlePageComponents/ContinueExploring.astro";
+import RelatedArticles from "../../components/Blog/ArticlePageComponents/RelatedArticles.astro";
+import AnimeDiscoveryCTA from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
+import EditorialNote from "../../components/Blog/ArticlePageComponents/EditorialNote.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: {
+      slug: post.data.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const { post } = Astro.props;
+
+const allPosts = await getCollection("blog");
+
+const { Content } = await render(post);
+
+/* Related Posts */
+
+const relatedPosts = allPosts
+  .filter((candidate) => {
+    if (candidate.data.slug === post.data.slug) {
+      return false;
+    }
+
+    return candidate.data.categoryList.some((category) =>
+      post.data.categoryList.includes(category),
+    );
+  })
+  .sort(
+    (a, b) =>
+      new Date(b.data.date).getTime() -
+      new Date(a.data.date).getTime(),
+  )
+  .slice(0, 3);
+
+/* Category Links */
+
+const categoryLinks = post.data.categoryList.map((category) => ({
+  name: category,
+  slug: category.toLowerCase().replaceAll(" ", "-"),
+}));
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.subTitle}
+>
+  <ArticleHero post={post} />
+
+  {
+    post.data.toc &&
+      post.data.toc.length > 0 && (
+        <TableOfContents toc={post.data.toc} />
+      )
+  }
+
+  <article class="blog-article-content prose prose-lg max-w-none text-white">
+    <Content />
+  </article>
+
+  <ContinueExploring categories={categoryLinks} />
+
+  <RelatedArticles posts={relatedPosts} />
+
+  <AnimeDiscoveryCTA />
+
+  <EditorialNote />
+</Layout>

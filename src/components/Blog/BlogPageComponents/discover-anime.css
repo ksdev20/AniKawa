@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.discover-anime-section {
+    @apply py-16 md:py-24;
+}
+
+.discover-anime-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.discover-anime-header {
+    @apply mx-auto mb-12 max-w-3xl text-center;
+}
+
+.discover-anime-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.discover-anime-card {
+    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.discover-anime-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgb(140 82 255 / 0.45);
+
+    background: rgb(140 82 255 / 0.08);
+}
+
+.discover-anime-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -40px;
+    right: -40px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.12);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+.discover-anime-icon {
+    @apply text-4xl;
+}
+
+.discover-anime-card h3 {
+    @apply mt-5 text-xl font-bold text-white;
+}
+
+.discover-anime-card p {
+    @apply mt-3 leading-7 text-gray;
+}

@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.anime-topics-section {
+    @apply py-6 md:py-10;
+}
+
+.anime-topics-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.anime-topics-header {
+    @apply mx-auto mb-12 max-w-3xl text-center;
+}
+
+.anime-topics-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.anime-topic-card {
+    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.anime-topic-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgb(140 82 255 / 0.4);
+
+    background: rgb(140 82 255 / 0.08);
+}
+
+.anime-topic-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -40px;
+    right: -40px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.12);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+.anime-topic-icon {
+    @apply text-4xl;
+}
+
+.anime-topic-card h3 {
+    @apply mt-5 text-xl font-bold text-white;
+}
+
+.anime-topic-card p {
+    @apply mt-3 leading-7 text-gray;
+}

@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.mjs';
+
+.categories-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+/* Hero */
+
+.categories-hero {
+    @apply py-16 md:py-24 text-center;
+}
+
+.categories-title {
+    @apply mt-4 text-4xl font-bold text-white md:text-6xl;
+}
+
+.categories-subtitle {
+    @apply mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray;
+}
+
+/* Grid */
+
+.genre-grid-section {
+    @apply pb-16 md:pb-24;
+}
+
+.genre-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.genre-card {
+    @apply rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.genre-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgb(140 82 255 / 0.35);
+
+    background: rgb(140 82 255 / 0.05);
+}
+
+.genre-card-icon {
+    @apply text-4xl;
+}
+
+.genre-card-title {
+    @apply mt-5 text-2xl font-bold text-white;
+}
+
+.genre-card-description {
+    @apply mt-3 leading-7 text-gray;
+}
+
+.genre-card-link {
+    @apply mt-5 inline-block font-medium;
+    color: #8c52ff;
+}
+
+/* CTA */
+
+.categories-cta {
+    @apply py-10 md:py-16;
+}
+
+.categories-cta-card {
+    @apply rounded-[2rem] border border-white/10 bg-white/5 px-6 py-10 text-center md:px-10;
+}
+
+.categories-cta-card h2 {
+    @apply text-3xl font-bold text-white;
+}
+
+.categories-cta-card p {
+    @apply mx-auto mt-4 max-w-2xl text-gray leading-7;
+}
+
+.categories-cta-button {
+    @apply mt-8 inline-flex items-center rounded-full px-6 py-3 font-semibold text-white transition-all duration-300;
+
+    background: #8c52ff;
+}
+
+.categories-cta-button:hover {
+    transform: translateY(-2px);
+}
+
+/* About */
+
+.genres-about-section {
+    @apply py-16 md:py-24;
+}
+
+.genres-about-card {
+    @apply rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-10;
+}
+
+.genres-about-card p {
+    @apply mt-5 text-gray leading-8;
+}

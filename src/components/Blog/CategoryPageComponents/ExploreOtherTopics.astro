@@ -1,0 +1,69 @@
+---
+import './explore-other-topics.css';
+import { BLOG_CATEGORY_CONFIG } from "../../../config/blog-category-page-config";
+
+const { currentCategory } = Astro.props;
+
+const otherTopics = Object.entries(BLOG_CATEGORY_CONFIG)
+  .filter(([slug]) => slug !== currentCategory)
+  .slice(0, 6);
+---
+
+<section class="explore-topics-section">
+
+  <div class="explore-topics-container">
+
+    <div class="explore-topics-header">
+
+      <span class="section-badge">
+        🔍 Discover More
+      </span>
+
+      <h2 class="section-title">
+        You Might Also Like
+      </h2>
+
+      <p class="section-subtitle">
+        Explore other anime topics, recommendations, and guides curated by AniKawa.
+      </p>
+
+    </div>
+
+    <div class="explore-topics-grid">
+
+      {
+        otherTopics.map(([slug, topic]) => (
+          <a
+            href={`/blog/category/${slug}`}
+            class="explore-topic-card"
+          >
+
+            <div class="explore-topic-icon">
+              {topic.emoji}
+            </div>
+
+            <div class="explore-topic-content">
+
+              <h3 class="explore-topic-title">
+                {topic.title}
+              </h3>
+
+              <p class="explore-topic-description">
+                {topic.description}
+              </p>
+
+            </div>
+
+            <div class="explore-topic-arrow">
+              →
+            </div>
+
+          </a>
+        ))
+      }
+
+    </div>
+
+  </div>
+
+</section>

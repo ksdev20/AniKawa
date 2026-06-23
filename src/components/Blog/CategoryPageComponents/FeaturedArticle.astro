@@ -1,0 +1,67 @@
+---
+import './featured-article.css';
+const { categoryInfo, featuredPost } = Astro.props;
+console.log("FEATURED POST:", featuredPost?.data?.title);
+---
+
+<section class="featured-category-article-section">
+  <div class="featured-category-article-container">
+    <div class="featured-category-article-header">
+      <span class="section-badge"> ⭐ Editor's Choice </span>
+
+      <h2 class="section-title">Start With This Article</h2>
+
+      <p class="section-subtitle">
+        Our featured pick from the {categoryInfo.title} collection.
+      </p>
+    </div>
+
+    <a
+      href={`/blog/${featuredPost.data.slug}`}
+      class="featured-category-article-card"
+    >
+      <div class="featured-category-image-wrapper">
+        <img
+          src={featuredPost.data.imgLarge || featuredPost.data.img}
+          alt={featuredPost.data.title}
+          class="featured-category-image"
+          loading="eager"
+        />
+
+        <div class="featured-category-image-overlay"></div>
+      </div>
+
+      <div class="featured-category-content">
+        <div class="featured-category-tags">
+          {
+            featuredPost.data.categoryList
+              .slice(0, 3)
+              .map((category: string) => <span>{category}</span>)
+          }
+        </div>
+
+        <h3 class="featured-category-title">
+          {featuredPost.data.title}
+        </h3>
+
+        <p class="featured-category-subtitle">
+          {featuredPost.data.subTitle}
+        </p>
+
+        <div class="featured-category-meta">
+          <span>
+            📅 {featuredPost.data.date}
+          </span>
+
+          {
+            featuredPost.data.readMinutes && (
+              <span>⏱️ {featuredPost.data.readMinutes} min read</span>
+            )
+          }
+        </div>
+
+        <div class="featured-category-readmore">Read Featured Article →</div>
+      </div>
+    </a>
+  </div>
+</section>

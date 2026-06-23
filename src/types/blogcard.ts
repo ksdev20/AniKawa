@@ -15,6 +15,7 @@ export type BlogData = {
     date: string,
     img: string,
     imgLarge?: string;
+    imgPortrait?: string,
     categoryList: string[],
     slug: string,
     readMinutes?: number,

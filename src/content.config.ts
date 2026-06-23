@@ -21,6 +21,8 @@ const blog = defineCollection({
 
     imgLarge: z.string().optional(),
 
+    imgPortrait: z.string().optional(),
+
     categoryList: z.array(z.string()),
 
     slug: z.string(),

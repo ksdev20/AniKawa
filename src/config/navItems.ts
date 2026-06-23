@@ -1,5 +1,9 @@
 export const npoItems = [
     {
+        label: 'Browse by Categories',
+        href: '/categories'
+    },
+    {
         label: 'New',
         href: '/list/new'
     },

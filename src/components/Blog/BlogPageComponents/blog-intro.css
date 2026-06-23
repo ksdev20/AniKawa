@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.about-blog-section {
+    @apply py-16 md:py-24;
+}
+
+.about-blog-container {
+    @apply mx-auto max-w-5xl px-5 sm:px-6 lg:px-8;
+}
+
+.about-blog-card {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-10 lg:p-12;
+}
+
+.about-blog-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -120px;
+    right: -120px;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.08);
+
+    filter: blur(60px);
+
+    pointer-events: none;
+}
+
+.about-blog-header {
+    @apply mb-8 text-center;
+}
+
+.about-blog-content {
+    @apply space-y-6;
+}
+
+.about-blog-content p {
+    @apply text-base leading-8 text-gray md:text-lg;
+}
+
+.about-blog-content p:first-child {
+    @apply text-white;
+}
+
+/* Optional highlighted keywords */
+
+.about-blog-content strong {
+    color: #8c52ff;
+    font-weight: 600;
+}

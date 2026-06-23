@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.category-articles-section {
+    @apply py-6 md:py-10;
+}
+
+.category-articles-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.category-articles-header {
+    @apply mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between;
+}
+
+.category-articles-controls {
+    @apply flex items-center gap-4;
+}
+
+.category-articles-count {
+    @apply rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray;
+}
+
+.category-articles-sort {
+    @apply rounded-xl border border-white/10 bg-secondary px-4 py-2 text-sm text-white;
+}
+
+.category-articles-grid {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.category-article-card {
+    @apply overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 transition-all duration-300;
+}
+
+.category-article-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgb(140 82 255 / 0.35);
+
+    background: rgb(140 82 255 / 0.05);
+}
+
+.category-article-image-wrapper {
+    @apply overflow-hidden;
+}
+
+.category-article-image {
+    @apply h-56 w-full object-cover transition-transform duration-700;
+}
+
+.category-article-card:hover .category-article-image {
+    transform: scale(1.05);
+}
+
+.category-article-content {
+    @apply p-5;
+}
+
+.category-article-tags {
+    @apply mb-4 flex flex-wrap gap-2;
+}
+
+.category-article-tags span {
+    @apply rounded-full px-3 py-1 text-xs font-medium;
+
+    background: rgb(140 82 255 / 0.15);
+
+    color: #b798ff;
+}
+
+.category-article-title {
+    @apply text-xl font-bold leading-tight text-white;
+}
+
+.category-article-subtitle {
+    @apply mt-3 line-clamp-3 text-sm leading-7 text-gray;
+}
+
+.category-article-meta {
+    @apply mt-5 flex flex-wrap gap-4 text-sm text-gray;
+}
+
+/*no posts available styles*/
+.empty-category-state {
+    @apply mx-auto my-12 max-w-2xl rounded-[2rem] border border-white/10 bg-white/5 px-8 py-12 text-center;
+}
+
+.empty-category-icon {
+    @apply text-5xl;
+}
+
+.empty-category-title {
+    @apply mt-5 text-2xl font-bold text-white;
+}
+
+.empty-category-description {
+    @apply mx-auto mt-4 max-w-xl text-gray leading-7;
+}
+
+.empty-category-btn {
+    @apply mt-8 inline-flex items-center rounded-full px-5 py-3 font-medium text-white transition-all duration-300;
+
+    background: #8c52ff;
+}
+
+.empty-category-btn:hover {
+    transform: translateY(-2px);
+}

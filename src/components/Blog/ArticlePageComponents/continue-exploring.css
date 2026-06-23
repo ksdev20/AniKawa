@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.continue-exploring-section {
+    @apply py-16;
+}
+
+.continue-exploring-container {
+    @apply mx-auto max-w-6xl px-5 sm:px-6 lg:px-8;
+}
+
+.continue-exploring-header {
+    @apply mb-8 text-center;
+}
+
+.continue-exploring-grid {
+    @apply grid gap-4 md:grid-cols-2;
+}
+
+.continue-exploring-card {
+    @apply rounded-[1.75rem] border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.continue-exploring-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgb(140 82 255 / 0.35);
+
+    background: rgb(140 82 255 / 0.05);
+}
+
+.continue-exploring-content {
+    @apply flex items-center justify-between gap-4;
+}
+
+.continue-exploring-title {
+    @apply text-xl font-semibold text-white;
+}
+
+.continue-exploring-link {
+    @apply text-sm font-medium whitespace-nowrap;
+    color: #b798ff;
+}

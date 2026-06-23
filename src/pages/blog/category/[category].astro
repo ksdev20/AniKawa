@@ -1,0 +1,50 @@
+---
+export const prerender = true;
+import { getCollection } from "astro:content";
+import { BLOG_CATEGORY_CONFIG } from "../../../config/blog-category-page-config";
+import Layout from "../../../layouts/Layout.astro";
+import CategoryHero from "../../../components/Blog/CategoryPageComponents/CategoryHero.astro";
+import FeaturedArticle from "../../../components/Blog/BlogPageComponents/FeaturedArticle.astro";
+import BlogsGrid from "../../../components/Blog/CategoryPageComponents/BlogsGrid.astro";
+import ExploreOtherTopics from "../../../components/Blog/CategoryPageComponents/ExploreOtherTopics.astro";
+import AboutThisCategory from "../../../components/Blog/CategoryPageComponents/AboutThisCategory.astro";
+
+export async function getStaticPaths() {
+  return Object.keys(BLOG_CATEGORY_CONFIG).map((category) => ({
+    params: { category },
+  }));
+}
+
+const { category } = Astro.params;
+
+const categoryInfo =
+  BLOG_CATEGORY_CONFIG[category as keyof typeof BLOG_CATEGORY_CONFIG];
+
+if (!categoryInfo) {
+  throw new Error(`Unknown category: ${category}`);
+}
+console.log("working till now");
+const allPosts = await getCollection("blog");
+
+const slugifyCategory = (str: string) =>
+  str.toLowerCase().trim().replaceAll("&", "and").replace(/\s+/g, "-");
+
+const categoryPosts = allPosts
+  .filter((post) =>
+    post.data.categoryList.some((cat) => slugifyCategory(cat) === category),
+  )
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+
+const featuredPost = categoryPosts.at(0);
+const remainingPosts = categoryPosts.slice(1);
+---
+
+<Layout>
+  <CategoryHero categoryInfo={categoryInfo} posts={categoryPosts} />
+  <FeaturedArticle featuredPost={featuredPost} />
+  <BlogsGrid categoryInfo={categoryInfo} posts={categoryPosts} />
+  <ExploreOtherTopics currentCategory={category} />
+  <AboutThisCategory categoryInfo={categoryInfo} />
+</Layout>

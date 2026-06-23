@@ -1,0 +1,217 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/categories.css";
+
+const categories = [
+  {
+    name: "Action",
+    emoji: "⚔️",
+    desc: "Explosive battles, powerful heroes, and unforgettable fights.",
+    href: "/category/action",
+  },
+  {
+    name: "Adventure",
+    emoji: "🗺️",
+    desc: "Journey across exciting worlds filled with discovery.",
+    href: "/category/adventure",
+  },
+  {
+    name: "Comedy",
+    emoji: "😂",
+    desc: "Laugh-out-loud anime packed with humor and fun moments.",
+    href: "/category/comedy",
+  },
+  {
+    name: "Drama",
+    emoji: "🎭",
+    desc: "Emotional stories driven by compelling characters.",
+    href: "/category/drama",
+  },
+  {
+    name: "Fantasy",
+    emoji: "✨",
+    desc: "Magic, kingdoms, myths, and extraordinary adventures.",
+    href: "/category/fantasy",
+  },
+  {
+    name: "Music",
+    emoji: "🎵",
+    desc: "Bands, idols, performances, and inspiring musical journeys.",
+    href: "/category/music",
+  },
+  {
+    name: "Romance",
+    emoji: "❤️",
+    desc: "Heartwarming relationships and unforgettable love stories.",
+    href: "/category/romance",
+  },
+  {
+    name: "Sci-Fi",
+    emoji: "🚀",
+    desc: "Futuristic worlds, technology, and mind-bending concepts.",
+    href: "/category/sci-fi",
+  },
+  {
+    name: "Sports",
+    emoji: "🏀",
+    desc: "Competition, teamwork, growth, and thrilling matches.",
+    href: "/category/sports",
+  },
+  {
+    name: "Supernatural",
+    emoji: "👻",
+    desc: "Ghosts, spirits, powers, and mysterious phenomena.",
+    href: "/category/supernatural",
+  },
+  {
+    name: "Thriller",
+    emoji: "🔪",
+    desc: "Suspenseful stories packed with tension and twists.",
+    href: "/category/thriller",
+  },
+];
+---
+
+<Layout title="Anime Categories | AniKawa">
+
+  <!-- Hero -->
+
+  <section class="categories-hero">
+
+    <div class="categories-container">
+
+      <span class="section-badge">
+        🎌 Anime Genres
+      </span>
+
+      <h1 class="categories-title">
+        Browse Anime By Genre
+      </h1>
+
+      <p class="categories-subtitle">
+        Discover anime based on the genres you love. Whether you're looking for
+        action-packed adventures, emotional dramas, fantasy worlds, romance,
+        sports, or sci-fi stories, AniKawa helps you find your next favorite anime.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Categories Grid -->
+
+  <section class="genre-grid-section">
+
+    <div class="categories-container">
+
+      <div class="genre-grid">
+
+        {
+          categories.map((category) => (
+
+            <a
+              href={category.href}
+              class="genre-card"
+            >
+
+              <div class="genre-card-icon">
+                {category.emoji}
+              </div>
+
+              <h2 class="genre-card-title">
+                {category.name}
+              </h2>
+
+              <p class="genre-card-description">
+                {category.desc}
+              </p>
+
+              <span class="genre-card-link">
+                Explore →
+              </span>
+
+            </a>
+
+          ))
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="categories-cta">
+
+    <div class="categories-container">
+
+      <div class="categories-cta-card">
+
+        <h2>
+          Can't Decide What To Watch?
+        </h2>
+
+        <p>
+          Explore editor's picks, trending anime, community favorites,
+          and curated recommendations from AniKawa.
+        </p>
+
+        <a
+          href="/anime"
+          class="categories-cta-button"
+        >
+          Browse Anime
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SEO Content -->
+
+  <section class="genres-about-section">
+
+    <div class="categories-container">
+
+      <div class="genres-about-card">
+
+        <span class="section-badge">
+          📖 About Anime Genres
+        </span>
+
+        <h2 class="section-title">
+          Understanding Anime Genres
+        </h2>
+
+        <p>
+          Anime genres help viewers discover series that match their interests and
+          preferences. Action anime focus on exciting battles and fast-paced stories,
+          while romance anime explore relationships and emotional connections.
+          Fantasy anime transport viewers to magical worlds, and sci-fi anime
+          imagine futuristic technology and possibilities.
+        </p>
+
+        <p>
+          Other genres offer completely different experiences. Sports anime highlight
+          competition and teamwork, comedy anime deliver laughs and lighthearted fun,
+          and thriller anime keep viewers on the edge of their seats. Exploring
+          different genres is one of the best ways to discover new anime and expand
+          your watchlist.
+        </p>
+
+        <p>
+          At AniKawa, you can browse anime by genre, discover recommendations,
+          explore detailed anime guides, and find series tailored to your interests.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</Layout>

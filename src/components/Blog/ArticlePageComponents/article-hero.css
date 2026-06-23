@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+@config '../../../../tailwind.config.mjs';
+
+.article-hero-section {
+    @apply pt-10 pb-12 md:pt-16 md:pb-16;
+}
+
+.article-hero-container {
+    @apply mx-auto max-w-6xl px-5 sm:px-6 lg:px-8;
+}
+
+.article-hero-content {
+    @apply mb-8 text-center;
+}
+
+.article-hero-tags {
+    @apply mb-5 flex flex-wrap justify-center gap-2;
+}
+
+.article-hero-tag {
+    @apply rounded-full px-3 py-1 text-sm font-medium transition-all;
+
+    color: #c8b3ff;
+
+    background: rgb(140 82 255 / 0.12);
+
+    border: 1px solid rgb(140 82 255 / 0.22);
+}
+
+.article-hero-tag:hover {
+    background: rgb(140 82 255 / 0.18);
+}
+
+.article-hero-title {
+    @apply mx-auto max-w-4xl text-4xl font-bold leading-tight text-white md:text-6xl;
+}
+
+.article-hero-subtitle {
+    @apply mx-auto mt-5 max-w-3xl text-lg leading-8 text-gray;
+}
+
+.article-hero-meta {
+    @apply mt-8 flex flex-wrap justify-center gap-4 text-sm;
+}
+
+.article-hero-meta span {
+    @apply rounded-full border border-white/10 bg-white/5 px-4 py-2;
+}
+
+.article-hero-image-wrapper {
+    @apply relative overflow-hidden rounded-[2rem];
+}
+
+.article-hero-image {
+    @apply h-[280px] w-full object-cover md:h-[420px] lg:h-[520px];
+}
+
+.article-hero-image-overlay {
+    @apply absolute inset-0;
+
+    background:
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.25),
+            transparent);
+}

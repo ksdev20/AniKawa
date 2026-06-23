@@ -1,0 +1,73 @@
+---
+import "./article-hero.css";
+
+const { post } = Astro.props;
+---
+
+<section class="article-hero-section">
+
+  <div class="article-hero-container">
+
+    <div class="article-hero-content">
+
+      <div class="article-hero-tags">
+        {
+          post.data.categoryList.map((category: string) => (
+            <a
+              href={`/blog/category/${category
+                .toLowerCase()
+                .replaceAll(" ", "-")}`}
+              class="article-hero-tag"
+            >
+              {category}
+            </a>
+          ))
+        }
+      </div>
+
+      <h1 class="article-hero-title">
+        {post.data.title}
+      </h1>
+
+      <p class="article-hero-subtitle">
+        {post.data.subTitle}
+      </p>
+
+      <div class="article-hero-meta">
+
+        <span>
+          ✍️ {post.data.author}
+        </span>
+
+        <span>
+          📅 {post.data.date}
+        </span>
+
+        {
+          post.data.readMinutes && (
+            <span>
+              ⏱️ {post.data.readMinutes} min read
+            </span>
+          )
+        }
+
+      </div>
+
+    </div>
+
+    <div class="article-hero-image-wrapper">
+
+      <img
+        src={post.data.imgLarge || post.data.img}
+        alt={post.data.title}
+        class="article-hero-image"
+        loading="eager"
+      />
+
+      <div class="article-hero-image-overlay"></div>
+
+    </div>
+
+  </div>
+
+</section>
