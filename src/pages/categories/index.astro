@@ -1,4 +1,5 @@
 ---
+import SEOHead from "../../components/SEO/SEOHead.astro";
 import Layout from "../../layouts/Layout.astro";
 import "../../styles/categories.css";
 
@@ -70,148 +71,119 @@ const categories = [
     href: "/category/Thriller",
   },
 ];
+
+const title = "Browse Anime Categories & Find Your Next Anime | AniKawa";
+
+const pageDes =
+  "Discover anime by category, genre, mood, and theme. Find action anime, romance anime, fantasy adventures, hidden gems, beginner-friendly series, thrillers, and more on AniKawa.";
+
+const pageKw =
+  "browse anime, anime categories, anime genres, anime recommendations, anime finder, action anime, romance anime, fantasy anime, mystery anime, slice of life anime, best anime to watch";
+
+const pageUrl = "https://anikawa.in/categories";
+
+const currentThumbnail =
+  "https://ik.imagekit.io/anikawa/Page%20Images/categories-page-thumbnail.avif";
 ---
 
+<Fragment slot="head">
+  <SEOHead
+    title={title}
+    description={pageDes}
+    ogDescription={pageDes}
+    imageUrl={currentThumbnail}
+    url={pageUrl}
+    keywords={pageKw}
+  />
+</Fragment>
 <Layout title="Anime Categories | AniKawa">
-
   <!-- Hero -->
 
   <section class="categories-hero">
-
     <div class="categories-container">
+      <span class="section-badge"> 🎌 Anime Genres </span>
 
-      <span class="section-badge">
-        🎌 Anime Genres
-      </span>
-
-      <h1 class="categories-title">
-        Browse Anime By Genre
-      </h1>
+      <h1 class="categories-title">Browse Anime By Genre</h1>
 
       <p class="categories-subtitle">
         Discover anime based on the genres you love. Whether you're looking for
         action-packed adventures, emotional dramas, fantasy worlds, romance,
-        sports, or sci-fi stories, AniKawa helps you find your next favorite anime.
+        sports, or sci-fi stories, AniKawa helps you find your next favorite
+        anime.
       </p>
-
     </div>
-
   </section>
 
   <!-- Categories Grid -->
 
   <section class="genre-grid-section">
-
     <div class="categories-container">
-
       <div class="genre-grid">
-
         {
           categories.map((category) => (
+            <a href={category.href} class="genre-card">
+              <div class="genre-card-icon">{category.emoji}</div>
 
-            <a
-              href={category.href}
-              class="genre-card"
-            >
+              <h2 class="genre-card-title">{category.name}</h2>
 
-              <div class="genre-card-icon">
-                {category.emoji}
-              </div>
+              <p class="genre-card-description">{category.desc}</p>
 
-              <h2 class="genre-card-title">
-                {category.name}
-              </h2>
-
-              <p class="genre-card-description">
-                {category.desc}
-              </p>
-
-              <span class="genre-card-link">
-                Explore →
-              </span>
-
+              <span class="genre-card-link">Explore →</span>
             </a>
-
           ))
         }
-
       </div>
-
     </div>
-
   </section>
 
   <!-- CTA -->
 
   <section class="categories-cta">
-
     <div class="categories-container">
-
       <div class="categories-cta-card">
-
-        <h2>
-          Can't Decide What To Watch?
-        </h2>
+        <h2>Can't Decide What To Watch?</h2>
 
         <p>
-          Explore editor's picks, trending anime, community favorites,
-          and curated recommendations from AniKawa.
+          Explore editor's picks, trending anime, community favorites, and
+          curated recommendations from AniKawa.
         </p>
 
-        <a
-          href="/blog"
-          class="categories-cta-button"
-        >
-          Browse Anikawa Blog
-        </a>
-
+        <a href="/blog" class="categories-cta-button"> Browse Anikawa Blog </a>
       </div>
-
     </div>
-
   </section>
 
   <!-- SEO Content -->
 
   <section class="genres-about-section">
-
     <div class="categories-container">
-
       <div class="genres-about-card">
+        <span class="section-badge"> 📖 About Anime Genres </span>
 
-        <span class="section-badge">
-          📖 About Anime Genres
-        </span>
-
-        <h2 class="section-title">
-          Understanding Anime Genres
-        </h2>
+        <h2 class="section-title">Understanding Anime Genres</h2>
 
         <p>
-          Anime genres help viewers discover series that match their interests and
-          preferences. Action anime focus on exciting battles and fast-paced stories,
-          while romance anime explore relationships and emotional connections.
-          Fantasy anime transport viewers to magical worlds, and sci-fi anime
-          imagine futuristic technology and possibilities.
+          Anime genres help viewers discover series that match their interests
+          and preferences. Action anime focus on exciting battles and fast-paced
+          stories, while romance anime explore relationships and emotional
+          connections. Fantasy anime transport viewers to magical worlds, and
+          sci-fi anime imagine futuristic technology and possibilities.
         </p>
 
         <p>
-          Other genres offer completely different experiences. Sports anime highlight
-          competition and teamwork, comedy anime deliver laughs and lighthearted fun,
-          and thriller anime keep viewers on the edge of their seats. Exploring
-          different genres is one of the best ways to discover new anime and expand
-          your watchlist.
+          Other genres offer completely different experiences. Sports anime
+          highlight competition and teamwork, comedy anime deliver laughs and
+          lighthearted fun, and thriller anime keep viewers on the edge of their
+          seats. Exploring different genres is one of the best ways to discover
+          new anime and expand your watchlist.
         </p>
 
         <p>
           At AniKawa, you can browse anime by genre, discover recommendations,
-          explore detailed anime guides, and find series tailored to your interests.
+          explore detailed anime guides, and find series tailored to your
+          interests.
         </p>
-
       </div>
-
     </div>
-
   </section>
-
 </Layout>

@@ -8,8 +8,47 @@ import LatestAnimeGrid from "../../components/Blog/BlogPageComponents/LatestAnim
 import AnimeDiscoveryCta from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
 import BlogIntro from "../../components/Blog/BlogPageComponents/BlogIntro.astro";
 import BlogFaqSection from "../../components/Blog/BlogPageComponents/BlogFaqSection.astro";
+import SEOHead from "../../components/SEO/SEOHead.astro";
+
+const title =
+  "AniKawa Blog - Anime Recommendations, Guides, Hidden Gems & Analysis";
+
+const pageDes =
+  "Discover anime recommendations, beginner guides, hidden gems, seasonal picks, watch guides, and thoughtful anime analysis. Find your next favorite anime with AniKawa.";
+
+const pageKw = [
+  "anime blog",
+  "anime recommendations",
+  "anime guides",
+  "anime watch guides",
+  "anime beginner guides",
+  "hidden gem anime",
+  "best anime to watch",
+  "anime analysis",
+  "anime genres",
+  "seasonal anime",
+  "anime articles",
+  "anime discoveries",
+  "anime suggestions",
+  "what anime to watch",
+  "AniKawa blog",
+];
+
+const pageUrl = "https://anikawa.in/blog";
+
+const currentThumbnail = "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
 ---
 
+<Fragment slot="head">
+  <SEOHead
+    title={title}
+    description={pageDes}
+    ogDescription={pageDes}
+    imageUrl={currentThumbnail}
+    url={pageUrl}
+    keywords={pageKw}
+  />
+</Fragment>
 <Layout>
   <HeroSection />
   <FeaturedArticle />

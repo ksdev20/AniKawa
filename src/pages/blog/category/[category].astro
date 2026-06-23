@@ -8,6 +8,7 @@ import FeaturedArticle from "../../../components/Blog/BlogPageComponents/Feature
 import BlogsGrid from "../../../components/Blog/CategoryPageComponents/BlogsGrid.astro";
 import ExploreOtherTopics from "../../../components/Blog/CategoryPageComponents/ExploreOtherTopics.astro";
 import AboutThisCategory from "../../../components/Blog/CategoryPageComponents/AboutThisCategory.astro";
+import SEOHead from "../../../components/SEO/SEOHead.astro";
 
 export async function getStaticPaths() {
   return Object.keys(BLOG_CATEGORY_CONFIG).map((category) => ({
@@ -38,9 +39,43 @@ const categoryPosts = allPosts
   );
 
 const featuredPost = categoryPosts.at(0);
-const remainingPosts = categoryPosts.slice(1);
+
+const pageTitle = `${categoryInfo.title} - Articles & Recommendations | AniKawa`;
+
+const pageDes =
+  categoryInfo.description ||
+  `Explore ${categoryInfo.title} articles, recommendations, watch guides, and curated anime picks on AniKawa.`;
+
+const pageUrl = `https://anikawa.in/blog/category/${category}`;
+
+const currentThumbnail =
+  featuredPost?.data.imgLarge ||
+  featuredPost?.data.img ||
+  "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
+
+const pageKw = [
+  categoryInfo.title,
+  "anime recommendations",
+  "anime blog",
+  "anime articles",
+  "what anime to watch",
+  "anime guide",
+  "AniKawa",
+]
+  .filter(Boolean)
+  .join(", ");
 ---
 
+<Fragment slot="head">
+  <SEOHead
+    title={pageTitle}
+    description={pageDes}
+    ogDescription={pageDes}
+    imageUrl={currentThumbnail}
+    url={pageUrl}
+    keywords={pageKw}
+  />
+</Fragment>
 <Layout>
   <CategoryHero categoryInfo={categoryInfo} posts={categoryPosts} />
   <FeaturedArticle featuredPost={featuredPost} />

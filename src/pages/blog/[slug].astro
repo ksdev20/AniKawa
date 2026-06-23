@@ -3,13 +3,14 @@ export const prerender = true;
 
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import '../../styles/blog-page-styles.css';
+import "../../styles/blog-page-styles.css";
 import ArticleHero from "../../components/Blog/ArticlePageComponents/ArticleHero.astro";
 import TableOfContents from "../../components/Blog/ArticlePageComponents/TableOfContents.astro";
 import ContinueExploring from "../../components/Blog/ArticlePageComponents/ContinueExploring.astro";
 import RelatedArticles from "../../components/Blog/ArticlePageComponents/RelatedArticles.astro";
 import AnimeDiscoveryCTA from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
 import EditorialNote from "../../components/Blog/ArticlePageComponents/EditorialNote.astro";
+import SEOHead from "../../components/SEO/SEOHead.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -43,9 +44,7 @@ const relatedPosts = allPosts
     );
   })
   .sort(
-    (a, b) =>
-      new Date(b.data.date).getTime() -
-      new Date(a.data.date).getTime(),
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
   )
   .slice(0, 3);
 
@@ -55,19 +54,48 @@ const categoryLinks = post.data.categoryList.map((category) => ({
   name: category,
   slug: category.toLowerCase().replaceAll(" ", "-"),
 }));
+
+const pageTitle = `${post.data.title} | AniKawa`;
+
+const pageDes =
+  post.data.subTitle ||
+  "Discover anime recommendations, watch guides, hidden gems, and curated anime content on AniKawa.";
+
+const pageUrl = `https://anikawa.in/blog/${post.data.slug}`;
+
+const currentThumbnail =
+  post.data.imgLarge ||
+  post.data.img ||
+  "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
+
+const pageKw = [
+  post.data.title,
+  ...(post.data.categoryList || []),
+  "anime recommendations",
+  "anime guide",
+  "anime blog",
+  "what anime to watch",
+  "AniKawa",
+].join(", ");
 ---
 
-<Layout
-  title={post.data.title}
-  description={post.data.subTitle}
->
+<Fragment slot="head">
+  <SEOHead
+    title={pageTitle}
+    description={pageDes}
+    ogDescription={pageDes}
+    imageUrl={currentThumbnail}
+    url={pageUrl}
+    keywords={pageKw}
+  />
+</Fragment>
+<Layout title={post.data.title} description={post.data.subTitle}>
   <ArticleHero post={post} />
 
   {
-    post.data.toc &&
-      post.data.toc.length > 0 && (
-        <TableOfContents toc={post.data.toc} />
-      )
+    post.data.toc && post.data.toc.length > 0 && (
+      <TableOfContents toc={post.data.toc} />
+    )
   }
 
   <article class="blog-article-content prose prose-lg max-w-none text-white">
