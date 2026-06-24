@@ -9,6 +9,8 @@ import AnimeDiscoveryCta from "../../components/Blog/BlogPageComponents/AnimeDis
 import BlogIntro from "../../components/Blog/BlogPageComponents/BlogIntro.astro";
 import BlogFaqSection from "../../components/Blog/BlogPageComponents/BlogFaqSection.astro";
 import SEOHead from "../../components/SEO/SEOHead.astro";
+import AdsSnippet from "../../components/Blog/AdsSnippet";
+import { getCollection } from "astro:content";
 
 const title =
   "AniKawa Blog - Anime Recommendations, Guides, Hidden Gems & Analysis";
@@ -36,7 +38,9 @@ const pageKw = [
 
 const pageUrl = "https://anikawa.in/blog";
 
-const currentThumbnail = "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
+const currentThumbnail =
+  "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
+const posts = await getCollection("blog");
 ---
 
 <Fragment slot="head">
@@ -47,11 +51,14 @@ const currentThumbnail = "https://ik.imagekit.io/anikawa/Page%20Images/blog-home
     imageUrl={currentThumbnail}
     url={pageUrl}
     keywords={pageKw}
-  />
+  >
+</SEOHead>
+  
 </Fragment>
 <Layout>
   <HeroSection />
-  <FeaturedArticle />
+  <FeaturedArticle featuredPost={posts[3]}/>
+  <AdsSnippet client:load />
   <DiscoverAnime />
   <LatestAnimeGrid />
   <BrowseTopics />
