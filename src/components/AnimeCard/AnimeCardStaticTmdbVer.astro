@@ -24,7 +24,7 @@ const season_poster =
   anime?.plThumbnail ??
   "/anime-image-alt.png";
 
-const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
+const titleAlt = seasons > 1 ? `Season ${season}: ${title}` : title;
 const language = "Eng Sub";
 const episodes = anime?.episodes?.length;
 const ep1Slug = anime?.episodes?.[0]?.slug;

@@ -26,6 +26,7 @@ const {
   slug: animeslug = "n-a",
   title: animeTitle = "Untitled",
   scoreAlt = "Score N/A",
+  runtime,
 } = anime ?? {};
 const language = "Subtitled";
 
@@ -35,10 +36,18 @@ const {
   url,
   titleAlt: episodeTitle,
   description = "No description",
+  ratingLabel,
+  air_date,
+  vote_average,
+  summary,
+  importance,
+  facts,
 } = episode ?? {};
 
 const currentThumbnail = getEpImg(episode);
 
+const totalEpisodes = anime?.episodes.length;
+const progressPercentage = ((epNum / totalEpisodes) * 100).toFixed(0);
 //to send to episode change cards
 const prevObj = anime?.episodes?.[epNum - 2];
 const nextObj = anime?.episodes?.[epNum];
@@ -73,7 +82,7 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
   </SEOHead>
 </Fragment>
 <Layout>
-  <main id="main-episode-page" class="main-episode-page">
+  <article id="main-episode-page" class="main-episode-page">
     <HandleECClick animenanoid={nanoid} slug={slug} client:load />
     <section aria-labelledby="e-title" class="video-container">
       <iframe
@@ -87,22 +96,97 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </section>
-    <article class="episode-page-details">
-      <section class="episode-page-details epd-first">
-        <div class="epd-first-top">
-          <div class="epd-first-top first-part">
-            <a href={`/show/${nanoid}/${animeslug}`} id="a-title"
-              ><h2 class="first-part-anime-title">{animeTitle}</h2></a
-            >
-            |
-            <p class="first-part-rating" id="a-score">{scoreAlt}</p>
-          </div>
+    <section class="episode-hero-info">
+      <div class="episode-kicker">
+        <a href={`/show/${nanoid}/${animeslug}`}>{animeTitle}</a>
+        <span>•</span>
+        <span>Episode {epNum}</span>
+      </div>
+
+      <h1 class="episode-title">
+        {episodeTitle}
+      </h1>
+
+      <p class="episode-summary">
+        {description}
+      </p>
+
+      <div class="episode-meta-grid">
+        <div class="meta-card">
+          <span class="meta-label">Air Date</span>
+          <span class="meta-value">
+            {air_date}
+          </span>
         </div>
-        <h1 id="e-title" class="epd-ep-title">{episodeTitle}</h1>
-        <p id="e-language" class="epd-language">{language}</p>
-        <p id="e-des" class="epd-description">{description}</p>
-        <div class="episode-list-endline"></div>
-      </section>
+
+        <div class="meta-card">
+          <span class="meta-label">Episode Rating</span>
+          <span class="meta-value">
+            {vote_average?.toFixed(1)} / 10
+          </span>
+        </div>
+
+        <div class="meta-card">
+          <span class="meta-label">Season</span>
+          <span class="meta-value">
+            {animeTitle}
+          </span>
+        </div>
+
+        <div class="meta-card">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">
+            {"Japanese Audio"}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EP SUMMARY -->
+    <section class="episode-summary-section">
+      <div class="episode-summary-header">
+        <span class="summary-eyebrow"> EPISODE GUIDE </span>
+
+        <h2 class="summary-title">What Happens In This Episode?</h2>
+      </div>
+
+      <div class="episode-summary-card">
+        <p>
+          {summary}
+        </p>
+      </div>
+    </section>
+
+    <!-- Why Ep Matters -->
+
+    <section class="episode-importance-section">
+      <div class="importance-header">
+        <span class="importance-eyebrow"> STORY INSIGHT </span>
+
+        <h2 class="importance-title">Why This Episode Matters</h2>
+      </div>
+
+      <div class="importance-card"><p>{importance}</p></div>
+    </section>
+
+    <!-- Episode Trivia -->
+
+    <section class="episode-trivia-section">
+      <div class="trivia-header">
+        <span class="trivia-eyebrow"> DID YOU KNOW? </span>
+
+        <h2 class="trivia-title">Facts about this Episode</h2>
+      </div>
+
+      <div class="trivia-card">
+        <ul class="trivia-list">
+          {facts && facts.map((fact: string) => <li> {fact} </li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Watch Next -->
+    <article class="episode-page-details">
       <nav class="episode-change-section">
         <EpisodeChangeCard
           Obj={prevObj}
@@ -114,5 +198,40 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
         />
       </nav>
     </article>
-  </main>
+
+    <!-- Season Progress -->
+    <section class="season-progress-section">
+      <div class="progress-header">
+        <span class="progress-eyebrow"> WATCH PROGRESS </span>
+
+        <h2 class="progress-title">Season Progress</h2>
+
+        <p class="progress-description">
+          You're currently watching episode {epNum} of {
+            totalEpisodes
+          }.
+        </p>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-stats">
+          <span> Episode {epNum} </span>
+
+          <span>
+            {progressPercentage}% Complete
+          </span>
+        </div>
+
+        <div class="progress-track">
+          <div class="progress-fill" style={`width:${progressPercentage}%`}>
+          </div>
+        </div>
+
+        <div class="progress-footer">
+          <span>Start</span>
+          <span>{totalEpisodes} Episodes</span>
+        </div>
+      </div>
+    </section>
+  </article>
 </Layout>

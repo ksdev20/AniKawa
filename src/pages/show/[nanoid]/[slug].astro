@@ -3,7 +3,6 @@ import { getAnimeById } from "../../../filters/getAnimeById";
 import { type Anime } from "../../../types/mergedListTypes";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 import "../../../styles/animePagetw.css";
-import Navbar from "../../../components/Navbar/Navbar";
 import { getOptimizedImageUrl } from "../../../utils/imageSizing";
 import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
 import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
@@ -13,6 +12,9 @@ import Footer from "../../../components/Footer/Footer";
 import { Icon } from "../../../icons/icons";
 import { frontendUrl } from "../../../global_assets/globalPaths";
 import "../../../styles/index.css";
+import Layout from "../../../layouts/Layout.astro";
+import "../../../styles/new-anime-page.css";
+import HeroSection from "../../../components/AnimePageSections/HeroSection.astro";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 const anime = getAnimeById(nanoid) as Anime | null;
@@ -43,6 +45,13 @@ const {
   season,
   episodes: episodeList,
   keywords,
+  anikawaReview,
+  animeInsights,
+  whoShouldWatch,
+  whatMakesItSpecial,
+  watchOrder,
+  faq,
+  relatedArticles,
 } = anime ?? {};
 
 const sortedEpList = sort == "new" ? [...episodeList].reverse() : episodeList;
@@ -91,204 +100,377 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
   backdrop?.slice(0).replace("original", backdropType);
 ---
 
-<html lang="en">
-  <SEOHead
-    title={`Watch ${title} Ad-Free Online | Anikawa`}
-    description={pageDescription}
-    keywords={keywords}
-    ,
-    ogDescription={pageDescription}
-    ,
-    url={pageUrl}
-    ,
-    imageUrl={backdrop}
-  >
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KH21EQ579T"
-    ></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+<Layout>
+  <!-- Hero Section -->
 
-      gtag("config", "G-KH21EQ579T");
-    </script>
-  </SEOHead>
+  <section class="anime-hero">
+    <div class="hero-backdrop-overlay"></div>
 
-  <body>
-    <Navbar client:load />
-
-    <main id="main" class="main">
-      <header id="top-banner" class="top-banner">
-        <div class="top-banner-image-ap">
-          <picture>
-            <source
-              media="(max-width: 300px)"
-              srcset={getBackdropType(backdrop, "w300")}
-            />
-            <source
-              media="(max-width: 780px)"
-              srcset={getBackdropType(backdrop, "w780")}
-            />
-            <source
-              media="(max-width: 1280px)"
-              srcset={getBackdropType(backdrop, "w1280")}
-            />
-
-            <img
-              class="hs-anime-banner"
-              width="1280"
-              height="720"
-              src={backdrop}
-              alt={`Backdrop of
-        ${title}`}
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </picture>
-        </div>
-        <div class="overlay-gradient"></div>
-        <div class="bottom-gradient"></div>
-      </header>
-      <div id="overlay-main" class="overlay-main">
-        <div class="empty-top-banner"></div>
-        <section class="anime-hero-section" aria-labelledby="title-english">
-          <div class="hero-column image">
-            <img
-              id="card-image"
-              class="card-image"
-              src={getOptimizedImageUrl(season_poster, 500)}
-              loading="lazy"
-              decoding="async"
-              alt={`Cover of ${title}`}
-              fetchpriority="high"
-            />
-          </div>
-          <div class="hero-column metadata">
-            <div class="titles-section">
-              <h1 id="title-english" class="poetsen-one-regular english">
-                {titleAlt}
-              </h1>
-              {
-                tagline && tagline !== "" && (
-                  <p id="title-romaji" class="poetsen-one-regular romaji">
-                    {tagline}
-                  </p>
-                )
-              }
-              <p class="poetsen-one-regular">Score : {scoreAlt}</p>
-              <div class="watchlist-section-ap">
-                <div id="wbtn-label"></div>
-                <AnimeWBtn nanoid={nanoid ?? "xyzxyz"} client:load />
-              </div>
-            </div>
-            <article class="description-section">
-              <div class="des-only">
-                <p id="description-anime-hero" class="description-anime-hero">
-                  {description}
-                </p>
-              </div>
-              <dl id="other-metadata" class="other-metadata">
-                {
-                  metedataConfig.map((obj) => (
-                    <div class="metadata-value">
-                      <dt class="metadata-label">{obj.dt}</dt>
-                      <dd>{obj.dd}</dd>
-                    </div>
-                  ))
-                }
-                <div class="metadata-value">
-                  <dt class="metadata-label">Genres:</dt><dd>
-                    {
-                      genres.map((g) => (
-                        <>
-                          <a href={`/category/${g}`} class="cat-link-txt">
-                            {g}
-                          </a>
-                          <b class="cat-sep">〡</b>
-                        </>
-                      ))
-                    }
-                  </dd>
-                </div>
-              </dl>
-            </article>
-          </div>
-        </section>
-        <section id="episodes-section" class="episodes-section">
-          <header class="top-controls">
-            <div class="top-controls-btn">
-              <Icon name="arrowdown" size={30} className="arrow-down" />
-              <h2 id="season-text" class="season-text">
-                S{season}: {title}
-              </h2>
-            </div>
-            <SortBtnHandler client:load />
-          </header>
-          <ul class="episodes-list">
-            {
-              sortedEpList?.map((e: any) => {
-                const epData: any = {
-                  animeTitle: title,
-                  language,
-                  animenanoid: nanoid,
-                  animeslug: slug,
-                  ...e,
-                };
-
-                return <EpisodeCard epData={epData} />;
-              })
-            }
-          </ul>
-          <div class="episode-list-endline"></div>
-          <div class="season-change-section">
-            <div class="season-change-section scs-part">
-              <Icon
-                name="keyleft"
-                color="#808080"
-                size={15}
-                className="chevron-arrow"
-              />
-              PREVIOUS SEASON
-            </div>
-            <div class="season-change-section scs-part">
-              NEXT SEASON
-              <Icon
-                name="keyright"
-                color="#808080"
-                size={15}
-                className="chevron-arrow"
-              />
-            </div>
-          </div>
-        </section>
-        <section class="more-section">
-          <h2 class="sr-only">Other Seasons of Anime {title}</h2>
-          <AnimeSliderStatic
-            info={{
-              bigH: "Other Seasons",
-              forAnimePageSeasons: true,
-              animeTitle: title,
-              toNotInclude: nanoid,
-            }}
-          />
-        </section>
-        <section class="more-section">
-          <h2 class="sr-only">More anime like {title}</h2>
-          <AnimeSliderStatic
-            info={{
-              bigH: "More Like This",
-              smallH: "",
-              filterName: "matchCategories",
-              genresA,
-              usedTitlesGlobal: usedTitlesGlobal,
-            }}
-          />
-        </section>
-        <Footer />
+    <div class="hero-container">
+      <div class="hero-poster-column">
+        <img
+          src={getOptimizedImageUrl(season_poster, 500)}
+          alt={`Poster of ${titleAlt}`}
+          class="hero-poster"
+          loading="eager"
+          decoding="async"
+        />
       </div>
-    </main>
-  </body>
-</html>
+
+      <div class="hero-content-column">
+        <div class="hero-badges">
+          {
+            genres?.slice(0, 4).map((genre: string) => (
+              <a href={`/category/${genre}`} class="genre-badge">
+                {genre}
+              </a>
+            ))
+          }
+        </div>
+
+        <h1 class="hero-title">
+          {titleAlt}
+        </h1>
+
+        {tagline && <p class="hero-tagline">{tagline}</p>}
+
+        <div class="hero-meta-row">
+          <span>{scoreAlt}</span>
+          <span>•</span>
+          <span>{episodes} Episodes</span>
+          <span>•</span>
+          <span>{runtime}</span>
+          <span>•</span>
+          <span>{status}</span>
+        </div>
+
+        <p class="hero-summary">
+          {description}
+        </p>
+
+        <div class="hero-actions">
+          <a href="#episodes-section" class="watch-season-btn">
+            Watch Episodes
+          </a>
+
+          <AnimeWBtn nanoid={nanoid ?? "xyzxyz"} client:load />
+        </div>
+
+        <div class="hero-facts-grid">
+          <div class="fact-card">
+            <span class="fact-label">Season</span>
+            <span class="fact-value">{season}</span>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-label">Episodes</span>
+            <span class="fact-value">{episodes}</span>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-label">Aired</span>
+            <span class="fact-value">{startDate}</span>
+          </div>
+
+          <div class="fact-card">
+            <span class="fact-label">Status</span>
+            <span class="fact-value">{status}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANIKAWA REVIEW SECTION -->
+  {
+    anikawaReview && (
+      <section class="anikawa-review-section">
+        <div class="section-heading">
+          <span class="section-badge"> ⭐ AniKawa Review </span>
+
+          <h2 class="section-title">Why Watch this Anime?</h2>
+        </div>
+
+        <div class="review-card">
+          <div class="review-verdict">
+            <span class="verdict-label"> AniKawa Verdict </span>
+
+            <p class="verdict-text">{anikawaReview.verdict}</p>
+          </div>
+
+          <p class="review-text">{anikawaReview.review}</p>
+
+          <div class="review-grid">
+            <div class="review-column">
+              <h3 class="review-subtitle">Highlights</h3>
+
+              <ul class="review-list">
+                {anikawaReview.strengths.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="review-column">
+              <h3 class="review-subtitle">Recommended For</h3>
+
+              <ul class="review-list">
+                {anikawaReview.recommendedFor.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    whoShouldWatch && (
+      <section class="watch-audience-section">
+        <div class="watch-audience-header">
+          <span class="watch-audience-eyebrow">RECOMMENDATION GUIDE</span>
+
+          <h2 class="watch-audience-title">Who Should Watch this Anime?</h2>
+          <p class="watch-audience-description">
+            Not every anime is for everyone. Here's who is most likely to enjoy
+            this series.
+          </p>
+        </div>
+
+        <div class="watch-audience-grid">
+          <div class="audience-card">
+            <h3 class="audience-card-title">Perfect For</h3>
+
+            <ul class="audience-list positive">
+              {whoShouldWatch.perfectFor.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="audience-card">
+            <h3 class="audience-card-title">Maybe Skip If</h3>
+
+            <ul class="audience-list neutral">
+              {whoShouldWatch.maybeSkipIf.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="viewing-summary-card">
+          <div class="summary-item">
+            <span class="summary-label">Viewing Mood</span>
+
+            <span class="summary-value">{whoShouldWatch.viewingMood}</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Commitment Level</span>
+
+            <span class="summary-value">{whoShouldWatch.commitmentLevel}</span>
+          </div>
+        </div>
+      </section>
+    )
+  }
+  {
+    whatMakesItSpecial && (
+      <section class="special-section">
+        <div class="special-header">
+          <span class="special-eyebrow">STANDOUT FEATURES</span>
+
+          <h2 class="special-title">What Makes this Anime Special?</h2>
+
+          <p class="special-description">{whatMakesItSpecial.summary}</p>
+        </div>
+
+        <div class="special-grid">
+          {whatMakesItSpecial.standoutElements.map((item) => (
+            <article class="special-card">
+              <h3 class="special-card-title">{item.title}</h3>
+
+              <p class="special-card-description">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- EPISODES GRID -->
+  <section id="episodes-section" class="episodes-section">
+    <header class="top-controls">
+      <div class="top-controls-btn">
+        <Icon name="arrowdown" size={30} className="arrow-down" />
+        <h2 id="season-text" class="season-text">
+          S{season}: {title}
+        </h2>
+      </div>
+      <SortBtnHandler client:load />
+    </header>
+    <ul class="episodes-list">
+      {
+        sortedEpList?.map((e: any) => {
+          const epData: any = {
+            animeTitle: title,
+            language,
+            animenanoid: nanoid,
+            animeslug: slug,
+            ...e,
+          };
+
+          return <EpisodeCard epData={epData} />;
+        })
+      }
+    </ul>
+    <div class="episode-list-endline"></div>
+  </section>
+
+  {
+    watchOrder && (
+      <section class="watch-order-section">
+        <div class="watch-order-header">
+          <span class="watch-order-eyebrow">WATCH GUIDE</span>
+
+          <h2 class="watch-order-title">
+            Watch Order for this Anime Series
+          </h2>
+
+          <p class="watch-order-description">{watchOrder.note}</p>
+        </div>
+
+        <div class="watch-order-list">
+          {watchOrder.entries.map((entry) => (
+            <div class="watch-order-item">
+              <div class="watch-order-number">{entry.order}</div>
+
+              <div class="watch-order-content">
+                <h3 class="watch-order-item-title">{entry.title}</h3>
+
+                <span class="watch-order-item-type">{entry.type}</span>
+              </div>
+
+              {entry.recommended && (
+                <span class="recommended-badge">Recommended</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- OTHER SEASONS -->
+  <section class="more-section">
+    <h2 class="sr-only">Other Seasons of this Anime</h2>
+    <AnimeSliderStatic
+      info={{
+        bigH: "Other Seasons",
+        forAnimePageSeasons: true,
+        animeTitle: title,
+        toNotInclude: nanoid,
+      }}
+    />
+  </section>
+
+  {
+    animeInsights && (
+      <section class="anime-insights-section">
+        <div class="insights-header">
+          <span class="insights-eyebrow">DID YOU KNOW?</span>
+          <h2 class="insights-title">{animeInsights.title}</h2>
+          <p class="insights-description">
+            Interesting facts, production notes, and lesser-known details about this Anime
+          </p>
+        </div>
+
+        <div class="insights-card">
+          <div class="insights-timeline">
+            {animeInsights.facts.map((fact, index) => (
+              <div class="insight-item">
+                <div class="insight-marker">{index + 1}</div>
+
+                <div class="insight-content">
+                  <p>{fact}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="more-section">
+    <h2 class="sr-only">More anime like this</h2>
+    <AnimeSliderStatic
+      info={{
+        bigH: "More Like This",
+        smallH: "",
+        filterName: "matchCategories",
+        genresA,
+        usedTitlesGlobal: usedTitlesGlobal,
+      }}
+    />
+  </section>
+
+  {
+    relatedArticles && relatedArticles.articles.length > 0 && (
+      <section class="related-articles-section">
+        <div class="related-articles-header">
+          <span class="related-eyebrow">KEEP EXPLORING</span>
+
+          <h2 class="related-title">{relatedArticles.heading}</h2>
+
+          <p class="related-description">{relatedArticles.intro}</p>
+        </div>
+
+        <div class="related-grid">
+          {relatedArticles.articles.map((article) => (
+            <a href={`/blog/${article.slug}`} class="related-card group">
+              <div class="related-meta">
+                <span class="related-category">{article.category}</span>
+
+                <span class="related-reading-time">{article.readingTime}</span>
+              </div>
+
+              <h3 class="related-card-title">{article.title}</h3>
+
+              <p class="related-card-description">{article.description}</p>
+
+              <span class="related-link">Read Article →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    faq && (
+      <section class="anime-faq-section">
+        <div class="faq-header">
+          <span class="faq-eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+
+          <h2 class="faq-title">Questions About this Anime</h2>
+
+          {faq.intro && <p class="faq-description">{faq.intro}</p>}
+        </div>
+
+        <div class="faq-list">
+          {faq.questions.map((item) => (
+            <details class="faq-item">
+              <summary class="faq-question">{item.question}</summary>
+
+              <div class="faq-answer">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Layout>

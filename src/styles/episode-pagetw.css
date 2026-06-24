@@ -47,7 +47,7 @@
     @apply text-[var(--c-main)] text-base font-bold no-underline cursor-pointer;
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
     .first-part-anime-title {
         font-size: 13px;
     }
@@ -169,4 +169,167 @@
     .for-card {
         font-size: 16px;
     }
+}
+
+/*New Episode Page Styles*/
+
+/*Hero Section*/
+
+.episode-hero-info {
+    @apply mx-auto mt-8 max-w-6xl px-4 md:px-8;
+}
+
+.episode-kicker {
+    @apply flex flex-wrap items-center gap-2 text-sm font-medium text-violet-400;
+}
+
+.episode-title {
+    @apply mt-3 text-3xl font-bold leading-tight text-white md:text-5xl;
+}
+
+.episode-summary {
+    @apply mt-5 max-w-4xl text-base leading-8 text-zinc-300;
+}
+
+.episode-meta-grid {
+    @apply mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.meta-card {
+    @apply rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm;
+}
+
+.meta-label {
+    @apply block text-xs uppercase tracking-wider text-zinc-500;
+}
+
+.meta-value {
+    @apply mt-2 block text-sm font-medium text-white;
+}
+
+/*Episode Summary*/
+.episode-summary-section {
+    @apply mx-auto mt-14 max-w-5xl px-4 md:px-8;
+}
+
+.episode-summary-header {
+    @apply mb-6;
+}
+
+.summary-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.summary-title {
+    @apply mt-2 text-3xl font-bold text-white md:text-4xl;
+}
+
+.episode-summary-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8;
+}
+
+.episode-summary-card p {
+    @apply text-base leading-8 text-zinc-300;
+}
+
+/*Why Ep Matters */
+.episode-importance-section {
+    @apply mx-auto mt-14 max-w-5xl px-4;
+}
+
+.importance-header {
+    @apply mb-6;
+}
+
+.importance-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.importance-title {
+    @apply mt-2 text-3xl font-bold text-white;
+}
+
+.importance-card {
+    @apply rounded-3xl border border-violet-500/15 bg-violet-500/5 p-6;
+}
+
+.importance-card p {
+    @apply text-base leading-8 text-zinc-300;
+}
+
+/*facts*/
+
+.episode-trivia-section {
+    @apply mx-auto mt-14 w-full max-w-5xl px-4;
+}
+
+.trivia-header {
+    @apply mb-6;
+}
+
+.trivia-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.trivia-title {
+    @apply mt-2 text-3xl font-bold text-white;
+}
+
+.trivia-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6;
+}
+
+.trivia-list {
+    @apply space-y-5;
+}
+
+.trivia-list li {
+    @apply relative pl-7 text-base leading-8 text-zinc-300;
+}
+
+.trivia-list li::before {
+    content: "💡";
+    @apply absolute left-0 top-0;
+}
+
+/*season progress*/
+
+.season-progress-section {
+@apply mx-auto mt-14 w-full max-w-5xl px-4 mb-6 lg:mb-10 2xl:mb-20;
+}
+
+.progress-header {
+@apply mb-6;
+}
+
+.progress-eyebrow {
+@apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.progress-title {
+@apply mt-2 text-3xl font-bold text-white ;
+}
+
+.progress-description {
+@apply mt-3 text-sm leading-7 text-zinc-400 ;
+}
+
+.progress-card {
+@apply rounded-3xl border border-white/10 bg-white/5 p-6 ;
+}
+
+.progress-stats {
+@apply mb-4 flex items-center justify-between text-sm font-medium text-white;
+}
+
+.progress-track {
+@apply h-4 overflow-hidden rounded-full bg-white/10;
+}
+
+.progress-fill {
+@apply h-full rounded-full bg-violet-500 transition-all duration-500;
+}
+
+.progress-footer {
+@apply mt-3 flex justify-between text-xs text-zinc-500;
 }

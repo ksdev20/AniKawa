@@ -42,13 +42,12 @@ else {
 }
 
 if (filteredAnimeList) {
-    if (filteredAnimeList.length == 0) {
+    if (filteredAnimeList.length <= 1) {
         return null;
     }
 }
 
-if (!filteredAnimeList) return;
-
+if (!filteredAnimeList) return null;
 const structuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",

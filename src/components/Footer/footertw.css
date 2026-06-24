@@ -34,3 +34,20 @@ footer{
 .sf-separator {
     @apply py-5;
 }
+
+/*bottom content source disclaimer*/
+.content-source-notice {
+@apply mt-16 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8;
+}
+
+.notice-inner {
+@apply mx-auto max-w-4xl;
+}
+
+.content-source-notice h3 {
+@apply mb-4 text-lg font-bold text-white;
+}
+
+.content-source-notice p {
+@apply mt-3 text-sm leading-7 text-zinc-400 md:text-base;
+}
