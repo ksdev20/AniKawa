@@ -1,12 +1,10 @@
 ---
 import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
 import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
-import AnimeCard2TmdbVer from "../components/AnimeCard2/AnimeCard2TmdbVer.astro";
 import ManageACW from "../global_assets/ManageACW";
 import Layout from "../layouts/Layout.astro";
 //blog
 import { getCollection } from "astro:content";
-import BlogsSectionHP from "../components/Blog/BlogsSectionHP.astro";
 import WhyAnikawa from "../components/HomePageValueSections/WhyAnikawa.astro";
 import BrowseByCategory from "../components/HomePageValueSections/BrowseByCategory.astro";
 import LatestEpisodes from "../components/HomePageValueSections/LatestEpisodes.astro";
@@ -82,25 +80,6 @@ const SliderData = [
   },
 ];
 
-const AC2Data = [
-  "Action",
-  "Action",
-  "Sports",
-  "Romance",
-  "Comedy",
-  "Adventure",
-  "Fantasy",
-];
-
-const BlogSection1 = {
-  heading: "Anime Guides, Rankings & Recommendations",
-  subheading:
-    "Anime recommendations, rankings, watch guides, and hidden gems curated for passionate fans.",
-  btnText: "View All",
-  btnLink: "/blog",
-  posts: posts,
-};
-
 const BlogSection2 = {
   heading: "Anime Stories & Recommendations",
   subheading:
@@ -110,7 +89,6 @@ const BlogSection2 = {
   posts: posts
 };
 
-const BlogSections = [BlogSection1];
 console.log("index usedTitlesGlobal:", usedTitlesGlobal);
 ---
 
@@ -133,18 +111,5 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
   <NewReleasesSection />
   <BlogsSectionHomepage info={BlogSection2} />
   <FaqSection />
-  <!-- <AnimeSliderStatic info={SliderData[1]} />
-  <AnimeCard2TmdbVer category={AC2Data[0]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[2]} />
-  <AnimeCard2TmdbVer category={AC2Data[1]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[3]} />
-  <AnimeCard2TmdbVer category={AC2Data[2]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeCard2TmdbVer category={AC2Data[3]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[4]} />
-  <AnimeCard2TmdbVer category={AC2Data[4]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[5]} />
-  <AnimeCard2TmdbVer category={AC2Data[5]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeCard2TmdbVer category={AC2Data[6]} usedTitlesAC2={usedTitlesAC2} />
-  <AnimeSliderStatic info={SliderData[6]} /> -->
   <ManageACW client:load />
 </Layout>
