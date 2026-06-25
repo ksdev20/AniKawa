@@ -14,6 +14,7 @@ import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
 import RecommendedByAnikawa from "../components/HomePageValueSections/RecommendedByAnikawa.astro";
 import HomepageIntroSection from "../components/HomePageValueSections/HomepageIntroSection.astro";
 import BlogsSectionHomepage from "../components/Blog/BlogsSectionHomepage.astro";
+import MonetagScript from "../components/SEO/MonetagScript";
 
 const posts = await getCollection("blog");
 //blog
@@ -112,4 +113,5 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
   <BlogsSectionHomepage info={BlogSection2} />
   <FaqSection />
   <ManageACW client:load />
+  <MonetagScript client:load/>
 </Layout>
