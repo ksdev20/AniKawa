@@ -37,7 +37,7 @@ const isNotEpisodePage = !Astro.url.pathname.includes("episode");
   />
 
   <!-- Hilltopads Popunder -->
-  <script>
+  {isNotEpisodePage && <script>
 (function(taqz){
 var d = document,
     s = d.createElement('script'),
@@ -48,7 +48,7 @@ s.async = true;
 s.referrerPolicy = 'no-referrer-when-downgrade';
 l.parentNode.insertBefore(s, l);
 })({})
-</script>
+</script>}
 
   <!-- Banner Homepage 1 -->
 
