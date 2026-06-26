@@ -181,6 +181,7 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
     </div>
   </section>
 
+  <div id="banner-ad-1" class="banner-ad-container"></div>
   <!-- ANIKAWA REVIEW SECTION -->
   {
     anikawaReview && (
@@ -275,6 +276,7 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
       </section>
     )
   }
+  <div id="banner-ad-2" class="banner-ad-container"></div>
   {
     whatMakesItSpecial && (
       <section class="special-section">
@@ -334,9 +336,7 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
         <div class="watch-order-header">
           <span class="watch-order-eyebrow">WATCH GUIDE</span>
 
-          <h2 class="watch-order-title">
-            Watch Order for this Anime Series
-          </h2>
+          <h2 class="watch-order-title">Watch Order for this Anime Series</h2>
 
           <p class="watch-order-description">{watchOrder.note}</p>
         </div>
@@ -362,6 +362,7 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
     )
   }
 
+  <div id="banner-ad-3" class="banner-ad-container"></div>
   <!-- OTHER SEASONS -->
   <section class="more-section">
     <h2 class="sr-only">Other Seasons of this Anime</h2>
@@ -382,7 +383,8 @@ const getBackdropType = (backdrop: string | null, backdropType: string) =>
           <span class="insights-eyebrow">DID YOU KNOW?</span>
           <h2 class="insights-title">{animeInsights.title}</h2>
           <p class="insights-description">
-            Interesting facts, production notes, and lesser-known details about this Anime
+            Interesting facts, production notes, and lesser-known details about
+            this Anime
           </p>
         </div>
 

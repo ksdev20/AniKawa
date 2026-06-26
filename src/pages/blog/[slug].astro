@@ -91,12 +91,14 @@ const pageKw = [
 </Fragment>
 <Layout title={post.data.title} description={post.data.subTitle}>
   <ArticleHero post={post} />
+  <div id="banner-ad-2" class="banner-ad-container"></div>
 
   {
     post.data.toc && post.data.toc.length > 0 && (
       <TableOfContents toc={post.data.toc} />
     )
   }
+  <div id="banner-ad-1" class="banner-ad-container"></div>
 
   <article class="blog-article-content prose prose-lg max-w-none text-white">
     <Content />

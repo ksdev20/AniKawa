@@ -51,15 +51,15 @@ const posts = await getCollection("blog");
     imageUrl={currentThumbnail}
     url={pageUrl}
     keywords={pageKw}
-  >
-</SEOHead>
-  
+  />
 </Fragment>
 <Layout>
+  <div id="banner-ad-1" class="banner-ad-container"></div>
   <HeroSection />
-  <FeaturedArticle featuredPost={posts[3]}/>
-  <AdsSnippet client:load />
+  <FeaturedArticle featuredPost={posts[3]} />
+  <div id="banner-ad-2" class="banner-ad-container"></div>
   <DiscoverAnime />
+  <div id="banner-ad-3" class="banner-ad-container"></div>
   <LatestAnimeGrid />
   <BrowseTopics />
   <AnimeDiscoveryCta />
