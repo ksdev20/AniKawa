@@ -36,7 +36,7 @@ const isNotEpisodePage = !Astro.url.pathname.includes("episode");
     content="9edf5169b4ac32b18cf39bb9d2817d21991fcdf6"
   />
   <!-- Hilltop Banner Ads -->
-  <script>
+  {isNotEpisodePage && <script>
     (function (azifv) {
       var d = document,
         s = d.createElement("script"),
@@ -48,10 +48,10 @@ const isNotEpisodePage = !Astro.url.pathname.includes("episode");
       s.referrerPolicy = "no-referrer-when-downgrade";
       l.parentNode.insertBefore(s, l);
     })({});
-  </script>
+  </script>}
 
   <!-- Hilltop In-page push Ads -->
-  <script>
+  {isNotEpisodePage && <script>
     (function (azifv) {
       var d = document,
         s = d.createElement("script"),
@@ -63,10 +63,10 @@ const isNotEpisodePage = !Astro.url.pathname.includes("episode");
       s.referrerPolicy = "no-referrer-when-downgrade";
       l.parentNode.insertBefore(s, l);
     })({});
-  </script>
+  </script>}
 
   <!-- Hilltop Video Slider -->
-  <script>
+  {isNotEpisodePage && <script>
     (function (azifv) {
       var d = document,
         s = d.createElement("script"),
@@ -78,7 +78,7 @@ const isNotEpisodePage = !Astro.url.pathname.includes("episode");
       s.referrerPolicy = "no-referrer-when-downgrade";
       l.parentNode.insertBefore(s, l);
     })({});
-  </script>
+  </script>}
 
   <title>{title}</title>
   <meta charset="UTF-8" />
