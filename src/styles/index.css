@@ -143,3 +143,8 @@ body {
 .section-subtitle {
   @apply mx-auto mt-3 max-w-2xl text-gray-500;
 }
+
+/*ad styles*/
+.▶{
+  @apply flex w-full items-center justify-center;
+}

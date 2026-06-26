@@ -101,13 +101,13 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
     </div>
   </div>
   <HeroSectionTmdb />
-
+  <div id="banner-ad-1" class="banner-ad-container"></div>
   <!-- Banner Homepage 1 -->
   <script>
     (function (azifv) {
       var d = document,
         s = d.createElement("script"),
-        l = d.scripts[d.scripts.length - 1];
+        l = d.getElementById("banner-ad-1");
       s.settings = azifv || {};
       s.src =
         "\/\/deliciouslip.com\/baXjV.sndHGQln0_YTW\/cY\/eeBmJ9SubZGUGlxkbPuTxc\/xvNNzKItzJMnDQUPtUNiz\/Eh3\/MejBMXw\/OrQS";
@@ -118,12 +118,14 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
   </script>
   <HomepageIntroSection />
   <AnimeSliderStatic info={SliderData[0]} />
+  <div id="banner-ad-2" class="banner-ad-container"></div>
   <!-- Banner Homepage 3 -->
   <script>
     (function (phoh) {
       var d = document,
         s = d.createElement("script"),
-        l = d.scripts[d.scripts.length - 1];
+        l = d.getElementById("banner-ad-2");
+
       s.settings = phoh || {};
       s.src =
         "\/\/deliciouslip.com\/biX.V_sidwGflJ0uYvWCcO\/teIm\/9IuRZcUhl\/kjP_TNc\/xPNszdIcz\/NxTVcTtvNEz\/Es3\/Msj_Mo2\/MCQh";
@@ -134,18 +136,19 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
   </script>
   <WhyAnikawa />
   <RecommendedByAnikawa info={SliderData[1]} />
+  <div id="banner-ad-3" class="banner-ad-container"></div>
   <!-- Banner Homepage 2 -->
   <script>
     (function (phoh) {
       var d = document,
         s = d.createElement("script"),
-        l = d.scripts[d.scripts.length - 1];
+        l = d.getElementById("banner-ad-3");
       s.settings = phoh || {};
       s.src =
         "\/\/deliciouslip.com\/b.X_VQsrdIGslc0VYxWjcg\/ae\/m\/9buUZfUglKk\/PgTkcxxwNWznIYzGMaj\/EStvNOzbEn3BM\/jfMcyRNEQy";
       s.async = true;
       s.referrerPolicy = "no-referrer-when-downgrade";
-      l.parentNode.insertBefore(s, l);
+      l.insertBefore(s, l);
     })({});
   </script>
   <BrowseByCategory />
