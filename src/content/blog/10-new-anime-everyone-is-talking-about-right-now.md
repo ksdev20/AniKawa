@@ -10,6 +10,8 @@ categoryList:
   - "Anime Recommendations"
 slug: "10-new-anime-everyone-is-talking-about-right-now"
 readMinutes: 6
+metaDescription: “Catch up on 10 new anime releases making waves right now — trending hits with standout storytelling and unforgettable characters.”
+metaKeywords: new anime 2026, trending anime, latest anime releases, seasonal anime, AniKawa blog
 toc:
   - text: "Why New Anime Is More Exciting Than Ever"
     link: "#why-new-anime-is-more-exciting-than-ever"

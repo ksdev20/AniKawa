@@ -10,6 +10,8 @@ categoryList:
   - "Anime Analysis"
 slug: "10-anime-that-will-blow-your-mind"
 readMinutes: 8
+metaDescription: “From psychological thrillers to shocking twists, these 10 anime will challenge your mind and leave you thinking long after the credits roll.”
+metaKeywords: mind-blowing anime, psychological anime, thriller anime, plot twist anime, AniKawa analysis
 toc:
   - text: "Why Some Anime Stay With You Forever"
     link: "#why-some-anime-stay-with-you-forever"

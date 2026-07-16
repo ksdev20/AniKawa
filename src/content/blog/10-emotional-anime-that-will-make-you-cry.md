@@ -10,6 +10,8 @@ categoryList:
   - "Genre Spotlights"
 slug: "10-emotional-anime-that-will-make-you-cry"
 readMinutes: 8
+metaDescription: “Get ready for tears with 10 emotional anime full of heartfelt journeys, unforgettable characters, and stories that stay with you forever.”
+metaKeywords: emotional anime, sad anime, tearjerker anime, heartfelt anime, AniKawa blog
 toc:
   - text: "Why Emotional Anime Hit So Hard"
     link: "#why-emotional-anime-hit-so-hard"

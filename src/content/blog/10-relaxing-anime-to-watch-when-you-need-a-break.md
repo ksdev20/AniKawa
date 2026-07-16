@@ -10,6 +10,8 @@ categoryList:
   - "Genre Spotlights"
 slug: "10-relaxing-anime-to-watch-when-you-need-a-break"
 readMinutes: 6
+metaDescription: “Slow down with 10 relaxing anime that bring calm vibes, wholesome stories, and peaceful moments — perfect for unwinding.”
+metaKeywords: relaxing anime, calming anime, slice of life anime, wholesome anime, AniKawa blog
 toc:
   - text: "Why Relaxing Anime Feels Different"
     link: "#why-relaxing-anime-feels-different"

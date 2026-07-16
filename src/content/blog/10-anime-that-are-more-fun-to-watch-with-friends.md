@@ -10,6 +10,8 @@ categoryList:
   - "Genre Spotlights"
 slug: "10-anime-that-are-more-fun-to-watch-with-friends"
 readMinutes: 7
+metaDescription: “Some anime are best shared. These 10 picks are perfect for group watch sessions — fun, exciting, and even better with friends.”
+metaKeywords: anime with friends, group watch anime, fun anime, party anime, AniKawa recommendations
 toc:
   - text: "Why Some Anime Are Better With Friends"
     link: "#why-some-anime-are-better-with-friends"

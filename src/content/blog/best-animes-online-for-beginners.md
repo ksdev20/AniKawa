@@ -10,6 +10,8 @@ categoryList:
   - Anime Recommendations
 slug: "best-animes-online-for-beginners"
 readMinutes: 5
+metaDescription: “New to anime? Start with these 10 beginner‑friendly series — easy to watch, entertaining, and the perfect introduction to anime.”
+metaKeywords: beginner anime, starter anime series, best anime for beginners, anime guide, AniKawa blog
 toc:
   - text: "Why Starting Anime Can Feel Overwhelming"
     link: "#why-starting-anime-can-feel-overwhelming"

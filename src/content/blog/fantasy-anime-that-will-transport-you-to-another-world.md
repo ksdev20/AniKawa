@@ -10,6 +10,8 @@ categoryList:
   - "Genre Spotlights"
 slug: "fantasy-anime-that-will-transport-you-to-another-world"
 readMinutes: 6
+metaDescription: “Step into magical kingdoms and epic adventures with 10 fantasy anime that immerse you in unforgettable worlds and stories.”
+metaKeywords: fantasy anime, magical anime, adventure anime, isekai anime, AniKawa recommendations
 toc:
   - text: "Why Fantasy Anime Feels So Magical"
     link: "#why-fantasy-anime-feels-so-magical"

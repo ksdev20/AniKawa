@@ -10,6 +10,8 @@ categoryList:
   - "Anime Analysis"
 slug: "10-anime-every-fan-should-watch-at-least-once"
 readMinutes: 8
+metaDescription: “From classics to groundbreaking stories, these 10 anime represent the best experiences every fan should watch at least once.”
+metaKeywords: must-watch anime, classic anime, best anime of all time, anime every fan should watch, AniKawa blog
 toc:
   - text: "What Makes An Anime Worth Watching At Least Once"
     link: "#what-makes-an-anime-worth-watching-at-least-once"

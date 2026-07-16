@@ -10,6 +10,8 @@ categoryList:
   - "Genre Spotlights"
 slug: "10-action-anime-that-deliver-from-start-to-finish"
 readMinutes: 7
+metaDescription: “Explosive battles, unforgettable rivals, and nonstop excitement — these 10 action anime deliver thrills from the first episode to the last.”
+metaKeywords: action anime, fighting anime, battle anime, shonen anime, AniKawa recommendations
 toc:
   - text: "Why Great Action Anime Is More Than Just Fights"
     link: "#why-great-action-anime-is-more-than-just-fights"

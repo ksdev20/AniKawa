@@ -55,10 +55,10 @@ const categoryLinks = post.data.categoryList.map((category) => ({
   slug: category.toLowerCase().replaceAll(" ", "-"),
 }));
 
-const pageTitle = `${post.data.title} | AniKawa`;
+const pageTitle = post.data.title;
 
 const pageDes =
-  post.data.subTitle ||
+  post.data.metaDescription ||
   "Discover anime recommendations, watch guides, hidden gems, and curated anime content on AniKawa.";
 
 const pageUrl = `https://anikawa.fun/blog/${post.data.slug}`;
@@ -68,15 +68,7 @@ const currentThumbnail =
   post.data.img ||
   "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
 
-const pageKw = [
-  post.data.title,
-  ...(post.data.categoryList || []),
-  "anime recommendations",
-  "anime guide",
-  "anime blog",
-  "what anime to watch",
-  "AniKawa",
-].join(", ");
+const pageKw = post.data.metaKeywords;
 ---
 
 <Fragment slot="head">

@@ -10,6 +10,8 @@ categoryList:
   - "Anime Beginner Guides"
 slug: "10-great-anime-you-can-finish-in-a-weekend"
 readMinutes: 7
+metaDescription: “Short on time? These 10 anime deliver complete stories, memorable characters, and satisfying endings you can binge in just a weekend.”
+metaKeywords: short anime, weekend anime, binge anime, best anime to finish fast, AniKawa recommendations
 toc:
   - text: "Why Short Anime Can Be So Rewarding"
     link: "#why-short-anime-can-be-so-rewarding"

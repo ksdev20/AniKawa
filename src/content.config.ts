@@ -11,6 +11,10 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
 
+    metaDescription: z.string().optional(),
+
+    metaKeywords: z.string().optional(),
+
     subTitle: z.string(),
 
     author: z.string(),

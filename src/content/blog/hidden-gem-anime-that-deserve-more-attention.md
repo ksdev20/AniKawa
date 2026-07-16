@@ -21,6 +21,8 @@ toc:
     link: "#which-hidden-gem-should-you-start-with"
   - text: "Final Thoughts"
     link: "#final-thoughts"
+metaDescription: “Discover 10 hidden gem anime that are underrated yet unforgettable. Unique stories, memorable characters, and overlooked masterpieces you need to watch.”
+metaKeywords: hidden gem anime, underrated anime, overlooked anime, best anime to watch, AniKawa blog
 ---
 
 # Why Great Anime Sometimes Go Unnoticed

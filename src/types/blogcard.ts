@@ -10,6 +10,8 @@ export type BcObject = {
 
 export type BlogData = {
     title: string,
+    metaDescription?: string, 
+    metaKeywords?: string;
     subTitle: string,
     author: string,
     date: string,
