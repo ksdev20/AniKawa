@@ -2,15 +2,10 @@
 export const prerender = false;
 
 import buildIndex from "@/lib/sitemap/buildIndex";
-import { frontendUrl as rawFrontendUrl } from "@/global_assets/globalPaths";
+import { frontendUrl } from "@/global_assets/globalPaths";
 import { AnimeCatalog } from "@/lib/anime/AnimeCatalog";
 
 const EPISODES_PER_SITEMAP = 10000;
-
-// Normalize frontendUrl (remove trailing slash if present)
-const frontendUrl = rawFrontendUrl.endsWith("/")
-  ? rawFrontendUrl.slice(0, -1)
-  : rawFrontendUrl;
 
 export async function GET() {
   // Use AnimeCatalog instead of mergedList.json
