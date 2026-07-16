@@ -10,18 +10,19 @@ import Layout from "../../layouts/Layout.astro";
 const { name } = Astro.params;
 const urlFilter = Astro.url.searchParams.get("filter") ?? "all";
 
-//redirect to /404 if not the valid name for which this page is configured
-if (!name || !validNames.includes(name as string)) {
-  return new Response(null, {
-    status: 302,
-    headers: {
-      Location: "/404",
-    },
-  });
+// ✅ Redirect if invalid list name
+if (!name || !validNames.includes(name as "new" | "old" | "popular")) {
+  return Astro.redirect("/404");
 }
 
-//values assignment as per config
-const currentConfig = listConfig.find((i) => i.name == name);
+// ✅ Await async config
+const configs = await listConfig();
+const currentConfig = configs.find((i) => i.name === name);
+
+if (!currentConfig) {
+  return Astro.redirect("/404");
+}
+
 const {
   srOnly,
   label,
@@ -31,10 +32,10 @@ const {
   keywords,
   pageUrl,
   backdrop,
-} = currentConfig ?? {};
-const filterFn = filterMap[urlFilter];
+} = currentConfig;
 
-const finalArray = animeList?.filter(filterFn);
+const filterFn = filterMap[urlFilter] ?? filterMap["all"];
+const finalArray = animeList.filter(filterFn);
 ---
 
 <Fragment slot="head">
@@ -60,9 +61,9 @@ const finalArray = animeList?.filter(filterFn);
         <h2 class="sr-only">{srOnly}</h2>
         <ul class="new-pop-anime-list">
           {
-            finalArray?.map((anime) => {
-              return <AnimeCardStatic anime={anime} forNewPop={true} />;
-            })
+            finalArray.map((anime) => (
+              <AnimeCardStatic anime={anime} forNewPop={true} />
+            ))
           }
         </ul>
         <div id="banner-ad-3" class="banner-ad-container"></div>

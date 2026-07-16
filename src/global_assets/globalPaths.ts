@@ -3,4 +3,6 @@ export const inWatchlistPath = "M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56
 export const inWatchlistTip = 'Remove From Watchlist';
 export const notInWatchlistTip = 'Add to Watchlist';
 export const backendUrl = import.meta.env.PUBLIC_BACKEND_URL;
-export const frontendUrl = import.meta.env.PUBLIC_FRONTEND_URL;
+const rawFrontendUrl = import.meta.env.PUBLIC_FRONTEND_URL;
+const modifiedUrl = rawFrontendUrl.endsWith("/") ? rawFrontendUrl.slice(0, -1) : rawFrontendUrl
+export const frontendUrl = modifiedUrl;

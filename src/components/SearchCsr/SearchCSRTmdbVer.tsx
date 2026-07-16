@@ -1,66 +1,15 @@
 import Fuse from "fuse.js";
-import { useState, useEffect } from "react";
-import type { Anime } from "../../types/mergedListTypes";
+import { useState, useEffect, useMemo } from "react";
+import type { Anime } from "@/lib/anime/types";
 import "./searchtw.css";
 import "../../styles/NewPopALStyles.css";
-import animeArray from "../../data/mergedList.json";
-import { getAnimeById, getEpisodebySlug } from "../../filters/getAnimeById";
+
+import { AnimeRepository } from "@/lib/anime";
+import { getAnimeById, getEpisodeBySlug } from "@/filters/getAnimeById";
 import AnimeCardReact from "../AnimeCard/AnimeCardReact";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import { useDebounce } from "use-debounce";
 import { Icon } from "../../icons/icons";
-
-const typedAnimeArray = animeArray as any[];
-
-const animeOptions = {
-  keys: ["slug", "title", "description", "keywords"],
-  threshold: 0.4,
-  includeScore: true,
-};
-
-const animeSlicedList = typedAnimeArray.flatMap((anime) => {
-  const { nanoid, slug } = anime;
-  const { title = "N/A", description = "N/A", keywords = "" } = anime ?? {};
-
-  return {
-    nanoid,
-    slug,
-    title,
-    description,
-    keywords,
-  };
-});
-
-const animeFuse = new Fuse(animeSlicedList, animeOptions);
-
-const episodeOptions = {
-  keys: ["epTitle", "epSlug", "ytTitle", "description"],
-  threshold: 0.4,
-  includeScore: true,
-};
-
-const episodeFlattenedList = typedAnimeArray.flatMap((anime: Anime) => {
-  const { nanoid } = anime;
-  if (!anime.episodes) return [];
-  return anime.episodes
-    .map((episode) => {
-      const { slug, title } = episode;
-      const epTitle = episode?.titleAlt;
-      const description = episode?.description ?? "no description";
-      if (!title || !epTitle || !slug) return null;
-
-      return {
-        animeNanoid: nanoid,
-        epSlug: slug,
-        ytTitle: title,
-        epTitle,
-        description,
-      };
-    })
-    .filter(Boolean);
-});
-
-const episodeFuse = new Fuse(episodeFlattenedList, episodeOptions);
 
 export default function SearchCSR() {
   const [query, setQuery] = useState("");
@@ -68,7 +17,49 @@ export default function SearchCSR() {
   const [animeResults, setAnimeResults] = useState<Anime[]>([]);
   const [episodeResults, setEpisodeResults] = useState<any[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [allAnime, setAllAnime] = useState<ReadonlyArray<Anime>>([]);
 
+  // ✅ Load anime once
+  useEffect(() => {
+    AnimeRepository.getAllAnime().then(setAllAnime);
+  }, []);
+
+  // ✅ Build Fuse indexes once
+  const animeFuse = useMemo(() => {
+    const animeOptions = {
+      keys: ["slug", "title", "description", "keywords"],
+      threshold: 0.4,
+      includeScore: true,
+    };
+    const animeSlicedList = allAnime.map(a => ({
+      nanoid: a.nanoid,
+      slug: a.slug,
+      title: a.title ?? "N/A",
+      description: a.description ?? "N/A",
+      keywords: a.keywords ?? "",
+    }));
+    return new Fuse(animeSlicedList, animeOptions);
+  }, [allAnime]);
+
+  const episodeFuse = useMemo(() => {
+    const episodeOptions = {
+      keys: ["epTitle", "epSlug", "ytTitle", "description"],
+      threshold: 0.4,
+      includeScore: true,
+    };
+    const episodeFlattenedList = allAnime.flatMap(a =>
+      (a.episodes ?? []).map(ep => ({
+        animeNanoid: a.nanoid,
+        epSlug: ep.slug,
+        ytTitle: ep.title,
+        epTitle: ep.titleAlt,
+        description: ep.description ?? "no description",
+      }))
+    );
+    return new Fuse(episodeFlattenedList, episodeOptions);
+  }, [allAnime]);
+
+  // ✅ Search logic
   useEffect(() => {
     if (debouncedQuery.trim().length === 0) {
       setAnimeResults([]);
@@ -79,38 +70,41 @@ export default function SearchCSR() {
 
     setHasSearched(true);
 
-    const foundAnime = animeFuse.search(query).map((r: any) => r.item);
-    const foundEpisodes = episodeFuse.search(query).map((r: any) => r.item);
+    const runSearch = async () => {
+      const foundAnime = animeFuse.search(debouncedQuery).map(r => r.item);
+      const foundEpisodes = episodeFuse.search(debouncedQuery).map(r => r.item);
 
-    const animeTitlesUsed = new Set<string>();
-    const episodeTitlesUsed = new Set();
+      const animeIdsUsed = new Set<string>();
+      const episodeIdsUsed = new Set<string>();
 
-    const completeAnimeList = foundAnime
-      .map((a: any) => {
-        const { nanoid, title } = a;
-        if (!nanoid) return null;
-        const anime = getAnimeById(nanoid);
-        const ep1Url = anime?.episodes?.[0]?.url;
-        if (!anime || !title || animeTitlesUsed.has(ep1Url) || !ep1Url)
-          return null;
-        animeTitlesUsed.add(ep1Url);
-        return anime;
-      })
-      .filter(Boolean);
+      const completeAnimeList = await Promise.all(
+        foundAnime.map(async (a: any) => {
+          const { nanoid, title } = a;
+          if (!nanoid) return null;
+          const anime = await getAnimeById(nanoid);
+          const ep1Url = anime?.episodes?.[0]?.url;
+          if (!anime || !title || !ep1Url || animeIdsUsed.has(nanoid)) return null;
+          animeIdsUsed.add(nanoid);
+          return anime;
+        })
+      ).then(list => list.filter(Boolean));
 
-    const completeEpisodeList = foundEpisodes
-      .map((e: any) => {
-        const { epTitle, animeNanoid, epSlug } = e;
-        const episode = getEpisodebySlug(animeNanoid, epSlug);
-        if (!episode || !epTitle || episodeTitlesUsed.has(epTitle)) return null;
-        episodeTitlesUsed.add(epTitle);
-        return episode;
-      })
-      .filter(Boolean);
+      const completeEpisodeList = await Promise.all(
+        foundEpisodes.map(async (e: any) => {
+          const { epTitle, animeNanoid, epSlug, nanoid: epNanoid } = e;
+          const episode = await getEpisodeBySlug(animeNanoid, epSlug);
+          if (!episode || !epTitle || episodeIdsUsed.has(epNanoid)) return null;
+          episodeIdsUsed.add(epNanoid);
+          return episode;
+        })
+      ).then(list => list.filter(Boolean));
 
-    setAnimeResults(completeAnimeList);
-    setEpisodeResults(completeEpisodeList);
-  }, [debouncedQuery]);
+      setAnimeResults(completeAnimeList as Anime[]);
+      setEpisodeResults(completeEpisodeList);
+    };
+
+    runSearch();
+  }, [debouncedQuery, animeFuse, episodeFuse]);
 
   return (
     <>
@@ -135,8 +129,8 @@ export default function SearchCSR() {
       </section>
       <section className="profile-main">
         {hasSearched &&
-          animeResults.length == 0 &&
-          episodeResults.length == 0 && (
+          animeResults.length === 0 &&
+          episodeResults.length === 0 && (
             <div className="relative w-full h-30">
               <span className="absolute top-[50%] left-[50%] translate-x-[-50%] text-base text-[gray]">
                 No results found, try different search.

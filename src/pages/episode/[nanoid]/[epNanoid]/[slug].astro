@@ -1,15 +1,15 @@
 ---
-import "../../../styles/episode-pagetw.css";
-import { type Anime } from "../../../types/mergedListTypes";
-import { getAnimeById } from "../../../filters/getAnimeById";
-import HandleECClick from "../../../components/EpisodeCard/EcDatabaseContact/HandleECClick";
-import SEOHead from "../../../components/SEO/SEOHead.astro";
-import { getEpImg } from "../../../utils/getEpImgFallback";
-import EpisodeChangeCard from "../../../components/EpisodeCard/EpisodeChangeCard.astro";
-import { frontendUrl } from "../../../global_assets/globalPaths";
-import Layout from "../../../layouts/Layout.astro";
+import "@/styles/episode-pagetw.css";
+import { type Anime } from "@/types/mergedListTypes";
+import { getAnimeById } from "@/filters/getAnimeById";
+import HandleECClick from "@/components/EpisodeCard/EcDatabaseContact/HandleECClick";
+import SEOHead from "@/components/SEO/SEOHead.astro";
+import { getEpImg } from "@/utils/getEpImgFallback";
+import EpisodeChangeCard from "@/components/EpisodeCard/EpisodeChangeCard.astro";
+import { frontendUrl } from "@/global_assets/globalPaths";
+import Layout from "@/layouts/Layout.astro";
 const { nanoid, slug } = Astro.params;
-const anime = getAnimeById(nanoid) as Anime | null;
+const anime = await getAnimeById(nanoid) as Anime | null;
 const episode = anime?.episodes?.find((e) => e?.slug == slug);
 
 if (!anime || !episode || slug == "n-a") {
@@ -32,6 +32,7 @@ const language = "Subtitled";
 
 //current episode details
 const {
+  nanoid: epNanoid,
   epNum,
   url,
   titleAlt: episodeTitle,
@@ -61,9 +62,9 @@ const animeDetails = {
 //SeoHead details
 const prevSlug = prevObj?.slug;
 const nextSlug = nextObj?.slug;
-const pageUrl = `${frontendUrl}/episode/${nanoid}/${slug}`;
-const prevUrl = `${frontendUrl}/episode/${nanoid}/${prevSlug}`;
-const nextUrl = `${frontendUrl}/episode/${nanoid}/${nextSlug}`;
+const pageUrl = `${frontendUrl}/episode/${nanoid}/${epNanoid}/${slug}`;
+const prevUrl = `${frontendUrl}/episode/${nanoid}/${epNanoid}/${prevSlug}`;
+const nextUrl = `${frontendUrl}/episode/${nanoid}/${epNanoid}/${nextSlug}`;
 const pageKw = `${animeTitle}, ${episodeTitle}, Episode ${epNum}, ${language}, free anime, HD anime streaming`;
 const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${language} — No ads, no popups. ${description.slice(0, 160)}`;
 ---

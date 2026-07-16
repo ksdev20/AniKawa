@@ -24,6 +24,7 @@ export default function AnimeCardReact({
   const titleAlt = seasons > 1 ? `${title} Season ${season}` : title;
   const language = "Eng Sub";
   const episodes = anime?.episodes?.length;
+  const ep1Nanoid = anime?.episodes?.[0]?.nanoid;
   const ep1Slug = anime?.episodes?.[0]?.slug;
   if (!title && !season_poster && !nanoid) return null;
   const optImg = getOptimizedImageUrl(season_poster, 342);
@@ -61,7 +62,7 @@ export default function AnimeCardReact({
         <nav className="anime-card-hover-actions">
           <div className="tooltip" data-tip={`Play S${season} E1`}>
             <a
-              href={`/episode/${nanoid}/${ep1Slug}`}
+              href={`/episode/${nanoid}/${ep1Nanoid}/${ep1Slug}`}
               aria-label={`Watch ${title} Episode 1`}
             >
               <Icon name="play" size={40} color="#8c52ff" />

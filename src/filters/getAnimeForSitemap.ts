@@ -34,10 +34,10 @@ export async function getShowEpUrls() {
 
         if (Array.isArray(episodes) && episodes?.length > 0) {
             for (const ep of episodes) {
-                const { slug: epSlug = 'n-a', air_date } = ep ?? {};
+                const { slug: epSlug = 'n-a', air_date, nanoid: epNanoid } = ep ?? {};
                 if (!epSlug) continue;
                 urls.push({
-                    loc: `${frontendUrl}/episode/${nanoid}/${epSlug}`,
+                    loc: `${frontendUrl}/episode/${nanoid}/${epNanoid}/${epSlug}`,
                 })
             }
         }

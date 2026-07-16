@@ -1,6 +1,6 @@
 ---
 import { getOtherSeasons } from "../../filters/anime-page-filters";
-import { getFilteredAnime } from "../../filters/animeFilterMainTmdbVer";
+import { getFilteredAnime } from "../../filters/animeFilterMainTmdbVer.ts";
 import { Icon } from "../../icons/icons";
 import SliderContainer from "./SliderContainer.astro";
 import "./anime-slidertw.css";
@@ -22,23 +22,23 @@ const {
 let filteredAnimeList;
 
 if (forCategoryPage) {
-    filteredAnimeList = getFilteredAnime("matchCategories", {
+    filteredAnimeList = await getFilteredAnime("matchCategories", {
         categoryA: categoryA,
         categoryB: categoryB,
         usedTitlesGlobal,
     });
 }
 else if (forAnimePageSeasons){
-    filteredAnimeList = getOtherSeasons(animeTitle, toNotInclude);
+    filteredAnimeList = await getOtherSeasons(animeTitle, toNotInclude);
 }
 else if (filterName == "matchCategories") {
-    filteredAnimeList = getFilteredAnime("matchCategories", {
+    filteredAnimeList = await getFilteredAnime("matchCategories", {
         genresA: genresA,
         usedTitlesGlobal,
     });
 }
 else {
-    filteredAnimeList = getFilteredAnime(filterName, { usedTitlesGlobal });
+    filteredAnimeList = await getFilteredAnime(filterName, { usedTitlesGlobal });
 }
 
 if (filteredAnimeList) {

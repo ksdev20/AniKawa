@@ -1,14 +1,14 @@
 ---
 import "../../../../styles/category/subcat.css";
 import "../../../../styles/lists/n-p-a-l.css";
-import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer";
+import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer.ts";
 import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import SEOHead from "../../../../components/SEO/SEOHead.astro";
 import { getSubCatHead } from "../../../../config/headConfig";
 import Layout from "../../../../layouts/Layout.astro";
 
 const { mainCategory, subCategory } = Astro.params;
-const finalArray = getFilteredAnime("matchCategories", {
+const finalArray = await getFilteredAnime("matchCategories", {
   categoryA: mainCategory,
   categoryB: subCategory,
   forSubCatPage: true,

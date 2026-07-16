@@ -9,7 +9,7 @@ export interface Anime {
   title: string;
   score: number;
   ratedBy: number;
-  startDate: Date;
+  startDate: string;
   poster: string;
   backdrop: null | string;
   description: string;
@@ -18,7 +18,7 @@ export interface Anime {
   episodes: Episode[];
   seasons: number;
   runtime: string;
-  endDate: Date;
+  endDate: string;
   genres: string[];
   status: string;
   keywords: string;
@@ -99,13 +99,14 @@ type AnikawaReview = {
 };
 
 export interface Episode {
+  animenanoid?: string;
   url: string;
   ytThumbnail: string;
   audio: string;
   titleAlt: string;
   nanoid: string;
   slug: string;
-  air_date: Date;
+  air_date: string;
   epNum: number;
   title: string;
   description: string;

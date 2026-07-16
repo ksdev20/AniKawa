@@ -1,7 +1,7 @@
 ---
 import "./anime-card2tw.css";
 import AnimeWBtn from "../AnimeCard/AnimeWBtn";
-import { thisYearTopByCategory } from "../../filters/animeFilterMainTmdbVer";
+import { thisYearTopByCategory } from "../../filters/animeFilterMainTmdbVer.ts";
 import { Icon } from "../../icons/icons";
 import { getPosterType } from "../../utils/imageSizing";
 
@@ -10,6 +10,7 @@ const { category, usedTitlesAC2 } = Astro.props;
 const anime: any = thisYearTopByCategory(category, usedTitlesAC2);
 if (!anime) return null;
 const { nanoid, slug, title, description, poster } = anime ?? {};
+const ep1Nanoid = anime?.episodes?.[0]?.nanoid;
 const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
 const language = "Subtitled";
 ---
@@ -45,7 +46,7 @@ const language = "Subtitled";
     <p class="anime-card-2-para">{description}</p>
     <div class="anime-card-2-btn-section">
       <a
-        href={`/episode/${nanoid}/${ep1Slug}`}
+        href={`/episode/${nanoid}/${ep1Nanoid}/${ep1Slug}`}
         class="start-watching-btn card-2"
       >
         <Icon name="play" size={28} color="#000000" />

@@ -1,12 +1,12 @@
 ---
 import {
   getNewest15Episodes,
-} from "../../filters/animeFilterMainTmdbVer";
+} from "../../filters/animeFilterMainTmdbVer.ts";
 import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
 import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
 import "./latest-episodes.css";
 
-const latestEpisodes = getNewest15Episodes();
+const latestEpisodes = await getNewest15Episodes();
 ---
 
 <section class="latest-episodes-section">

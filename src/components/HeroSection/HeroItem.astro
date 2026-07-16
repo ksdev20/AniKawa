@@ -7,19 +7,20 @@ import { getPosterType } from "../../utils/imageSizing";
 import WBtn2 from "../AnimeCard/WBtn2";
 
 const { nId, i } = Astro.props;
-const anime = getAnimeById(nId);
+const anime = await getAnimeById(nId);
 const isFirst = i == 0;
 const {
   nanoid = "n-a",
   slug,
   title = "untitled",
   description,
-  poster,
-  backdrop,
+  poster = "/anime-image-alt.png",
+  backdrop = "/episode-thumbnail-alt-2.png",
   scoreAlt,
   logos_en,
 } = anime ?? {};
 
+const ep1Nanoid = anime?.episodes?.[0]?.nanoid;
 const ep1Slug = anime?.episodes?.[0]?.slug ?? "n-a";
 
 const imgPrefix = "https://image.tmdb.org/t/p/original";
@@ -43,8 +44,8 @@ switch (nId) {
     break;
 }
 
-const getBackdropType = (backdrop: string, backdropType: string) =>
-  backdrop.slice(0).replace("original", backdropType);
+const getBackdropType = (backdrop: string | null, backdropType: string) =>
+  backdrop?.slice(0).replace("original", backdropType);
 
 const language = "Subtitled";
 
@@ -114,7 +115,7 @@ const fetchP = i == 0 ? "high" : null;
         <div class="hero-button-section">
           <a
             class="start-watching-btn hero-play"
-            href={`/episode/${nanoid}/${ep1Slug}`}
+            href={`/episode/${nanoid}/${ep1Nanoid}/${ep1Slug}`}
             aria-label={`Start
                         watching ${title}, episode 1`}
             tabindex={isFirst ? 0 : -1}

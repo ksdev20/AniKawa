@@ -27,6 +27,7 @@ const season_poster =
 const titleAlt = seasons > 1 ? `Season ${season}: ${title}` : title;
 const language = "Eng Sub";
 const episodes = anime?.episodes?.length;
+const ep1Nanoid = anime?.episodes?.[0]?.nanoid;
 const ep1Slug = anime?.episodes?.[0]?.slug;
 ---
 
@@ -74,7 +75,7 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
     <nav class="anime-card-hover-actions">
       <div class="tooltip" data-tip={`Play S${season} E1`}>
         <a
-          href={`/episode/${nanoid}/${ep1Slug}`}
+          href={`/episode/${nanoid}/${ep1Nanoid}/${ep1Slug}`}
           aria-label={`Watch ${titleAlt} Episode 1`}
         >
           <Icon name="play" size={40} color="#8c52ff" />

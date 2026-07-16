@@ -8,16 +8,14 @@ import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
 import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
 import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
-import Footer from "../../../components/Footer/Footer";
 import { Icon } from "../../../icons/icons";
 import { frontendUrl } from "../../../global_assets/globalPaths";
 import "../../../styles/index.css";
 import Layout from "../../../layouts/Layout.astro";
 import "../../../styles/new-anime-page.css";
-import HeroSection from "../../../components/AnimePageSections/HeroSection.astro";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
-const anime = getAnimeById(nanoid) as Anime | null;
+const anime = await getAnimeById(nanoid) as Anime | null;
 
 if (anime == null || !anime.episodes == null) {
   return new Response(null, {
@@ -64,42 +62,17 @@ const usedTitlesGlobal = [title, title, title];
 
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
 const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
-
-const metedataConfig = [
-  {
-    dt: "Type:",
-    dd: type,
-  },
-  {
-    dt: "Episodes:",
-    dd: episodes,
-  },
-  {
-    dt: "Status",
-    dd: status,
-  },
-  {
-    dt: "Duration:",
-    dd: runtime,
-  },
-  {
-    dt: "Aired:",
-    dd: `${startDate} to ${endDate}`,
-  },
-  {
-    dt: "This Season:",
-    dd: season,
-  },
-  {
-    dt: "Total Seasons:",
-    dd: seasons,
-  },
-];
-
-const getBackdropType = (backdrop: string | null, backdropType: string) =>
-  backdrop?.slice(0).replace("original", backdropType);
 ---
-
+<Fragment slot="head">
+  <SEOHead
+    title={`Watch ${titleAlt} on AniKawa for Free !`}
+    description={pageDescription}
+    ogDescription={pageDescription}
+    imageUrl={season_poster}
+    url={pageUrl}
+    keywords={keywords}
+  />
+</Fragment>
 <Layout>
   <!-- Hero Section -->
 

@@ -7,22 +7,26 @@ import { getAnimeById } from '../../filters/getAnimeById';
 const HERO_NANOIDS = ['J3lHkPYdrLrKM6I', 'm6p035HaUnukW83',  '9WkGNACrSv0K1Hn', '8ue1Ei3leF-Yrxt', 'uynEy9k743xKQ2L'];
 
 const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
-        "itemListElement": HERO_NANOIDS.map((n, i)  => {
-            const anime = getAnimeById(n);
-            if (!anime) return null;
-            const {nanoid, slug} = anime;
-            return {
-                "@type": "ListItem",
-                "position": i + 1,
-                "item":{
-                    "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
-                }
-            };
-        }).filter(Boolean)
-    }
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Watch Top Trending Anime Series Online – Latest Episodes & Popular Titles",
+  "itemListElement": await Promise.all(
+    HERO_NANOIDS.map(async (n, i) => {
+      const anime = await getAnimeById(n);
+      if (!anime) return null;
+
+      const { nanoid, slug } = anime;
+      return {
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@id": `https://anikawa1-2.onrender.com/show/${nanoid}/${slug}`
+        }
+      };
+    })
+  ).then(items => items.filter(Boolean))
+};
+
 ---
 
 <section aria-labelledby="hero-title" role="region">

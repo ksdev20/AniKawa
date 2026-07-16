@@ -15,6 +15,7 @@ export default function EpisodeCard({
     animenanoid,
     slug,
     epNum,
+    nanoid
   } = epData;
   const { titleAlt, description = "No description" } = epData ?? [];
   const img =
@@ -46,7 +47,7 @@ export default function EpisodeCard({
           </div>
         </div>
         <a
-          href={`/episode/${animenanoid}/${slug}`}
+          href={`/episode/${animenanoid}/${nanoid}/${slug}`}
           className="episode-card-link"
         >
           <div className="sr-only">

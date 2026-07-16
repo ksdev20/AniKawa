@@ -1,11 +1,11 @@
 ---
 import {
   getNewest15Anime,
-} from "../../filters/animeFilterMainTmdbVer";
+} from "../../filters/animeFilterMainTmdbVer.ts";
 import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
 import AnimeCardStaticTmdbVer from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 
-const latestAnime = getNewest15Anime();
+const latestAnime = await getNewest15Anime();
 ---
 
 <section class="popular-anime-section">

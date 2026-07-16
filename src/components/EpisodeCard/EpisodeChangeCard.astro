@@ -4,7 +4,7 @@ import { getEpImg } from "../../utils/getEpImgFallback";
 const { Obj, Obj2 } = Astro.props;
 if (!Obj) return null;
 
-const { slug, epNum, titleAlt = `Episode ${epNum}` } = Obj ?? {};
+const { slug, epNum, titleAlt = `Episode ${epNum}`, nanoid: epNanoid } = Obj ?? {};
 const { h4, animeTitle, nanoid, language } = Obj2;
 const thumbnail = getEpImg(Obj);
 ---
@@ -28,7 +28,7 @@ const thumbnail = getEpImg(Obj);
       </p>
     </div>
   </div>
-  <a href={`/episode/${nanoid}/${slug}`} class="eccc-link">
+  <a href={`/episode/${nanoid}/${epNanoid}/${slug}`} class="eccc-link">
     <div class="sr-only">Go to {titleAlt} of {animeTitle}</div>
   </a>
 </section>
