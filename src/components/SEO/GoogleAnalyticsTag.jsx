@@ -3,14 +3,12 @@ import { useEffect } from 'react';
 export function GoogleAnalyticsTag() {
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-    gtag("config", "G-KH21EQ579T");
+    gtag('config', 'G-TV7KYTR6Z1');
   }, []);
   return (
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KH21EQ579T"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TV7KYTR6Z1"></script>
   );
 }
