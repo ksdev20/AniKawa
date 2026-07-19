@@ -1,0 +1,55 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "/",
+        "/show/uynEy9k743xKQ2L/ms-koizumi-loves-ramen-noodles",
+        "/categories",
+        "/list/new",
+        "/list/popular",
+        "/list/old",
+        "/category/Action",
+        "/episode/J3lHkPYdrLrKM6I/HUVvPA4qogdklDS0Gw2U9/los-fantasmas-tararean-un-requiem",
+        "/blog",
+        "/search",
+        "/blog/10-action-anime-that-deliver-from-start-to-finish",
+        "/blog/category/anime-recommendations"
+      ],
+      "numberOfRuns": 3,
+      "settings": {
+        "preset": "desktop"
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": [
+          "error",
+          {
+            "minScore": 0.85
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:best-practices": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ],
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 0.9
+          }
+        ]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

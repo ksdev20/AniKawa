@@ -1,0 +1,47 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches:
+      - anikawa-v1.2-production
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Pull Vercel environment
+        run: |
+          vercel pull \
+          --yes \
+          --environment=preview \
+          --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Get Preview URL
+        id: vercel
+        run: |
+          URL=$(vercel ls --token=${{ secrets.VERCEL_TOKEN }} | grep https | head -1 | awk '{print $2}')
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse
+        run: |
+          lhci autorun \
+          --collect.url=${{ steps.vercel.outputs.url }} \
+          --config=lighthouserc.json
