@@ -1,0 +1,575 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+.anime-list-edit-modal__overlay {
+    @apply fixed inset-0 z-[300] bg-black/75 backdrop-blur-md;
+    animation: anime-edit-overlay-in 180ms ease-out;
+}
+
+.anime-list-edit-modal__content {
+    @apply fixed left-1/2 top-1/2 z-[301] flex w-[calc(100%-2rem)] max-w-[760px] -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-[26px] border border-white/10 bg-[#111216] shadow-2xl outline-none;
+    max-height: min(900px, calc(100vh - 40px));
+    animation: anime-edit-content-in 220ms cubic-bezier(.2, .8, .2, 1);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.anime-list-edit-modal__hero {
+    @apply relative shrink-0 overflow-hidden;
+    min-height: 265px;
+}
+
+.anime-list-edit-modal__backdrop,
+.anime-list-edit-modal__backdrop-placeholder {
+    @apply absolute inset-0 h-full w-full object-cover;
+}
+
+.anime-list-edit-modal__backdrop {
+    @apply opacity-70;
+    filter: saturate(.9);
+}
+
+.anime-list-edit-modal__backdrop-placeholder {
+    background:
+        radial-gradient(circle at 70% 20%,
+            rgba(140, 82, 255, .35),
+            transparent 45%),
+        linear-gradient(135deg,
+            #1c1d24,
+            #0e0f12);
+}
+
+.anime-list-edit-modal__hero-gradient {
+    @apply absolute inset-0;
+    background:
+        linear-gradient(to bottom,
+            rgba(17, 18, 22, .05) 0%,
+            rgba(17, 18, 22, .25) 35%,
+            rgba(17, 18, 22, .88) 82%,
+            #111216 100%);
+}
+
+.anime-list-edit-modal__close {
+    @apply absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/35 text-white/75 backdrop-blur-xl transition-all duration-200;
+}
+
+.anime-list-edit-modal__close:hover {
+    @apply bg-white/10 text-white;
+    transform: scale(1.05);
+}
+
+.anime-list-edit-modal__hero-content {
+    @apply absolute bottom-0 left-0 right-0 z-10 flex items-end gap-5 px-6 pb-6;
+}
+
+.anime-list-edit-modal__poster {
+    @apply h-[145px] w-[98px] shrink-0 rounded-xl object-cover shadow-2xl;
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, .55),
+        0 0 0 1px rgba(255, 255, 255, .08);
+}
+
+.anime-list-edit-modal__hero-info {
+    @apply min-w-0 pb-1;
+}
+
+.anime-list-edit-modal__eyebrow {
+    @apply mb-2 block text-[10px] font-bold uppercase tracking-[.2em] text-primary;
+}
+
+.anime-list-edit-modal__title {
+    @apply line-clamp-2 text-2xl font-bold leading-tight text-white sm:text-[28px];
+}
+
+.anime-list-edit-modal__meta {
+    @apply mt-3 flex flex-wrap items-center gap-2 text-xs font-medium text-white/55;
+}
+
+.anime-list-edit-modal__meta i {
+    @apply h-1 w-1 rounded-full bg-white/25;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.anime-list-edit-modal__body {
+    @apply min-h-0 flex-1 overflow-y-auto px-6 py-6;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .12) transparent;
+}
+
+.anime-list-edit-modal__body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.anime-list-edit-modal__body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.anime-list-edit-modal__body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .12);
+    border-radius: 99px;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.anime-list-edit-modal__section {
+    @apply mb-7 flex flex-col gap-2;
+}
+
+.anime-list-edit-modal__section-heading {
+    @apply mb-3 flex items-end justify-between gap-4;
+}
+
+.anime-list-edit-modal__section-heading h3 {
+    @apply text-sm font-bold text-white;
+}
+
+.anime-list-edit-modal__section-heading p {
+    @apply mt-1 text-xs text-white/35;
+}
+
+.anime-list-edit-modal__section-heading>span {
+    @apply text-[10px] font-medium text-white/25;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.anime-list-edit-modal__status-grid {
+    @apply grid grid-cols-2 gap-2 sm:grid-cols-5;
+}
+
+.anime-list-edit-modal__status {
+    @apply flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl border border-white/8 bg-white/[.035] px-3 py-2 text-xs font-semibold text-white/45 transition-all duration-150;
+}
+
+.anime-list-edit-modal__status:hover {
+    @apply border-white/15 bg-white/[.07] text-white/80;
+}
+
+.anime-list-edit-modal__status.is-active {
+    @apply border-primary/50 bg-primary/15 text-white;
+    box-shadow: inset 0 0 0 1px rgba(140, 82, 255, .08);
+}
+
+/* =========================================================
+   PROGRESS + SCORE
+   ========================================================= */
+
+.anime-list-edit-modal__stats-grid {
+    @apply mb-7 grid grid-cols-1 gap-3 sm:grid-cols-2;
+}
+
+.anime-list-edit-modal__stat-card {
+    @apply rounded-2xl border border-white/8 bg-white/[.025] p-4;
+}
+
+.anime-list-edit-modal__stat-heading {
+    @apply mb-4 flex items-start justify-between;
+}
+
+.anime-list-edit-modal__stat-heading>div {
+    @apply flex flex-col;
+}
+
+.anime-list-edit-modal__stat-heading span {
+    @apply mb-1 text-[9px] font-bold tracking-[.16em] text-white/30;
+}
+
+.anime-list-edit-modal__stat-heading strong {
+    @apply text-xl font-bold text-white;
+}
+
+.anime-list-edit-modal__stat-heading strong small {
+    @apply ml-1 text-xs font-medium text-white/25;
+}
+
+.anime-list-edit-modal__stat-heading>small {
+    @apply rounded-full bg-white/5 px-2 py-1 text-[10px] font-bold text-white/35;
+}
+
+.anime-list-edit-modal__stat-heading svg {
+    @apply text-primary;
+}
+
+/* Progress */
+
+.anime-list-edit-modal__progress-track {
+    @apply mb-4 h-1.5 overflow-hidden rounded-full bg-white/[.07];
+}
+
+.anime-list-edit-modal__progress-track span {
+    @apply block h-full rounded-full bg-primary transition-[width] duration-200;
+}
+
+/* Stepper */
+
+.anime-list-edit-modal__stepper {
+    @apply flex h-11 items-center rounded-xl border border-white/8 bg-black/10;
+}
+
+.anime-list-edit-modal__stepper button {
+    @apply flex h-full w-12 shrink-0 items-center justify-center text-white/45 transition;
+}
+
+.anime-list-edit-modal__stepper button:hover:not(:disabled) {
+    @apply bg-white/5 text-white;
+}
+
+.anime-list-edit-modal__stepper button:disabled {
+    @apply cursor-not-allowed opacity-20;
+}
+
+.anime-list-edit-modal__stepper input {
+    @apply h-full min-w-0 flex-1 border-x border-white/8 bg-transparent text-center text-sm font-bold text-white outline-none;
+    appearance: textfield;
+}
+
+.anime-list-edit-modal__stepper input::-webkit-inner-spin-button,
+.anime-list-edit-modal__stepper input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+/* Score */
+
+.anime-list-edit-modal__score-input {
+    @apply flex h-11 items-center rounded-xl border border-white/8 bg-black/10 px-3;
+}
+
+.anime-list-edit-modal__score-input input {
+    @apply min-w-0 flex-1 bg-transparent text-lg font-bold text-white outline-none;
+    appearance: textfield;
+}
+
+.anime-list-edit-modal__score-input input::-webkit-inner-spin-button,
+.anime-list-edit-modal__score-input input::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}
+
+.anime-list-edit-modal__score-input span {
+    @apply text-xs font-semibold text-white/25;
+}
+
+/* =========================================================
+   DATES
+   ========================================================= */
+
+.anime-list-edit-modal__dates {
+    @apply grid grid-cols-1 gap-3 sm:grid-cols-2;
+}
+
+.anime-list-edit-modal__date {
+    @apply block;
+}
+
+.anime-list-edit-modal__date>span {
+    @apply mb-2 block text-[10px] font-bold uppercase tracking-wider text-white/35;
+}
+
+.anime-list-edit-modal__date>div {
+    @apply flex h-12 items-center gap-3 rounded-xl border border-white/8 bg-white/[.035] px-3.5 transition;
+}
+
+.anime-list-edit-modal__date>div:focus-within {
+    @apply border-primary/40 bg-white/[.05];
+}
+
+.anime-list-edit-modal__date svg {
+    @apply shrink-0 text-white/30;
+}
+
+.anime-list-edit-modal__date input {
+    @apply min-w-0 flex-1 bg-transparent text-sm text-white outline-none;
+    color-scheme: dark;
+}
+
+/* =========================================================
+   NOTES
+   ========================================================= */
+
+.anime-list-edit-modal__section textarea {
+    @apply block w-full resize-none rounded-2xl border border-white/8 bg-white/[.025] px-4 py-3.5 text-sm leading-6 text-white outline-none transition placeholder:text-white/20;
+}
+
+.anime-list-edit-modal__section textarea:focus {
+    @apply border-primary/40 bg-white/[.04];
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.anime-list-edit-modal__error {
+    @apply mb-5 rounded-xl border border-red-500/20 bg-red-500/10 px-3.5 py-3 text-xs font-medium text-red-300;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.anime-list-edit-modal__footer {
+    @apply flex shrink-0 items-center justify-end gap-2 border-t border-white/8 bg-[#111216]/95 px-6 py-4 backdrop-blur-xl;
+}
+
+.anime-list-edit-modal__cancel {
+    @apply rounded-xl px-4 py-2.5 text-sm font-semibold text-white/45 transition;
+}
+
+.anime-list-edit-modal__cancel:hover {
+    @apply bg-white/5 text-white;
+}
+
+.anime-list-edit-modal__save {
+    @apply rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all;
+    box-shadow: 0 8px 24px rgba(140, 82, 255, .22);
+}
+
+.anime-list-edit-modal__save:hover:not(:disabled) {
+    @apply brightness-110;
+    transform: translateY(-1px);
+}
+
+.anime-list-edit-modal__save:disabled,
+.anime-list-edit-modal__cancel:disabled {
+    @apply cursor-not-allowed opacity-40;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes anime-edit-overlay-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes anime-edit-content-in {
+    from {
+        opacity: 0;
+        scale: 0.97;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .anime-list-edit-modal__content {
+        @apply bottom-0 left-0 top-auto w-full max-w-none translate-x-0 translate-y-0 rounded-b-none rounded-t-[24px];
+        max-height: 94vh;
+        animation: anime-edit-mobile-in 220ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .anime-list-edit-modal__hero {
+        min-height: 225px;
+    }
+
+    .anime-list-edit-modal__hero-content {
+        @apply gap-3 px-4 pb-4;
+    }
+
+    .anime-list-edit-modal__poster {
+        @apply h-[112px] w-[76px] rounded-lg;
+    }
+
+    .anime-list-edit-modal__title {
+        @apply text-xl;
+    }
+
+    .anime-list-edit-modal__body {
+        @apply px-4 py-5;
+    }
+
+    .anime-list-edit-modal__footer {
+        @apply px-4;
+    }
+
+    .anime-list-edit-modal__footer button {
+        @apply flex-1;
+    }
+}
+
+@keyframes anime-edit-mobile-in {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.anime-list-edit-modal__body {
+    @apply min-h-0 flex-1 overflow-y-auto px-6 py-5;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, .12) transparent;
+}
+
+.anime-list-edit-modal__section {
+    @apply mb-4;
+}
+
+.anime-list-edit-modal__label,
+.anime-list-edit-modal__field-top>span,
+.anime-list-edit-modal__date>span {
+    @apply text-[10px] font-bold uppercase tracking-[.14em] text-white/35;
+}
+
+.anime-list-edit-modal__field-top {
+    @apply mb-2 flex items-center justify-between;
+}
+
+.anime-list-edit-modal__field-top small {
+    @apply text-[11px] font-medium text-white/30;
+}
+
+/* STATUS */
+
+.anime-list-edit-modal__status-grid {
+    @apply grid grid-cols-2 gap-1.5 sm:grid-cols-5;
+}
+
+.anime-list-edit-modal__status {
+    @apply flex h-10 items-center justify-center gap-1.5 rounded-lg border border-white/[.07] bg-white/[.025] px-2 text-[11px] font-semibold text-white/45 transition;
+}
+
+.anime-list-edit-modal__status:hover {
+    @apply bg-white/[.06] text-white/80;
+}
+
+.anime-list-edit-modal__status.is-active {
+    @apply border-primary/40 bg-primary/15 text-white;
+}
+
+/* TWO COLUMN ROWS */
+
+.anime-list-edit-modal__compact-grid {
+    @apply mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2;
+}
+
+.anime-list-edit-modal__compact-field {
+    @apply min-w-0;
+}
+
+/* PROGRESS */
+
+.anime-list-edit-modal__stepper {
+    @apply flex h-11 items-center overflow-hidden rounded-xl border border-white/[.08] bg-white/[.025];
+}
+
+.anime-list-edit-modal__stepper button {
+    @apply flex h-full w-11 shrink-0 items-center justify-center text-white/40 transition;
+}
+
+.anime-list-edit-modal__stepper button:hover:not(:disabled) {
+    @apply bg-white/[.06] text-white;
+}
+
+.anime-list-edit-modal__stepper button:disabled {
+    @apply cursor-not-allowed opacity-20;
+}
+
+.anime-list-edit-modal__progress-value {
+    @apply flex min-w-0 flex-1 items-center justify-center text-sm font-bold text-white;
+}
+
+.anime-list-edit-modal__progress-value small {
+    @apply ml-1 text-xs font-medium text-white/30;
+}
+
+/* SCORE */
+
+.anime-list-edit-modal__score {
+    @apply flex h-11 items-center rounded-xl border border-white/[.08] bg-white/[.025] px-3;
+}
+
+.anime-list-edit-modal__score input {
+    @apply min-w-0 flex-1 bg-transparent text-sm font-bold text-white outline-none;
+    appearance: textfield;
+}
+
+.anime-list-edit-modal__score input::-webkit-inner-spin-button,
+.anime-list-edit-modal__score input::-webkit-outer-spin-button {
+    appearance: none;
+}
+
+.anime-list-edit-modal__score span {
+    @apply text-xs text-white/25;
+}
+
+/* DATES */
+
+.anime-list-edit-modal__date {
+    @apply block min-w-0;
+}
+
+.anime-list-edit-modal__date>span {
+    @apply mb-2 block;
+}
+
+.anime-list-edit-modal__date>div {
+    @apply flex h-11 items-center gap-2.5 rounded-xl border border-white/[.08] bg-white/[.025] px-3 transition;
+}
+
+.anime-list-edit-modal__date>div:focus-within {
+    @apply border-primary/40 bg-white/[.05];
+}
+
+.anime-list-edit-modal__date svg {
+    @apply shrink-0 text-white/30;
+}
+
+.anime-list-edit-modal__date input {
+    @apply min-w-0 flex-1 bg-transparent text-xs text-white outline-none;
+    color-scheme: dark;
+}
+
+/* NOTES */
+
+.anime-list-edit-modal__notes {
+    @apply mb-2;
+}
+
+.anime-list-edit-modal__notes textarea {
+    @apply mt-2 block w-full resize-none rounded-xl border border-white/[.08] bg-white/[.025] px-3 py-2.5 text-xs leading-5 text-white outline-none transition placeholder:text-white/20;
+}
+
+.anime-list-edit-modal__notes textarea:focus {
+    @apply border-primary/40 bg-white/[.05];
+}
+
+/* ERROR */
+
+.anime-list-edit-modal__error {
+    @apply mt-3 rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2 text-xs text-red-300;
+}
+
+/*DELETE BUTTON*/
+
+.anime-list-edit-modal__danger-zone {
+    @apply flex items-center mb-2;
+}
+
+.anime-list-edit-modal__delete {
+    @apply inline-flex w-fit items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-2.5 text-sm font-semibold text-red-400 transition hover:border-red-500/30 hover:bg-red-500/15 hover:text-red-300;
+}

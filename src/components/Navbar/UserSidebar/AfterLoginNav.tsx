@@ -1,6 +1,6 @@
 import { Icon } from "../../../icons/icons";
 import { alnItems } from "../../../config/navItems";
-import type { AfterLoginProps } from "../../../types/navbarTypes";
+import type { AfterLoginProps } from "../../../types/navbar";
 
 export default function AfterLoginNav({
   userData,
@@ -8,7 +8,7 @@ export default function AfterLoginNav({
   closeFn,
 }: AfterLoginProps) {
   return (
-    <nav id="after-login" className={`corner-box`}>
+    <nav id="after-login" className="corner-box">
       <a
         id="person-first-btn"
         aria-label="Profile Page"
@@ -19,34 +19,44 @@ export default function AfterLoginNav({
           <img
             className="account-pic"
             src={
-              userData?.profilePic ??
+              userData?.avatar_url ??
               "https://ik.imagekit.io/nwstforna/avatars/a1.jpg"
             }
-            alt={`Profile picture of logged in user ${userData?.profileName}`}
+            alt={`Profile picture of ${
+              userData?.display_name ?? userData?.username ?? "user"
+            }`}
             loading="lazy"
             decoding="async"
           />
+
           <div className="account-name">
-            {userData?.profileName || "Username"}
+            {userData?.display_name ?? userData?.username ?? "Username"}
           </div>
         </div>
+
         <Icon name="manage-account" size={26} />
       </a>
+
+
       {alnItems.map((obj, i) => {
-        const { label } = obj;
+        const { label, icon } = obj;
+
         const lowered = label.toLowerCase();
-        const isLast = i == alnItems.length - 1;
+
+        const isLast = i === alnItems.length - 1;
+
         return (
           <button
             key={i}
             aria-label={label}
             className="corner-box-btn cbb-whl"
-            onClick={() => {
-              clickHandler(lowered);
-            }}
+
+            onClick={() => clickHandler(lowered)}
+
             onKeyDown={isLast ? closeFn : undefined}
           >
-            <Icon name={lowered} size={26} />
+            <Icon name={icon} size={26} />
+
             <div className="cbt-white">{label}</div>
           </button>
         );

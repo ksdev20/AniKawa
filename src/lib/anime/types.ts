@@ -57,6 +57,8 @@ export interface CatalogIndexes {
 
     episodeByKey: ReadonlyMap<string, EpisodeRecord>;
 
+    episodeByNanoid: Map<string, EpisodeRecord>;
+
     genreMap: ReadonlyMap<string, readonly AnimeRecord[]>;
 
     latestAnime: readonly AnimeRecord[];

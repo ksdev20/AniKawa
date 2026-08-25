@@ -1,0 +1,214 @@
+---
+/*
+  CategoryHero.astro
+
+  All values are placeholders for now.
+  Later these will come from categoryConfig/database.
+*/
+
+const categoryName = "Action";
+
+const breadcrumb = [
+  "Home",
+  "Category",
+  categoryName,
+];
+
+const title = `${categoryName} Anime`;
+
+const description =
+  "Explore action-packed anime featuring epic battles, powerful heroes, intense rivalries, and unforgettable adventures.";
+
+const animeCount = "450+";
+
+const lastUpdated = "Updated Daily";
+
+const backgroundImage =
+  "/images/categories/action-background.webp";
+
+const primaryCTA = "Explore Action Anime";
+
+const secondaryCTA = "Random Pick";
+
+
+const quickStats = [
+  {
+    label: "Anime",
+    value: "450+",
+    icon: "📚",
+  },
+  {
+    label: "Episodes",
+    value: "8200+",
+    icon: "🎬",
+  },
+  {
+    label: "Avg Rating",
+    value: "7.8",
+    icon: "⭐",
+  },
+  {
+    label: "Updated",
+    value: "Daily",
+    icon: "🔄",
+  },
+];
+
+
+const relatedTags = [
+  "Action",
+  "Adventure",
+  "Fantasy",
+  "Martial Arts",
+  "Super Power",
+];
+---
+
+<section class="category-hero">
+
+  <!-- Breadcrumb -->
+  <nav class="category-hero-breadcrumb">
+    {
+      breadcrumb.map((item, index) => (
+        <>
+          <span>
+            {item}
+          </span>
+
+          {
+            index !== breadcrumb.length - 1 && (
+              <span class="breadcrumb-separator">
+                /
+              </span>
+            )
+          }
+        </>
+      ))
+    }
+  </nav>
+
+
+  <!-- Main Hero Content -->
+  <div class="category-hero-content">
+
+
+    <!-- Left Information -->
+    <div class="category-hero-info">
+
+      <h1 class="category-hero-title">
+        {title}
+      </h1>
+
+
+      <p class="category-hero-description">
+        {description}
+      </p>
+
+
+      <div class="category-hero-meta">
+
+        <span class="category-anime-count">
+          {animeCount} Anime
+        </span>
+
+
+        <span class="category-updated">
+          {lastUpdated}
+        </span>
+
+      </div>
+
+
+      <div class="category-hero-actions">
+
+        <a
+          href="#anime-list"
+          class="category-primary-button"
+        >
+          {primaryCTA}
+        </a>
+
+
+        <button
+          class="category-secondary-button"
+        >
+          {secondaryCTA}
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Right Visual -->
+    <div
+      class="category-hero-visual"
+      style={`background-image:url(${backgroundImage})`}
+    >
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- Stats -->
+  <div class="category-hero-stats">
+
+    {
+      quickStats.map((stat) => (
+        <div class="category-stat-card">
+
+          <span class="category-stat-icon">
+            {stat.icon}
+          </span>
+
+          <div class="category-stat-content">
+
+            <strong>
+              {stat.value}
+            </strong>
+
+            <span>
+              {stat.label}
+            </span>
+
+          </div>
+
+        </div>
+      ))
+    }
+
+  </div>
+
+
+
+  <!-- Tags -->
+  <div class="category-hero-tags">
+
+    <span class="category-tags-label">
+      Explore themes:
+    </span>
+
+
+    <div class="category-tags-list">
+
+      {
+        relatedTags.map((tag) => (
+          <a
+            href={`/category/${tag}`}
+            class="category-tag"
+          >
+            {tag}
+          </a>
+        ))
+      }
+
+    </div>
+
+  </div>
+
+
+</section>

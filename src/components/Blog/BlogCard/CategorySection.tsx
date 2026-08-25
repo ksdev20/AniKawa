@@ -1,4 +1,4 @@
-import "../../../styles/components/BlogCard/category-section.css";
+import "../../../styles/components/Blog/BlogCard/category-section.css";
 
 export default function CategorySection({
   categoryList,

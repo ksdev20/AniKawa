@@ -1,0 +1,361 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/* ============================================================
+   HISTORY PAGE
+============================================================ */
+
+.history-page {
+    @apply min-h-screen bg-secondary text-white;
+}
+
+.history-page__container {
+    @apply mx-auto w-full max-w-[1500px] px-6 py-12;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+============================================================ */
+
+.history-page__header {
+    @apply relative mb-10 flex min-h-[180px] items-center justify-between overflow-hidden rounded-[2rem] border border-border bg-surface px-8 py-8;
+}
+
+.history-page__heading {
+    @apply relative z-10 max-w-3xl;
+}
+
+.history-page__eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-accent;
+}
+
+.history-page__title {
+    @apply mt-4 font-winky text-4xl font-bold tracking-tight text-white sm:text-5xl;
+}
+
+.history-page__subtitle {
+    @apply mt-3 max-w-2xl text-sm leading-6 text-gray;
+}
+
+.history-page__decoration {
+    @apply relative mr-8 hidden h-32 w-32 shrink-0 items-center justify-center lg:flex;
+}
+
+.history-page__decoration-icon {
+    @apply relative z-10 flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-primary/30 bg-primary/10 text-2xl text-accent;
+}
+
+.history-page__decoration-glow {
+    @apply absolute inset-0 rounded-full bg-primary/10 blur-3xl;
+}
+
+
+/* ============================================================
+   BROWSER
+============================================================ */
+
+.history-browser {
+    @apply w-full;
+}
+
+
+/* ============================================================
+   FILTERS
+============================================================ */
+
+.history-filters {
+    @apply mb-5 grid grid-cols-1 gap-4 rounded-3xl border border-border bg-surface p-5 sm:grid-cols-2 lg:grid-cols-[minmax(220px,1.5fr)_repeat(4,minmax(130px,1fr))_auto];
+}
+
+.history-filter {
+    @apply flex min-w-0 flex-col gap-2;
+}
+
+.history-filter--search {
+    @apply min-w-0;
+}
+
+.history-filter__label {
+    @apply px-1 text-[10px] font-bold uppercase tracking-[0.15em] text-gray;
+}
+
+.history-filter__select {
+    @apply h-11 w-full cursor-pointer appearance-none rounded-xl border border-border bg-secondary px-3 text-sm text-white outline-none transition-all duration-200 hover:border-gray/50 focus:border-primary focus:ring-1 focus:ring-primary/30;
+}
+
+.history-search {
+    @apply flex h-11 min-w-0 items-center rounded-xl border border-border bg-secondary transition-all duration-200 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/30;
+}
+
+.history-search__icon {
+    @apply ml-3 shrink-0 text-lg text-gray;
+}
+
+.history-search__input {
+    @apply h-full min-w-0 flex-1 bg-transparent px-3 text-sm text-white outline-none placeholder:text-gray;
+}
+
+.history-search__clear {
+    @apply mr-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xl leading-none text-gray transition-colors hover:bg-surfaceLight hover:text-white;
+}
+
+.history-reset {
+    @apply self-end rounded-xl border border-border px-4 py-2.5 text-xs font-bold text-gray transition-all duration-200 hover:border-primary/50 hover:bg-primary/10 hover:text-white;
+}
+
+
+/* ============================================================
+   RESULTS BAR
+============================================================ */
+
+.history-results-bar {
+    @apply mb-5 flex items-center justify-between;
+}
+
+.history-results {
+    @apply flex items-center gap-1.5 text-sm text-gray;
+}
+
+.history-results strong {
+    @apply font-bold text-white;
+}
+
+.history-results__filtered {
+    @apply text-xs text-accent;
+}
+
+.history-mobile-filter-button {
+    @apply hidden items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-primary/50;
+}
+
+
+/* ============================================================
+   EPISODE GRID
+============================================================ */
+
+.history-grid {
+    @apply grid gap-x-5 gap-y-8 list-none;
+    grid-template-columns: repeat(auto-fill,
+            minmax(240px, 1fr));
+}
+
+.history-grid__item {
+    @apply min-w-0;
+}
+
+
+/* ============================================================
+   LOAD MORE
+============================================================ */
+
+.history-load-more {
+    @apply flex justify-center pt-10;
+}
+
+.history-load-more__button {
+    @apply flex items-center gap-3 rounded-2xl border border-border bg-surface px-6 py-3.5 text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/10;
+}
+
+.history-load-more__count {
+    @apply rounded-full bg-surfaceLight px-2.5 py-1 text-[10px] font-semibold text-gray;
+}
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.history-loading {
+    @apply flex min-h-[400px] flex-col items-center justify-center rounded-3xl border border-border bg-surface;
+}
+
+.history-loading__spinner {
+    @apply h-9 w-9 animate-spin rounded-full border-2 border-border border-t-primary;
+}
+
+.history-loading p {
+    @apply mt-4 text-sm text-gray;
+}
+
+
+/* ============================================================
+   EMPTY / ERROR STATES
+============================================================ */
+
+.history-state {
+    @apply flex min-h-[420px] flex-col items-center justify-center rounded-3xl border border-border bg-surface px-6 py-16 text-center;
+}
+
+.history-state__icon {
+    @apply flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-2xl font-bold text-accent;
+}
+
+.history-state h2 {
+    @apply mt-5 font-winky text-2xl font-bold text-white;
+}
+
+.history-state p {
+    @apply mt-2 max-w-md text-sm leading-6 text-gray;
+}
+
+.history-state__button {
+    @apply mt-6 inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110;
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1000px) {
+    .history-page__container {
+        @apply px-4 py-8;
+    }
+
+    .history-filters {
+        @apply grid-cols-2;
+    }
+
+    .history-filter--search {
+        @apply col-span-2;
+    }
+
+    .history-reset {
+        @apply col-span-2 w-fit;
+    }
+
+    .history-grid {
+        grid-template-columns: repeat(auto-fill,
+                minmax(220px, 1fr));
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+    .history-page__container {
+        @apply px-3 py-5;
+    }
+
+    .history-page__header {
+        @apply mb-6 min-h-0 rounded-3xl px-5 py-7;
+    }
+
+    .history-page__title {
+        @apply mt-3 text-3xl;
+    }
+
+    .history-page__subtitle {
+        @apply mt-2 text-xs leading-5;
+    }
+
+    .history-filters {
+        @apply hidden grid-cols-1 rounded-2xl p-4;
+    }
+
+    .history-filters--mobile-open {
+        @apply grid;
+    }
+
+    .history-filter--search,
+    .history-reset {
+        @apply col-span-1;
+    }
+
+    .history-reset {
+        @apply w-full;
+    }
+
+    .history-mobile-filter-button {
+        @apply inline-flex;
+    }
+
+    .history-grid {
+        grid-template-columns: repeat(2,
+                minmax(0, 1fr));
+        @apply gap-x-3 gap-y-6;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL SCREENS
+============================================================ */
+
+@media (max-width: 380px) {
+    .history-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Removes the cross button in Chrome, Safari, and Edge (Blink/WebKit) */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Optional: Removes extra native decorations in WebKit browsers */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
+/* Optional: Removes the cross button in legacy Internet Explorer/Edge HTML */
+input[type="search"]::-ms-clear,
+input[type="search"]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* ─────────────────────────────────────────────
+   Watched date range
+   ───────────────────────────────────────────── */
+
+.history-date-range {
+  @apply mt-3 grid grid-rows-2 gap-4;
+}
+
+.history-date-range{
+    /* Targets the calendar icon in Chrome, Safari, Edge, and Opera */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+}
+
+.history-date-field {
+  @apply flex min-w-0 flex-col gap-1.5;
+}
+
+.history-date-field label {
+  @apply text-[11px] font-medium text-gray-400;
+}
+
+.history-date-field input {
+  @apply w-full min-w-0 rounded-lg border border-border
+    bg-surfaceLight px-3 py-2 text-sm text-white
+    outline-none transition-colors;
+}
+
+.history-date-field input:hover {
+  @apply border-accent/50;
+}
+
+.history-date-field input:focus {
+  @apply border-primary ring-1 ring-primary/30;
+}
+
+/* Native date picker icon */
+.history-date-field input::-webkit-calendar-picker-indicator {
+  @apply cursor-pointer opacity-60 transition-opacity;
+}
+
+.history-date-field input::-webkit-calendar-picker-indicator:hover {
+  @apply opacity-100;
+}

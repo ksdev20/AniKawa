@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+
+.confirm-modal {
+  @apply fixed inset-0 z-[1000] flex items-center justify-center bg-black/70 px-4 backdrop-blur-[3px];
+}
+
+.confirm-modal__content {
+  @apply fixed left-1/2 top-1/2 z-[1001] w-[calc(100%-2rem)] max-w-[420px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-border bg-secondary shadow-2xl outline-none;
+}
+
+.confirm-modal__accent {
+    @apply h-0.5 w-full bg-primary;
+}
+
+.confirm-modal__close {
+    @apply absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-gray transition-colors hover:bg-surfaceLight hover:text-white disabled:pointer-events-none disabled:opacity-50;
+}
+
+.confirm-modal__body {
+    @apply px-6 pb-6 pt-7;
+}
+
+.confirm-modal__icon {
+    @apply mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-accent;
+}
+
+.confirm-modal__icon--danger {
+    @apply bg-red-500/10 text-red-400;
+}
+
+.confirm-modal__text {
+    @apply pr-7;
+}
+
+.confirm-modal__text h2 {
+    @apply text-lg font-semibold text-white;
+}
+
+.confirm-modal__text p {
+    @apply mt-2 text-sm leading-6 text-gray;
+}
+
+.confirm-modal__actions {
+    @apply mt-7 flex justify-end gap-3;
+}
+
+.confirm-modal__cancel {
+    @apply rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-gray-200 transition hover:border-surfaceLight hover:bg-surfaceLight hover:text-white disabled:pointer-events-none disabled:opacity-50;
+}
+
+.confirm-modal__confirm {
+    @apply rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50;
+}
+
+.confirm-modal__confirm--danger {
+    @apply bg-red-500 hover:bg-red-600;
+}

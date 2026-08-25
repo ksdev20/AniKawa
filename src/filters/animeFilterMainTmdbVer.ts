@@ -86,16 +86,20 @@ function romancePopular(anime: Anime): boolean {
 
 function topRatedLast5(anime: Anime): boolean {
   const year = getYear(anime);
+
   const currentYear = new Date().getFullYear();
-  return (
-    year <= currentYear - 3 &&
-    year >= currentYear - 10 &&
-    (anime.score ?? 0) >= 7.5
-  );
+
+  const fiveYearsAgo = currentYear - 5;
+
+  const passed =
+    year >= fiveYearsAgo && year <= currentYear && (anime.score ?? 0) >= 7.5;
+
+  return passed;
 }
 
 function recommendedByAnikawa(anime: Anime): boolean {
-  return recommendedAnimeNanoIds.includes(anime.nanoid);
+  const exists = recommendedAnimeNanoIds.includes(anime.nanoid);
+  return exists;
 }
 
 // 🔧 Category matching
@@ -123,7 +127,7 @@ function genreCheck(anime: Anime, genre: string): boolean {
   return anime?.genres?.includes(genre) ?? false;
 }
 
-// 🔧 Filter registry
+// 🔧 Filter registr
 const filters: Record<string, FilterFn | ((anime: Anime) => boolean)> = {
   sameMonthAnimeGen,
   beginnerAnime,
@@ -272,7 +276,7 @@ const avoidTitlesAC2 = [
  */
 export async function thisYearTopByCategory(
   category: string,
-  usedTitlesAC2: string[]
+  usedTitlesAC2: string[],
 ): Promise<Anime | undefined> {
   const allAnime = await AnimeRepository.getAllAnime();
   return allAnime.find((anime) => {

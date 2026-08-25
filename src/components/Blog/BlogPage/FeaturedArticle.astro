@@ -1,0 +1,74 @@
+---
+import '@/styles/components/Blog/featured-post.css';
+const { featuredPost } = Astro.props;
+if (featuredPost === undefined || !featuredPost) return null;
+---
+<section class="featured-article-section">
+    
+  <div class="featured-article-container">
+
+    <div class="featured-article-header">
+
+      <span class="section-badge">
+        ⭐ Featured Article
+      </span>
+
+      <h2 class="section-title">
+        Start Here
+      </h2>
+
+      <p class="section-subtitle">
+        A handpicked article from the AniKawa editorial team.
+      </p>
+
+    </div>
+
+    <a
+      href={`/blog/${featuredPost.data.slug}`}
+      class="featured-article-card"
+    >
+
+      <div class="featured-article-image-wrapper">
+        <img
+          src={featuredPost.data.imgLarge || featuredPost.data.img}
+          alt={featuredPost.data.title}
+          class="featured-article-image"
+          loading="eager"
+        />
+      </div>
+
+      <div class="featured-article-content">
+
+        <div class="featured-article-categories">
+          {featuredPost.data.categoryList.slice(0, 3).map((category: string) => (
+            <span>{category}</span>
+          ))}
+        </div>
+
+        <h3 class="featured-article-title">
+          {featuredPost.data.title}
+        </h3>
+
+        <p class="featured-article-subtitle">
+          {featuredPost.data.subTitle}
+        </p>
+
+        <div class="featured-article-meta">
+          <span>{featuredPost.data.author}</span>
+          <span>•</span>
+          <span>{featuredPost.data.date}</span>
+          <span>•</span>
+          <span>{featuredPost.data.readMinutes} min read</span>
+        </div>
+
+        <div class="featured-article-cta">
+          Read Article →
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>

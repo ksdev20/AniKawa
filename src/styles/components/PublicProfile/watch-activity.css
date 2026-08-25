@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@config '@tw-config';
+
+.watch-activity-card {
+  @apply relative overflow-hidden rounded-3xl border border-white/10 bg-[var(--c-sec)] p-5 shadow-xl sm:p-6;
+}
+
+.watch-activity-card__header {
+  @apply flex items-start justify-between gap-5;
+}
+
+.watch-activity-card__eyebrow {
+  @apply mb-2 block text-xs font-bold uppercase tracking-[0.18em] text-[var(--c-main)];
+}
+
+.watch-activity-card__title {
+  @apply text-xl font-black tracking-tight text-white sm:text-2xl;
+}
+
+.watch-activity-card__subtitle {
+  @apply mt-1 text-sm leading-6 text-gray-400;
+}
+
+.watch-activity-card__summary {
+  @apply hidden shrink-0 flex-col items-end sm:flex;
+}
+
+.watch-activity-card__summary strong {
+  @apply text-xl font-black text-white;
+}
+
+.watch-activity-card__summary span {
+  @apply text-[11px] font-semibold uppercase tracking-wider text-gray-500;
+}
+
+.watch-activity {
+  @apply mt-7 min-w-0;
+}
+
+.watch-activity__months {
+  @apply mb-2 grid grid-cols-12 pl-11 text-[11px] font-medium text-gray-500;
+}
+
+.watch-activity__months span {
+  @apply truncate;
+}
+
+.watch-activity__body {
+  @apply flex min-w-0;
+}
+
+.watch-activity__weekdays {
+  @apply mr-2 flex w-9 shrink-0 flex-col justify-between py-0.5 text-[10px] font-medium text-gray-500;
+}
+
+.watch-activity__weekdays span {
+  @apply h-4 leading-4;
+}
+
+.watch-activity__grid {
+  @apply flex min-w-0 flex-1 justify-between gap-1;
+}
+
+.watch-activity__week {
+  @apply flex min-w-0 flex-1 flex-col gap-1;
+}
+
+.watch-activity__day-wrapper {
+  @apply relative flex h-4 min-w-0 justify-center;
+}
+
+.watch-activity__day {
+  @apply relative block h-4 w-full min-w-3 max-w-5 cursor-default rounded-[4px] border border-white/5 bg-white/[0.035] outline-none transition-colors duration-150;
+}
+
+.watch-activity__day:hover {
+  @apply z-20 border-[var(--c-main)]/50;
+}
+
+.watch-activity__day:focus-visible {
+  @apply z-20 border-2 border-[var(--c-main)] outline-none;
+}
+
+.watch-activity__day--0 {
+  @apply bg-white/[0.035];
+}
+
+.watch-activity__day--1 {
+  @apply border-[var(--c-main)]/10 bg-[var(--c-main)]/20;
+}
+
+.watch-activity__day--2 {
+  @apply border-[var(--c-main)]/15 bg-[var(--c-main)]/35;
+}
+
+.watch-activity__day--3 {
+  @apply border-[var(--c-main)]/20 bg-[var(--c-main)]/55;
+}
+
+.watch-activity__day--4 {
+  @apply border-[var(--c-main)]/30 bg-[var(--c-main)]/85;
+}
+
+.watch-activity__tooltip {
+  @apply pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden w-max -translate-x-1/2 flex-col rounded-lg border border-white/10 bg-black/95 px-3 py-2 text-left shadow-2xl;
+}
+
+.watch-activity__day:hover .watch-activity__tooltip,
+.watch-activity__day:focus-visible .watch-activity__tooltip {
+  @apply flex;
+}
+
+.watch-activity__tooltip strong {
+  @apply text-xs font-semibold text-white;
+}
+
+.watch-activity__tooltip small {
+  @apply mt-0.5 text-[10px] text-gray-400;
+}
+
+.watch-activity__legend {
+  @apply mt-5 flex items-center justify-end gap-1.5 text-[10px] font-medium text-gray-500;
+}
+
+.watch-activity__legend-block {
+  @apply h-3.5 w-3.5 rounded-[3px] border border-white/5;
+}
+
+@media (max-width: 400px) {
+  .watch-activity-card {
+    @apply overflow-hidden p-4;
+  }
+
+  .watch-activity-card__header {
+    @apply gap-2;
+  }
+
+  .watch-activity {
+    @apply min-w-0;
+  }
+
+  .watch-activity__months {
+    @apply gap-0 pl-8 text-[9px];
+  }
+
+  .watch-activity__weekdays {
+    @apply mr-1.5 w-6 text-[9px];
+  }
+
+  .watch-activity__grid {
+    @apply gap-0.5;
+  }
+
+  .watch-activity__week {
+    @apply gap-0.5;
+  }
+
+  .watch-activity__day-wrapper {
+    @apply h-3 min-h-0;
+  }
+
+  .watch-activity__day {
+    @apply h-3 min-w-0 max-w-none rounded-[3px];
+  }
+
+  .watch-activity__legend {
+    @apply mt-4 gap-1;
+  }
+
+  .watch-activity__legend-block {
+    @apply h-3 w-3;
+  }
+}

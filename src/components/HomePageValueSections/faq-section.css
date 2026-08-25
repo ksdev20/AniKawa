@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config '../../../tailwind.config.mjs';
+@config '@tw-config';
 
 .anikawa-faq-section {
     @apply py-16 md:py-20;

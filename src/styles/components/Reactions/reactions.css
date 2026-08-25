@@ -1,0 +1,79 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+.episode-reactions {
+    @apply w-fit mx-5 max-w-5xl my-8 rounded-3xl border border-primary/20 bg-secondary p-6 shadow-2xl;
+}
+
+.episode-reactions.is-loading {
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+}
+
+.reaction-header {
+    @apply mb-6;
+}
+
+
+.reaction-title {
+    @apply text-xl font-bold text-white;
+}
+
+
+.reaction-description {
+    @apply mt-1 text-sm text-gray;
+}
+
+
+.reaction-grid {
+    @apply grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4;
+}
+
+
+
+.reaction-button {
+    @apply cursor-pointer relative flex flex-col items-center justify-center gap-2 rounded-2xl bg-transparent p-0 transition-all duration-200;
+
+    @apply hover:-translate-y-1;
+
+    @apply active:scale-95;
+}
+
+
+
+.reaction-image-wrapper {
+    @apply relative flex items-center justify-center;
+}
+
+
+
+.reaction-image {
+    @apply h-25 w-25 object-contain transition-transform duration-200;
+}
+
+
+.reaction-button:hover .reaction-image {
+    @apply scale-110;
+}
+
+
+
+.reaction-name {
+    @apply text-xs font-semibold text-white/80 text-center;
+}
+
+
+
+.reaction-count {
+    @apply absolute -right-3 -top-3 flex h-6 min-w-6 items-center justify-center rounded-full bg-primary px-2 text-xs font-bold text-white shadow-lg;
+}
+
+.show-reactions-button {
+    @apply mt-5 mx-auto block rounded-xl border border-primary/30 bg-primary/10 px-5 py-2 text-sm font-semibold text-white transition-all duration-200;
+
+    @apply hover:bg-primary/20 hover:border-primary;
+
+    @apply active:scale-95;
+}

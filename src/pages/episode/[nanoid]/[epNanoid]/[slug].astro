@@ -1,16 +1,20 @@
 ---
-import "@/styles/episode-pagetw.css";
+import Layout from "@/layouts/Layout.astro";
+import "@/styles/pages/episode/episode-pagetw.css";
 import { type Anime } from "@/types/mergedListTypes";
 import { getAnimeById } from "@/filters/getAnimeById";
-import HandleECClick from "@/components/EpisodeCard/EcDatabaseContact/HandleECClick";
+import RecentlyWatchedTracker from "@/components/EpisodePage/RecentlyWatchedTracker";
 import SEOHead from "@/components/SEO/SEOHead.astro";
 import { getEpImg } from "@/utils/getEpImgFallback";
-import EpisodeChangeCard from "@/components/EpisodeCard/EpisodeChangeCard.astro";
 import { frontendUrl } from "@/global_assets/globalPaths";
-import Layout from "@/layouts/Layout.astro";
-const { nanoid, slug } = Astro.params;
-const anime = await getAnimeById(nanoid) as Anime | null;
-const episode = anime?.episodes?.find((e) => e?.slug == slug);
+import YouTubeProgressTracker from "@/components/EpisodePage/YouTubeProgressTracker";
+import CommentSection from "@/components/Comments/CommentSection";
+import ReactionWidget from "@/components/EpisodePage/ReactionWidget";
+import EpisodeVotes from "@/components/EpisodePage/EpisodeVotes";
+
+const { nanoid, epNanoid, slug } = Astro.params;
+const anime = (await getAnimeById(nanoid)) as Anime | null;
+const episode = anime?.episodes?.find((e) => e?.nanoid == epNanoid);
 
 if (!anime || !episode || slug == "n-a") {
   return new Response(null, {
@@ -25,24 +29,21 @@ if (!anime || !episode || slug == "n-a") {
 const {
   slug: animeslug = "n-a",
   title: animeTitle = "Untitled",
-  scoreAlt = "Score N/A",
-  runtime,
 } = anime ?? {};
 const language = "Subtitled";
 
 //current episode details
 const {
-  nanoid: epNanoid,
   epNum,
   url,
   titleAlt: episodeTitle,
   description = "No description",
-  ratingLabel,
   air_date,
   vote_average,
   summary,
   importance,
   facts,
+  faq,
 } = episode ?? {};
 
 const currentThumbnail = getEpImg(episode);
@@ -53,11 +54,15 @@ const progressPercentage = ((epNum / totalEpisodes) * 100).toFixed(0);
 const prevObj = anime?.episodes?.[epNum - 2];
 const nextObj = anime?.episodes?.[epNum];
 
-const animeDetails = {
-  animeTitle,
-  nanoid,
-  language,
-};
+const currentIndex = anime.episodes.findIndex((ep) => ep.nanoid === epNanoid);
+
+// Episodes ordered around current episode
+const sortedEpisodes = [
+  ...anime.episodes.slice(currentIndex),
+  ...anime.episodes.slice(0, currentIndex),
+];
+
+const embedUrl = `${url}${url.includes("?") ? "&" : "?"}enablejsapi=1`;
 
 //SeoHead details
 const prevSlug = prevObj?.slug;
@@ -71,7 +76,7 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
 
 <Fragment slot="head">
   <SEOHead
-    title={`Watch {Ad-Free} ${animeTitle} - Episode ${epNum}: ${episodeTitle} | AniKawa`}
+    title={`Watch Ad-Free ${animeTitle} - Episode ${epNum}: ${episodeTitle} | AniKawa`}
     description={pageDes}
     ogDescription={pageDes}
     imageUrl={currentThumbnail}
@@ -83,25 +88,33 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
   </SEOHead>
 </Fragment>
 <Layout>
+  <RecentlyWatchedTracker animenanoid={nanoid} client:idle />
   <article id="main-episode-page" class="main-episode-page">
-    <HandleECClick animenanoid={nanoid} slug={slug} client:load />
     <section aria-labelledby="e-title" class="video-container">
       <iframe
-        id="episode-iframe"
+        id={`episode-iframe-${epNanoid}`}
         width="560"
         height="315"
-        src={url}
+        src={embedUrl}
         title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;  web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
+      <YouTubeProgressTracker
+        client:idle
+        animeId={nanoid as string}
+        episodeNanoid={episode.nanoid}
+      />
     </section>
     <section class="episode-hero-info">
       <div class="episode-kicker">
         <a href={`/show/${nanoid}/${animeslug}`}>{animeTitle}</a>
         <span>•</span>
         <span>Episode {epNum}</span>
+        <span>•</span>
+        <a href="#comments">See Comments</a>
+        <span>•</span>
+        <EpisodeVotes episodeId={epNanoid as string} client:idle />
       </div>
 
       <h1 class="episode-title">
@@ -143,62 +156,122 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
       </div>
     </section>
 
+    <ReactionWidget episodeId={epNanoid as string} client:visible />
+
+    <!-- Episode Navigation Grid -->
+
+    <section class="episode-navigation-section">
+      <div class="episode-navigation-header">
+        <div>
+          <span class="navigation-eyebrow"> EPISODE LIST </span>
+
+          <h2 class="navigation-title">All Episodes</h2>
+
+          <p class="navigation-description">
+            Browse all episodes of {animeTitle} and continue watching from where you
+            left off.
+          </p>
+        </div>
+
+        <div class="episode-count-badge">
+          {totalEpisodes} Episodes
+        </div>
+      </div>
+
+      <div class="episode-grid-scroll">
+        <div class="episode-grid-container">
+          {
+            sortedEpisodes.map((ep) => {
+              const isCurrent = ep.nanoid === epNanoid;
+
+              return (
+                <a
+                  href={`/episode/${nanoid}/${ep.nanoid}/${ep.slug}`}
+                  class:list={[
+                    "episode-grid-card",
+                    {
+                      "active-episode": isCurrent,
+                    },
+                  ]}
+                  aria-current={isCurrent ? "page" : undefined}
+                >
+                  <div class="episode-number">
+                    {isCurrent && (
+                      <span class="playing-badge">NOW PLAYING</span>
+                    )}
+
+                    <span>EP {ep.epNum}</span>
+                  </div>
+
+                  <div class="episode-grid-content">
+                    <h3>{ep.titleAlt || `Episode ${ep.epNum}`}</h3>
+
+                    {ep.air_date && <p>{ep.air_date}</p>}
+                  </div>
+
+                  <div class="episode-arrow">→</div>
+                </a>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- EP SUMMARY -->
-    {summary && <section class="episode-summary-section">
-      <div class="episode-summary-header">
-        <span class="summary-eyebrow"> EPISODE GUIDE </span>
+    {
+      summary && (
+        <section class="episode-summary-section">
+          <div class="episode-summary-header">
+            <span class="summary-eyebrow"> EPISODE GUIDE </span>
 
-        <h2 class="summary-title">What Happens In This Episode?</h2>
-      </div>
+            <h2 class="summary-title">What Happens In This Episode?</h2>
+          </div>
 
-      <div class="episode-summary-card">
-        <p>
-          {summary}
-        </p>
-      </div>
-    </section>}
+          <div class="episode-summary-card">
+            <p>{summary}</p>
+          </div>
+        </section>
+      )
+    }
 
     <!-- Why Ep Matters -->
 
-    {importance && <section class="episode-importance-section">
-      <div class="importance-header">
-        <span class="importance-eyebrow"> STORY INSIGHT </span>
+    {
+      importance && (
+        <section class="episode-importance-section">
+          <div class="importance-header">
+            <span class="importance-eyebrow"> STORY INSIGHT </span>
 
-        <h2 class="importance-title">Why This Episode Matters</h2>
-      </div>
+            <h2 class="importance-title">Why This Episode Matters</h2>
+          </div>
 
-      <div class="importance-card"><p>{importance}</p></div>
-    </section>}
+          <div class="importance-card">
+            <p>{importance}</p>
+          </div>
+        </section>
+      )
+    }
 
     <!-- Episode Trivia -->
 
-    {facts && <section class="episode-trivia-section">
-      <div class="trivia-header">
-        <span class="trivia-eyebrow"> DID YOU KNOW? </span>
+    {
+      facts && (
+        <section class="episode-trivia-section">
+          <div class="trivia-header">
+            <span class="trivia-eyebrow"> DID YOU KNOW? </span>
 
-        <h2 class="trivia-title">Facts about this Episode</h2>
-      </div>
+            <h2 class="trivia-title">Facts about this Episode</h2>
+          </div>
 
-      <div class="trivia-card">
-        <ul class="trivia-list">
-          {facts && facts.map((fact: string) => <li> {fact} </li>)}
-        </ul>
-      </div>
-    </section>}
-
-    <!-- Watch Next -->
-    <article class="episode-page-details">
-      <nav class="episode-change-section">
-        <EpisodeChangeCard
-          Obj={prevObj}
-          Obj2={{ h4: "PREVIOUS EPISODE", ...animeDetails }}
-        />
-        <EpisodeChangeCard
-          Obj={nextObj}
-          Obj2={{ h4: "NEXT EPISODE", ...animeDetails }}
-        />
-      </nav>
-    </article>
+          <div class="trivia-card">
+            <ul class="trivia-list">
+              {facts && facts.map((fact: string) => <li> {fact} </li>)}
+            </ul>
+          </div>
+        </section>
+      )
+    }
 
     <!-- Season Progress -->
     <section class="season-progress-section">
@@ -208,9 +281,7 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
         <h2 class="progress-title">Season Progress</h2>
 
         <p class="progress-description">
-          You're currently watching episode {epNum} of {
-            totalEpisodes
-          }.
+          You're currently watching episode {epNum} of {totalEpisodes}.
         </p>
       </div>
 
@@ -234,5 +305,35 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
         </div>
       </div>
     </section>
+
+    <div id="comments"></div>
+    <CommentSection episodeId={epNanoid as string} client:visible />
+
+    {
+      faq && (
+        <section class="anime-faq-section">
+          <header class="anime-faq-header">
+            {/* <span class="faq-eyebrow">FREQUENTLY ASKED QUESTIONS</span> */}
+
+            <h2 class="anime-faq-title">Questions About this Episode</h2>
+
+            {/* {faq.intro && <p class="anime-faq-description">{faq.intro}</p>} */}
+          </header>
+
+          <div class="anime-faq-list">
+            {faq.questions.map((item: any) => (
+              <details class="anime-faq-item">
+                <summary>
+                  <span>{item.question}</span>
+                  <span class="anime-faq-icon">+</span>
+                </summary>
+
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )
+    }
   </article>
 </Layout>

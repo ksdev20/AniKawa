@@ -3,57 +3,65 @@ import AnimeSliderStatic from "../AnimeSlider/AnimeSliderStatic.astro";
 const sliderData = Astro.props.info;
 ---
 
-<div class="section-header">
-  <span class="section-badge"> 💜 Recommended by AniKawa </span>
+<section class="editors-section put-margin">
+  <div class="section-header">
+    <span class="section-badge"> 💜 AniKawa Picks </span>
 
-  <h2 class="section-title">Editor's Picks</h2>
+    <h2 class="section-title">Editor's Picks</h2>
 
-  <p class="section-subtitle">
-    Not just popular anime—these are the series we genuinely believe every fan
-    should experience at least once.
-  </p>
+    <p class="section-subtitle">
+      Anime we believe every fan should experience.
+    </p>
+  </div>
+
   <AnimeSliderStatic info={sliderData} />
+
   <section class="editors-note-section">
     <div class="editors-note-container">
-      <div class="editors-note-card">
-        <span class="section-badge"> 💜 Why These Made Our List </span>
+      <h3 class="editors-note-title">Why We Chose These Anime</h3>
 
-        <h2 class="section-title">More Than Just Popular Anime</h2>
+      <div class="editors-reasons">
+        <div class="editor-reason">
+          <span>✨</span>
+          <div>
+            <h4>Unforgettable Stories</h4>
+            <p>
+              Anime with stories that stay with you long after the final
+              episode.
+            </p>
+          </div>
+        </div>
 
-        <div class="editors-note-content">
-          <p>
-            Every anime in this collection was selected for a different reason.
-            Some are hidden gems that deserve more attention, some tell stories
-            you'll remember for years, and others simply offer a viewing
-            experience that feels refreshingly different from the mainstream.
-            Rather than recommending only the most popular titles, we wanted to
-            highlight anime that surprised us, stayed with us long after the
-            credits rolled, or brought something unique to the medium.
-          </p>
+        <div class="editor-reason">
+          <span>🌌</span>
+          <div>
+            <h4>Unique Worlds & Ideas</h4>
+            <p>
+              Series that explore concepts and experiences you won't find
+              everywhere.
+            </p>
+          </div>
+        </div>
 
-          <p>
-            From the emotional journey of <strong
-              >A Place Further Than the Universe</strong
-            >
-            and the quiet mystery of <strong
-              >Shoshimin: How to Become Ordinary</strong
-            >
-            to the dreamlike storytelling of <strong>Sonny Boy</strong> and the heartfelt
-            nostalgia of <strong>Orange</strong>, each series here has earned
-            its place for a reason. You'll also find underrated fantasy
-            adventures, ambitious originals, and a few divisive picks that we
-            believe are worth experiencing and judging for yourself.
-          </p>
+        <div class="editor-reason">
+          <span>💙</span>
+          <div>
+            <h4>Emotional Impact</h4>
+            <p>
+              Shows that make you laugh, think, and genuinely connect with the
+              story.
+            </p>
+          </div>
+        </div>
 
-          <p>
-            If you're tired of seeing the same recommendations everywhere, this
-            list is our invitation to try something different. Some of these
-            anime may become your next favorite, while others might simply show
-            you a side of anime you haven't explored before—and that's exactly
-            why we chose them.
-          </p>
+        <div class="editor-reason">
+          <span>🔥</span>
+          <div>
+            <h4>Hidden Gems</h4>
+            <p>Amazing anime that deserve more attention from fans.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-</div>
+</section>

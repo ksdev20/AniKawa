@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+.main-root {
+    @apply w-full flex flex-col items-center;
+}
+
+.category-main {
+    @apply list-none w-full max-w-[1250px] px-10 flex flex-col;
+}
+
+@media (max-width: 500px) {
+    .category-main {
+        @apply px-0
+    }
+}
+
+.category-top {
+    @apply mt-12 w-full flex flex-col items-center justify-center;
+}
+
+.text-section {
+    margin-top: 0px;
+}
+
+.category-text {
+    font-family: 'Winky Sans';
+    @apply text-3xl font-medium;
+}
+
+.cat-des {
+    @apply mt-2 text-base text-[gray];
+}
+
+
+.cat-anime-card {
+    width: 17vw;
+    max-width: 200px;
+}
+
+.view-all-text-section {
+    @apply flex items-center gap-1 text-[gray] text-base font-bold cursor-pointer pr-5;
+}
+
+.view-all-text-section:hover {
+    color: white;
+}
+
+.view-all-text-section:hover .view-all-icon {
+    fill: white;
+}
+
+.cat-anime-card-first {
+    padding: 5px;
+}
+
+.cat-anime-card-inside-heading {
+    @apply line-clamp-2 text-ellipsis;
+}

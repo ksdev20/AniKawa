@@ -1,11 +1,10 @@
 import Fuse from "fuse.js";
 import { useState, useEffect, useMemo } from "react";
 import type { Anime } from "@/lib/anime/types";
-import "./searchtw.css";
-import "../../styles/NewPopALStyles.css";
+import "@/styles/pages/search/searchtw.css";
 
 import { AnimeRepository } from "@/lib/anime";
-import { getAnimeById, getEpisodeBySlug } from "@/filters/getAnimeById";
+import { getAnimeById, getEpisode } from "@/filters/getAnimeById";
 import AnimeCardReact from "../AnimeCard/AnimeCardReact";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import { useDebounce } from "use-debounce";
@@ -43,14 +42,14 @@ export default function SearchCSR() {
 
   const episodeFuse = useMemo(() => {
     const episodeOptions = {
-      keys: ["epTitle", "epSlug", "ytTitle", "description"],
+      keys: ["epTitle", "epNanoid", "ytTitle", "description"],
       threshold: 0.4,
       includeScore: true,
     };
     const episodeFlattenedList = allAnime.flatMap(a =>
       (a.episodes ?? []).map(ep => ({
         animeNanoid: a.nanoid,
-        epSlug: ep.slug,
+        epNanoid: ep.nanoid,
         ytTitle: ep.title,
         epTitle: ep.titleAlt,
         description: ep.description ?? "no description",
@@ -91,8 +90,8 @@ export default function SearchCSR() {
 
       const completeEpisodeList = await Promise.all(
         foundEpisodes.map(async (e: any) => {
-          const { epTitle, animeNanoid, epSlug, nanoid: epNanoid } = e;
-          const episode = await getEpisodeBySlug(animeNanoid, epSlug);
+          const { epTitle, animeNanoid, epNanoid } = e;
+          const episode = await getEpisode(animeNanoid, epNanoid);
           if (!episode || !epTitle || episodeIdsUsed.has(epNanoid)) return null;
           episodeIdsUsed.add(epNanoid);
           return episode;

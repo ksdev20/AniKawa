@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config '../../../tailwind.config.mjs';
+@config '@tw-config';
 
 .latest-episodes-section {
   @apply py-12 md:py-16;
@@ -19,7 +19,7 @@
 }
 
 .latest-episodes-view-all {
-  @apply text-sm font-semibold transition-colors duration-300;
+  @apply w-fit text-sm font-semibold transition-colors duration-300;
   
   color: #8c52ff;
 }

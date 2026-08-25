@@ -1,15 +1,10 @@
 ---
 export const prerender = true;
-
+import "@/styles/pages/blog/blog-page-styles.css";
+import "@/styles/pages/blog/article-page.css";
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import "../../styles/blog-page-styles.css";
-import ArticleHero from "../../components/Blog/ArticlePageComponents/ArticleHero.astro";
-import TableOfContents from "../../components/Blog/ArticlePageComponents/TableOfContents.astro";
-import ContinueExploring from "../../components/Blog/ArticlePageComponents/ContinueExploring.astro";
-import RelatedArticles from "../../components/Blog/ArticlePageComponents/RelatedArticles.astro";
-import AnimeDiscoveryCTA from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
-import EditorialNote from "../../components/Blog/ArticlePageComponents/EditorialNote.astro";
+import AnimeDiscoveryCta from "../../components/Blog/BlogPage/AnimeDiscoveryCta.astro";
 import SEOHead from "../../components/SEO/SEOHead.astro";
 
 export async function getStaticPaths() {
@@ -82,25 +77,221 @@ const pageKw = post.data.metaKeywords;
   />
 </Fragment>
 <Layout title={post.data.title} description={post.data.subTitle}>
-  <ArticleHero post={post} />
-  <div id="banner-ad-2" class="banner-ad-container"></div>
+  <!-- <ArticleHero post={post} /> -->
+
+  <section class="article-hero-section">
+    <div class="article-hero-container">
+      <div class="article-hero-content">
+        <div class="article-hero-tags">
+          {
+            post.data.categoryList.map((category: string) => (
+              <a
+                href={`/blog/category/${category
+                  .toLowerCase()
+                  .replaceAll(" ", "-")}`}
+                class="article-hero-tag"
+              >
+                {category}
+              </a>
+            ))
+          }
+        </div>
+
+        <h1 class="article-hero-title">
+          {post.data.title}
+        </h1>
+
+        <p class="article-hero-subtitle">
+          {post.data.subTitle}
+        </p>
+
+        <div class="article-hero-meta">
+          <span>
+            ✍️ {post.data.author}
+          </span>
+
+          <span>
+            📅 {post.data.date}
+          </span>
+
+          {
+            post.data.readMinutes && (
+              <span>⏱️ {post.data.readMinutes} min read</span>
+            )
+          }
+        </div>
+      </div>
+
+      <div class="article-hero-image-wrapper">
+        <img
+          src={post.data.imgLarge || post.data.img}
+          alt={post.data.title}
+          class="article-hero-image"
+          loading="eager"
+        />
+
+        <div class="article-hero-image-overlay"></div>
+      </div>
+    </div>
+  </section>
 
   {
     post.data.toc && post.data.toc.length > 0 && (
-      <TableOfContents toc={post.data.toc} />
+      <section class="article-toc-section">
+        <div class="article-toc-container">
+          <div class="article-toc-card">
+            <div class="article-toc-header">
+              <span class="article-toc-icon"> 📑 </span>
+
+              <h2 class="article-toc-title">In This Article</h2>
+            </div>
+
+            <nav class="article-toc-nav">
+              {post.data.toc.map(
+                (item: { text: string; link: string }, index: number) => (
+                  <a href={item.link} class="article-toc-link">
+                    <span class="article-toc-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span class="article-toc-text">{item.text}</span>
+                  </a>
+                ),
+              )}
+            </nav>
+          </div>
+        </div>
+      </section>
     )
   }
-  <div id="banner-ad-1" class="banner-ad-container"></div>
 
   <article class="blog-article-content prose prose-lg max-w-none text-white">
     <Content />
   </article>
 
-  <ContinueExploring categories={categoryLinks} />
+  <!-- <ContinueExploring categories={categoryLinks} /> -->
 
-  <RelatedArticles posts={relatedPosts} />
+  <section class="continue-exploring-section">
+    <div class="continue-exploring-container">
+      <div class="continue-exploring-header">
+        <span class="section-badge"> 🔎 Explore More </span>
 
-  <AnimeDiscoveryCTA />
+        <h2 class="section-title">Continue Exploring</h2>
 
-  <EditorialNote />
+        <p class="section-subtitle">
+          Discover more articles, recommendations, and anime insights from these
+          topics.
+        </p>
+      </div>
+
+      <div class="continue-exploring-grid">
+        {
+          categoryLinks.map((category: any) => (
+            <a
+              href={`/blog/category/${category.slug}`}
+              class="continue-exploring-card"
+            >
+              <div class="continue-exploring-content">
+                <h3 class="continue-exploring-title">{category.name}</h3>
+
+                <span class="continue-exploring-link">Browse Articles →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- <RelatedArticles posts={relatedPosts} /> -->
+
+  <section class="related-articles-section">
+    <div class="related-articles-container">
+      <div class="related-articles-header">
+        <span class="section-badge"> 📚 Recommended Reading </span>
+
+        <h2 class="section-title">You May Also Enjoy</h2>
+
+        <p class="section-subtitle">
+          More anime recommendations, guides, and editorials selected from the
+          AniKawa blog.
+        </p>
+      </div>
+
+      <div class="related-articles-grid">
+        {
+          relatedPosts.map((post: any) => (
+            <a href={`/blog/${post.data.slug}`} class="related-article-card">
+              <div class="related-article-image-wrapper">
+                <img
+                  src={post.data.img}
+                  alt={post.data.title}
+                  class="related-article-image"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="related-article-content">
+                <div class="related-article-tags">
+                  {post.data.categoryList
+                    .slice(0, 2)
+                    .map((category: string) => (
+                      <span>{category}</span>
+                    ))}
+                </div>
+
+                <h3 class="related-article-title">{post.data.title}</h3>
+
+                <p class="related-article-subtitle">{post.data.subTitle}</p>
+
+                <div class="related-article-meta">
+                  <span>📅 {post.data.date}</span>
+
+                  {post.data.readMinutes && (
+                    <span>⏱️ {post.data.readMinutes} min read</span>
+                  )}
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <AnimeDiscoveryCta />
+
+  <!-- <EditorialNote /> -->
+
+  <section class="editorial-note-section">
+    <div class="editorial-note-container">
+      <div class="editorial-note-card">
+        <div class="editorial-note-icon">✨</div>
+
+        <div class="editorial-note-content">
+          <span class="section-badge"> About AniKawa Editorial </span>
+
+          <h2 class="editorial-note-title">
+            Anime Fans Writing For Anime Fans
+          </h2>
+
+          <p>
+            AniKawa publishes anime recommendations, watch guides, hidden gems,
+            seasonal anime coverage, genre spotlights, and thoughtful anime
+            editorials. Our goal is simple: help anime fans discover great
+            shows, find their next favorite series, and enjoy anime with more
+            context and confidence.
+          </p>
+
+          <p>
+            Every article is created with readers in mind, focusing on useful
+            recommendations, honest insights, and beginner-friendly guidance
+            rather than clickbait lists or filler content. Whether you're new to
+            anime or have been watching for years, we aim to make discovering
+            anime easier and more enjoyable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

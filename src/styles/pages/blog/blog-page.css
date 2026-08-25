@@ -1,0 +1,388 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/*   HERO SECTION   */
+.blog-hero-section {
+    @apply relative overflow-hidden pt-20 pb-10 md:pb-15;
+}
+
+.blog-hero-container {
+    @apply mx-auto max-w-4xl px-5 text-center;
+}
+
+.blog-hero-badge {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium;
+
+    color: #8c52ff;
+    background: rgb(140 82 255 / 0.12);
+    border: 1px solid rgb(140 82 255 / 0.25);
+}
+
+.blog-hero-title {
+    @apply mt-8 text-4xl font-extrabold leading-tight text-white md:text-6xl;
+}
+
+.blog-hero-description {
+    @apply mx-auto mt-6 max-w-2xl text-base leading-8 text-gray md:text-lg;
+}
+
+.blog-hero-divider {
+    @apply mx-auto mt-10 h-px w-32;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(140, 82, 255, 0.8),
+            transparent);
+}
+
+.blog-hero-button {
+    @apply mt-10 inline-flex items-center rounded-2xl px-6 py-3 font-semibold transition-all duration-300;
+
+    background: #8c52ff;
+    color: white;
+}
+
+.blog-hero-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgb(140 82 255 / 0.35);
+}
+
+/* Decorative glow */
+
+.blog-hero-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: -250px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.08);
+
+    filter: blur(120px);
+
+    pointer-events: none;
+}
+
+/*   DiscoverAnime   */
+
+.discover-anime-section {
+    @apply py-16 md:py-24;
+}
+
+.discover-anime-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.discover-anime-header {
+    @apply mx-auto mb-12 max-w-3xl text-center;
+}
+
+.discover-anime-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.discover-anime-card {
+    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.discover-anime-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgb(140 82 255 / 0.45);
+
+    background: rgb(140 82 255 / 0.08);
+}
+
+.discover-anime-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -40px;
+    right: -40px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.12);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+.discover-anime-icon {
+    @apply text-4xl;
+}
+
+.discover-anime-card h3 {
+    @apply mt-5 text-xl font-bold text-white;
+}
+
+.discover-anime-card p {
+    @apply mt-3 leading-7 text-gray;
+}
+
+
+/*   LatestAnimeGrid   */
+
+.latest-articles-section {
+    @apply py-16 md:py-24;
+}
+
+.latest-articles-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.latest-articles-header {
+    @apply mx-auto mb-12 max-w-3xl text-center;
+}
+
+.latest-articles-grid {
+    @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.article-card {
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-300;
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgb(140 82 255 / 0.4);
+
+    background: rgb(140 82 255 / 0.06);
+}
+
+.article-card-image-wrapper {
+    @apply overflow-hidden;
+}
+
+.article-card-image {
+    @apply h-56 w-full object-cover transition-transform duration-500;
+}
+
+.article-card:hover .article-card-image {
+    transform: scale(1.05);
+}
+
+.article-card-content {
+    @apply p-5;
+}
+
+.article-card-categories {
+    @apply mb-4 flex flex-wrap gap-2;
+}
+
+.article-card-categories span {
+    @apply rounded-full px-3 py-1 text-xs font-medium;
+
+    background: rgb(140 82 255 / 0.15);
+    color: #b798ff;
+}
+
+.article-card-title {
+    @apply text-xl font-bold leading-tight text-white;
+}
+
+.article-card-subtitle {
+    @apply mt-3 line-clamp-3 leading-7 text-gray;
+}
+
+.article-card-footer {
+    @apply mt-5 flex items-center justify-between;
+}
+
+.article-card-meta {
+    @apply flex flex-wrap items-center gap-2 text-sm text-gray;
+}
+
+.article-card-arrow {
+    @apply text-lg font-bold;
+    color: #8c52ff;
+}
+
+/*   BrowseTopics   */
+
+.anime-topics-section {
+    @apply py-6 md:py-10;
+}
+
+.anime-topics-container {
+    @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.anime-topics-header {
+    @apply mx-auto mb-12 max-w-3xl text-center;
+}
+
+.anime-topics-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.anime-topic-card {
+    @apply relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 transition-all duration-300;
+}
+
+.anime-topic-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgb(140 82 255 / 0.4);
+
+    background: rgb(140 82 255 / 0.08);
+}
+
+.anime-topic-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -40px;
+    right: -40px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.12);
+
+    filter: blur(35px);
+
+    pointer-events: none;
+}
+
+.anime-topic-icon {
+    @apply text-4xl;
+}
+
+.anime-topic-card h3 {
+    @apply mt-5 text-xl font-bold text-white;
+}
+
+.anime-topic-card p {
+    @apply mt-3 leading-7 text-gray;
+}
+
+/*   BlogIntro   */
+
+
+.about-blog-section {
+    @apply py-16 md:py-24;
+}
+
+.about-blog-container {
+    @apply mx-auto max-w-5xl px-5 sm:px-6 lg:px-8;
+}
+
+.about-blog-card {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-6 md:p-10 lg:p-12;
+}
+
+.about-blog-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -120px;
+    right: -120px;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 999px;
+
+    background: rgb(140 82 255 / 0.08);
+
+    filter: blur(60px);
+
+    pointer-events: none;
+}
+
+.about-blog-header {
+    @apply mb-8 text-center;
+}
+
+.about-blog-content {
+    @apply space-y-6;
+}
+
+.about-blog-content p {
+    @apply text-base leading-8 text-gray md:text-lg;
+}
+
+.about-blog-content p:first-child {
+    @apply text-white;
+}
+
+/* Optional highlighted keywords */
+
+.about-blog-content strong {
+    color: #8c52ff;
+    font-weight: 600;
+}
+
+
+/*   BlogFaqSection   */
+
+.blog-faq-section {
+    @apply py-16 md:py-24;
+}
+
+.blog-faq-container {
+    @apply mx-auto max-w-4xl px-5 sm:px-6 lg:px-8;
+}
+
+.blog-faq-header {
+    @apply mb-10 text-center;
+}
+
+.blog-faq-list {
+    @apply flex flex-col gap-4;
+}
+
+.blog-faq-item {
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-300;
+}
+
+.blog-faq-item[open] {
+    border-color: rgb(140 82 255 / 0.35);
+}
+
+.blog-faq-item summary {
+    @apply cursor-pointer list-none p-5 text-left text-base font-semibold text-white;
+}
+
+.blog-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.blog-faq-item summary::after {
+    content: "+";
+
+    float: right;
+
+    color: #8c52ff;
+
+    font-size: 1.25rem;
+
+    font-weight: 700;
+}
+
+.blog-faq-item[open] summary::after {
+    content: "−";
+}
+
+.blog-faq-item p {
+    @apply px-5 pb-5 leading-7 text-gray;
+}

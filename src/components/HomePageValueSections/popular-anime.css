@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config '../../../tailwind.config.mjs';
+@config '@tw-config';
 
 .popular-anime-section {
     @apply py-0 md:py-3 2xl:py-6;
@@ -29,30 +29,49 @@
 
 /*why we recommend these*/
 .editors-note-section {
-    @apply py-12 md:py-16;
+    @apply mt-12 md:mt-16;
 }
+
 
 .editors-note-container {
-    @apply mx-auto max-w-5xl px-5 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-5xl px-5 md:px-6;
 }
 
-.editors-note-card {
-    @apply rounded-3xl border border-white/10 p-6 md:p-8;
 
-    background: linear-gradient(180deg,
-            rgb(140 82 255 / 0.08),
-            rgb(255 255 255 / 0.03));
+.editors-note-title {
+    @apply text-center text-2xl font-bold tracking-tight text-white md:text-3xl;
 }
 
-.editors-note-content {
-    @apply mt-6 space-y-5;
+
+.editors-reasons {
+    @apply mt-8 grid gap-4 md:grid-cols-2;
 }
 
-.editors-note-content p {
-    @apply leading-8 text-gray;
+
+.editor-reason {
+    @apply flex gap-4 rounded-2xl border border-white/10 p-5 transition-all duration-300;
+
+    background: rgb(255 255 255 / 0.04);
 }
 
-.editors-note-content strong {
-    color: white;
-    font-weight: 600;
+
+.editor-reason:hover {
+    @apply -translate-y-1 border-white/20;
+}
+
+
+.editor-reason span {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xl;
+
+    background: rgb(140 82 255 / 0.15);
+}
+
+
+.editor-reason h4 {
+    @apply text-base font-semibold text-white;
+}
+
+
+.editor-reason p {
+    @apply mt-1 text-sm leading-6 text-gray-400;
 }

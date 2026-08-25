@@ -1,12 +1,53 @@
 ---
-import SEOHead from "../../components/SEO/SEOHead.astro";
-import WatHisCSR from "../../components/watchlist-history/WatHisCSR";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import HistoryBrowser from "@/components/HistoryPage/HistoryBrowser";
+import "@/styles/pages/history/index.css";
+import { ClockCounterClockwiseIcon } from "@phosphor-icons/react/dist/icons/ClockCounterClockwise";
+import { frontendUrl } from "@/global_assets/globalPaths";
+import SEOHead from "@/components/SEO/SEOHead.astro";
+
+const title = "Episode History | Anikawa";
+const description =
+  "Browse your recently watched anime episodes, find where you left off, and explore your complete watch history.";
+const pageUrl = `${frontendUrl}/history`;
 ---
 
-<Fragment slot="head">
-  <SEOHead title="Your History | Anikawa" />
+<Fragment>
+  <SEOHead
+    title={title}
+    description={description}
+    ogDescription={description}
+    url={pageUrl}
+  />
 </Fragment>
 <Layout>
-  <WatHisCSR caller="h" client:load />
+  <main class="history-page">
+    <div class="history-page__container">
+      <!-- Static page header -->
+      <header class="history-page__header">
+        <div class="history-page__heading">
+          <span class="history-page__eyebrow">
+            <span aria-hidden="true">◷</span>
+            Your Watch History
+          </span>
+
+          <h1 class="history-page__title">Episode History</h1>
+
+          <p class="history-page__subtitle">
+            Revisit what you've watched and pick up exactly where you left off.
+          </p>
+        </div>
+
+        <div class="history-page__decoration" aria-hidden="true">
+          <span class="history-page__decoration-icon">
+            <ClockCounterClockwiseIcon size={32} />
+          </span>
+          <span class="history-page__decoration-glow"></span>
+        </div>
+      </header>
+
+      <!-- Interactive island -->
+      <HistoryBrowser client:load />
+    </div>
+  </main>
 </Layout>

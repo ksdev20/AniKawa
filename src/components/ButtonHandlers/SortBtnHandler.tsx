@@ -50,7 +50,7 @@ export default function SortBtnHandler({ watHisAsking = false }: prop) {
         <div className="filter-name">SORT</div>
       </div>
       <div className={`dropdown-new-pop ${showDd ? "active" : ""}`}>
-        {buttons.map((btn, i) => {
+        {buttons.map((btn) => {
           return (
             <a
               key={btn.filter}

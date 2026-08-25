@@ -1,15 +1,250 @@
 ---
-import { categories } from "../../../config/categoryConfig";
-import "../../../styles/category/category.css";
+import "../../../styles/pages/category/category.css";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 import { getCatHead } from "../../../config/headConfig";
 import Layout from "../../../layouts/Layout.astro";
+import Hero from "@/components/CategoryPage/Hero.astro";
+import "../../../styles/category/category-page.css";
+import AnimeCardStaticTmdbVer from "@/components/AnimeCard/AnimeCardStaticTmdbVer.astro";
+import { getFilteredAnime } from "@/filters/animeFilterMainTmdbVer";
 const { mainCategory } = Astro.params;
+const category = mainCategory?.toLocaleLowerCase();
 
 const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getCatHead(
   mainCategory as string,
 );
+
+// const data = getCategoryPageData(mainCategory);
+
+const sectionTitle = "Find Your Next Watch";
+
+const sectionDescription =
+  "Explore anime based on your mood, from intense battles to emotional journeys.";
+
+const moods = [
+  {
+    icon: "🔥",
+    title: "High Energy",
+    description: "Fast battles and nonstop excitement.",
+    count: "120+ Anime",
+    slug: "high-energy",
+  },
+  {
+    icon: "🌑",
+    title: "Dark & Intense",
+    description: "Serious stories with heavier themes.",
+    count: "90+ Anime",
+    slug: "dark-intense",
+  },
+  {
+    icon: "❤️",
+    title: "Emotional",
+    description: "Character-driven journeys and heartfelt stories.",
+    count: "150+ Anime",
+    slug: "emotional",
+  },
+  {
+    icon: "😂",
+    title: "Fun & Light",
+    description: "Comedy, relaxing moments and good vibes.",
+    count: "80+ Anime",
+    slug: "fun-light",
+  },
+  {
+    icon: "🏰",
+    title: "Fantasy Worlds",
+    description: "Magic, adventures and unforgettable worlds.",
+    count: "110+ Anime",
+    slug: "fantasy-worlds",
+  },
+  {
+    icon: "🧠",
+    title: "Mind Games",
+    description: "Mystery, strategy and psychological stories.",
+    count: "70+ Anime",
+    slug: "mind-games",
+  },
+];
+
+/*
+  AnimeFormatSection.astro
+
+  Dummy data for now.
+  Later this will come from your format filtering engine.
+*/
+
+const sectionTitle2 = `Browse ${mainCategory} Anime By Format`;
+
+const sectionDescription2 =
+  "Explore anime based on how you want to watch, from TV series to movies and short stories.";
+
+
+const formats = [
+  {
+    icon: "📺",
+    title: "TV Series",
+    description: `Long-running ${category} stories with episodes and seasons.`,
+    count: "320+ Anime",
+    slug: "tv",
+  },
+  {
+    icon: "🎬",
+    title: "Movies",
+    description: `Cinematic ${category} experiences with complete stories.`,
+    count: "80+ Anime",
+    slug: "movie",
+  },
+  {
+    icon: "⚡",
+    title: "Short Anime",
+    description: `Quick ${category} stories you can finish faster.`,
+    count: "120+ Anime",
+    slug: "short",
+  },
+  {
+    icon: "📚",
+    title: "Long Series",
+    description: `Epic ${category} journeys with many episodes to explore.`,
+    count: "40+ Anime",
+    slug: "long",
+  },
+  {
+    icon: "✅",
+    title: "Completed Anime",
+    description: `Finished ${category} stories ready for binge watching.`,
+    count: "250+ Anime",
+    slug: "completed",
+  },
+  {
+    icon: "🆕",
+    title: "Latest Releases",
+    description: `Recently released ${category} anime titles.`,
+    count: "35+ Anime",
+    slug: "latest",
+  },
+];
+const sectionTitle3 = `Browse ${mainCategory} Anime By Status`;
+
+const sectionDescription3 =
+  "Find anime based on their current release status, from ongoing series to completed stories.";
+
+const statuses = [
+  {
+    icon: "🟢",
+    title: "Currently Airing",
+    description: `Follow ongoing ${category} anime with new episodes releasing regularly.`,
+    count: "45+ Anime",
+    slug: "airing",
+  },
+  {
+    icon: "✅",
+    title: "Completed Anime",
+    description: `Finished ${category} stories ready for complete binge watching.`,
+    count: "250+ Anime",
+    slug: "completed",
+  },
+  {
+    icon: "🆕",
+    title: "Upcoming Anime",
+    description: `Discover upcoming ${category} anime scheduled for future releases.`,
+    count: "30+ Anime",
+    slug: "upcoming",
+  },
+  {
+    icon: "⏸️",
+    title: "Hiatus / Paused",
+    description: `${category} anime currently waiting for future updates.`,
+    count: "15+ Anime",
+    slug: "hiatus",
+  },
+  {
+    icon: "📅",
+    title: "Recently Added",
+    description: `Explore the latest ${category} titles added to Anikawa.`,
+    count: "50+ Anime",
+    slug: "recent",
+  },
+  {
+    icon: "🔥",
+    title: "Trending Now",
+    description: `Popular ${category} anime getting attention from viewers.`,
+    count: "70+ Anime",
+    slug: "trending",
+  },
+];
+
+const sectionTitle4 = `🔥 Popular ${mainCategory} Anime`;
+
+const sectionDescription4 = `Discover the most popular ${category} anime watched and loved by fans worldwide.`;
+
+const sectionTitle5 = `📨 Recently Released ${mainCategory} Anime`;
+
+const sectionDescription5 =
+  `Discover the most recently released ${category} anime waiting to be watched and loved by fans worldwide.`;
+
+const info = {
+  smallH: sectionDescription4,
+  bigH: sectionTitle4,
+  filterName: "isPopular",
+};
+const info2 = {
+  smallH: sectionDescription5,
+  bigH: sectionTitle5,
+  filterName: "beginnerAnime",
+  // filterName: "sameMonthAnimeGen",
+};
+
+// ANIME DISCOVERY SECTION
+
+const totalAnime = 450;
+
+const sortOptions = ["Popular", "Highest Rated", "Newest", "A-Z"];
+
+const statusOptions = ["All", "Currently Airing", "Completed", "Upcoming"];
+
+const formatOptions = ["All", "TV", "Movie", "OVA", "ONA"];
+
+const years = ["2026", "2025", "2024", "2023", "2022"];
+
+const ratingOptions = ["8+ Rating", "7+ Rating", "6+ Rating"];
+
+const episodeOptions = [
+  "Short (<12 Episodes)",
+  "Medium (12-50 Episodes)",
+  "Long (50+ Episodes)",
+];
+
+/*
+  Dummy data.
+  Replace with your filtered anime results later.
+*/
+
+const animeList = await getFilteredAnime("matchCategories", {categoryA: mainCategory});
+
+// FAQ SECTION
+const faqs = [
+  {
+    question: `What is ${mainCategory} anime?`,
+    answer: `${mainCategory} anime features stories focused on intense conflicts, battles, adventures, and exciting challenges.`,
+  },
+  {
+    question: `Where can I watch ${mainCategory} anime?`,
+    answer: `You can explore ${category} anime on Anikawa with categories, filters, and discovery tools to find titles you enjoy.`,
+  },
+  {
+    question: `What are the best ${category} anime to watch?`,
+    answer: `The best ${category} anime depends on your preferences. Use popularity, rating, mood, and format filters to discover titles that match your taste.`,
+  },
+  {
+    question: `Are there completed ${category} anime available?`,
+    answer: `Yes, you can browse completed ${category} anime using the status filters and find finished stories ready to watch.`,
+  },
+  {
+    question: `Can I find short ${category} anime?`,
+    answer: `Yes, use format and episode filters to discover shorter ${category} anime that are easier to finish.`,
+  },
+];
 ---
 
 <Fragment slot="head">
@@ -27,37 +262,330 @@ const { pageTitle, pageDescription, keywords, pageUrl, backdrop } = getCatHead(
 </Fragment>
 <Layout>
   <main class="main-root">
-    <div id="banner-ad-1" class="banner-ad-container"></div>
-    <div id="banner-ad-2" class="banner-ad-container"></div>
-    <section class="category-main">
-      <header class="category-top">
-        <h2 class="category-text">
-          {mainCategory}
-        </h2>
-        <h3 class="category-text cat-des">
-          Start Watching {mainCategory} Hits
-        </h3>
-      </header>
-    </section>
-    <div class="category-main">
-      {
-        categories.map((cat) => {
-          if (cat == mainCategory) return null;
+    <Hero />
+    <!-- ANIME BY MOOD SECTION -->
 
-          return (
-            <AnimeSliderStatic
-              info={{
-                bigH: cat,
-                smallH: "",
-                filterName: "matchCategories",
-                categoryA: mainCategory,
-                categoryB: cat,
-                forCategoryPage: true,
-              }}
-            />
-          );
-        })
-      }
-    </div>
+    <section class="anime-mood-section">
+      <!-- Header -->
+
+      <header class="anime-mood-header">
+        <h2 class="anime-mood-title">
+          {sectionTitle}
+        </h2>
+
+        <p class="anime-mood-description">
+          {sectionDescription}
+        </p>
+      </header>
+
+      <!-- Mood Cards -->
+
+      <div class="anime-mood-grid">
+        {
+          moods.map((mood) => (
+            <a href={`/category/${mainCategory}?mood=${mood.slug}`} class="anime-mood-card">
+              <span class="anime-mood-icon">{mood.icon}</span>
+
+              <h3 class="anime-mood-card-title">{mood.title}</h3>
+
+              <p class="anime-mood-card-description">{mood.description}</p>
+
+              <div class="anime-mood-card-footer">
+                <span>{mood.count}</span>
+
+                <span>Explore →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ANIME BY FORMAT SECTION -->
+    <section class="anime-mood-section">
+      <!-- Header -->
+
+      <header class="anime-mood-header">
+        <h2 class="anime-mood-title">
+          {sectionTitle2}
+        </h2>
+
+        <p class="anime-mood-description">
+          {sectionDescription2}
+        </p>
+      </header>
+
+      <!-- Format Cards -->
+
+      <div class="anime-mood-grid">
+        {
+          formats.map((format) => (
+            <a href={`/category/${mainCategory}?format=${format.slug}`} class="anime-mood-card">
+              <span class="anime-mood-icon">{format.icon}</span>
+
+              <h3 class="anime-mood-card-title">{format.title}</h3>
+
+              <p class="anime-mood-card-description">{format.description}</p>
+
+              <div class="anime-mood-card-footer">
+                <span>{format.count}</span>
+
+                <span>Explore →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ANIME BY STATUS SECTION -->
+    <section class="anime-mood-section">
+      <!-- Header -->
+
+      <header class="anime-mood-header">
+        <h2 class="anime-mood-title">
+          {sectionTitle3}
+        </h2>
+
+        <p class="anime-mood-description">
+          {sectionDescription3}
+        </p>
+      </header>
+
+      <!-- Status Cards -->
+
+      <div class="anime-mood-grid">
+        {
+          statuses.map((status) => (
+            <a href={`/category/${mainCategory}?status=${status.slug}`} class="anime-mood-card">
+              <span class="anime-mood-icon">{status.icon}</span>
+
+              <h3 class="anime-mood-card-title">{status.title}</h3>
+
+              <p class="anime-mood-card-description">{status.description}</p>
+
+              <div class="anime-mood-card-footer">
+                <span>{status.count}</span>
+
+                <span>Explore →</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ANIME SLIDERS SECTION -->
+    <section class="popular-anime-section">
+      <header class="popular-anime-header">
+        <h2 class="popular-anime-title">
+          {sectionTitle}
+        </h2>
+
+        <p class="popular-anime-description">
+          {sectionDescription}
+        </p>
+      </header>
+
+      <AnimeSliderStatic info={info} forCategory={true} />
+
+      <AnimeSliderStatic info={info2} forCategory={true} />
+    </section>
+
+    <div id="anime-list"></div>
+    <!-- ANIME DISCOVERY SECTION -->
+    <section class="anime-discovery-section">
+      <!-- Header -->
+
+      <header class="anime-discovery-header">
+        <h2 class="anime-discovery-title">
+          Explore {mainCategory} Anime
+        </h2>
+
+        <p class="anime-discovery-count">
+          {totalAnime}+ {mainCategory} Anime Available
+        </p>
+      </header>
+
+      <!-- Controls -->
+
+      <div class="anime-discovery-controls">
+        <!-- Search -->
+
+        <div class="anime-search-box">
+          <label> Search Anime </label>
+
+          <input
+            type="search"
+            placeholder={`Search ${mainCategory} Anime...`}
+          />
+        </div>
+
+        <!-- Filter Toggle (mobile) -->
+
+        <button class="anime-filter-toggle"> ⚙ Filters & Sort </button>
+
+        <!-- Filter Panel -->
+
+        <div class="anime-filter-panel">
+          <!-- Sort -->
+
+          <div class="anime-filter-group">
+            <label> Sort By </label>
+
+            <select class="anime-sort-select">
+              {
+                sortOptions.map((option) => (
+                  <option value={option}>{option}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Status -->
+
+          <div class="anime-filter-group">
+            <label> Status </label>
+
+            <select class="anime-filter-select">
+              {
+                statusOptions.map((status) => (
+                  <option value={status}>{status}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Format -->
+
+          <div class="anime-filter-group">
+            <label> Format </label>
+
+            <select class="anime-filter-select">
+              {
+                formatOptions.map((format) => (
+                  <option value={format}>{format}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Year -->
+
+          <div class="anime-filter-group">
+            <label> Release Year </label>
+
+            <select class="anime-filter-select">
+              {years.map((year) => <option value={year}>{year}</option>)}
+            </select>
+          </div>
+
+          <!-- Rating -->
+
+          <div class="anime-filter-group">
+            <label> Rating </label>
+
+            <select class="anime-filter-select">
+              {
+                ratingOptions.map((rating) => (
+                  <option value={rating}>{rating}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Episodes -->
+
+          <div class="anime-filter-group">
+            <label> Episode Length </label>
+
+            <select class="anime-filter-select">
+              {
+                episodeOptions.map((episode) => (
+                  <option value={episode}>{episode}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <!-- Apply -->
+
+          <button class="apply-filter-button"> Apply Filters </button>
+        </div>
+      </div>
+
+      <!-- Active Filters -->
+
+      <div class="anime-active-filters">
+        <span> Filters: </span>
+
+        <button> Completed × </button>
+
+        <button> 2025 × </button>
+
+        <button> 8+ Rating × </button>
+
+        <button> Clear All </button>
+      </div>
+
+      <!-- Result Info -->
+
+      <div class="anime-results-info">
+        Showing 1-24 of {totalAnime} Anime
+      </div>
+
+      <!-- Anime Grid -->
+
+      <div class="anime-discovery-grid">
+        {
+          animeList.map((anime) => (
+            <AnimeCardStaticTmdbVer anime={anime} forCategory={true} />
+          ))
+        }
+      </div>
+
+      <!-- Pagination -->
+
+      <div class="anime-pagination">
+        <button> Previous </button>
+
+        <button> 1 </button>
+
+        <button> 2 </button>
+
+        <button> 3 </button>
+
+        <button> Next </button>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="anime-faq-section">
+      <header class="anime-faq-header">
+        <h2 class="anime-faq-title">
+          Frequently Asked Questions About {mainCategory} Anime
+        </h2>
+
+        <p class="anime-faq-description">
+          Learn more about {mainCategory?.toLowerCase()} anime and discover new titles.
+        </p>
+      </header>
+
+      <div class="anime-faq-list">
+        {
+          faqs.map((faq) => (
+            <details class="anime-faq-item">
+              <summary>
+                <span>{faq.question}</span>
+
+                <span class="anime-faq-icon">+</span>
+              </summary>
+
+              <p>{faq.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
   </main>
 </Layout>

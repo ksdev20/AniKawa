@@ -69,6 +69,6 @@ export const blnItems = [
     },
 ];
 
-export const alnItems: { label: string }[] = [
-    { label: 'Watchlist' }, { label: 'History' }, { label: 'Logout' }
+export const alnItems: { label: string, icon: string, link?: string }[] = [
+    { label: 'Settings', icon: "settings", link: "/profile/settings" }, { label: 'Episodes History', icon: "history", link: "/history" }, { label: 'Logout', icon: "logout" }
 ];

@@ -1,0 +1,1025 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+
+/* =========================================================
+   DELETE ACCOUNT
+   Part 1/4
+   Card foundation, header, buttons & loading
+   ========================================================= */
+
+
+/* =========================================================
+   Card
+   ========================================================= */
+
+.delete-account-card {
+    @apply w-full overflow-hidden rounded-3xl border border-red-500/20 bg-secondary;
+}
+
+.delete-account-card__header {
+    @apply flex items-start gap-4 border-b border-border px-7 py-7;
+}
+
+.delete-account-card__icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-red-500/20 bg-red-500/10 text-red-400;
+}
+
+.delete-account-card__icon svg {
+    @apply h-6 w-6;
+}
+
+.delete-account-card__heading {
+    @apply min-w-0;
+}
+
+.delete-account-card__title {
+    @apply font-winky text-xl font-semibold leading-tight text-white;
+}
+
+.delete-account-card__description {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-gray;
+}
+
+.delete-account-card__loading {
+    @apply px-7 py-7 text-sm text-gray;
+}
+
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.delete-account-card__button {
+    @apply inline-flex min-h-11 items-center justify-center rounded-xl mx-5 my-3 px-5 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.delete-account-card__button:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-secondary;
+}
+
+.delete-account-card__button--primary {
+    @apply bg-primary text-white hover:bg-primary/90;
+}
+
+.delete-account-card__button--secondary {
+    @apply border border-border bg-surfaceLight text-white hover:border-accent/40 hover:bg-surface;
+}
+
+.delete-account-card__button--danger {
+    @apply border border-red-500/30 bg-red-500/10 text-red-400 hover:border-red-500/50 hover:bg-red-500/15 hover:text-red-300;
+}
+
+.delete-account-card__button--danger:focus-visible {
+    @apply ring-red-500;
+}
+
+
+/* =========================================================
+   Generic responsive card adjustments
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .delete-account-card {
+        @apply rounded-2xl;
+    }
+
+    .delete-account-card__header {
+        @apply gap-3 px-5 py-5;
+    }
+
+    .delete-account-card__icon {
+        @apply h-10 w-10 rounded-xl;
+    }
+
+    .delete-account-card__icon svg {
+        @apply h-5 w-5;
+    }
+
+    .delete-account-card__title {
+        @apply text-lg;
+    }
+
+    .delete-account-card__description {
+        @apply text-xs leading-5;
+    }
+
+    .delete-account-card__loading {
+        @apply px-5 py-5;
+    }
+
+    .delete-account-card__button {
+        @apply min-h-10 px-4 py-2.5;
+    }
+}
+
+/* =========================================================
+   DELETE ACCOUNT
+   Part 2/4
+   Pending state, status steps, countdown & notices
+   ========================================================= */
+
+
+/* =========================================================
+   Pending container
+   ========================================================= */
+
+.delete-account-pending {
+    @apply space-y-7 px-7 py-7;
+}
+
+.delete-account-pending__intro {
+    @apply flex items-start justify-between gap-5;
+}
+
+.delete-account-pending__title {
+    @apply font-winky text-lg font-semibold leading-tight text-white;
+}
+
+.delete-account-pending__description {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-gray;
+}
+
+.delete-account-pending__badge {
+    @apply shrink-0 rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-xs font-semibold text-amber-400;
+}
+
+.delete-account-pending__badge--ready {
+    @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+
+/* =========================================================
+   Status steps
+   ========================================================= */
+
+.delete-account-status {
+    @apply rounded-2xl border border-border bg-surface p-5;
+}
+
+.delete-account-status__header {
+    @apply mb-5;
+}
+
+.delete-account-status__eyebrow {
+    @apply text-xs font-semibold uppercase tracking-wider text-accent;
+}
+
+.delete-account-status__title {
+    @apply mt-1 font-winky text-base font-semibold text-white;
+}
+
+.delete-account-status__steps {
+    @apply m-0 list-none space-y-3 p-0;
+}
+
+.delete-account-status__step {
+    @apply relative flex gap-4 rounded-xl border border-border bg-secondary p-4 transition-colors duration-200;
+}
+
+.delete-account-status__step--complete {
+    @apply border-emerald-500/15;
+}
+
+.delete-account-status__step--active {
+    @apply border-primary/25;
+}
+
+.delete-account-status__step--pending {
+    @apply opacity-80;
+}
+
+.delete-account-status__step-indicator {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-surfaceLight text-xs font-bold text-gray;
+}
+
+.delete-account-status__step--complete .delete-account-status__step-indicator {
+    @apply border-emerald-500/30 bg-emerald-500/10 text-emerald-400;
+}
+
+.delete-account-status__step--active .delete-account-status__step-indicator {
+    @apply border-primary/30 bg-primary/10 text-accent;
+}
+
+.delete-account-status__step-indicator svg {
+    @apply h-4 w-4;
+}
+
+.delete-account-status__step-content {
+    @apply min-w-0 flex-1;
+}
+
+.delete-account-status__step-heading {
+    @apply flex items-center justify-between gap-3;
+}
+
+.delete-account-status__step-title {
+    @apply text-sm font-semibold text-white;
+}
+
+.delete-account-status__step-state {
+    @apply shrink-0 text-xs font-medium text-gray;
+}
+
+.delete-account-status__step--complete .delete-account-status__step-state {
+    @apply text-emerald-400;
+}
+
+.delete-account-status__step--active .delete-account-status__step-state {
+    @apply text-accent;
+}
+
+.delete-account-status__step-description {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+
+/* =========================================================
+   Countdown
+   ========================================================= */
+
+.delete-account-pending__countdown {
+    @apply rounded-2xl border border-primary/20 bg-primary/5 p-5;
+}
+
+.delete-account-pending__countdown-header {
+    @apply flex items-start justify-between gap-4;
+}
+
+.delete-account-pending__countdown-label {
+    @apply text-sm font-semibold text-white;
+}
+
+.delete-account-pending__countdown-description {
+    @apply mt-1 max-w-xl text-xs leading-5 text-gray;
+}
+
+.delete-account-pending__countdown-header>svg {
+    @apply h-5 w-5 shrink-0 text-accent;
+}
+
+.delete-account-pending__countdown-value {
+    @apply mt-5 font-mono text-3xl font-bold tracking-tight text-white;
+    font-variant-numeric: tabular-nums;
+}
+
+.delete-account-pending__progress {
+    @apply mt-5 h-2 w-full overflow-hidden rounded-full bg-surfaceLight;
+}
+
+.delete-account-pending__progress-bar {
+    @apply h-full rounded-full bg-primary transition-[width] duration-1000 ease-linear;
+}
+
+.delete-account-pending__countdown-footer {
+    @apply mt-3 flex items-center justify-between gap-4 text-xs text-gray;
+}
+
+
+/* =========================================================
+   Ready state
+   ========================================================= */
+
+.delete-account-pending__ready {
+    @apply flex items-start gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-5;
+}
+
+.delete-account-pending__ready-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+.delete-account-pending__ready-icon svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-pending__ready h3 {
+    @apply text-sm font-semibold text-emerald-300;
+}
+
+.delete-account-pending__ready p {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+
+/* =========================================================
+   Comment preservation notice
+   ========================================================= */
+
+.delete-account-pending__comment-note {
+    @apply flex items-start gap-4 rounded-2xl border border-border bg-surface p-5;
+}
+
+.delete-account-pending__comment-note-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-accent;
+}
+
+.delete-account-pending__comment-note-icon svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-pending__comment-note h3 {
+    @apply text-sm font-semibold text-white;
+}
+
+.delete-account-pending__comment-note p {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+.delete-account-pending__comment-note strong {
+    @apply font-semibold text-white;
+}
+
+
+/* =========================================================
+   Errors
+   ========================================================= */
+
+.delete-account-pending__error {
+    @apply rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm leading-5 text-red-400;
+}
+
+
+/* =========================================================
+   Pending actions
+   ========================================================= */
+
+.delete-account-pending__actions {
+    @apply flex flex-wrap items-center justify-end gap-3 border-t border-border pt-6;
+}
+
+
+/* =========================================================
+   Responsive pending state
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .delete-account-pending {
+        @apply space-y-5 px-5 py-5;
+    }
+
+    .delete-account-pending__intro {
+        @apply flex-col gap-3;
+    }
+
+    .delete-account-pending__description {
+        @apply text-xs leading-5;
+    }
+
+    .delete-account-status {
+        @apply p-4;
+    }
+
+    .delete-account-status__step {
+        @apply gap-3 p-3;
+    }
+
+    .delete-account-status__step-indicator {
+        @apply h-8 w-8;
+    }
+
+    .delete-account-status__step-heading {
+        @apply items-start;
+    }
+
+    .delete-account-status__step-state {
+        @apply text-[11px];
+    }
+
+    .delete-account-pending__countdown {
+        @apply p-4;
+    }
+
+    .delete-account-pending__countdown-value {
+        @apply text-2xl;
+    }
+
+    .delete-account-pending__countdown-footer {
+        @apply flex-col items-start gap-1;
+    }
+
+    .delete-account-pending__ready,
+    .delete-account-pending__comment-note {
+        @apply gap-3 p-4;
+    }
+
+    .delete-account-pending__ready-icon,
+    .delete-account-pending__comment-note-icon {
+        @apply h-9 w-9 rounded-lg;
+    }
+
+    .delete-account-pending__actions {
+        @apply flex-col items-stretch;
+    }
+
+    .delete-account-pending__actions>.delete-account-card__button,
+    .delete-account-pending__actions>* {
+        @apply w-full;
+    }
+}
+
+/* =========================================================
+   DELETE ACCOUNT
+   Part 3/4
+   Radix dialogs, overlays, forms & request states
+   ========================================================= */
+
+
+/* =========================================================
+   Dialog overlay
+   ========================================================= */
+
+.delete-account-modal__overlay {
+    @apply fixed inset-0 z-50 bg-black/75;
+    backdrop-filter: blur(12px);
+}
+
+.delete-account-modal__overlay[data-state="open"] {
+    animation: delete-account-fade-in 200ms ease-out;
+}
+
+.delete-account-modal__overlay[data-state="closed"] {
+    animation: delete-account-fade-out 150ms ease-in;
+}
+
+
+/* =========================================================
+   Dialog shell
+   ========================================================= */
+
+.delete-account-modal__dialog {
+    @apply fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-xl overflow-hidden rounded-3xl border border-border bg-secondary text-white;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+    transform: translate(-50%, -50%);
+}
+
+.delete-account-modal__dialog[data-state="open"] {
+    animation:
+        delete-account-dialog-in 200ms ease-out;
+}
+
+.delete-account-modal__dialog[data-state="closed"] {
+    animation:
+        delete-account-dialog-out 150ms ease-in;
+}
+
+.delete-account-modal__header {
+    @apply flex items-start gap-4 border-b border-border px-7 py-7;
+}
+
+.delete-account-modal__icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl;
+}
+
+.delete-account-modal__icon svg {
+    @apply h-6 w-6;
+}
+
+.delete-account-modal__icon--danger {
+    @apply border border-red-500/20 bg-red-500/10 text-red-400;
+}
+
+.delete-account-modal__title {
+    @apply font-winky text-xl font-semibold leading-tight text-white;
+}
+
+.delete-account-modal__description {
+    @apply mt-2 text-sm leading-6 text-gray;
+}
+
+
+/* =========================================================
+   Close button
+   ========================================================= */
+
+.delete-account-modal__close {
+    @apply absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-xl text-gray transition-colors duration-200 hover:bg-surfaceLight hover:text-white disabled:pointer-events-none disabled:opacity-50;
+}
+
+.delete-account-modal__close svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-modal__close:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-secondary;
+}
+
+
+/* =========================================================
+   Warning block
+   ========================================================= */
+
+.delete-account-modal__warning {
+    @apply mx-7 mt-6 flex items-start gap-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5;
+}
+
+.delete-account-modal__warning-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-500/20 bg-amber-500/10 text-amber-400;
+}
+
+.delete-account-modal__warning-icon svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-modal__warning-title {
+    @apply text-sm font-semibold text-amber-300;
+}
+
+.delete-account-modal__warning-text {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+
+/* =========================================================
+   Form
+   ========================================================= */
+
+.delete-account-modal__form {
+    @apply px-7 py-7;
+}
+
+.delete-account-modal__field {
+    @apply space-y-2;
+}
+
+.delete-account-modal__label {
+    @apply block text-sm font-medium text-white;
+}
+
+.delete-account-modal__label strong {
+    @apply font-bold text-red-400;
+}
+
+.delete-account-modal__input {
+    @apply h-12 w-full rounded-xl border border-border bg-surface px-4 text-sm text-white placeholder:text-gray transition-colors duration-200;
+}
+
+.delete-account-modal__input:hover {
+    @apply border-surfaceLight;
+}
+
+.delete-account-modal__input:focus {
+    @apply border-primary outline-none ring-2 ring-primary/20;
+}
+
+.delete-account-modal__input:disabled {
+    @apply cursor-not-allowed opacity-60;
+}
+
+
+/* =========================================================
+   Error
+   ========================================================= */
+
+.delete-account-modal__error {
+    @apply mt-4 rounded-xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm leading-5 text-red-400;
+}
+
+
+/* =========================================================
+   Actions
+   ========================================================= */
+
+.delete-account-modal__actions {
+    @apply mt-6 flex items-center justify-end gap-3;
+}
+
+
+/* =========================================================
+   Success state
+   ========================================================= */
+
+.delete-account-modal__success {
+    @apply flex items-start gap-4 border-b border-border px-7 py-7;
+}
+
+.delete-account-modal__success-icon {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+.delete-account-modal__success-icon svg {
+    @apply h-6 w-6;
+}
+
+
+/* =========================================================
+   Success steps
+   ========================================================= */
+
+.delete-account-modal__success-steps {
+    @apply space-y-3 px-7 py-6;
+}
+
+.delete-account-modal__success-step {
+    @apply flex items-start gap-4 rounded-xl border border-border bg-surface p-4;
+}
+
+.delete-account-modal__success-step-icon {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+.delete-account-modal__success-step-icon svg {
+    @apply h-4 w-4;
+}
+
+.delete-account-modal__success-step-title {
+    @apply text-sm font-semibold text-white;
+}
+
+.delete-account-modal__success-step-description {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+
+/* =========================================================
+   Information block
+   ========================================================= */
+
+.delete-account-modal__info {
+    @apply mx-7 flex items-start gap-4 rounded-2xl border border-primary/20 bg-primary/5 p-5;
+}
+
+.delete-account-modal__info-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-accent;
+}
+
+.delete-account-modal__info-icon svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-modal__info-title {
+    @apply text-sm font-semibold text-white;
+}
+
+.delete-account-modal__info-text {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+.delete-account-modal__success+.delete-account-modal__success-steps+.delete-account-modal__info+.delete-account-modal__actions {
+    @apply px-7 pb-7;
+}
+
+
+/* =========================================================
+   Dialog animations
+   ========================================================= */
+
+@keyframes delete-account-fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes delete-account-fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes delete-account-dialog-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes delete-account-dialog-out {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+}
+
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .delete-account-modal__overlay,
+    .delete-account-modal__dialog {
+        animation: none !important;
+    }
+
+    .delete-account-card__button,
+    .delete-account-modal__close,
+    .delete-account-modal__input,
+    .delete-account-pending__progress-bar {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   Responsive dialogs
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .delete-account-modal__dialog {
+        @apply w-[calc(100%-1.5rem)] max-h-[calc(100vh-1.5rem)] overflow-y-auto rounded-2xl;
+    }
+
+    .delete-account-modal__header,
+    .delete-account-modal__success {
+        @apply gap-3 px-5 py-5;
+    }
+
+    .delete-account-modal__icon,
+    .delete-account-modal__success-icon {
+        @apply h-10 w-10 rounded-xl;
+    }
+
+    .delete-account-modal__icon svg,
+    .delete-account-modal__success-icon svg {
+        @apply h-5 w-5;
+    }
+
+    .delete-account-modal__title {
+        @apply text-lg;
+    }
+
+    .delete-account-modal__description {
+        @apply text-xs leading-5;
+    }
+
+    .delete-account-modal__close {
+        @apply right-4 top-4;
+    }
+
+    .delete-account-modal__warning {
+        @apply mx-5 mt-5 gap-3 p-4;
+    }
+
+    .delete-account-modal__warning-icon {
+        @apply h-9 w-9 rounded-lg;
+    }
+
+    .delete-account-modal__form {
+        @apply px-5 py-5;
+    }
+
+    .delete-account-modal__success-steps {
+        @apply px-5 py-5;
+    }
+
+    .delete-account-modal__success-step {
+        @apply gap-3 p-3;
+    }
+
+    .delete-account-modal__success-step-icon {
+        @apply h-8 w-8 rounded-lg;
+    }
+
+    .delete-account-modal__info {
+        @apply mx-5 gap-3 p-4;
+    }
+
+    .delete-account-modal__info-icon {
+        @apply h-9 w-9 rounded-lg;
+    }
+
+    .delete-account-modal__actions {
+        @apply flex-col-reverse items-stretch;
+    }
+
+    .delete-account-modal__actions>.delete-account-card__button {
+        @apply w-full;
+    }
+
+    .delete-account-modal__success+.delete-account-modal__success-steps+.delete-account-modal__info+.delete-account-modal__actions {
+        @apply px-5 pb-5;
+    }
+}
+
+/* =========================================================
+   DELETE ACCOUNT
+   Part 4/4
+   Final deletion dialog & destructive confirmation
+   ========================================================= */
+
+
+/* =========================================================
+   Final dialog
+   ========================================================= */
+
+.delete-account-modal__dialog--final {
+    @apply max-w-2xl;
+}
+
+
+/* =========================================================
+   Destructive warning
+   ========================================================= */
+
+.delete-account-modal__danger-box {
+    @apply mx-7 mt-6 flex items-start gap-4 rounded-2xl border border-red-500/25 bg-red-500/5 p-5;
+}
+
+.delete-account-modal__danger-box-icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/10 text-red-400;
+}
+
+.delete-account-modal__danger-box-icon svg {
+    @apply h-5 w-5;
+}
+
+.delete-account-modal__danger-box-title {
+    @apply text-sm font-semibold text-red-300;
+}
+
+.delete-account-modal__danger-box-text {
+    @apply mt-1 text-xs leading-5 text-gray;
+}
+
+.delete-account-modal__danger-box-text+.delete-account-modal__danger-box-text {
+    @apply mt-3;
+}
+
+.delete-account-modal__danger-box strong {
+    @apply font-semibold text-white;
+}
+
+
+/* =========================================================
+   Completed requirements
+   ========================================================= */
+
+.delete-account-modal__requirements {
+    @apply mx-7 mt-4 grid grid-cols-3 gap-3;
+}
+
+.delete-account-modal__requirement {
+    @apply flex min-w-0 items-center gap-2 rounded-xl border border-emerald-500/15 bg-emerald-500/5 px-3 py-3 text-xs font-medium leading-5 text-gray;
+}
+
+.delete-account-modal__requirement-icon {
+    @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+.delete-account-modal__requirement-icon svg {
+    @apply h-3.5 w-3.5;
+}
+
+
+/* =========================================================
+   Final confirmation form
+   ========================================================= */
+
+.delete-account-modal__dialog--final .delete-account-modal__form {
+    @apply pt-6;
+}
+
+.delete-account-modal__dialog--final .delete-account-modal__label {
+    @apply text-sm text-white;
+}
+
+.delete-account-modal__dialog--final .delete-account-modal__input {
+    @apply border-red-500/20 bg-surface;
+}
+
+.delete-account-modal__dialog--final .delete-account-modal__input:hover {
+    @apply border-red-500/30;
+}
+
+.delete-account-modal__dialog--final .delete-account-modal__input:focus {
+    @apply border-red-500/50 ring-red-500/20;
+}
+
+
+/* =========================================================
+   Final destructive button
+   ========================================================= */
+
+.delete-account-modal__dialog--final .delete-account-card__button--danger {
+    @apply border-red-500/40 bg-red-500 text-white;
+}
+
+.delete-account-modal__dialog--final .delete-account-card__button--danger:hover {
+    @apply border-red-400 bg-red-500/90 text-white;
+}
+
+.delete-account-modal__dialog--final .delete-account-card__button--danger:disabled {
+    @apply border-red-500/20 bg-red-500/20 text-red-300;
+}
+
+
+/* =========================================================
+   Final dialog close / safe action emphasis
+   ========================================================= */
+
+.delete-account-modal__dialog--final .delete-account-modal__close {
+    @apply hover:bg-red-500/10 hover:text-red-300;
+}
+
+
+/* =========================================================
+   Responsive final dialog
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .delete-account-modal__dialog--final {
+        @apply max-w-none;
+    }
+
+    .delete-account-modal__danger-box {
+        @apply mx-5 mt-5 gap-3 p-4;
+    }
+
+    .delete-account-modal__danger-box-icon {
+        @apply h-9 w-9 rounded-lg;
+    }
+
+    .delete-account-modal__requirements {
+        @apply mx-5 mt-4 grid grid-cols-1 gap-2;
+    }
+
+    .delete-account-modal__requirement {
+        @apply px-3 py-2.5;
+    }
+
+    .delete-account-modal__dialog--final .delete-account-modal__form {
+        @apply pt-5;
+    }
+}
+
+
+/* =========================================================
+   Very small screens
+   ========================================================= */
+
+@media (max-width: 380px) {
+    .delete-account-modal__dialog {
+        @apply w-[calc(100%-1rem)] max-h-[calc(100vh-1rem)];
+    }
+
+    .delete-account-modal__danger-box {
+        @apply mx-4;
+    }
+
+    .delete-account-modal__requirements {
+        @apply mx-4;
+    }
+
+    .delete-account-modal__form {
+        @apply px-4;
+    }
+
+    .delete-account-modal__success-steps {
+        @apply px-4;
+    }
+
+    .delete-account-modal__info {
+        @apply mx-4;
+    }
+
+    .delete-account-modal__success+.delete-account-modal__success-steps+.delete-account-modal__info+.delete-account-modal__actions {
+        @apply px-4 pb-4;
+    }
+}
+
+.delete-account-modal__password-wrapper {
+  @apply relative w-full;
+}
+
+.delete-account-modal__password-wrapper
+  .delete-account-modal__input {
+  @apply w-full pr-12;
+}
+
+.delete-account-modal__password-toggle {
+  @apply absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg text-gray transition-all duration-200;
+}
+
+.delete-account-modal__password-toggle:hover {
+  @apply bg-surfaceLight text-white;
+}
+
+.delete-account-modal__password-toggle:focus-visible {
+  @apply outline-none ring-2 ring-primary/50;
+}
+
+.delete-account-modal__password-toggle:disabled {
+  @apply pointer-events-none opacity-50;
+}
+
+.delete-account-modal__password-toggle svg {
+  @apply h-5 w-5;
+}

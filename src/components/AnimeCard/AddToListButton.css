@@ -1,0 +1,138 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+.add-to-list-button {
+  --add-list-size: 38px;
+
+  width: var(--add-list-size);
+  height: var(--add-list-size);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.11),
+      rgba(255, 255, 255, 0.055)
+    );
+
+  color: rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  cursor: pointer;
+
+  transition:
+    transform 160ms ease,
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.add-to-list-button:hover {
+  transform: translateY(-2px) scale(1.04);
+
+  color: #ffffff;
+
+  border-color: rgba(140, 82, 255, 0.55);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(140, 82, 255, 0.30),
+      rgba(140, 82, 255, 0.14)
+    );
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.28),
+    0 0 0 3px rgba(140, 82, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.add-to-list-button:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.add-to-list-button:focus-visible {
+  outline: none;
+
+  border-color: rgba(140, 82, 255, 0.75);
+
+  box-shadow:
+    0 0 0 3px rgba(140, 82, 255, 0.24),
+    0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.add-to-list-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Card hover behavior                                                        */
+/* -------------------------------------------------------------------------- */
+
+/*
+  The button can be placed inside any element with .anime-card.
+
+  On desktop it stays hidden until the card is hovered/focused.
+*/
+
+.anime-card .add-to-list-button {
+  opacity: 0;
+  transform: translateY(4px) scale(0.94);
+  pointer-events: none;
+}
+
+.anime-card:hover .add-to-list-button,
+.anime-card:focus-within .add-to-list-button {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Touch devices                                                              */
+/* -------------------------------------------------------------------------- */
+
+@media (hover: none) {
+  .anime-card .add-to-list-button {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Reduced motion                                                             */
+/* -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .add-to-list-button {
+    transition: none;
+  }
+
+  .anime-card .add-to-list-button {
+    transform: none;
+  }
+}
+

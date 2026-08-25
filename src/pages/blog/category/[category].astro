@@ -2,12 +2,10 @@
 export const prerender = true;
 import { getCollection } from "astro:content";
 import { BLOG_CATEGORY_CONFIG } from "../../../config/blog-category-page-config";
+import "@/styles/pages/blog/category/category-page.css";
 import Layout from "../../../layouts/Layout.astro";
-import CategoryHero from "../../../components/Blog/CategoryPageComponents/CategoryHero.astro";
-import FeaturedArticle from "../../../components/Blog/BlogPageComponents/FeaturedArticle.astro";
-import BlogsGrid from "../../../components/Blog/CategoryPageComponents/BlogsGrid.astro";
-import ExploreOtherTopics from "../../../components/Blog/CategoryPageComponents/ExploreOtherTopics.astro";
-import AboutThisCategory from "../../../components/Blog/CategoryPageComponents/AboutThisCategory.astro";
+import FeaturedArticle from "../../../components/Blog/BlogPage/FeaturedArticle.astro";
+import BlogsGrid from "../../../components/Blog/CategoryPage/BlogsGrid.astro";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
 
 export async function getStaticPaths() {
@@ -24,7 +22,6 @@ const categoryInfo =
 if (!categoryInfo) {
   throw new Error(`Unknown category: ${category}`);
 }
-console.log("working till now");
 const allPosts = await getCollection("blog");
 
 const slugifyCategory = (str: string) =>
@@ -42,8 +39,7 @@ const featuredPost = categoryPosts.at(0);
 
 const pageTitle = categoryInfo.metaTitle;
 
-const pageDes =
-  categoryInfo.metaDescription;
+const pageDes = categoryInfo.metaDescription;
 
 const pageUrl = `https://anikawa.fun/blog/category/${category}`;
 
@@ -53,6 +49,9 @@ const currentThumbnail =
   "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
 
 const pageKw = categoryInfo?.metaKeywords;
+const otherTopics = Object.entries(BLOG_CATEGORY_CONFIG)
+  .filter(([slug]) => slug !== category)
+  .slice(0, 6);
 ---
 
 <Fragment slot="head">
@@ -66,11 +65,97 @@ const pageKw = categoryInfo?.metaKeywords;
   />
 </Fragment>
 <Layout>
-  <CategoryHero categoryInfo={categoryInfo} posts={categoryPosts} />
-  <div id="banner-ad-1" class="banner-ad-container"></div>
+  <!-- <CategoryHero categoryInfo={categoryInfo} posts={categoryPosts} /> -->
+  <section class="category-hero-section">
+    <div class="category-hero-container">
+      <div class="category-hero-content">
+        <span class="category-hero-badge">
+          {categoryInfo.emoji} Blog Category
+        </span>
+
+        <h1 class="category-hero-title">
+          {categoryInfo.title}
+        </h1>
+
+        <p class="category-hero-description">
+          {categoryInfo.description}
+        </p>
+
+        <div class="category-hero-stats">
+          <div class="category-stat">
+            <span class="category-stat-value">
+              {categoryPosts.length}
+            </span>
+
+            <span class="category-stat-label"> Articles </span>
+          </div>
+
+          <div class="category-stat">
+            <span class="category-stat-value"> Curated </span>
+
+            <span class="category-stat-label"> By AniKawa </span>
+          </div>
+
+          <div class="category-stat">
+            <span class="category-stat-value"> Updated </span>
+
+            <span class="category-stat-label"> Regularly </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <FeaturedArticle featuredPost={featuredPost} />
-  <div id="banner-ad-2" class="banner-ad-container"></div>
   <BlogsGrid categoryInfo={categoryInfo} posts={categoryPosts} />
-  <ExploreOtherTopics currentCategory={category} />
-  <AboutThisCategory categoryInfo={categoryInfo} />
+  <!-- <ExploreOtherTopics currentCategory={category} /> -->
+  <section class="explore-topics-section">
+    <div class="explore-topics-container">
+      <div class="explore-topics-header">
+        <span class="section-badge"> 🔍 Discover More </span>
+
+        <h2 class="section-title">You Might Also Like</h2>
+
+        <p class="section-subtitle">
+          Explore other anime topics, recommendations, and guides curated by
+          AniKawa.
+        </p>
+      </div>
+
+      <div class="explore-topics-grid">
+        {
+          otherTopics.map(([slug, topic]) => (
+            <a href={`/blog/category/${slug}`} class="explore-topic-card">
+              <div class="explore-topic-icon">{topic.emoji}</div>
+
+              <div class="explore-topic-content">
+                <h3 class="explore-topic-title">{topic.title}</h3>
+
+                <p class="explore-topic-description">{topic.description}</p>
+              </div>
+
+              <div class="explore-topic-arrow">→</div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- <AboutThisCategory categoryInfo={categoryInfo} /> -->
+  <section class="about-category-section">
+    <div class="about-category-container">
+      <div class="about-category-header">
+        <span class="section-badge"> 📖 Learn More </span>
+
+        <h2 class="section-title">
+          {categoryInfo.aboutTitle}
+        </h2>
+      </div>
+
+      <div class="about-category-content">
+        <p>
+          {categoryInfo.aboutContent}
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>

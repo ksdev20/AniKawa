@@ -1,0 +1,285 @@
+---
+import {
+  communityItems,
+  companyItems,
+  exploreItems,
+  legalItems,
+} from "@/config/footer";
+
+import{ Newsletter } from "./Newsletter";
+
+import "./footertw.css";
+
+
+const socialLinks = [
+  {
+    icon: "https://img.icons8.com/?size=35&id=2mIgusGquJFz&format=png&color=000000",
+    text: "Discord",
+    link: "#",
+  },
+  {
+    icon: "https://img.icons8.com/?size=35&id=phOKFKYpe00C&format=png&color=ffffff",
+    text: "X",
+    link: "#",
+  },
+  {
+    icon: "https://img.icons8.com/?size=35&id=Xy10Jcu1L2Su&format=png&color=000000",
+    text: "Instagram",
+    link: "#",
+  },
+  {
+    icon: "https://img.icons8.com/?size=100&id=19318&format=png&color=000000",
+    text: "YouTube",
+    link: "#",
+  },
+  {
+    icon: "https://img.icons8.com/?size=35&id=FLisMqR76b1i&format=png&color=000000",
+    text: "Reddit",
+    link: "#",
+  },
+];
+
+const year = new Date().getFullYear();
+---
+
+
+<footer>
+
+  <div class="footer-container">
+
+
+    <!-- ================= LEFT ================= -->
+
+    <section class="footer-brand">
+
+      <a href="/" class="footer-logo">
+
+        <img
+          src="/favicon.ico"
+          alt="AniKawa"
+          class="footer-logo-img"
+        />
+
+        <div>
+          <span>Ani</span>
+          <span class="primary-text">Kawa</span>
+        </div>
+
+      </a>
+
+
+      <p class="footer-description">
+        Discover your next favorite anime through curated recommendations,
+        seasonal releases, detailed reviews, and an ever-growing community
+        of anime fans.
+      </p>
+
+
+      <Newsletter client:load />
+
+
+      <div class="footer-socials">
+
+        {
+          socialLinks.map((social) => (
+
+            <a
+              href={social.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.text}
+              title={social.text}
+            >
+
+              <img
+                src={social.icon}
+                alt={social.text}
+              />
+
+            </a>
+
+          ))
+        }
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================= RIGHT ================= -->
+
+
+    <div class="footer-links-grid">
+
+
+      <nav aria-label="Explore">
+
+        <h3>
+          Explore
+        </h3>
+
+        <ul>
+
+          {
+            exploreItems.map((item) => (
+
+              <li>
+                <a href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+
+            ))
+          }
+
+        </ul>
+
+      </nav>
+
+
+
+
+      <nav aria-label="Community">
+
+        <h3>
+          Community
+        </h3>
+
+        <ul>
+
+          {
+            communityItems.map((item) => (
+
+              <li>
+                <a href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+
+            ))
+          }
+
+        </ul>
+
+      </nav>
+
+
+
+
+      <nav aria-label="Company">
+
+        <h3>
+          Company
+        </h3>
+
+        <ul>
+
+          {
+            companyItems.map((item) => (
+
+              <li>
+                <a href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+
+            ))
+          }
+
+        </ul>
+
+      </nav>
+
+
+
+
+      <nav aria-label="Legal">
+
+        <h3>
+          Legal
+        </h3>
+
+        <ul>
+
+          {
+            legalItems.map((item) => (
+
+              <li>
+                <a href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+
+            ))
+          }
+
+        </ul>
+
+      </nav>
+
+
+    </div>
+
+  </div>
+
+
+
+
+  <!-- ================= CONTENT NOTICE ================= -->
+
+
+  <section class="content-source-notice">
+
+    <div class="notice-icon">
+      🛡️
+    </div>
+
+
+    <div class="notice-content">
+
+      <h3>
+        Official Content Sources
+      </h3>
+
+
+      <p>
+        AniKawa does not host or upload anime videos.
+        Episodes are embedded exclusively through official YouTube channels
+        and other publicly available authorized providers.
+      </p>
+
+
+      <p>
+        All copyrights, trademarks, and ownership remain with their
+        respective creators, studios, broadcasters, licensors, and rights
+        holders.
+      </p>
+
+
+    </div>
+
+  </section>
+
+
+
+
+  <!-- ================= BOTTOM ================= -->
+
+
+  <div class="footer-bottom">
+
+    <p>
+      © {year} AniKawa. All rights reserved.
+    </p>
+
+
+    <p>
+      Built with 💜 for anime fans.
+    </p>
+
+
+  </div>
+
+
+</footer>

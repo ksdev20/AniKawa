@@ -1,0 +1,52 @@
+---
+import EpisodeCard from '@/components/EpisodeCard/EpisodeCard';
+import { DogIcon } from '@phosphor-icons/react/dist/icons/Dog';
+
+interface Props {
+  continueWatching: any;
+  episodeRecords: any;
+}
+
+const { continueWatching, episodeRecords } = Astro.props;
+---
+
+<section class="profile-section">
+  <div class="profile-section__header">
+    <div>
+      <h2 class="profile-section__title">Currently Watching</h2>
+
+      <p class="profile-section__subtitle">
+        See what they're watching right now.
+      </p>
+    </div>
+
+    {
+      continueWatching.length > 0 && (
+        <span class="profile-section__count">{continueWatching.length}</span>
+      )
+    }
+  </div>
+
+  {
+    continueWatching.length === 0 ? (
+      <div class="profile-empty">
+        <div class="profile-empty__icon">
+          <DogIcon size={32} />
+        </div>
+
+        <h3>No anime in progress</h3>
+
+        {/* <p>
+          Start watching an episode and it'll appear here so you can resume
+          anytime.
+        </p> */}
+      </div>
+    ) : (
+      <ul class="profile-episode-grid">
+        {episodeRecords.slice(0, 9).map((item: any) => (
+          <EpisodeCard epData={item} forCW={true} showWatchedTill={true} />
+        ))}
+      </ul>
+    )
+  }
+</section>

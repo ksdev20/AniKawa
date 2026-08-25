@@ -1,0 +1,74 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+.main-root {
+    @apply w-full flex flex-col items-center;
+}
+
+.main-content {
+    @apply h-full w-full max-w-[1200px] px-5;
+}
+
+.new-first {
+    @apply mt-20 flex items-center justify-between w-full mb-10;
+}
+
+.new-first-heading {
+    @apply antialiased text-2xl;
+}
+
+@media (max-width: 312px) {
+    .new-first-heading {
+        font-size: 15px;
+    }
+
+    .filter-name {
+        display: none;
+    }
+}
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .new-first-heading {
+        font-size: 22px;
+    }
+
+    .filter-name {
+        display: none;
+    }
+}
+
+/*new popular anime list*/
+.new-pop-anime-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+@media (max-width: 312px) {
+    .anime-card-first {
+        min-width: unset;
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+}
+
+@media (min-width: 313px) and (max-width: 430px) {
+    .anime-card-first {
+        min-width: 150px;
+    }
+
+    .new-pop-anime-card {
+        min-width: 150px;
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+    }
+}

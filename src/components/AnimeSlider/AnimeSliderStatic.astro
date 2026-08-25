@@ -1,101 +1,91 @@
 ---
 import { getOtherSeasons } from "../../filters/anime-page-filters";
 import { getFilteredAnime } from "../../filters/animeFilterMainTmdbVer.ts";
-import { Icon } from "../../icons/icons";
-import SliderContainer from "./SliderContainer.astro";
+import AnimeSliderCSR from "./AnimeSliderCSR";
+import AnimeCardStaticTmdbVer from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
 import "./anime-slidertw.css";
+import { frontendUrl } from "@/global_assets/globalPaths";
 
 const {
-    bigH,
-    smallH,
-    filterName,
-    genresA,
-    categoryA = "",
-    categoryB = "",
-    usedTitlesGlobal,
-    forCategoryPage = false,
-    forAnimePageSeasons,
-    animeTitle,
-    toNotInclude,
+  bigH,
+  smallH,
+  filterName,
+  genresA,
+  categoryA = "",
+  categoryB = "",
+  usedTitlesGlobal,
+  forCategoryPage = false,
+  forAnimePageSeasons,
+  animeTitle,
+  toNotInclude,
 } = Astro.props.info;
 
 let filteredAnimeList;
 
 if (forCategoryPage) {
-    filteredAnimeList = await getFilteredAnime("matchCategories", {
-        categoryA: categoryA,
-        categoryB: categoryB,
-        usedTitlesGlobal,
-    });
-}
-else if (forAnimePageSeasons){
-    filteredAnimeList = await getOtherSeasons(animeTitle, toNotInclude);
-}
-else if (filterName == "matchCategories") {
-    filteredAnimeList = await getFilteredAnime("matchCategories", {
-        genresA: genresA,
-        usedTitlesGlobal,
-    });
-}
-else {
-    filteredAnimeList = await getFilteredAnime(filterName, { usedTitlesGlobal });
+  filteredAnimeList = await getFilteredAnime("matchCategories", {
+    categoryA: categoryA,
+    categoryB: categoryB,
+    usedTitlesGlobal,
+  });
+} else if (forAnimePageSeasons) {
+  filteredAnimeList = await getOtherSeasons(animeTitle, toNotInclude);
+} else if (filterName == "matchCategories") {
+  filteredAnimeList = await getFilteredAnime("matchCategories", {
+    genresA: genresA,
+    usedTitlesGlobal,
+  });
+} else if (
+  filterName === "recommendedByAnikawa" ||
+  filterName === "topRatedLast5"
+) {
+  filteredAnimeList = await getFilteredAnime(filterName, {
+    usedTitlesGlobal: [],
+  });
+} else {
+  filteredAnimeList = await getFilteredAnime(filterName, {
+    usedTitlesGlobal: [],
+  });
 }
 
 if (filteredAnimeList) {
-    if (filteredAnimeList.length <= 1) {
-        return null;
-    }
+  if (filteredAnimeList.length <= 1) {
+    return null;
+  }
 }
-
 if (!filteredAnimeList) return null;
 const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": bigH,
-    "itemListElement": filteredAnimeList?.map((a, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "item": {
-            "@type": "TVSeries",
-            "@id": `https://anikawa1-2.onrender.com/show/${a.nanoid}/${a.slug}`,
-            "name": a.title ||  a.slug || 'Untitled'
-        }
-    }))
-}
-// <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: bigH,
+  itemListElement: filteredAnimeList?.map((a, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "TVSeries",
+      "@id": `${frontendUrl}/show/${a.nanoid}/${a.slug}`,
+      name: a.title || a.slug || "Untitled",
+    },
+  })),
+};
 ---
 
-{
-    !forCategoryPage ? (
-        <section
-            class="anime-slider-section">
-            <header class="slider-heading">
-                <h2 class="slider-section-text-big">{bigH}</h2>
-                <h3 class="slider-section-text-small">{smallH}</h3>
-            </header>
-            <section class="slider-content-wrapper">
-                <SliderContainer animeArray={filteredAnimeList} />
-            </section>
-        </section>
-        <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
-    ) : (
-        <section class="anime-slider-section cat-slider">
-            <header class="slider-heading cat-slider-heading">
-                <h2 class="slider-section-text-big cat-slider-heading-big">
-                    {bigH}
-                </h2>
-                <a
-                    class="view-all-text-section"
-                    href={`/category/${categoryA}/${bigH}`}
-                >
-                    VIEW ALL
-                    <Icon name="keyright" size={17} color="#666666" className='view-all-icon'/>
-                </a>
-            </header>
-            <section class="slider-content-wrapper">
-                <SliderContainer animeArray={filteredAnimeList} forCategory={forCategoryPage}/>
-            </section>
-        </section>
-        
-    )
-}
+<section class="anime-slider-section">
+  <header class="slider-heading">
+    <h2 class="slider-section-text-big">{bigH}</h2>
+    <h3 class="slider-section-text-small">{smallH}</h3>
+  </header>
+  <section class="slider-content-wrapper">
+    <ul class="slider-container">
+      {
+        filteredAnimeList?.map((a) => {
+          return (
+            <AnimeCardStaticTmdbVer anime={a} forCategory={forCategoryPage} />
+          );
+        })
+      }
+    </ul>
+    <AnimeSliderCSR client:load />
+  </section>
+</section>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />

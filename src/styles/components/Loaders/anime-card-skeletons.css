@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+/* =========================
+   ANIME CARD SKELETON
+========================= */
+
+.anime-card-skeleton {
+    @apply animate-pulse;
+}
+
+
+/* =========================
+   POSTER
+========================= */
+
+.anime-card-skeleton-image {
+    @apply w-full aspect-[2/3] rounded-md bg-white/5;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.anime-card-skeleton-title {
+    @apply flex flex-col gap-1.5;
+}
+
+.anime-card-skeleton-title span {
+    @apply block h-4 rounded bg-white/10;
+}
+
+.anime-card-skeleton-title span:first-child {
+    @apply w-4/5;
+}
+
+.anime-card-skeleton-title span:last-child {
+    @apply w-3/5;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.anime-card-skeleton-rating {
+    @apply flex items-center gap-2;
+}
+
+.anime-card-skeleton-star {
+    @apply h-4 w-4 rounded-full bg-white/10;
+}
+
+.anime-card-skeleton-score {
+    @apply h-3.5 w-8 rounded bg-white/10;
+}
+
+.anime-card-skeleton-reviews {
+    @apply h-3 w-10 rounded bg-white/5;
+}
+
+
+/* =========================
+   GENRES
+========================= */
+
+.anime-card-skeleton-genres {
+    @apply flex flex-wrap gap-2;
+}
+
+.anime-card-skeleton-genres span {
+    @apply h-6 rounded-md bg-white/5;
+}
+
+.anime-card-skeleton-genres span:nth-child(1) {
+    @apply w-14;
+}
+
+.anime-card-skeleton-genres span:nth-child(2) {
+    @apply w-16;
+}
+
+.anime-card-skeleton-genres span:nth-child(3) {
+    @apply w-12;
+}
+
+
+/* =========================
+   EPISODE META
+========================= */
+
+.anime-card-skeleton-meta {
+    @apply flex items-center gap-2;
+}
+
+.anime-card-skeleton-meta span:first-child {
+    @apply h-3.5 w-14 rounded bg-white/10;
+}
+
+.anime-card-skeleton-meta span:last-child {
+    @apply h-3.5 w-16 rounded bg-white/5;
+}
+
+
+/* =========================
+   NEW / POPULAR CARD
+========================= */
+
+.new-pop-ac .anime-card-skeleton {
+    @apply w-full;
+}

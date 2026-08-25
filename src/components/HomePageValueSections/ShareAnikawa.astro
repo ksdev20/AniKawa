@@ -1,0 +1,72 @@
+---
+import "./share-anikawa.css";
+import { frontendUrl } from "@/global_assets/globalPaths";
+import ShareAnikawaCSR from "./ShareAnikawaCSR";
+
+const siteUrl = frontendUrl;
+
+const title = "Discover amazing anime on AniKawa";
+const text =
+  "🎌 Looking for your next favorite anime? Discover handpicked recommendations, hidden gems, reviews and more on AniKawa.";
+
+const encodedUrl = encodeURIComponent(siteUrl);
+const encodedText = encodeURIComponent(text);
+
+const shareLinks = [
+  {
+    name: "WhatsApp",
+    icon: "https://img.icons8.com/?size=35&id=16713&format=png&color=000000",
+    href: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
+  },
+  {
+    name: "X",
+    icon: "https://img.icons8.com/?size=35&id=phOKFKYpe00C&format=png&color=ffffff",
+    href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
+  },
+  {
+    name: "Reddit",
+    icon: "https://img.icons8.com/?size=35&id=FLisMqR76b1i&format=png&color=000000",
+    href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent(title)}`,
+  },
+  {
+    name: "Facebook",
+    icon: "https://img.icons8.com/?size=35&id=114441&format=png&color=000000",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+  },
+];
+---
+
+<section class="share-section">
+  <div class="share-card">
+    <h2 class="share-title">💜 Enjoying AniKawa?</h2>
+
+    <p class="share-subtitle">
+      If AniKawa helped you discover your next favorite anime, share it with
+      another anime fan.
+    </p>
+
+    <ShareAnikawaCSR client:load url={siteUrl} />
+
+    <div class="share-buttons">
+      {
+        shareLinks.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="share-button"
+            aria-label={`Share on ${social.name}`}
+          >
+            <img
+              src={social.icon}
+              alt=""
+              loading="lazy"
+              width="35"
+              height="35"
+            />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

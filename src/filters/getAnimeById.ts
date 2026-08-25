@@ -1,41 +1,50 @@
-// src/lib/anime/helpers/getAnimeById.ts
-
-import { AnimeRepository, AnimeCatalog } from "@/lib/anime";
+import { AnimeCatalog } from "@/lib/anime";
 import type { Episode, Anime } from "@/lib/anime/types";
 
 /**
  * Get a single anime by its nanoid.
  */
-export async function getAnimeById(nanoid: string | undefined): Promise<Anime | null> {
+export async function getAnimeById(
+  nanoid: string | undefined,
+): Promise<Anime | null> {
   if (!nanoid) return null;
 
-  const allAnime = await AnimeRepository.getAllAnime();
-  return allAnime.find(a => a.nanoid === nanoid) ?? null;
+  const record = await AnimeCatalog.getAnime(nanoid);
+
+  return record?.anime ?? null;
 }
 
 /**
  * Get a specific episode by slug, along with anime details.
  */
-export async function getEpisodeBySlug(animeId: string, epSlug: string): Promise<(Episode & {
-  animeTitle: string;
-  language: string;
-  animenanoid: string;
-  animeslug: string;
-}) | null> {
-  const anime = await getAnimeById(animeId);
-  if (!anime) return null;
+export async function getEpisode(
+  animeId: string,
+  epNanoid: string,
+): Promise<
+  | (Episode & {
+      animeTitle: string;
+      language: string;
+      animenanoid: string;
+      animeslug: string;
+    })
+  | null
+> {
+  if (!animeId || !epNanoid) return null;
 
-  const { nanoid, slug, title, episodes } = anime;
-  const language = episodes?.[0]?.audio === "ja" ? "Subtitled" : "Sub|Dub";
+  const record = await AnimeCatalog.getEpisodeByNanoid(animeId, epNanoid);
 
-  const episode = episodes?.find((e: Episode) => e.slug === epSlug);
-  if (!episode) return null;
+  if (!record) return null;
+
+  const { anime, episode } = record;
+
+  const language =
+    anime.episodes?.[0]?.audio === "ja" ? "Subtitled" : "Sub|Dub";
 
   return {
-    animeTitle: title,
+    animeTitle: anime.title,
     language,
-    animenanoid: nanoid,
-    animeslug: slug,
+    animenanoid: anime.nanoid,
+    animeslug: anime.slug,
     ...episode,
   };
 }

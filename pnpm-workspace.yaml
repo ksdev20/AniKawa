@@ -1,0 +1,23 @@
+allowBuilds:
+  '@clerk/shared': true
+  '@sentry/cli': true
+  esbuild: true
+  postinstall-postinstall: true
+
+overrides:
+  tar: ^7.5.11
+  path-to-regexp: ^6.2.1
+  smol-toml: ^1.6.1
+  srvx: ^0.11.13
+  undici: ^6.23.1
+  ajv: ^8.17.2
+  minimatch: ^10.2.5
+  "@tootallnate/once": ^2.0.1
+
+onlyBuiltDependencies:
+  - "@sentry/cli"
+  - esbuild
+  - postinstall-postinstall
+  - sharp
+
+"minimumReleaseAge": 0

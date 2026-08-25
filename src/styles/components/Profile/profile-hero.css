@@ -1,0 +1,157 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+.profile-hero {
+  @apply overflow-hidden rounded-3xl border border-primary/15 bg-secondary shadow-xl;
+}
+
+.profile-hero__banner {
+  @apply h-64 w-full overflow-hidden bg-primary/10;
+}
+
+.profile-hero__banner-image {
+  @apply h-full w-full object-cover;
+}
+
+.profile-hero__banner-placeholder {
+  @apply h-full w-full bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20;
+}
+
+.profile-hero__content {
+  @apply flex flex-col gap-8 p-8 lg:flex-row lg:items-end lg:justify-between;
+}
+
+.profile-hero__avatar-wrapper {
+  @apply -mt-28 shrink-0;
+}
+
+.profile-hero__avatar {
+  @apply h-40 w-40 rounded-full border-4 border-secondary object-cover shadow-2xl;
+}
+
+.profile-hero__avatar--placeholder {
+  @apply flex items-center justify-center bg-primary text-5xl font-bold text-white;
+}
+
+.profile-hero__info {
+  @apply flex-1;
+}
+
+.profile-hero__name {
+  @apply text-4xl font-bold text-white;
+}
+
+.profile-hero__username {
+  @apply mt-2 text-lg text-white/60;
+}
+
+.profile-hero__bio {
+  @apply mt-5 max-w-3xl whitespace-pre-wrap leading-relaxed text-white/85;
+}
+
+.profile-hero__meta {
+  @apply mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60;
+}
+
+.profile-hero__actions {
+  @apply flex shrink-0 gap-3;
+}
+
+.profile-hero__button {
+  @apply rounded-xl border border-primary/20 bg-white/5 px-6 py-3 font-medium text-white transition-all duration-200;
+}
+
+.profile-hero__button:hover {
+  @apply border-primary/40 bg-primary/10;
+}
+
+.profile-hero__button--primary {
+  @apply border-primary bg-primary;
+}
+
+.profile-hero__button--primary:hover {
+  @apply opacity-90;
+}
+
+@media (max-width: 1024px) {
+  .profile-hero__content {
+    @apply items-center text-center;
+  }
+
+  .profile-hero__meta {
+    @apply justify-center;
+  }
+}
+
+/**/
+.profile-hero-actions {
+  @apply flex shrink-0 items-center gap-3;
+}
+
+.profile-hero-actions button{
+  @apply cursor-pointer;
+}
+
+.profile-hero-actions__menu-wrapper {
+  @apply relative;
+}
+
+.profile-hero-actions__icon-button {
+  @apply inline-flex h-12 w-12 items-center justify-center;
+  @apply rounded-xl border border-primary/20 bg-white/5;
+  @apply text-white/60 transition-all duration-200;
+  @apply hover:border-primary/40 hover:bg-primary/10 hover:text-white;
+}
+
+.profile-hero-actions__follow {
+  @apply inline-flex h-12 w-32 items-center justify-center;
+  @apply rounded-xl border border-primary bg-primary;
+  @apply px-6 text-base font-semibold text-white;
+  @apply shadow-lg shadow-primary/20;
+  @apply transition-all duration-200;
+  @apply hover:-translate-y-0.5 hover:opacity-90;
+  @apply disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.profile-hero-actions__follow--following {
+  @apply border-white/15 bg-white/5 text-white/80 shadow-none;
+}
+
+.profile-hero-actions__follow--following:hover {
+  @apply border-red-500 bg-red-500 text-white shadow-lg shadow-red-500/20;
+}
+
+@media (max-width: 1024px) {
+  .profile-hero-actions {
+    @apply w-full justify-center;
+  }
+
+  .profile-hero-actions__follow {
+    @apply w-32;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-hero-actions__follow {
+    @apply w-28;
+  }
+}
+
+.profile-hero-actions__menu {
+  @apply absolute right-0 top-full z-10 mt-2 min-w-44;
+  @apply overflow-hidden rounded-xl border border-primary/15;
+  @apply bg-secondary p-1.5 shadow-2xl;
+}
+
+.profile-hero-actions__menu-item {
+  @apply flex w-full items-center gap-3 rounded-lg cursor-pointer;
+  @apply px-3 py-2.5 text-left text-sm font-medium;
+  @apply text-white/75 transition-colors;
+  @apply hover:bg-primary/10 hover:text-white;
+}
+
+.profile-hero-actions__menu-item--disabled {
+  @apply cursor-not-allowed opacity-35;
+  @apply hover:bg-transparent hover:text-white/75;
+}

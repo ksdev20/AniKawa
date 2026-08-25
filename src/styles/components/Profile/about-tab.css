@@ -1,0 +1,1084 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/* ==========================
+   ACCOUNT TAB
+========================== */
+
+.account-tab {
+  @apply flex flex-col gap-6;
+}
+
+
+/* ==========================
+   ACCOUNT FIELDS
+========================== */
+
+.account-field {
+  @apply flex flex-col gap-2 mt-5;
+}
+
+
+.account-field label {
+  @apply text-sm font-semibold text-white;
+}
+
+
+.account-field input {
+  @apply w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition;
+}
+
+
+.account-field input:focus {
+  @apply border-primary/60;
+}
+
+
+.account-field input:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+
+.account-field span {
+  @apply text-xs text-gray-500;
+}
+
+
+
+/* ==========================
+   PRIVACY OPTIONS
+========================== */
+
+
+.privacy-option {
+
+  @apply flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 cursor-pointer transition;
+
+}
+
+
+.privacy-option:hover {
+
+  @apply border-primary/40 bg-primary/5;
+
+}
+
+
+.privacy-option input {
+
+  @apply mt-1 h-4 w-4 accent-primary;
+
+}
+
+
+.privacy-option span {
+
+  @apply text-sm leading-relaxed text-gray-300;
+
+}
+
+
+
+
+
+/* ==========================
+   TOGGLE ROW
+========================== */
+
+
+.toggle-row {
+
+  @apply mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] p-4;
+
+}
+
+
+.toggle-row span {
+
+  @apply text-sm text-gray-300;
+
+}
+
+
+.toggle-row input {
+
+  @apply h-5 w-5 cursor-pointer accent-primary;
+
+}
+
+
+
+
+
+/* ==========================
+   SECONDARY BUTTON
+========================== */
+
+
+.settings-secondary {
+
+  @apply mt-5 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10;
+
+}
+
+
+
+/* ==========================
+   DANGER ZONE
+========================== */
+
+
+.settings-card--danger {
+
+  @apply border-red-500/20 bg-red-500/[0.03];
+
+}
+
+
+
+.settings-card--danger .settings-card__header h3 {
+
+  @apply text-red-400;
+
+}
+
+
+
+.settings-card--danger .settings-card__header p {
+
+  @apply text-red-300/60;
+
+}
+
+
+
+.danger-button {
+
+  @apply mt-5 rounded-xl bg-red-500 px-5 py-3 text-sm font-bold text-white transition hover:bg-red-600;
+
+}
+
+
+
+
+
+/* ==========================
+   EMPTY STATES
+========================== */
+
+
+.empty-state {
+
+  @apply mt-5 rounded-xl border border-dashed border-white/10 bg-white/[0.02] p-5 text-center text-sm text-gray-500;
+
+}
+
+/*global*/
+.settings-card {
+  @apply rounded-3xl border border-primary/20 bg-secondary p-6 shadow-xl;
+}
+
+
+.settings-card__header {
+  @apply flex items-start justify-between gap-4 mb-6;
+}
+
+
+.settings-card__header h3 {
+  @apply text-xl font-semibold text-white;
+}
+
+
+.settings-card__header p {
+  @apply mt-1 text-sm text-gray-400;
+}
+
+
+.settings-label {
+  @apply block mb-2 text-sm font-medium text-gray-300;
+}
+
+
+.settings-input {
+  @apply w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition;
+
+}
+
+
+.settings-input:focus {
+  @apply border-primary;
+}
+
+
+.settings-save {
+  @apply rounded-xl bg-primary px-5 py-3 font-semibold text-white transition hover:opacity-90 disabled:opacity-50;
+}
+
+
+.settings-secondary-button {
+  @apply rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-gray-200 transition hover:bg-white/10;
+}
+
+
+.settings-badge {
+  @apply rounded-full bg-primary/20 px-3 py-1 text-xs font-medium text-primary;
+}
+
+/*username card*/
+.username-card__body {
+  @apply flex flex-col gap-4;
+}
+
+
+/* .username-input-wrapper {
+  @apply relative flex items-center;
+}
+ */
+
+/* .username-prefix {
+  @apply absolute left-4 text-gray-400 text-lg;
+} */
+
+/* 
+.username-input {
+  @apply pl-9;
+} */
+
+
+.username-status {
+  @apply min-h-5 text-sm;
+}
+
+
+.username-hint {
+  @apply text-sm text-gray-400;
+}
+
+
+.username-message {
+  @apply text-sm text-primary;
+}
+
+.username-card__body {
+  @apply flex flex-col gap-4;
+}
+
+
+/* .username-input-wrapper {
+  @apply relative flex items-center;
+} */
+
+/* 
+.username-prefix {
+  @apply absolute left-4 text-gray-400;
+} */
+
+
+/* .username-input {
+  @apply pl-9;
+} */
+
+
+.username-status {
+  @apply min-h-5 text-sm;
+}
+
+
+.username-hint {
+  @apply text-sm text-gray-400 leading-relaxed;
+}
+
+.profile-settings__account {
+  @apply flex flex-col gap-8;
+}
+
+/* ==========================
+   EMAIL CARD
+========================== */
+
+.email-card__title-row {
+  @apply flex items-center gap-2.5;
+}
+
+
+.email-card__icon {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary;
+}
+
+
+.email-card__form {
+  @apply flex flex-col gap-5;
+}
+
+
+/* ==========================
+   CURRENT EMAIL
+========================== */
+
+.email-card__current {
+  @apply flex flex-col;
+}
+
+
+.email-card__current-value {
+  @apply flex min-h-[50px] items-center gap-2.5 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white;
+}
+
+
+.email-card__current-value>svg {
+  @apply shrink-0 text-gray-400;
+}
+
+
+.email-card__verified {
+  @apply ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-400;
+}
+
+
+/* ==========================
+   MESSAGE
+========================== */
+
+.email-card__message {
+  @apply flex items-start gap-2.5 rounded-xl border px-4 py-3 text-sm leading-relaxed;
+}
+
+
+.email-card__message--success {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+
+.email-card__message--error {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+
+.email-card__message svg {
+  @apply mt-0.5 shrink-0;
+}
+
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.email-card__actions {
+  @apply flex items-center justify-end;
+}
+
+
+.email-card__actions .settings-save {
+  @apply inline-flex min-w-[140px] items-center justify-center gap-2;
+}
+
+
+/* ==========================
+   LOADING
+========================== */
+
+.email-card__spinner {
+  @apply h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white;
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+  .email-card {
+    @apply p-5;
+  }
+
+
+  .email-card__verified {
+    @apply hidden;
+  }
+
+
+  .email-card__actions {
+    @apply justify-stretch;
+  }
+
+
+  .email-card__actions .settings-save {
+    @apply w-full;
+  }
+}
+
+/* ==========================
+   USERNAME CARD
+========================== */
+
+.username-card__title-row {
+  @apply flex items-center gap-2.5;
+}
+
+.username-card__icon {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-lg font-semibold text-primary;
+}
+
+.username-card__form {
+  @apply flex flex-col gap-5;
+}
+
+/* ==========================
+   CURRENT USERNAME
+========================== */
+
+.username-card__current {
+  @apply flex flex-col;
+}
+
+.username-card__current-value {
+  @apply flex min-h-[50px] items-center gap-1.5 rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white;
+}
+
+.username-card__current-value strong {
+  @apply font-semibold;
+}
+
+.username-card__current-value>span {
+  @apply text-gray-400;
+}
+
+/* ==========================
+   INPUT
+========================== */
+.username-input-wrapper {
+  @apply relative;
+}
+
+.username-prefix {
+  @apply pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-lg font-medium text-gray-400;
+}
+
+.username-input {
+  @apply pl-10;
+}
+
+/* ==========================
+   STATUS
+========================== */
+
+.username-status {
+  @apply min-h-5;
+}
+
+.username-message {
+  @apply inline-flex items-center gap-2 text-sm leading-relaxed;
+}
+
+.username-message--checking {
+  @apply text-gray-400;
+}
+
+.username-message--success {
+  @apply text-emerald-400;
+}
+
+.username-message--error {
+  @apply text-red-400;
+}
+
+.username-message__icon--spin {
+  @apply animate-spin;
+}
+
+/* ==========================
+   HINT
+========================== */
+
+.username-hint-box {
+  @apply flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3.5 text-sm leading-relaxed text-gray-400;
+}
+
+.username-hint-box>svg {
+  @apply mt-0.5 shrink-0 text-primary;
+}
+
+.username-hint-box p+p {
+  @apply mt-1.5;
+}
+
+/* ==========================
+   LIMIT
+========================== */
+
+.username-limit {
+  @apply flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3;
+}
+
+.username-limit>span {
+  @apply text-sm text-gray-400;
+}
+
+.username-limit strong {
+  @apply text-sm font-semibold text-white;
+}
+
+.username-limit strong span {
+  @apply font-normal text-gray-500;
+}
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.username-card__actions {
+  @apply flex items-center justify-end;
+}
+
+.username-card__actions .settings-save {
+  @apply inline-flex min-w-[140px] items-center justify-center gap-2;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+  .username-card {
+    @apply p-5;
+  }
+
+  .username-card__actions {
+    @apply justify-stretch;
+  }
+
+  .username-card__actions .settings-save {
+    @apply w-full;
+  }
+}
+
+/* ==========================
+   USERNAME INPUT
+========================== */
+
+.username-field {
+  @apply w-full;
+}
+
+.username-field__input {
+  @apply w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition;
+}
+
+.username-field__input:focus {
+  @apply border-primary;
+}
+
+.username-field__input:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+/*password card*/
+.password-card__title {
+  @apply flex items-center gap-3;
+}
+
+.password-card__icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary;
+}
+
+.password-card__form {
+  @apply flex flex-col gap-5;
+}
+
+.password-card__field {
+  @apply flex flex-col gap-2;
+}
+
+.password-card__field label {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.password-card__input-wrapper {
+  @apply relative flex items-center;
+}
+
+.password-card__input {
+  @apply w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 pr-12 text-white outline-none transition;
+}
+
+.password-card__input::placeholder {
+  @apply text-gray-500;
+}
+
+.password-card__input:focus {
+  @apply border-primary/60;
+}
+
+.password-card__input:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+.password-card__toggle {
+  @apply absolute right-3 flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-white/5 hover:text-white disabled:pointer-events-none disabled:opacity-50;
+}
+
+.password-card__requirements {
+  @apply rounded-xl border border-white/10 bg-black/10 px-4 py-3;
+}
+
+.password-card__requirements-title {
+  @apply mb-2 text-sm font-medium text-gray-300;
+}
+
+.password-card__requirements-list {
+  @apply flex flex-wrap gap-x-5 gap-y-2;
+}
+
+.password-card__requirement {
+  @apply inline-flex items-center gap-1.5 text-xs text-gray-500 transition;
+}
+
+.password-card__requirement svg {
+  @apply opacity-50;
+}
+
+.password-card__requirement--valid {
+  @apply text-emerald-400;
+}
+
+.password-card__requirement--valid svg {
+  @apply opacity-100;
+}
+
+.password-card__match {
+  @apply flex items-center gap-2 rounded-xl border px-4 py-3 text-sm;
+}
+
+.password-card__match--valid {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+.password-card__match--invalid {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+.password-card__message {
+  @apply flex items-start gap-2.5 rounded-xl border px-4 py-3 text-sm leading-relaxed;
+}
+
+.password-card__message--error {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+.password-card__message--success {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+.password-card__message svg {
+  @apply mt-0.5 shrink-0;
+}
+
+.password-card__actions {
+  @apply flex items-center justify-end;
+}
+
+.password-card__actions .settings-save {
+  @apply inline-flex min-w-[150px] items-center justify-center;
+}
+
+@media (max-width: 600px) {
+  .password-card {
+    @apply p-5;
+  }
+
+  .password-card .settings-card__header {
+    @apply items-start;
+  }
+
+  .password-card .settings-badge {
+    @apply hidden;
+  }
+
+  .password-card__requirements-list {
+    @apply flex-col gap-2;
+  }
+
+  .password-card__actions {
+    @apply justify-stretch;
+  }
+
+  .password-card__actions .settings-save {
+    @apply w-full;
+  }
+}
+
+.display-name-card__title {
+  @apply flex items-center gap-3;
+}
+
+.display-name-card__icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary;
+}
+
+.display-name-card__form {
+  @apply flex flex-col gap-5;
+}
+
+.display-name-card__field {
+  @apply flex flex-col gap-2;
+}
+
+.display-name-card__field label {
+  @apply text-sm font-medium text-gray-300;
+}
+
+.display-name-card__input {
+  @apply w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition;
+}
+
+.display-name-card__input::placeholder {
+  @apply text-gray-500;
+}
+
+.display-name-card__input:focus {
+  @apply border-primary/60;
+}
+
+.display-name-card__input:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+.display-name-card__meta {
+  @apply flex items-center justify-between gap-4 text-xs text-gray-500;
+}
+
+.display-name-card__message {
+  @apply flex items-start gap-2.5 rounded-xl border px-4 py-3 text-sm leading-relaxed;
+}
+
+.display-name-card__message svg {
+  @apply mt-0.5 shrink-0;
+}
+
+.display-name-card__message--error {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+.display-name-card__message--success {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+.display-name-card__actions {
+  @apply flex items-center justify-end;
+}
+
+.display-name-card__actions .settings-save {
+  @apply inline-flex min-w-[170px] items-center justify-center gap-2;
+}
+
+.display-name-card__spinner {
+  @apply animate-spin;
+}
+
+@media (max-width: 600px) {
+  .display-name-card {
+    @apply p-5;
+  }
+
+  .display-name-card .settings-card__header {
+    @apply items-start;
+  }
+
+  .display-name-card .settings-badge {
+    @apply hidden;
+  }
+
+  .display-name-card__meta {
+    @apply items-start;
+  }
+
+  .display-name-card__actions {
+    @apply justify-stretch;
+  }
+
+  .display-name-card__actions .settings-save {
+    @apply w-full;
+  }
+}
+
+/* ==========================================================================
+   Privacy Card
+   ========================================================================== */
+
+.privacy-card__title {
+  @apply flex items-center gap-3;
+}
+
+.privacy-card__icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary;
+}
+
+.privacy-card__form {
+  @apply flex flex-col gap-5;
+}
+
+.privacy-card__options {
+  @apply flex min-w-0 flex-col gap-3 border-0 p-0 m-0;
+}
+
+.privacy-card__legend {
+  @apply mb-1 text-sm font-medium text-gray-300;
+}
+
+.privacy-card__option {
+  @apply relative flex cursor-pointer items-center gap-4 rounded-2xl border border-white/10 bg-black/20 p-4 transition;
+}
+
+.privacy-card__option:hover {
+  @apply border-white/20 bg-white/5;
+}
+
+.privacy-card__option--selected {
+  @apply border-primary/50 bg-primary/10;
+}
+
+.privacy-card__option--selected:hover {
+  @apply border-primary/60 bg-primary/10;
+}
+
+.privacy-card__option input {
+  @apply sr-only;
+}
+
+.privacy-card__option:has(input:focus-visible) {
+  @apply outline-2 outline-offset-2 outline-primary;
+}
+
+.privacy-card__option-icon {
+  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition;
+}
+
+.privacy-card__option--selected .privacy-card__option-icon {
+  @apply border-primary/20 bg-primary/15 text-primary;
+}
+
+.privacy-card__option-content {
+  @apply flex min-w-0 flex-1 flex-col gap-1;
+}
+
+.privacy-card__option-title {
+  @apply text-sm font-semibold text-white;
+}
+
+.privacy-card__option-description {
+  @apply text-xs leading-relaxed text-gray-400;
+}
+
+.privacy-card__radio {
+  @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-white/20 transition;
+}
+
+.privacy-card__radio>span {
+  @apply h-2.5 w-2.5 scale-0 rounded-full bg-primary opacity-0 transition;
+}
+
+.privacy-card__option--selected .privacy-card__radio {
+  @apply border-primary;
+}
+
+.privacy-card__option--selected .privacy-card__radio>span {
+  @apply scale-100 opacity-100;
+}
+
+.privacy-card__message {
+  @apply flex items-start gap-2.5 rounded-xl border px-4 py-3 text-sm leading-relaxed;
+}
+
+.privacy-card__message svg {
+  @apply mt-0.5 shrink-0;
+}
+
+.privacy-card__message--error {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+.privacy-card__message--success {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+.privacy-card__actions {
+  @apply flex items-center justify-end;
+}
+
+.privacy-card__actions .settings-save {
+  @apply inline-flex min-w-[150px] items-center justify-center gap-2;
+}
+
+.privacy-card__spinner {
+  @apply animate-spin;
+}
+
+@media (max-width: 600px) {
+  .privacy-card {
+    @apply p-5;
+  }
+
+  .privacy-card .settings-card__header {
+    @apply items-start;
+  }
+
+  .privacy-card .settings-badge {
+    @apply hidden;
+  }
+
+  .privacy-card__option {
+    @apply items-start p-3.5;
+  }
+
+  .privacy-card__option-icon {
+    @apply h-10 w-10;
+  }
+
+  .privacy-card__option-description {
+    @apply text-[11px];
+  }
+
+  .privacy-card__radio {
+    @apply mt-1;
+  }
+
+  .privacy-card__actions {
+    @apply justify-stretch;
+  }
+
+  .privacy-card__actions .settings-save {
+    @apply w-full;
+  }
+}
+
+/*Login Security Card*/
+.login-security-card__title {
+  @apply flex items-center gap-3;
+}
+
+.login-security-card__icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary;
+}
+
+.login-security-card__status {
+  @apply flex items-center justify-between gap-5 rounded-2xl border border-white/10 bg-black/20 p-4;
+}
+
+.login-security-card__status-info {
+  @apply flex min-w-0 items-center gap-3;
+}
+
+.login-security-card__status-icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl;
+}
+
+.login-security-card__status-icon--enabled {
+  @apply border border-emerald-500/20 bg-emerald-500/10 text-emerald-400;
+}
+
+.login-security-card__status-icon--disabled {
+  @apply border border-red-500/20 bg-red-500/10 text-red-400;
+}
+
+.login-security-card__status-info>div:last-child {
+  @apply flex min-w-0 flex-col gap-1;
+}
+
+.login-security-card__status-info strong {
+  @apply text-sm font-semibold text-white;
+}
+
+.login-security-card__status-info span {
+  @apply text-xs text-gray-500;
+}
+
+.login-security-card__toggle {
+  @apply inline-flex min-w-[100px] items-center justify-center gap-2 whitespace-nowrap;
+}
+
+.login-security-card__spinner {
+  @apply animate-spin;
+}
+
+.login-security-card__message {
+  @apply mt-4 flex items-start gap-2.5 rounded-xl border px-4 py-3 text-sm leading-relaxed;
+}
+
+.login-security-card__message svg {
+  @apply mt-0.5 shrink-0;
+}
+
+.login-security-card__message--error {
+  @apply border-red-500/20 bg-red-500/10 text-red-300;
+}
+
+.login-security-card__message--success {
+  @apply border-emerald-500/20 bg-emerald-500/10 text-emerald-300;
+}
+
+@media (max-width: 600px) {
+  .login-security-card {
+    @apply p-5;
+  }
+
+  .login-security-card .settings-card__header {
+    @apply items-start;
+  }
+
+  .login-security-card .settings-badge {
+    @apply hidden;
+  }
+
+  .login-security-card__status {
+    @apply items-stretch flex-col;
+  }
+
+  .login-security-card__toggle {
+    @apply w-full;
+  }
+}
+
+/* data download card*/
+.data-download-card__title {
+  @apply flex items-start gap-3;
+}
+
+.data-download-card__icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary;
+}
+
+.data-download-card__body {
+  @apply flex flex-col gap-4;
+}
+
+.data-download-card__note {
+  @apply max-w-2xl text-sm leading-6 text-gray-400;
+}
+
+.data-download-card__button {
+  @apply inline-flex w-fit items-center gap-2;
+}
+
+.data-download-card__spinner {
+  @apply animate-spin;
+}
+
+.data-download-card__message {
+  @apply mt-4 flex items-center gap-2 rounded-xl px-4 py-3 text-sm;
+}
+
+.data-download-card__message--error {
+  @apply bg-red-500/10 text-red-400;
+}
+
+.data-download-card__message--success {
+  @apply bg-green-500/10 text-green-400;
+}
+
+.data-download-card__action {
+  @apply flex flex-col items-start gap-2;
+}
+
+.data-download-card__progress {
+  @apply text-xs text-gray-500;
+}

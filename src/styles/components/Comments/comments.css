@@ -1,0 +1,681 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/* ================================
+   COMMENT SYSTEM
+================================ */
+
+
+/* Main wrapper */
+
+.comment-section {
+
+    @apply mt-12 rounded-3xl border border-white/10 bg-secondary/80 p-6 shadow-xl w-full mx-5 max-w-6xl;
+
+}
+
+
+
+.comment-section button {
+    @apply cursor-pointer;
+}
+
+
+
+/* Header */
+
+.comment-header {
+
+    @apply mb-8;
+
+}
+
+
+.comment-header span {
+
+    @apply text-xs font-bold tracking-[0.25em] text-primary;
+
+}
+
+
+.comment-header h2 {
+
+    @apply mt-2 text-3xl font-bold text-white;
+
+}
+
+
+.comment-header p {
+
+    @apply mt-2 text-sm text-gray;
+
+}
+
+
+/* Toolbar */
+.comments-toolbar {
+    @apply mb-6 flex items-center gap-2 text-sm;
+}
+
+.comments-toolbar span {
+    @apply mr-2 text-gray;
+}
+
+.comments-toolbar button {
+    @apply rounded-full border border-white/10 px-4 py-2 text-gray transition-all duration-200 hover:border-primary/40 hover:text-white;
+}
+
+.comments-toolbar button.active {
+    @apply border-primary bg-primary/10 text-primary;
+}
+
+
+/* ================================
+   COMMENT FORM
+================================ */
+
+.comment-error {
+    @apply text-red-600;
+}
+
+
+.comment-form {
+
+    @apply mb-10 space-y-4 rounded-3xl border border-white/10 bg-sort p-5;
+
+}
+
+
+
+.comment-form input,
+.comment-form textarea,
+.reply-form input,
+.reply-form textarea {
+
+
+    @apply w-full rounded-2xl border border-white/10 bg-secondary px-4 py-3 text-sm text-white outline-none transition placeholder:text-gray;
+
+
+}
+
+
+
+.comment-form textarea,
+.reply-form textarea {
+
+    @apply min-h-[120px] resize-none;
+
+}
+
+
+
+.comment-form input:focus,
+.comment-form textarea:focus,
+.reply-form input:focus,
+.reply-form textarea:focus {
+
+    @apply border-primary/60 ring-2 ring-primary/20;
+
+}
+
+
+
+
+
+
+/* ================================
+   GENERAL BUTTONS
+================================ */
+
+
+.comment-form button,
+.reply-form button,
+.report-modal button {
+
+
+    @apply rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50;
+
+}
+
+
+
+
+
+/* ================================
+   COMMENT CARD
+================================ */
+
+
+.comment-card {
+
+    @apply rounded-3xl border border-white/10 bg-sort p-5 transition hover:border-primary/30;
+
+}
+
+
+
+.comment-card+.comment-card {
+
+    @apply mt-4;
+
+}
+
+
+
+
+
+/* Header */
+
+
+.comment-top {
+
+    @apply flex items-center gap-3;
+
+}
+
+
+
+.comment-avatar {
+
+    @apply flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-lg font-bold text-primary;
+
+}
+
+
+.comment-user{
+    @apply flex flex-col gap-1 text-xs text-gray;
+}
+
+
+
+.comment-user h3 {
+
+    @apply text-sm font-bold text-white;
+
+}
+
+
+/* Content */
+
+
+.comment-content {
+    @apply my-4 whitespace-pre-wrap break-all text-sm w-full leading-relaxed text-white/90;
+}
+
+
+
+
+
+
+/* ================================
+   COMMENT ACTIONS
+================================ */
+
+
+.comment-actions {
+
+    @apply flex flex-wrap items-center gap-3 border-t border-white/10 pt-3;
+
+}
+
+
+.comment-actions button {
+
+
+    @apply rounded-lg px-3 py-1.5 text-xs font-semibold text-gray transition hover:bg-white/10 hover:text-white;
+
+}
+
+.comment-action-btn {
+    @apply flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-gray transition-all duration-200 hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.comment-action-btn.active {
+    @apply bg-primary/15 text-primary;
+}
+
+.comment-action-btn span {
+    @apply min-w-4 text-center;
+}
+
+
+
+
+
+/* ================================
+   REPLIES
+================================ */
+
+
+.comment-thread {
+
+    @apply mt-5;
+
+}
+
+
+
+.reply-toggle {
+
+
+    @apply mb-4 text-xs font-bold text-primary transition hover:underline;
+
+}
+
+
+
+.comment-replies {
+
+
+    @apply ml-5 space-y-4 border-l border-white/10 pl-5;
+
+}
+
+
+.comment-replies .comment-card {
+
+
+    @apply bg-secondary;
+
+}
+
+
+
+
+
+/* ================================
+   REPLY FORM
+================================ */
+
+
+.reply-form {
+
+    @apply mt-5 space-y-3 rounded-2xl border border-white/10 bg-secondary p-4;
+
+}
+
+
+
+.reply-buttons {
+
+    @apply flex gap-3;
+
+}
+
+
+
+.reply-buttons button:last-child {
+
+
+    @apply bg-white/10 text-white hover:bg-white/20;
+
+}
+
+
+
+
+.reply-error {
+
+    @apply rounded-xl bg-red-500/10 px-4 py-2 text-sm text-red-400;
+
+}
+
+
+
+
+
+/* ================================
+   TURNSTILE
+================================ */
+
+
+.cf-turnstile {
+
+
+    @apply my-3;
+
+}
+
+
+
+
+
+
+
+/* ================================
+   REPORT MODAL
+================================ */
+
+
+.report-overlay {
+
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm;
+
+}
+
+
+
+
+.report-modal {
+
+
+    @apply relative w-full max-w-md rounded-3xl border border-white/10 bg-secondary p-6 shadow-2xl;
+
+}
+
+
+
+.report-modal h2 {
+
+
+    @apply mb-5 text-2xl font-bold text-white;
+
+}
+
+
+
+
+.report-close {
+
+
+    @apply absolute right-4 top-4 bg-transparent text-gray hover:text-white;
+
+}
+
+
+
+
+
+.report-options {
+
+
+    @apply space-y-3;
+
+}
+
+
+
+
+.report-options label {
+
+
+    @apply flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-sort p-3 text-sm text-white transition hover:border-primary/50;
+
+}
+
+
+
+.report-options input {
+
+
+    @apply accent-primary;
+
+}
+
+
+
+
+.report-modal textarea {
+
+
+    @apply mt-4 min-h-[100px] w-full resize-none rounded-2xl border border-white/10 bg-sort p-4 text-sm text-white outline-none placeholder:text-gray;
+
+}
+
+
+
+
+
+.report-error {
+
+
+    @apply my-3 rounded-xl bg-red-500/10 p-3 text-sm text-red-400;
+
+}
+
+
+
+
+
+
+/* ================================
+   EMPTY / LOADING STATES
+================================ */
+
+
+.comments-list>p {
+
+
+    @apply py-8 text-center text-sm text-gray;
+
+}
+
+
+
+
+
+
+/* ================================
+   MOBILE
+================================ */
+
+
+@media (max-width:600px) {
+
+
+    .comment-section {
+
+        @apply rounded-2xl p-4;
+
+    }
+
+
+
+    .comment-header h2 {
+
+        @apply text-2xl;
+
+    }
+
+
+
+    .comment-replies {
+
+        @apply ml-2 pl-3;
+
+    }
+
+
+
+    .comment-card {
+
+        @apply p-4;
+
+    }
+
+
+
+    .comment-actions {
+
+        @apply gap-2;
+
+    }
+
+
+
+}
+
+/* Load more buttton */
+.load-more-comments {
+    @apply mx-auto mt-8 flex items-center justify-center rounded-full bg-primary/10 border border-primary/30 px-7 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 active:scale-95 disabled:opacity-50;
+}
+
+.comment-section.is-loading {
+    @apply opacity-60 pointer-events-none select-none;
+}
+
+/* ================================
+   COMMENT LOADING
+================================ */
+
+
+.comment-loading {
+
+    @apply space-y-4 py-4;
+
+}
+
+
+.comment-loading p {
+
+    @apply text-center text-sm text-gray;
+
+}
+
+
+
+.comment-skeleton {
+
+    @apply h-28 w-full rounded-3xl border border-white/10 bg-sort animate-pulse;
+
+}
+
+.comments-empty {
+
+    @apply py-8 text-center text-sm text-gray;
+
+}
+
+
+.comments-end {
+
+    @apply py-6 text-center text-xs text-gray opacity-70;
+
+}
+
+.comments-toolbar-options {
+    @apply flex items-center gap-2;
+}
+
+.comment-form-meta {
+    @apply mt-2 flex items-center justify-between text-sm text-gray;
+}
+
+.comment-form-count {
+    @apply transition-colors;
+}
+
+.comment-form-count.is-limit {
+    @apply font-semibold text-primary;
+}
+
+/*Comment Card Options*/
+.comment-overflow {
+    @apply relative;
+}
+
+.comment-overflow button {
+    @apply text-black hover:bg-primary;
+}
+
+.comment-overflow-trigger {
+    @apply flex items-center justify-center rounded-full text-xl font-bold transition-all duration-150 hover:bg-secondary text-black active:scale-95;
+}
+
+.comment-overflow-menu {
+    @apply absolute right-0 top-[calc(100%+6px)] z-50 flex min-w-[180px] flex-col rounded-xl border border-secondary bg-white text-white p-1 shadow-2xl;
+}
+
+.comment-overflow-item {
+    @apply flex h-10 w-full items-center gap-2 rounded-lg px-3 text-left text-sm font-medium text-black transition-all duration-150 hover:bg-blue-400 active:scale-[0.98];
+}
+
+.comment-overflow-icon {
+    @apply h-4 w-4 fill-black transition-colors duration-150;
+}
+
+.comment-overflow-item:hover .comment-overflow-icon {
+    @apply fill-white;
+}
+
+.comment-overflow-item-delete {
+    @apply text-red-400 hover:bg-red-500/10 hover:text-red-300;
+}
+
+/* .comment-overflow-menu {
+  @apply flex min-w-[180px] flex-col rounded-xl border border-secondary bg-primary p-1 shadow-2xl;
+}
+
+.comment-overflow-item {
+  @apply flex h-10 items-center gap-2 rounded-lg px-3 text-sm transition-colors hover:bg-secondary;
+} */
+
+/*delete modal*/
+.comment-modal-overlay {
+    @apply fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-sm;
+}
+
+
+.comment-delete-modal {
+    @apply w-[90%] max-w-sm rounded-2xl border border-secondary bg-secondary p-6 text-center shadow-2xl;
+}
+
+
+.comment-delete-icon {
+    @apply mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-500/10 text-xl;
+}
+
+
+.comment-delete-modal h2 {
+    @apply text-lg font-semibold text-white;
+}
+
+
+.comment-delete-modal p {
+    @apply mt-2 text-sm leading-relaxed text-gray;
+}
+
+
+.comment-delete-actions {
+    @apply mt-6 flex gap-3;
+}
+
+
+.comment-delete-cancel {
+    @apply flex-1 rounded-xl bg-secondary px-4 py-2 text-sm font-medium text-white transition hover:opacity-90;
+}
+
+
+.comment-delete-confirm {
+    @apply flex-1 rounded-xl bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+/*edit comment form*/
+.comment-edit-form {
+    @apply mt-3 flex flex-col gap-3;
+}
+
+
+.comment-edit-input {
+    @apply min-h-[100px] w-full resize-y rounded-xl border border-secondary  px-4 py-3 text-sm text-white outline-none transition focus:border-gray;
+}
+
+
+.comment-edit-actions {
+    @apply flex justify-end gap-2;
+}
+
+
+.comment-edit-cancel {
+    @apply rounded-lg px-4 py-2 text-sm font-medium text-gray transition hover:bg-secondary hover:text-white disabled:opacity-50;
+}
+
+
+.comment-edit-submit {
+    @apply rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+
+.comment-edit-error {
+    @apply text-sm text-red-400;
+}

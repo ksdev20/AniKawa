@@ -90,6 +90,7 @@ class AnimeCatalogClass {
     const animeBySlug = new Map<string, AnimeRecord>();
 
     const episodeByKey = new Map<string, EpisodeRecord>();
+    const episodeByNanoid = new Map<string, EpisodeRecord>();
 
     const genreMap = new Map<string, AnimeRecord[]>();
 
@@ -168,19 +169,16 @@ class AnimeCatalogClass {
       for (let i = 0; i < episodes.length; i++) {
         const episode = episodes[i];
 
-        episodeByKey.set(
-          `${anime.nanoid}:${episode.slug}`,
+        const record: EpisodeRecord = {
+          anime,
+          episode,
+          previousEpisode: i > 0 ? episodes[i - 1] : null,
+          nextEpisode: i < episodes.length - 1 ? episodes[i + 1] : null,
+        };
 
-          {
-            anime,
+        episodeByKey.set(`${anime.nanoid}:${episode.slug}`, record);
 
-            episode,
-
-            previousEpisode: i > 0 ? episodes[i - 1] : null,
-
-            nextEpisode: i < episodes.length - 1 ? episodes[i + 1] : null,
-          },
-        );
+        episodeByNanoid.set(`${anime.nanoid}:${episode.nanoid}`, record);
       }
 
       /*
@@ -229,6 +227,8 @@ class AnimeCatalogClass {
 
       episodeByKey,
 
+      episodeByNanoid,
+
       genreMap,
 
       latestAnime,
@@ -273,6 +273,14 @@ class AnimeCatalogClass {
     return this.indexes.animeById.get(id) ?? null;
   }
 
+  public async getAnimeByIds(ids: string[]) {
+    await this.ensureInitialized();
+
+    return ids
+      .map((id) => this.indexes.animeById.get(id) ?? null)
+      .filter((record): record is AnimeRecord => record !== null);
+  }
+
   public async getAnimeBySlug(slug: string) {
     await this.ensureInitialized();
 
@@ -294,6 +302,40 @@ class AnimeCatalogClass {
 
     return this.indexes.episodeByKey.get(`${animeId}:${episodeSlug}`) ?? null;
   }
+
+  public async getEpisodeByNanoid(animeId: string, episodeNanoid: string) {
+    await this.ensureInitialized();
+
+    return (
+      this.indexes.episodeByNanoid.get(`${animeId}:${episodeNanoid}`) ?? null
+    );
+  }
+
+  public async getEpisodesByNanoids(
+  items: Array<{
+    animeId: string;
+    episodeNanoid: string;
+  }>,
+) {
+  await this.ensureInitialized();
+
+  return items
+    .map(({ animeId, episodeNanoid }) => {
+      const record = this.indexes.episodeByNanoid.get(
+        `${animeId}:${episodeNanoid}`,
+      );
+
+      if (!record) {
+        return null;
+      }
+
+      return record;
+    })
+    .filter(
+      (record): record is EpisodeRecord =>
+        record !== null,
+    );
+}
 
   /* ============================================================================
    * Genres

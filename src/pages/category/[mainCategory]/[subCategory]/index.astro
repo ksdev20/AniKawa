@@ -1,6 +1,5 @@
 ---
 import "../../../../styles/category/subcat.css";
-import "../../../../styles/lists/n-p-a-l.css";
 import { getFilteredAnime } from "../../../../filters/animeFilterMainTmdbVer.ts";
 import AnimeCardStatic from "../../../../components/AnimeCard/AnimeCardStaticTmdbVer.astro";
 import SEOHead from "../../../../components/SEO/SEOHead.astro";
@@ -53,7 +52,7 @@ const { pageTitle, pageDescription, keywords, pageUrl, backdrop } =
       </header>
       <ul class="new-pop-anime-list">
         {
-          finalArray.map((anime, i) => (
+          finalArray.map((anime) => (
             <AnimeCardStatic anime={anime} forNewPop={true} />
           ))
         }

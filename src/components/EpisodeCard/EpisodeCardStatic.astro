@@ -1,53 +1,147 @@
 ---
-import './episode-cardtw.css';
-import EDelBtn from './EcDatabaseContact/EDelBtn';
-import { Icon } from '../../icons/icons';
+import "./episode-cardtw.css";
+import { Icon } from "../../icons/icons";
+
 const epData = Astro.props.epData as any;
-const forHistory = Astro.props.forHistory as boolean ?? false;
 
 if (!epData) return null;
 
 const {
-    animeTitle = "Anime Title N/A",
-    language = "Language N/A",
-    animenanoid,
-    slug,
-    epNum,
-    nanoid
-} = epData ?? {};
+  animeTitle = "Anime Title",
+  language = "Sub",
+  animenanoid,
+  slug,
+  epNum,
+  nanoid,
+  badge,
+  air_date,
+  runtime,
+  arc,
+  watchReason,
+  highlights = [],
+  featuredCharacters = [],
+  vote_average,
+} = epData;
 
-if (slug === undefined) return null;
+if (!slug) return null;
+const airDate = air_date
+  ? new Date(air_date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
+  : null;
 
 const {
-    titleAlt = `Episode ${epNum}`,
-    img = epData?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
-    description = "No description",
-} = epData ?? {};
+  titleAlt = `Episode ${epNum}`,
+  img = epData?.ytThumbnail ?? "/episode-thumbnail-alt-2.png",
+} = epData;
 ---
 
 <li class="episode-card">
-    <article class="episode-card-first">
-        <img class="episode-card-image" src={img} loading="lazy" decoding="async" alt={`Cover of ${titleAlt}`}/>
-        <h3 class="anime-title">{animeTitle}</h3>
-        <h2 class="episode-number-name">{titleAlt}</h2>
-        <p class="language-section">{language}</p>
+  <article class="episode-card-first">
+    <!-- NORMAL STATE -->
+    <div class="episode-normal">
+      <div class="episode-image-wrapper">
+        <img
+          class="episode-card-image"
+          src={img}
+          loading="lazy"
+          decoding="async"
+          alt={`Cover of ${titleAlt}`}
+        />
 
-        <div class="episode-card-hover">
-            <div class="anime-title">{animeTitle}</div>
-            <div class="episode-number-name">{titleAlt}</div>
-            <p
-                class="episode-number-name episode-description"
-                set:html={description}
-            >
-            </p>
-            <div class="episode-play-btn">
-                <Icon name='play' size={10} color='#8c52ff' />
-                PLAY
-            </div>
+        <div class="episode-image-top">
+          {badge && <span class="episode-badge">{badge}</span>}
+
+          {vote_average > 0 && <span class="episode-rating">★ {vote_average}</span>}
         </div>
-        <a href={`/episode/${animenanoid}/${nanoid}/${slug}`} class="episode-card-link"> <div class="sr-only">Go to {titleAlt} of {animeTitle}</div></a>
-    </article>
-    {forHistory && (
-        <EDelBtn animenanoid={animenanoid} slug={slug} client:load />
-    )}
+      </div>
+
+      <div class="episode-content">
+        <h3 class="anime-title">
+          {animeTitle}
+        </h3>
+
+        <h2 class="episode-number-name">
+          {titleAlt}
+        </h2>
+
+        <div class="episode-meta">
+          {airDate && <span>📅 {airDate}</span>}
+
+          {runtime && <span>⏱ {runtime}</span>}
+
+          <span class="language-section">
+            {language}
+          </span>
+        </div>
+
+        {
+          highlights.length > 0 && (
+            <div class="highlight-list">
+              {highlights.slice(0, 3).map((item: string) => (
+                <span class="highlight-chip">{item}</span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <!-- HOVER STATE -->
+
+    <div class="episode-card-hover">
+      <h3 class="anime-title">
+        {animeTitle}
+      </h3>
+
+      <h2 class="episode-number-name">
+        {titleAlt}
+      </h2>
+
+      {
+        watchReason && (
+          <div class="watch-reason">
+            <span>Why Watch?</span>
+
+            <p>{watchReason}</p>
+          </div>
+        )
+      }
+
+      {arc && <div class="hover-info">📖 Arc: {arc}</div>}
+
+      {
+        featuredCharacters.length > 0 && (
+          <div class="hover-info">
+            👥 Featured Characters: {featuredCharacters.slice(0, 3).join(" • ")}
+          </div>
+        )
+      }
+
+      <div class="highlight-list">
+        {
+          highlights.map((item: string) => (
+            <span class="highlight-chip">{item}</span>
+          ))
+        }
+      </div>
+
+      <div class="episode-play-btn">
+        <Icon name="play" size={24} color="#8c52ff" />
+
+        Watch Episode
+      </div>
+    </div>
+
+    <a
+      href={`/episode/${animenanoid}/${nanoid}/${slug}`}
+      class="episode-card-link"
+    >
+      <div class="sr-only">
+        Go to {titleAlt} of {animeTitle}
+      </div>
+    </a>
+  </article>
 </li>

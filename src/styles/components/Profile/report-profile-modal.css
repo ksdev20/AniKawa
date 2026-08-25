@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+.report-modal__overlay {
+    @apply fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm;
+}
+
+.report-modal__content {
+    @apply fixed left-1/2 top-1/2 z-[101] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-primary/15 bg-secondary p-6 text-white shadow-2xl outline-none;
+}
+
+.report-modal__header {
+    @apply flex items-start justify-between gap-4;
+}
+
+.report-modal__title-wrapper {
+    @apply flex items-start gap-3;
+}
+
+.report-modal__icon {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary;
+}
+
+.report-modal__title {
+    @apply text-lg font-semibold text-white;
+}
+
+.report-modal__description {
+    @apply mt-1 text-sm leading-relaxed text-white/55;
+}
+
+.report-modal__close {
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-white/50 transition-colors hover:bg-white/5 hover:text-white disabled:pointer-events-none disabled:opacity-40;
+}
+
+.report-modal__form {
+    @apply mt-6 space-y-5;
+}
+
+.report-modal__field {
+    @apply space-y-2;
+}
+
+.report-modal__label {
+    @apply flex items-center justify-between text-sm font-medium text-white/80;
+}
+
+.report-modal__optional {
+    @apply text-xs font-normal text-white/40;
+}
+
+.report-modal__select {
+    @apply h-11 w-full rounded-xl border border-white/10 bg-white/5 px-3 text-sm text-white outline-none transition-colors focus:border-primary/50 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.report-modal__select option {
+    @apply bg-secondary text-white;
+}
+
+.report-modal__textarea {
+    @apply min-h-24 w-full resize-none rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/30 transition-colors focus:border-primary/50 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.report-modal__counter {
+    @apply text-right text-xs text-white/35;
+}
+
+.report-modal__actions {
+    @apply flex justify-end gap-3 pt-1;
+}
+
+.report-modal__button {
+    @apply inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.report-modal__button--secondary {
+    @apply border border-white/10 bg-white/5 text-white/75 hover:bg-white/10 hover:text-white;
+}
+
+.report-modal__button--primary {
+    @apply bg-primary text-white shadow-lg shadow-primary/20 hover:-translate-y-0.5 hover:opacity-90;
+}

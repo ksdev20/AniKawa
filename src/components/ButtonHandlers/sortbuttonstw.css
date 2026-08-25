@@ -14,7 +14,7 @@
 }
 
 .part {
-    @apply p-0 flex-col select-none relative block z-10 cursor-pointer;
+    @apply p-0 flex-col select-none relative block z-5 cursor-pointer;
 }
 
 .filter-name {

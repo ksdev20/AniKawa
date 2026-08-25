@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+.login-overlay {
+  @apply fixed inset-0 z-[50] flex items-center justify-center bg-black/40 backdrop-blur-sm;
+}
+
+
+.login-box {
+  @apply relative w-[90%] max-w-md bg-secondary rounded-xl shadow-2xl p-8;
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-zoom {
+  animation: zoom 0.25s ease-out;
+}
+
+.login-close {
+  @apply absolute top-3 right-3 text-gray-400 hover:text-gray-200 cursor-pointer transition-colors;
+}
+
+.login-title {
+  @apply text-white text-2xl font-bold mb-6 text-center;
+}
+
+.login-label {
+  @apply text-gray text-sm mb-1 block;
+}
+
+.login-input {
+  @apply w-full rounded-lg border border-sort bg-[#1c1c1c] text-white p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-primary;
+}
+
+.login-btn {
+  @apply w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-[#7a3fff] transition-all;
+}
+
+.login-divider {
+  @apply text-gray text-center my-4 font-medium;
+}
+
+.login-social {
+  @apply flex justify-center gap-4;
+}
+
+.login-social-btn {
+  @apply flex-1 bg-sort text-white py-2 rounded-lg hover:bg-gray-700 transition-all;
+}
+
+.login-social-btn.google {
+  @apply bg-red-600 hover:bg-red-700;
+}
+
+.login-social-btn.discord {
+  @apply bg-blue-600 hover:bg-blue-700;
+}
+
+.login-footer {
+  @apply text-gray text-sm text-center mt-6;
+}
+
+.login-footer a {
+  @apply text-primary font-medium hover:underline;
+}
+
+/*error-loading states*/
+.error-banner {
+  @apply bg-red-100 text-red-700 p-3 rounded-md mb-4 text-sm;
+}
+
+.input-error {
+  @apply border-2 border-red-600 bg-red-50 text-red-700 placeholder-red-400 focus:border-red-700 focus:ring-red-700;
+}
+
+.loader {
+  @apply border-2 border-gray-200 border-t-2 border-blue-600 rounded-full w-4 h-4 inline-block animate-spin;
+}
+
+/*cloudflare turnstile*/
+.cf-turnstile{
+  @apply w-full my-5 flex items-center justify-center;
+}
+
+.loading-wrapper{
+  @apply flex items-center justify-center gap-2;
+}

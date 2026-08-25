@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@config '@tw-config';
 
 .hs-slider {
     @apply relative flex overflow-hidden pointer-events-auto w-full select-none;
@@ -20,25 +21,26 @@
     @apply absolute z-[5] flex w-full h-full py-[80px] bg-transparent;
 }
 
-.hs-anime-img{
-    @apply ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none border-3 border-transparent group-focus-visible:border-white;
+.hs-anime-img {
+    @apply relative ml-[100px] h-full w-auto object-cover object-top rounded-[24px] cursor-pointer select-none border-3 border-transparent group-focus-visible:border-white;
 }
 
-@media (max-width: 342px){
-    .hs-anime-img.mobile{
+@media (max-width: 342px) {
+    .hs-anime-img.mobile {
         display: block;
     }
-    .hs-anime-img.pc{
+
+    .hs-anime-img.pc {
         display: none;
     }
 }
 
-@media (min-width: 343px){
-    .hs-anime-img.mobile{
+@media (min-width: 343px) {
+    .hs-anime-img.mobile {
         display: none;
     }
 
-    .hs-anime-img.pc{
+    .hs-anime-img.pc {
         display: block;
     }
 }
@@ -56,12 +58,18 @@
 }
 
 .hs-title-img {
-    @apply w-[80%] h-auto max-w-[400px]  border-2 border-transparent group-focus-visible:border-white;
+    @apply w-[80%] h-auto max-w-[400px] border-2 border-transparent group-focus-visible:border-white;
 }
+
+
 
 @media (max-width: 600px) {
     .hs-title-img {
-        display: none;
+        @apply bg-black/50 backdrop-blur-2xl p-2 rounded-2xl max-w-[250px];
+    }
+
+    .title-wrapper-hs {
+        @apply flex w-full items-center justify-center;
     }
 }
 
@@ -89,11 +97,11 @@
 }
 
 .hero-button-section {
-    @apply flex items-center gap-[8px] mt-[32px];
+    @apply flex items-center gap-5 mt-3;
 }
 
 .start-watching-btn {
-    @apply flex items-center justify-center bg-[#8c52ff] text-[black] font-[600] text-[15px] w-auto h-10 pr-[5px] cursor-pointer;
+    @apply flex items-center justify-center bg-[#7C3AED] text-white font-[600] text-[15px] w-auto h-15 pr-[5px] cursor-pointer rounded-3xl;
 }
 
 .start-watching-btn:hover {
@@ -105,18 +113,26 @@
 }
 
 .watchlist-btn {
-    @apply flex justify-center items-center bg-transparent h-10 w-10 cursor-pointer border-2 border-[#8c52ff];
+    @apply flex items-center justify-center h-11 w-11 sm:h-12 sm:w-12 rounded-xl bg-secondary/70 backdrop-blur-xl border border-white/15 shadow-lg cursor-pointer transition-all duration-300;
 }
 
 .watchlist-btn:hover {
-    border-color: #794cd3;
+    @apply -translate-y-0.5 bg-primary/50 border-primary/50 shadow-xl;
+}
+
+.watchlist-btn:hover svg {
+    @apply fill-white
+}
+
+.hero-action-watchlist {
+    @apply h-5 w-5 fill-white/90 transition-all duration-300;
 }
 
 .watchlist-btn:hover .hero-action-watchlist {
-    fill: #8c52ff;
+    @apply fill-primary;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .hero-section-root {
         @apply w-full h-[130vw] max-h-[1000px];
     }
@@ -166,7 +182,7 @@
     }
 }
 
-@media (min-width: 601px) and (max-width: 1000px) {
+@media (min-width: 701px) and (max-width: 1000px) {
     .hero-description {
         display: none;
     }
@@ -200,4 +216,386 @@
 
 .hero-play {
     @apply h-10 w-[220px];
+}
+
+.anime-meta-widget {
+    @apply flex flex-col gap-3 max-w-full items-center md:items-start;
+}
+
+
+/* universal readability */
+
+.review-widget,
+.genre-pill {
+    @apply backdrop-blur-xl bg-black/30 border border-white/20 shadow-lg;
+}
+
+
+/* rating */
+
+.review-widget {
+    @apply flex items-center gap-2 w-fit rounded-full px-3 py-1.5 my-3;
+}
+
+.review-widget .stars {
+    @apply flex gap-0.5 text-sm text-primary drop-shadow-lg;
+}
+
+.review-widget .rating-score {
+    @apply text-sm font-semibold text-white drop-shadow-lg;
+}
+
+
+/* genres */
+
+.genre-widget {
+    @apply flex flex-wrap gap-2;
+}
+
+.genre-pill {
+    @apply rounded-full px-3 py-1 text-xs font-medium text-white tracking-wide drop-shadow-lg transition-all duration-300;
+}
+
+.genre-pill:hover {
+    @apply bg-primary/40;
+}
+
+
+/* info row */
+
+.anime-details {
+    @apply flex items-center flex-wrap gap-2 text-sm font-medium p-1.5 sm:p-2 md:p-3 rounded-2xl text-white/80 bg-black/50 backdrop-blur-sm drop-shadow-lg sm:mb-3;
+}
+
+
+/* mobile */
+
+@media (max-width: 700px) {
+
+    .anime-meta-widget {
+        @apply gap-2;
+    }
+
+
+    .review-widget {
+        @apply px-2.5 py-1;
+    }
+
+
+    .review-widget .stars {
+        @apply text-xs;
+    }
+
+
+    .review-widget .rating-score {
+        @apply text-xs;
+    }
+
+
+    .genre-widget {
+        @apply gap-1.5;
+    }
+
+
+    .genre-pill {
+        @apply px-2.5 py-1 text-[10px];
+    }
+
+
+    .anime-details {
+        @apply text-xs;
+    }
+
+}
+
+
+/* very small screens */
+
+@media (max-width: 380px) {
+
+    .anime-details .status {
+        @apply hidden;
+    }
+
+
+    .genre-pill:nth-child(n+3) {
+        @apply hidden;
+    }
+
+}
+
+.verdict-widget {
+    @apply hidden lg:flex items-start gap-5 relative max-w-2xl max-h-lvh overflow-hidden text-clip w-fit rounded-2xl p-2 sm:p-5 bg-black/35 backdrop-blur-xl border border-white/15 shadow-xl;
+}
+
+@media (min-width: 1020px) and (max-width: 1100px) {
+    .verdict-widget {
+        display: none;
+    }
+}
+
+
+/* Header */
+
+.verdict-header {
+    @apply flex items-center gap-2 mb-3;
+}
+
+
+.verdict-icon {
+    @apply text-lg drop-shadow-lg;
+}
+
+
+.verdict-title {
+    @apply text-sm font-bold uppercase tracking-[0.15em] text-primary drop-shadow-lg;
+}
+
+
+/* Description */
+
+.verdict-text {
+    @apply m-0 text-base leading-relaxed font-medium text-white drop-shadow-lg;
+}
+
+
+/* Mobile */
+
+@media (max-width:700px) {
+
+    .verdict-widget {
+        @apply rounded-xl p-4;
+    }
+
+
+    .verdict-title {
+        @apply text-xs;
+    }
+
+
+    .verdict-text {
+        @apply text-sm;
+    }
+
+}
+
+.verdict-widget::before {
+    content: "";
+    @apply absolute left-0 top-5 h-8 w-1 rounded-full bg-primary;
+}
+
+.hero-button-section .wrapper {
+    @apply flex items-center justify-center;
+}
+
+
+.hero-button-section .cta {
+    @apply flex items-center justify-center gap-0 px-3 py-3 text-white font-semibold text-sm sm:text-base bg-[#7C3AED] cursor-pointer no-underline shadow-[6px_6px_0_#000] transition-all duration-500;
+
+    transform: skewX(-15deg);
+}
+
+
+.hero-button-section .cta:focus {
+    @apply outline-none;
+}
+
+
+.hero-button-section .cta:hover {
+    @apply shadow-[10px_10px_0_#fbc638];
+}
+
+
+/* Text + SVG wrapper */
+
+.hero-button-section .cta span {
+    transform: skewX(15deg);
+}
+
+
+.hero-button-section .cta span:nth-child(2) {
+    @apply flex items-center justify-center w-5 ml-5 transition-all duration-500;
+}
+
+
+.hero-button-section .cta:hover span:nth-child(2) {
+    @apply ml-9;
+}
+
+
+/* SVG */
+
+.hero-button-section svg {
+    @apply w-6 h-6 sm:w-7 sm:h-7;
+}
+
+
+.hero-button-section path.one {
+    transition: transform .4s ease;
+    transform: translateX(-60%);
+}
+
+
+.hero-button-section path.two {
+    transition: transform .5s ease;
+    transform: translateX(-30%);
+}
+
+
+.hero-button-section .cta:hover path.one {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite .6s;
+}
+
+
+.hero-button-section .cta:hover path.two {
+    transform: translateX(0%);
+    animation: color_anim 1s infinite .4s;
+}
+
+
+.hero-button-section .cta:hover path.three {
+    animation: color_anim 1s infinite .2s;
+}
+
+
+
+@keyframes color_anim {
+
+    0% {
+        fill: white;
+    }
+
+    50% {
+        fill: #fbc638;
+    }
+
+    100% {
+        fill: white;
+    }
+
+}
+
+
+/* Mobile optimization */
+
+@media (max-width:700px) {
+
+    .hero-button-section .cta {
+        @apply px-3 py-2.5 text-sm gap-0 shadow-[4px_4px_0_#000];
+    }
+
+
+    .hero-button-section .cta:hover {
+        @apply shadow-[7px_7px_0_#fbc638];
+    }
+
+
+    .hero-button-section .cta span:nth-child(2) {
+        @apply ml-3;
+    }
+
+
+    .hero-button-section .cta:hover span:nth-child(2) {
+        @apply ml-6;
+    }
+
+
+    .hero-button-section svg {
+        @apply w-5 h-5;
+    }
+
+}
+
+
+/* very small devices */
+
+@media (max-width:380px) {
+
+    .hero-button-section .cta {
+        @apply px-2 py-2 text-xs;
+    }
+
+
+    .hero-button-section svg {
+        @apply w-4 h-4;
+    }
+
+}
+
+/*why watch section*/
+.why-watch {
+    @apply hidden xl:block my-3 rounded-xl border border-white/10 bg-sort/80 backdrop-blur-lg p-5 shadow-lg;
+}
+
+.why-watch-title {
+    @apply mb-4 text-lg font-bold text-white;
+}
+
+.why-watch-list {
+    @apply flex flex-col gap-3;
+}
+
+.why-watch-item {
+    @apply flex items-start gap-3 text-white/85 text-sm leading-relaxed;
+}
+
+.why-watch-icon {
+    @apply text-primary font-bold shrink-0;
+}
+
+@media (max-width: 600px) {
+
+    .why-watch {
+        @apply p-4;
+    }
+
+    .why-watch-title {
+        @apply mb-3 text-base;
+    }
+
+    .why-watch-item {
+        @apply gap-2 text-xs;
+    }
+
+}
+.anime-badge {
+  @apply absolute z-10 top-5 right-5 sm:right-1 sm:top-1 inline-flex items-center
+
+    w-fit
+
+    px-3 py-1.5
+    sm:px-4 sm:py-2
+
+    rounded-full
+
+    bg-primary/90
+    backdrop-blur-xl
+
+    border border-white/20
+
+    text-white
+    font-semibold
+
+    text-xs
+    sm:text-sm
+
+    shadow-lg shadow-primary/30
+
+    transition-all duration-300;
+}
+
+
+.anime-badge:hover {
+  @apply scale-105;
+}
+
+
+@media(max-width:600px){
+
+  .anime-badge {
+    @apply px-2.5 py-1
+      text-[11px];
+  }
+
 }

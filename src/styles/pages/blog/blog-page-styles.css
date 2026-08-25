@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+.blog-article-content {
+    @apply mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-0 text-sm sm:text-base leading-relaxed sm:leading-loose text-white;
+}
+
+/* =========================
+   HEADINGS (Responsive Scale)
+========================= */
+
+.blog-article-content h1 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-bold mt-10 mb-5 leading-tight text-white;
+}
+
+.blog-article-content h2 {
+    @apply text-xl sm:text-2xl lg:text-3xl font-semibold mt-8 mb-4 leading-snug text-white;
+}
+
+.blog-article-content h3 {
+    @apply text-base sm:text-lg lg:text-xl font-semibold mt-6 mb-3 text-white;
+}
+
+.blog-article-content h4 {
+    @apply text-base sm:text-lg font-medium mt-5 mb-2 text-white;
+}
+
+/* =========================
+   PARAGRAPHS
+========================= */
+
+.blog-article-content p {
+    @apply my-5 text-white;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.blog-article-content a {
+    @apply text-white hover:text-white underline underline-offset-4 transition-colors;
+}
+
+/* =========================
+   LISTS
+========================= */
+
+.blog-article-content ul {
+    @apply list-disc pl-6 sm:pl-8 my-5 space-y-2 text-white;
+}
+
+.blog-article-content ol {
+    @apply list-decimal pl-6 sm:pl-8 my-5 space-y-2 text-white;
+}
+
+.blog-article-content li {
+    @apply leading-7;
+}
+
+/* =========================
+   BLOCKQUOTE
+========================= */
+
+.blog-article-content blockquote {
+    @apply border-l-4 border-gray-600 pl-4 sm:pl-6 italic text-white my-6;
+}
+
+/* =========================
+   CODE
+========================= */
+
+.blog-article-content code {
+    @apply bg-gray-800 text-white px-1 py-0.5 rounded text-sm;
+}
+
+.blog-article-content pre {
+    @apply bg-gray-900 text-gray-200 p-4 sm:p-5 rounded-lg overflow-x-auto my-6 text-sm;
+}
+
+/* =========================
+   HORIZONTAL RULE
+========================= */
+
+.blog-article-content hr {
+    @apply my-10 border-gray-700;
+}
+
+/* =========================
+   IMAGES (Responsive)
+========================= */
+
+.blog-article-content img {
+    @apply rounded-lg my-6 mx-auto w-full max-w-full;
+}
+
+/* =========================
+   TABLES (Responsive feel)
+========================= */
+
+.blog-article-content table {
+    @apply w-full my-6 text-sm border-collapse;
+}
+
+.blog-article-content th {
+    @apply bg-gray-800 text-left border border-gray-700 px-3 py-2;
+}
+
+.blog-article-content td {
+    @apply border border-gray-800 px-3 py-2;
+}
+
+
+.prose {
+    color: white;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose p,
+.prose li,
+.prose strong,
+.prose a {
+    color: white;
+}

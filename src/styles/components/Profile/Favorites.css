@@ -1,0 +1,237 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+/*
+ * ----------------------------------------------------------------------
+ * Favorites
+ * ----------------------------------------------------------------------
+ */
+.favorites {
+    @apply flex w-full flex-col gap-8;
+}
+
+.favorites__section {
+    @apply min-w-0;
+}
+
+.favorites__section-header {
+    @apply mb-4 flex items-center gap-2;
+}
+
+.favorites__section-title {
+    @apply text-lg font-bold text-white;
+}
+
+.favorites__section-count {
+    @apply rounded-full bg-white/5 px-2 py-0.5 text-xs font-semibold text-white/40;
+}
+
+.favorites__grid {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Loading
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__loading {
+    @apply flex min-h-[220px] flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-secondary text-sm text-white/40;
+}
+
+.favorites__loading .loader {
+    @apply h-6 w-6;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Empty
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__empty {
+    @apply flex min-h-[220px] flex-col items-center justify-center rounded-2xl border border-border bg-secondary px-6 text-center;
+}
+
+.favorites__empty p {
+    @apply text-sm font-medium text-white/60;
+}
+
+.favorites__empty span {
+    @apply mt-1 text-xs text-white/30;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Grid
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__grid {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Favorite item
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__image {
+    @apply relative aspect-[2/3] w-full overflow-hidden bg-surfaceLight;
+}
+
+.favorites__image img {
+    @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.favorites__item:hover .favorites__image img {
+    @apply scale-[1.03];
+}
+
+.favorites__image-placeholder {
+    @apply flex h-full w-full items-center justify-center bg-surfaceLight text-3xl font-bold text-white/20;
+}
+
+.favorites__item {
+    @apply relative min-w-0 overflow-hidden rounded-2xl border border-border bg-secondary transition-all duration-200;
+}
+
+.favorites__item:hover {
+    @apply -translate-y-0.5 border-white/10 shadow-lg;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Item link
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__item-link {
+    @apply block min-w-0;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Image
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__image {
+    @apply relative aspect-[2/3] w-full overflow-hidden bg-surfaceLight;
+}
+
+.favorites__image img {
+    @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.favorites__item:hover .favorites__image img {
+    @apply scale-[1.03];
+}
+
+.favorites__image-placeholder {
+    @apply flex h-full w-full items-center justify-center bg-surfaceLight text-3xl font-bold text-white/20;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Info
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__info {
+    @apply min-w-0 px-3 pb-3.5 pt-2.5;
+}
+
+.favorites__title {
+    @apply truncate text-sm font-semibold leading-5 text-white;
+}
+
+.favorites__year {
+    @apply mt-0.5 block text-xs text-white/40;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Remove button
+ * ----------------------------------------------------------------------
+ */
+
+.favorites__remove {
+    @apply cursor-pointer pointer-events-none absolute right-2.5 top-2.5 inline-flex translate-y-1 items-center gap-1.5 rounded-lg border border-white/20 bg-black/90 px-2.5 py-1.5 text-xs font-semibold text-red-400 opacity-0 shadow-lg backdrop-blur-md transition-all duration-200;
+}
+
+.favorites__item:hover .favorites__remove {
+    @apply pointer-events-auto translate-y-0 opacity-100;
+}
+
+.favorites__remove:hover {
+    @apply border-red-500/50 bg-red-500/90 text-white;
+}
+
+.favorites__remove:disabled {
+    @apply pointer-events-none cursor-not-allowed opacity-50;
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Responsive
+ * ----------------------------------------------------------------------
+ */
+
+@media (max-width: 600px) {
+    .favorites {
+        @apply gap-6;
+    }
+
+    .favorites__section-header {
+        @apply mb-3;
+    }
+
+    .favorites__section-title {
+        @apply text-base;
+    }
+
+    .favorites__grid {
+        @apply grid-cols-2 gap-2.5;
+    }
+
+    .favorites__info {
+        @apply px-2.5 pb-3 pt-2;
+    }
+
+    .favorites__remove {
+        @apply right-2 top-2 px-2 py-1.5;
+    }
+
+    .favorites__remove span {
+        @apply hidden;
+    }
+}
+
+/*
+ * ----------------------------------------------------------------------
+ * Sections
+ * ----------------------------------------------------------------------
+ */
+
+.favorites {
+    @apply flex w-full flex-col gap-8;
+}
+
+.favorites__section {
+    @apply min-w-0;
+}
+
+.favorites__section-header {
+    @apply mb-4 flex items-center gap-2;
+}
+
+.favorites__section-title {
+    @apply text-lg font-bold text-white;
+}
+
+.favorites__section-count {
+    @apply rounded-full bg-white/5 px-2 py-0.5 text-xs font-semibold text-white/40;
+}

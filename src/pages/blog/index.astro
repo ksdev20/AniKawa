@@ -1,45 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeroSection from "../../components/Blog/BlogPageComponents/HeroSection.astro";
-import FeaturedArticle from "../../components/Blog/BlogPageComponents/FeaturedArticle.astro";
-import BrowseTopics from "../../components/Blog/BlogPageComponents/BrowseTopics.astro";
-import DiscoverAnime from "../../components/Blog/BlogPageComponents/DiscoverAnime.astro";
-import LatestAnimeGrid from "../../components/Blog/BlogPageComponents/LatestAnimeGrid.astro";
-import AnimeDiscoveryCta from "../../components/Blog/BlogPageComponents/AnimeDiscoveryCta.astro";
-import BlogIntro from "../../components/Blog/BlogPageComponents/BlogIntro.astro";
-import BlogFaqSection from "../../components/Blog/BlogPageComponents/BlogFaqSection.astro";
+import FeaturedArticle from "../../components/Blog/BlogPage/FeaturedArticle.astro";
 import SEOHead from "../../components/SEO/SEOHead.astro";
-import { getCollection } from "astro:content";
-
-const title =
-  "AniKawa Blog | Anime Recommendations, Guides & Hidden Gems";
-
-const pageDes =
-  "Discover anime recommendations, beginner guides, hidden gems, seasonal picks, watch guides, and thoughtful anime analysis. Find your next favorite anime with AniKawa.";
-
-const pageKw = [
-  "anime blog",
-  "anime recommendations",
-  "anime guides",
-  "anime watch guides",
-  "anime beginner guides",
-  "hidden gem anime",
-  "best anime to watch",
-  "anime analysis",
-  "anime genres",
-  "seasonal anime",
-  "anime articles",
-  "anime discoveries",
-  "anime suggestions",
-  "what anime to watch",
-  "AniKawa blog",
-];
-
-const pageUrl = "https://anikawa.fun/blog";
-
-const currentThumbnail =
-  "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
-const posts = await getCollection("blog");
+import AnimeDiscoveryCta from "@/components/Blog/BlogPage/AnimeDiscoveryCta.astro";
+import {
+  browseTopicsConfig,
+  data,
+  discoverAnimeConfig,
+  faqConfig,
+} from "@/config/bloghomepage";
+import "@/styles/pages/blog/blog-page.css";
+const { title, pageDes, pageKw, pageUrl, currentThumbnail, posts } = data;
 ---
 
 <Fragment slot="head">
@@ -53,15 +24,217 @@ const posts = await getCollection("blog");
   />
 </Fragment>
 <Layout>
-  <div id="banner-ad-1" class="banner-ad-container"></div>
-  <HeroSection />
+  <!-- <HeroSection /> -->
+  <section class="blog-hero-section">
+    <div class="blog-hero-container">
+      <span class="blog-hero-badge"> 📚 AniKawa Blog </span>
+
+      <h1 class="blog-hero-title">
+        Anime recommendations,
+        <br />
+        watch guides, hidden gems,
+        <br />
+        and thoughtful editorials.
+      </h1>
+
+      <p class="blog-hero-description">
+        Discover carefully written anime recommendations, seasonal watch guides,
+        hidden gems, beginner-friendly picks, and editor-curated articles
+        designed to help you find your next favorite anime.
+      </p>
+
+      <div class="blog-hero-divider"></div>
+
+      <a href="#latest-articles" class="blog-hero-button"> Browse Articles </a>
+    </div>
+  </section>
   <FeaturedArticle featuredPost={posts[3]} />
-  <div id="banner-ad-2" class="banner-ad-container"></div>
-  <DiscoverAnime />
-  <div id="banner-ad-3" class="banner-ad-container"></div>
-  <LatestAnimeGrid />
-  <BrowseTopics />
+  <!-- <DiscoverAnime /> -->
+  <section class="discover-anime-section">
+    <div class="discover-anime-container">
+      <div class="discover-anime-header">
+        <span class="section-badge"> 🎯 Find Your Next Anime </span>
+        <h2 class="section-title">What Are You In The Mood For?</h2>
+        <p class="section-subtitle">
+          Not sure what to watch next? Explore recommendations based on moods,
+          experiences, and the kind of stories you're looking for.
+        </p>
+      </div>
+
+      <div class="discover-anime-grid">
+        {
+          discoverAnimeConfig.map(({ href, icon, title, description }) => (
+            <a href={href} class="discover-anime-card">
+              <div class="discover-anime-icon">{icon}</div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- <LatestAnimeGrid /> -->
+  <section id="latest-articles" class="latest-articles-section">
+    <div class="latest-articles-container">
+      <div class="latest-articles-header">
+        <span class="section-badge"> ✍️ Latest Articles </span>
+
+        <h2 class="section-title">Fresh Reads For Anime Fans</h2>
+
+        <p class="section-subtitle">
+          Recommendations, hidden gems, watch guides, and editorials to help you
+          discover your next favorite anime.
+        </p>
+      </div>
+
+      <div class="latest-articles-grid">
+        {
+          posts.map((post) => (
+            <a href={`/blog/${post.data.slug}`} class="article-card">
+              <div class="article-card-image-wrapper">
+                <img
+                  src={post.data.img}
+                  alt={post.data.title}
+                  loading="lazy"
+                  class="article-card-image"
+                />
+              </div>
+
+              <div class="article-card-content">
+                <div class="article-card-categories">
+                  {post.data.categoryList.slice(0, 2).map((category) => (
+                    <span>{category}</span>
+                  ))}
+                </div>
+
+                <h3 class="article-card-title">{post.data.title}</h3>
+
+                <p class="article-card-subtitle">{post.data.subTitle}</p>
+
+                <div class="article-card-footer">
+                  <div class="article-card-meta">
+                    <span>{post.data.date}</span>
+
+                    {post.data.readMinutes && (
+                      <>
+                        <span>•</span>
+                        <span>{post.data.readMinutes} min read</span>
+                      </>
+                    )}
+                  </div>
+
+                  <span class="article-card-arrow">→</span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- <BrowseTopics /> -->
+
+  <section class="anime-topics-section">
+    <div class="anime-topics-container">
+      <div class="anime-topics-header">
+        <span class="section-badge"> 🎯 Explore Anime Topics </span>
+        <h2 class="section-title">Discover Anime Through Every Angle</h2>
+        <p class="section-subtitle">
+          Whether you're searching for your next favorite anime, hidden gems,
+          seasonal releases, or in-depth recommendations, start with the topic
+          that interests you most.
+        </p>
+      </div>
+
+      <div class="anime-topics-grid">
+        {
+          browseTopicsConfig.map(({ href, icon, title, description }) => (
+            <a href={href} class="anime-topic-card">
+              <div class="anime-topic-icon">{icon}</div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
   <AnimeDiscoveryCta />
-  <BlogIntro />
-  <BlogFaqSection />
+
+  <!-- <BlogIntro /> -->
+
+  <section class="about-blog-section">
+    <div class="about-blog-container">
+      <div class="about-blog-card">
+        <div class="about-blog-header">
+          <span class="section-badge"> 📖 About the AniKawa Blog </span>
+
+          <h2 class="section-title">More Than Just Anime Recommendations</h2>
+        </div>
+
+        <div class="about-blog-content">
+          <p>
+            The AniKawa Blog is where anime fans can discover thoughtful
+            recommendations, watch guides, hidden gems, seasonal highlights, and
+            editor-curated articles designed to make choosing your next anime
+            easier. Whether you're completely new to anime or have already
+            watched hundreds of series, our goal is to help you spend less time
+            searching and more time enjoying great stories.
+          </p>
+
+          <p>
+            Our articles cover a wide range of topics, including anime
+            recommendations for different moods and genres, beginner-friendly
+            watch guides, underrated hidden gems, seasonal anime worth
+            following, and deep dives into fan-favorite series. We also publish
+            opinion pieces, editorials, and anime reviews that explore what
+            makes certain shows memorable, impactful, or worth revisiting.
+          </p>
+
+          <p>
+            Unlike generic anime lists, many of our articles focus on helping
+            readers find anime that match a specific experience—whether you're
+            looking for something emotional, action-packed, mind-bending,
+            relaxing, or completely different from anything you've watched
+            before. Every article is written with anime fans in mind and aims to
+            provide useful insights rather than simply repeating popular
+            opinions.
+          </p>
+
+          <p>
+            As AniKawa continues to grow, the blog will remain a place for
+            discovering new anime, exploring overlooked classics, and finding
+            recommendations that genuinely help you decide what to watch next.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <BlogFaqSection /> -->
+
+  <section class="blog-faq-section">
+    <div class="blog-faq-container">
+      <div class="blog-faq-header">
+        <span class="section-badge"> 💬 Frequently Asked Questions </span>
+        <h2 class="section-title">Questions Anime Fans Often Ask</h2>
+        <p class="section-subtitle">
+          A few quick answers about how we approach anime recommendations,
+          reviews, and editorial content on AniKawa.
+        </p>
+      </div>
+
+      <div class="blog-faq-list">
+        {
+          faqConfig.map(({ question, answer }) => (
+            <details class="blog-faq-item">
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>

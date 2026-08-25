@@ -1,0 +1,70 @@
+---
+import "@/styles/components/Profile/profile-hero.css";
+import ProfileHeroActions from "./Overview/ProfileHeroActions";
+const { profile, username, isFollowing, isBlocked } = Astro.props;
+const joinedDate = profile.created_at
+  ? new Date(profile.created_at).toLocaleDateString("en-GB", {
+      month: "long",
+      year: "numeric",
+    })
+  : null;
+---
+
+<section class="profile-hero">
+  <div class="profile-hero__banner">
+    {
+      profile.banner_url ? (
+        <img
+          src={profile.banner_url}
+          alt={`${profile.display_name}'s banner`}
+          class="profile-hero__banner-image"
+        />
+      ) : (
+        <div class="profile-hero__banner-placeholder" />
+      )
+    }
+  </div>
+
+  <div class="profile-hero__content">
+    <div class="profile-hero__avatar-wrapper">
+      {
+        profile.avatar_url ? (
+          <img
+            src={profile.avatar_url}
+            alt={profile.display_name}
+            class="profile-hero__avatar"
+          />
+        ) : (
+          <div class="profile-hero__avatar profile-hero__avatar--placeholder">
+            {profile.display_name?.charAt(0).toUpperCase() ??
+              profile.username.charAt(0).toUpperCase()}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="profile-hero__info">
+      <h1 class="profile-hero__name">
+        {profile.display_name || profile.username}
+      </h1>
+
+      <p class="profile-hero__username">@{profile.username}</p>
+
+      {profile.bio && <p class="profile-hero__bio">{profile.bio}</p>}
+
+      <div class="profile-hero__meta">
+        {profile.country && <span>{profile.country}</span>}
+
+        {
+          profile.watching_since && (
+            <span>Watching since {profile.watching_since}</span>
+          )
+        }
+
+        {joinedDate && <span>Joined {joinedDate}</span>}
+      </div>
+    </div>
+
+    <ProfileHeroActions username={username} isFollowing={isFollowing} isBlocked={isBlocked} client:load/>
+  </div>
+</section>

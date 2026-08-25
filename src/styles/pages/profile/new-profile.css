@@ -1,0 +1,996 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+.profile-app {
+  @apply mx-auto w-full max-w-7xl px-4 py-8;
+}
+
+.profile-app--loaded {
+  @apply opacity-100 transition-opacity duration-300;
+}
+
+.profile-error {
+  @apply mx-auto mt-24 flex max-w-xl flex-col items-center rounded-3xl border border-red-500/20 bg-secondary p-10 text-center shadow-xl;
+}
+
+.profile-error h2 {
+  @apply text-2xl font-bold text-white;
+}
+
+.profile-error p {
+  @apply mt-4 max-w-md text-sm leading-relaxed text-white/70;
+}
+
+.profile-error__button {
+  @apply mt-8 rounded-xl bg-primary px-6 py-3 font-medium text-white transition-all duration-200;
+}
+
+.profile-error__button:hover {
+  @apply scale-[1.02] opacity-90;
+}
+
+.profile-error__button:active {
+  @apply scale-[0.98];
+}
+
+/*Profile Skeleton*/
+.profile-skeleton {
+  @apply flex flex-col gap-8;
+}
+
+.profile-skeleton__hero {
+  @apply overflow-hidden rounded-3xl border border-primary/15 bg-secondary;
+}
+
+.profile-skeleton__banner {
+  @apply h-64 w-full;
+}
+
+.profile-skeleton__hero-content {
+  @apply flex flex-wrap items-end justify-between gap-8 p-8;
+}
+
+.profile-skeleton__avatar {
+  @apply -mt-24 h-36 w-36 rounded-full border-4 border-secondary;
+}
+
+.profile-skeleton__info {
+  @apply flex-1;
+}
+
+.profile-skeleton__title {
+  @apply mb-4 h-8 w-56 rounded-lg;
+}
+
+.profile-skeleton__subtitle {
+  @apply mb-6 h-5 w-36 rounded-lg;
+}
+
+.profile-skeleton__stats {
+  @apply flex gap-4;
+}
+
+.profile-skeleton__stat {
+  @apply h-16 w-28 rounded-xl;
+}
+
+.profile-skeleton__actions {
+  @apply flex gap-3;
+}
+
+.profile-skeleton__button {
+  @apply h-11 w-28 rounded-xl;
+}
+
+.profile-skeleton__grid {
+  @apply grid grid-cols-1 gap-8 lg:grid-cols-2;
+}
+
+.skeleton-card {
+  @apply rounded-3xl border border-primary/15 bg-secondary p-6;
+}
+
+.profile-skeleton__heading {
+  @apply mb-6 h-7 w-44 rounded-lg;
+}
+
+.profile-skeleton__anime-list {
+  @apply flex gap-4 overflow-hidden;
+}
+
+.profile-skeleton__anime {
+  @apply aspect-2/3 w-32 rounded-2xl;
+}
+
+/* Shared skeleton animation */
+
+.skeleton {
+  @apply relative overflow-hidden rounded-xl bg-white/5;
+}
+
+.skeleton::after {
+  content: "";
+
+  @apply absolute inset-0 -translate-x-full;
+
+  background: linear-gradient(90deg,
+      transparent,
+      rgb(255 255 255 / 0.08),
+      transparent);
+
+  animation: profile-skeleton-shimmer 1.4s infinite;
+}
+
+@keyframes profile-skeleton-shimmer {
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.profile-layout {
+  @apply flex flex-col gap-10;
+}
+
+.profile-layout__content {
+  @apply w-full;
+}
+
+.profile-overview {
+  @apply grid gap-8;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+
+@media (min-width: 800px) {
+  .profile-overview {
+    grid-template-columns:
+      420px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+
+@media (min-width: 1280px) {
+  .profile-overview {
+    grid-template-columns:
+      420px minmax(700px, 1fr);
+  }
+}
+
+.profile-overview__main {
+  @apply flex flex-col gap-8;
+}
+
+.profile-overview__main .anime-card,
+.profile-overview__main .anime-card-first{
+  @apply max-w-50;
+}
+
+.profile-overview__main .hover-highlights, 
+.profile-overview__main .hover-whywatch-title{
+  @apply hidden;
+}
+
+.profile-overview__sidebar {
+  @apply flex flex-col gap-6;
+}
+
+.profile-section {
+  @apply rounded-3xl border border-primary/15 bg-secondary p-6 shadow-xl;
+}
+
+.profile-section__header {
+  @apply mb-6 flex items-center justify-between gap-4;
+}
+
+.profile-section__title {
+  @apply text-2xl font-bold text-white;
+}
+
+.profile-section__subtitle {
+  @apply mt-1 text-sm text-white/60;
+}
+
+.profile-section__count {
+  @apply rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-semibold text-primary;
+}
+
+
+
+.profile-episode-grid {
+  @apply grid grid-cols-1 gap-6;
+}
+
+@media (min-width: 500px) and (max-width: 799px){
+  .profile-episode-grid{
+    @apply grid-cols-2;
+  }
+}
+
+@media (min-width: 900px){
+  .profile-episode-grid{
+    @apply grid-cols-2 xl:grid-cols-3;
+  }
+}
+
+.profile-empty {
+  @apply flex min-h-72 flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/[0.02] px-8 text-center;
+}
+
+.profile-empty__icon {
+  @apply mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-3xl;
+}
+
+.profile-empty h3 {
+  @apply text-xl font-semibold text-white;
+}
+
+.profile-empty p {
+  @apply mt-3 max-w-md text-sm leading-relaxed text-white/60;
+}
+
+/*aBOUT cARD*/
+.about-card {
+  @apply rounded-3xl border border-primary/15 bg-secondary p-6 shadow-xl;
+}
+
+.about-card__header {
+  @apply mb-5 flex items-center justify-between;
+}
+
+.about-card__header h2 {
+  @apply text-xl font-bold text-white;
+}
+
+.about-card__count {
+  @apply text-xs text-white/40;
+}
+
+.about-card__description {
+  @apply whitespace-pre-wrap break-words leading-7 text-white/80;
+}
+
+.about-card__empty {
+  @apply rounded-xl border border-dashed border-white/10 bg-white/[0.02] p-5 text-center italic text-white/50;
+}
+
+/*Genres Overview*/
+.genre-overview-card {
+  @apply rounded-3xl border border-primary/20 bg-secondary p-6 shadow-xl;
+}
+
+.genre-overview-card__header h2 {
+  @apply text-xl font-bold text-white;
+}
+
+.genre-overview-card__header p {
+  @apply mt-1 text-sm text-white/50;
+}
+
+
+.genre-overview-card__list {
+  @apply mt-6 space-y-4;
+}
+
+
+.genre-overview-card__top {
+  @apply mb-2 flex justify-between text-sm font-medium text-white;
+}
+
+
+.genre-overview-card__bar {
+  @apply h-2 overflow-hidden rounded-full bg-white/10;
+}
+
+
+.genre-overview-card__fill {
+  @apply h-full rounded-full bg-primary transition-all;
+}
+
+/*Anime Stats*/
+.anime-stats {
+  @apply relative overflow-hidden rounded-3xl bg-secondary border border-primary/20 p-6 shadow-xl;
+}
+
+
+.anime-stats__circle {
+  @apply mx-auto flex h-32 w-32 flex-col items-center justify-center rounded-full border-8 border-primary/40 bg-primary/10;
+}
+
+
+.anime-stats__circle strong {
+  @apply text-4xl font-black text-white;
+}
+
+
+.anime-stats__circle span {
+  @apply text-sm text-white/50;
+}
+
+
+.anime-stats__grid {
+  @apply mt-8 grid grid-cols-2 gap-4;
+}
+
+
+.anime-stats__grid div {
+  @apply rounded-2xl bg-white/5 p-4 text-center;
+}
+
+
+.anime-stats__grid h3 {
+  @apply text-xl font-bold text-white;
+}
+
+
+.anime-stats__grid p {
+  @apply text-xs text-white/50;
+}
+
+/*Favorites*/
+.favorites-section {
+  @apply rounded-3xl border border-primary/20 bg-secondary p-6 shadow-xl;
+}
+
+
+.favorites-section__header h2 {
+  @apply text-2xl font-black text-white;
+}
+
+
+.favorites-section__header p {
+  @apply mt-1 text-sm text-white/50;
+}
+
+
+.favorites-section__content {
+  @apply mt-8 space-y-8;
+}
+
+.favorite-block {
+  @apply space-y-4;
+}
+
+
+.favorite-block__title {
+  @apply text-lg font-bold text-white;
+}
+
+
+/* Anime */
+
+.favorite-anime-grid {
+  @apply grid grid-cols-3 gap-4 md:grid-cols-6;
+}
+
+
+.favorite-anime-card {
+  @apply relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 aspect-[2/3];
+}
+
+
+.favorite-rank {
+  @apply absolute left-2 top-2 z-10 rounded-full bg-primary px-2 py-1 text-xs font-bold text-white;
+}
+
+
+.favorite-placeholder {
+  @apply flex h-full flex-col items-center justify-center text-white/60;
+}
+
+
+
+/* Episodes */
+
+.favorite-list {
+  @apply space-y-3;
+}
+
+
+.favorite-episode-card {
+  @apply flex items-center justify-between rounded-2xl bg-white/5 p-4 border border-white/10;
+}
+
+
+.favorite-episode-card p {
+  @apply text-sm text-white/50;
+}
+
+
+.favorite-episode-card span {
+  @apply text-sm text-white;
+}
+
+
+
+/* Characters */
+
+.character-grid {
+  @apply flex flex-wrap gap-5;
+}
+
+
+.character-card {
+  @apply text-center;
+}
+
+
+.character-avatar {
+  @apply flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-xl text-white;
+}
+
+
+.character-card p {
+  @apply mt-2 max-w-20 truncate text-xs text-white/70;
+}
+
+
+
+/* Studios */
+
+.studio-grid {
+  @apply grid grid-cols-2 gap-4 md:grid-cols-5;
+}
+
+
+.studio-card {
+  @apply flex items-center gap-3 rounded-2xl bg-white/5 p-4 border border-white/10;
+}
+
+
+.studio-logo {
+  @apply text-xl;
+}
+
+
+.studio-card span {
+  @apply truncate text-sm text-white;
+}
+
+.favorite-anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,
+      minmax(160px, 180px));
+  gap: 1.25rem;
+}
+
+
+.favorite-anime-card {
+  @apply relative overflow-hidden max-w-[160px] md:max-w-none rounded-2xl border border-white/10 bg-secondary/60 transition-all duration-300;
+}
+
+
+.favorite-anime-card:hover {
+  @apply -translate-y-1 shadow-xl border-primary/40;
+}
+
+
+
+.favorite-anime-card__image {
+  @apply w-full aspect-[2/3] object-cover;
+}
+
+
+
+.favorite-anime-card__info {
+  @apply p-3;
+}
+
+
+
+.favorite-anime-card__info h4 {
+  @apply text-sm font-semibold text-white line-clamp-2 leading-tight;
+}
+
+
+
+.favorite-rank {
+  @apply absolute top-2 left-2 z-10 rounded-lg bg-black/70 px-2 py-1 text-xs font-bold text-white backdrop-blur;
+}
+
+.favorite-anime-card::after {
+  content: "";
+  @apply absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/80 to-transparent;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+
+  .favorite-anime-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scrollbar-width: none;
+  }
+
+  .favorite-anime-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .favorite-anime-card {
+    min-width: 130px;
+  }
+
+}
+
+.favorite-anime-card {
+  @apply relative overflow-hidden rounded-2xl border border-white/10 bg-secondary/60 transition-all duration-300;
+}
+
+
+.favorite-anime-card:hover {
+  @apply -translate-y-1 shadow-xl border-primary/40;
+}
+
+
+.favorite-anime-card__image {
+  @apply w-full aspect-[2/3] object-cover;
+}
+
+
+
+/* hidden info */
+.favorite-anime-card__overlay {
+  @apply absolute inset-x-0 bottom-0 p-3 flex flex-col justify-end bg-gradient-to-t from-black via-black/70 to-transparent translate-y-full opacity-0 transition-all duration-300;
+}
+
+
+.favorite-anime-card:hover .favorite-anime-card__overlay {
+  @apply translate-y-0 opacity-100;
+}
+
+
+
+.favorite-anime-card__overlay h4 {
+  @apply text-sm font-bold text-white line-clamp-2;
+}
+
+
+.favorite-anime-card__overlay span {
+  @apply mt-1 text-xs text-white/70;
+}
+
+/*Anime Stats*/
+.anime-stats {
+  @apply rounded-3xl border border-white/10 bg-secondary/60 p-6 shadow-xl;
+}
+
+
+
+.anime-stats__header {
+  @apply flex justify-between items-center mb-6;
+}
+
+
+.anime-stats__header h2 {
+  @apply text-xl font-bold text-white;
+}
+
+
+.anime-stats__header span {
+  @apply text-xs text-white/50;
+}
+
+
+
+.anime-stats__primary {
+  @apply flex items-center gap-5 mb-6;
+}
+
+
+
+.anime-stats__circle {
+
+  @apply relative flex flex-col items-center justify-center rounded-full aspect-square w-32 border-8 border-primary/40;
+
+}
+
+
+
+.anime-stats__circle strong {
+
+  @apply text-3xl font-black text-white;
+
+}
+
+
+.anime-stats__circle span {
+
+  @apply text-xs text-white/60;
+
+}
+
+
+
+.anime-stats__score {
+
+  @apply flex flex-col;
+
+}
+
+
+.anime-stats__score strong {
+
+  @apply text-4xl font-black text-primary;
+
+}
+
+
+.anime-stats__score span {
+
+  @apply text-sm text-white/60;
+
+}
+
+
+
+.anime-stats__grid {
+
+  @apply grid grid-cols-2 gap-4;
+
+}
+
+
+
+.anime-stat {
+
+  @apply rounded-2xl bg-black/20 p-4 border border-white/5;
+
+}
+
+
+.anime-stat strong {
+
+  @apply block text-lg font-bold text-white truncate;
+
+}
+
+
+.anime-stat span {
+
+  @apply text-xs text-white/50;
+
+}
+
+/*Profile Completion*/
+.profile-completion {
+  @apply w-full rounded-3xl border border-primary/20 bg-secondary p-7 shadow-xl;
+}
+
+
+/* Header */
+
+.profile-completion__header {
+  @apply flex items-start justify-between gap-4;
+}
+
+
+.profile-completion__header h3 {
+  @apply text-xl font-bold text-white;
+}
+
+
+.profile-completion__header p {
+  @apply mt-1 text-sm leading-relaxed text-white/50;
+}
+
+
+.profile-completion__header strong {
+  @apply shrink-0 rounded-2xl bg-primary/15 px-4 py-3 text-2xl font-black text-primary;
+}
+
+
+
+/* Progress */
+
+.profile-completion__progress {
+  @apply mt-7 h-3 w-full overflow-hidden rounded-full bg-black/40;
+}
+
+
+.profile-completion__progress div {
+  @apply h-full rounded-full bg-primary transition-all duration-700;
+}
+
+
+
+/* Missing items */
+
+.profile-completion__missing {
+  @apply mt-6 flex flex-col gap-3;
+}
+
+
+.profile-completion__missing span {
+  @apply flex items-center gap-2 rounded-xl border border-white/5 bg-black/20 px-4 py-3 text-sm text-white/70;
+}
+
+
+.profile-completion__missing span::before {
+  content: "•";
+
+  @apply text-primary font-bold;
+}
+
+
+
+/* Button */
+
+.profile-completion__button {
+  @apply mt-7 flex w-full items-center justify-center rounded-2xl bg-primary px-5 py-4 text-base font-bold text-white transition-all duration-200;
+}
+
+
+.profile-completion__button:hover {
+  @apply scale-[1.02] opacity-90;
+}
+
+/* ==========================
+   ABOUT CARD
+========================== */
+
+.about-card {
+  @apply rounded-3xl border border-white/10 bg-secondary p-6 shadow-xl;
+}
+
+
+/* Header */
+
+.about-card__header {
+  @apply mb-6 flex items-center justify-between gap-4;
+}
+
+
+.about-card__header h2 {
+  @apply text-2xl font-bold text-white;
+}
+
+
+.about-card__count {
+  @apply rounded-full bg-white/5 px-3 py-1 text-xs text-gray-400;
+}
+
+
+
+/* Empty */
+
+.about-card__empty {
+  @apply text-gray-500 italic;
+}
+
+
+
+/* ==========================
+   ABOUT VIEWER
+========================== */
+
+
+.about-viewer {
+  @apply w-full;
+}
+
+
+.about-viewer .ProseMirror {
+
+  @apply outline-none text-base leading-relaxed text-gray-300;
+
+}
+
+
+
+/* paragraphs */
+
+.about-viewer .ProseMirror p {
+
+  @apply my-4 text-gray-300;
+
+}
+
+
+
+/* ==========================
+   HEADINGS
+========================== */
+
+
+.about-viewer .ProseMirror h1 {
+
+  @apply my-8 text-[42px] leading-tight font-black text-white;
+
+}
+
+
+.about-viewer .ProseMirror h2 {
+
+  @apply my-7 text-[32px] leading-tight font-extrabold text-white;
+
+}
+
+
+.about-viewer .ProseMirror h3 {
+
+  @apply my-6 text-2xl font-bold text-white;
+
+}
+
+
+.about-viewer .ProseMirror h4 {
+
+  @apply my-5 text-xl font-bold text-white;
+
+}
+
+
+
+/* ==========================
+   TEXT FORMAT
+========================== */
+
+
+.about-viewer .ProseMirror strong {
+
+  @apply font-extrabold text-white;
+
+}
+
+
+.about-viewer .ProseMirror em {
+
+  @apply italic;
+
+}
+
+
+.about-viewer .ProseMirror u {
+
+  @apply underline;
+
+}
+
+
+
+/* ==========================
+   LINKS
+========================== */
+
+
+.about-viewer .ProseMirror a {
+
+  @apply text-primary underline transition-colors hover:text-primary/80;
+
+}
+
+
+
+/* ==========================
+   LISTS
+========================== */
+
+
+.about-viewer .ProseMirror ul {
+
+  @apply my-5 list-disc space-y-2 pl-8;
+
+}
+
+
+.about-viewer .ProseMirror ol {
+
+  @apply my-5 list-decimal space-y-2 pl-8;
+
+}
+
+
+/* ==========================
+   BLOCKQUOTE
+========================== */
+
+
+.about-viewer .ProseMirror blockquote {
+
+  @apply my-6 border-l-4 border-primary bg-primary/5 px-5 py-3 italic text-gray-400;
+
+}
+
+
+
+/* ==========================
+   CODE
+========================== */
+
+
+.about-viewer .ProseMirror code {
+
+  @apply rounded-md bg-white/10 px-2 py-1 text-sm text-white;
+
+}
+
+
+.about-viewer .ProseMirror pre {
+
+  @apply my-6 overflow-auto rounded-2xl bg-black p-5 text-white;
+
+}
+
+
+
+/* ==========================
+   IMAGES
+========================== */
+
+
+.about-viewer .ProseMirror img {
+
+  @apply my-6 max-w-full rounded-2xl object-cover;
+
+}
+
+
+
+/* ==========================
+   HORIZONTAL RULE
+========================== */
+
+
+.about-viewer .ProseMirror hr {
+
+  @apply my-8 border-white/10;
+
+}
+
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+
+@media(max-width:700px) {
+
+  .about-viewer .ProseMirror h1 {
+
+    @apply text-3xl;
+
+  }
+
+
+  .about-viewer .ProseMirror h2 {
+
+    @apply text-2xl;
+
+  }
+
+}
+
+.latest-episodes-view-all {
+  @apply w-fit text-sm font-semibold transition-colors duration-300;
+  
+  color: #8c52ff;
+}
+
+.latest-episodes-view-all:hover {
+  color: #a97cff;
+}
+
+/*watching since*/
+.watching-since-card {
+  @apply flex items-center gap-4 rounded-2xl border border-white/10 bg-[var(--c-sec)] p-5;
+}
+
+.watching-since-card__icon {
+  @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--c-main)]/10 text-xl;
+}
+
+.watching-since-card__content {
+  @apply flex min-w-0 flex-col gap-1;
+}
+
+.watching-since-card__label {
+  @apply text-xs font-semibold uppercase tracking-wide text-gray-400;
+}
+
+.watching-since-card__date {
+  @apply text-base font-semibold text-white;
+}

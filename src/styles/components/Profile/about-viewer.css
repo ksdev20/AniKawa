@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+.about-viewer {
+    @apply min-w-0 text-sm leading-relaxed text-white/75;
+}
+
+.about-viewer .tiptap {
+    @apply min-w-0 outline-none;
+}
+
+.about-viewer .tiptap p {
+    @apply mb-3 last:mb-0;
+}
+
+.about-viewer .tiptap h1 {
+    @apply mb-3 text-2xl font-bold text-white;
+}
+
+.about-viewer .tiptap h2 {
+    @apply mb-3 text-xl font-bold text-white;
+}
+
+.about-viewer .tiptap h3 {
+    @apply mb-2 text-lg font-semibold text-white;
+}
+
+.about-viewer .tiptap ul {
+    @apply mb-3 list-disc pl-5;
+}
+
+.about-viewer .tiptap ol {
+    @apply mb-3 list-decimal pl-5;
+}
+
+.about-viewer .tiptap li {
+    @apply mb-1;
+}
+
+.about-viewer .tiptap a {
+    @apply text-primary underline underline-offset-2;
+}
+
+.about-viewer .tiptap mark {
+    @apply rounded bg-primary/20 px-1;
+}
+
+.about-viewer .tiptap img {
+    @apply my-3 max-w-full rounded-xl;
+}
+
+.about-viewer .tiptap blockquote {
+    @apply my-3 border-l-2 border-primary/40 pl-4 text-white/60;
+}
+
+.about-viewer .tiptap code {
+    @apply rounded bg-white/10 px-1.5 py-0.5 text-xs;
+}
+
+.about-viewer .tiptap pre {
+    @apply my-3 overflow-x-auto rounded-xl bg-black/30 p-4;
+}

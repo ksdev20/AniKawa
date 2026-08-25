@@ -2,20 +2,22 @@
 import { getAnimeById } from "../../../filters/getAnimeById";
 import { type Anime } from "../../../types/mergedListTypes";
 import SEOHead from "../../../components/SEO/SEOHead.astro";
-import "../../../styles/animePagetw.css";
+import "../../../styles/pages/show/animePagetw.css";
+import "../../../styles/pages/show/new-anime-page.css";
+import "../../../styles/index.css";
 import { getOptimizedImageUrl } from "../../../utils/imageSizing";
-import AnimeWBtn from "../../../components/AnimeCard/AnimeWBtn";
 import SortBtnHandler from "../../../components/ButtonHandlers/SortBtnHandler";
 import EpisodeCard from "../../../components/EpisodeCard/EpisodeCard";
 import AnimeSliderStatic from "../../../components/AnimeSlider/AnimeSliderStatic.astro";
 import { Icon } from "../../../icons/icons";
 import { frontendUrl } from "../../../global_assets/globalPaths";
-import "../../../styles/index.css";
 import Layout from "../../../layouts/Layout.astro";
-import "../../../styles/new-anime-page.css";
+import FavoriteButton from "@/components/AnimePage/FavoriteButton";
+import AddAnimeToList from "@/components/AnimePage/AddAnimeToList";
+import { useLoginModalStore } from "@/global_assets/loginModalStore";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
-const anime = await getAnimeById(nanoid) as Anime | null;
+const anime = (await getAnimeById(nanoid)) as Anime | null;
 
 if (anime == null || !anime.episodes == null) {
   return new Response(null, {
@@ -29,14 +31,12 @@ if (anime == null || !anime.episodes == null) {
 const {
   title = "Untitled",
   tagline,
-  backdrop = anime?.plThumbnail ?? "/episode-thumbnail-alt-2.png",
   season_poster = anime?.poster ?? "/anime-image-alt.png",
   description = "No Description",
   scoreAlt,
   runtime = "N/A",
   status = "N/A",
   startDate = "N/A",
-  endDate = "N/A",
   seasons = 1,
   genres,
   genres: genresA = [],
@@ -50,6 +50,9 @@ const {
   watchOrder,
   faq,
   relatedArticles,
+  characters,
+  staff,
+  links
 } = anime ?? {};
 
 const sortedEpList = sort == "new" ? [...episodeList].reverse() : episodeList;
@@ -57,12 +60,12 @@ const sortedEpList = sort == "new" ? [...episodeList].reverse() : episodeList;
 const titleAlt = seasons > 1 ? `${title} Season - ${season}` : title;
 const language = "Subtitled";
 const episodes = episodeList.length;
-const type = "Anime";
 const usedTitlesGlobal = [title, title, title];
 
 const pageDescription = `Stream ${title} online in high quality — No ads on Anikawa. ${description}`;
 const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
 ---
+
 <Fragment slot="head">
   <SEOHead
     title={`Watch ${titleAlt} on AniKawa for Free !`}
@@ -126,7 +129,12 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
             Watch Episodes
           </a>
 
-          <AnimeWBtn nanoid={nanoid ?? "xyzxyz"} client:load />
+          <FavoriteButton type="anime" itemId={nanoid as string}  client:load/>
+
+          <AddAnimeToList
+    animeNanoid={anime.nanoid}
+    client:load
+/>
         </div>
 
         <div class="hero-facts-grid">
@@ -152,6 +160,35 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- EPISODES GRID -->
+  <section id="episodes-section" class="episodes-section">
+    <header class="top-controls">
+      <div class="top-controls-btn">
+        <Icon name="arrowdown" size={30} className="arrow-down" />
+        <h2 id="season-text" class="season-text">
+          S{season}: {title}
+        </h2>
+      </div>
+      <SortBtnHandler client:load />
+    </header>
+    <ul class="episodes-list">
+      {
+        sortedEpList?.map((e: any) => {
+          const epData: any = {
+            animeTitle: title,
+            language,
+            animenanoid: nanoid,
+            animeslug: slug,
+            ...e,
+          };
+
+          return <EpisodeCard epData={epData} />;
+        })
+      }
+    </ul>
+    <div class="episode-list-endline">Episode thumbnails sourced via YouTube API.</div>
   </section>
 
   <div id="banner-ad-1" class="banner-ad-container"></div>
@@ -199,6 +236,302 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
       </section>
     )
   }
+
+  {
+    watchOrder && (
+      <section class="watch-order-section">
+        <div class="watch-order-header">
+          <span class="watch-order-eyebrow">WATCH GUIDE</span>
+
+          <h2 class="watch-order-title">Watch Order for this Anime Series</h2>
+
+          <p class="watch-order-description">{watchOrder.note}</p>
+        </div>
+
+        <div class="watch-order-list">
+          {watchOrder.entries.map((entry) => (
+            <div class="watch-order-item">
+              <div class="watch-order-number">{entry.order}</div>
+
+              <div class="watch-order-content">
+                <h3 class="watch-order-item-title">{entry.title}</h3>
+
+                <span class="watch-order-item-type">{entry.type}</span>
+              </div>
+
+              {entry.recommended && (
+                <span class="recommended-badge">Recommended</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+{
+  characters && characters.length > 0 && (
+    <section class="characters-section">
+
+      <div class="section-heading-small">
+
+        <h2 class="section-title-small">
+          <span class="section-icon">
+            ♧
+          </span>
+
+          Characters & Voice Actors
+        </h2>
+
+      </div>
+
+
+      <div class="characters-grid">
+
+        {
+          characters.map((character: any) => (
+
+            <article class="character-mini-card">
+
+
+              <!-- Character -->
+
+              <a
+                class="character-mini-profile"
+              >
+
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  loading="lazy"
+                  class="character-mini-image"
+                />
+
+
+                <div class="character-mini-info">
+
+                  <h3 class="character-mini-name">
+                    {character.name}
+                  </h3>
+
+                  <span class="character-mini-role">
+                    {character.role ?? "Character"}
+                  </span>
+
+                </div>
+
+              </a>
+
+
+
+              <!-- Voice Actor -->
+
+              {
+                character.voiceActor && (
+
+                  <a
+                    class="voice-mini-profile"
+                  >
+
+                    <div class="voice-mini-info">
+
+                      <span class="voice-mini-name">
+                        {character.voiceActor.name}
+                      </span>
+
+                      <span class="voice-mini-language">
+                        JP
+                      </span>
+
+                    </div>
+
+
+                    <img
+                      src={character.voiceActor.image}
+                      alt={character.voiceActor.name}
+                      loading="lazy"
+                      class="voice-mini-image"
+                    />
+
+
+                  </a>
+
+                )
+              }
+
+
+            </article>
+
+          ))
+        }
+
+
+      </div>
+
+
+    </section>
+  )
+}
+
+
+{
+  staff && staff.length > 0 && (
+    <section class="staff-section">
+
+      <div class="section-heading-small">
+
+        <h2 class="section-title-small">
+
+          <span class="section-icon">
+            🎬
+          </span>
+
+          Staff
+
+        </h2>
+
+      </div>
+
+
+
+      <div class="staff-grid">
+
+        {
+          staff.map((person: any) => (
+
+            <article class="staff-card">
+
+              <a
+                class="staff-profile"
+              >
+
+                <img
+                  src={person.image}
+                  alt={person.name}
+                  loading="lazy"
+                  class="staff-image"
+                />
+
+
+                <div class="staff-info">
+
+                  <h3 class="staff-name">
+                    {person.name}
+                  </h3>
+
+
+                  <span class="staff-role">
+                    {person.role ?? "Staff"}
+                  </span>
+
+
+                </div>
+
+
+              </a>
+
+
+            </article>
+
+          ))
+        }
+
+
+      </div>
+
+
+    </section>
+  )
+}
+
+{
+  links && links.length > 0 && (
+    <section class="anime-links-section">
+
+      <div class="section-heading-small">
+
+        <h2 class="section-title-small">
+          <span class="section-icon">
+            🔗
+          </span>
+
+          Links
+        </h2>
+
+      </div>
+
+
+
+      <div class="links-container">
+
+        {
+          links.map((link: any) => (
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external-link-pill"
+            >
+
+              {
+                link.icon && (
+                  <img
+                    src={link.icon}
+                    alt=""
+                    class="link-icon"
+                  />
+                )
+              }
+
+
+              <span class="link-name">
+                {link.name}
+              </span>
+
+
+              <span class="external-icon">
+                ↗
+              </span>
+
+
+            </a>
+
+          ))
+        }
+
+
+      </div>
+
+
+    </section>
+  )
+}
+
+<!-- OTHER SEASONS -->
+  <section class="more-section">
+    <h2 class="sr-only">Other Seasons of this Anime</h2>
+    <AnimeSliderStatic
+      info={{
+        bigH: "Other Seasons",
+        forAnimePageSeasons: true,
+        animeTitle: title,
+        toNotInclude: nanoid,
+      }}
+    />
+  </section>
+
+  <section class="more-section">
+    <h2 class="sr-only">More anime like this</h2>
+    <AnimeSliderStatic
+      info={{
+        bigH: "More Like This",
+        smallH: "",
+        filterName: "matchCategories",
+        genresA,
+        usedTitlesGlobal: usedTitlesGlobal,
+      }}
+    />
+  </section>
 
   {
     whoShouldWatch && (
@@ -274,80 +607,7 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
     )
   }
 
-  <!-- EPISODES GRID -->
-  <section id="episodes-section" class="episodes-section">
-    <header class="top-controls">
-      <div class="top-controls-btn">
-        <Icon name="arrowdown" size={30} className="arrow-down" />
-        <h2 id="season-text" class="season-text">
-          S{season}: {title}
-        </h2>
-      </div>
-      <SortBtnHandler client:load />
-    </header>
-    <ul class="episodes-list">
-      {
-        sortedEpList?.map((e: any) => {
-          const epData: any = {
-            animeTitle: title,
-            language,
-            animenanoid: nanoid,
-            animeslug: slug,
-            ...e,
-          };
-
-          return <EpisodeCard epData={epData} />;
-        })
-      }
-    </ul>
-    <div class="episode-list-endline"></div>
-  </section>
-
-  {
-    watchOrder && (
-      <section class="watch-order-section">
-        <div class="watch-order-header">
-          <span class="watch-order-eyebrow">WATCH GUIDE</span>
-
-          <h2 class="watch-order-title">Watch Order for this Anime Series</h2>
-
-          <p class="watch-order-description">{watchOrder.note}</p>
-        </div>
-
-        <div class="watch-order-list">
-          {watchOrder.entries.map((entry) => (
-            <div class="watch-order-item">
-              <div class="watch-order-number">{entry.order}</div>
-
-              <div class="watch-order-content">
-                <h3 class="watch-order-item-title">{entry.title}</h3>
-
-                <span class="watch-order-item-type">{entry.type}</span>
-              </div>
-
-              {entry.recommended && (
-                <span class="recommended-badge">Recommended</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-    )
-  }
-
   <div id="banner-ad-3" class="banner-ad-container"></div>
-  <!-- OTHER SEASONS -->
-  <section class="more-section">
-    <h2 class="sr-only">Other Seasons of this Anime</h2>
-    <AnimeSliderStatic
-      info={{
-        bigH: "Other Seasons",
-        forAnimePageSeasons: true,
-        animeTitle: title,
-        toNotInclude: nanoid,
-      }}
-    />
-  </section>
 
   {
     animeInsights && (
@@ -377,19 +637,6 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
       </section>
     )
   }
-
-  <section class="more-section">
-    <h2 class="sr-only">More anime like this</h2>
-    <AnimeSliderStatic
-      info={{
-        bigH: "More Like This",
-        smallH: "",
-        filterName: "matchCategories",
-        genresA,
-        usedTitlesGlobal: usedTitlesGlobal,
-      }}
-    />
-  </section>
 
   {
     relatedArticles && relatedArticles.articles.length > 0 && (
@@ -426,22 +673,23 @@ const pageUrl = `${frontendUrl}/show/${nanoid}/${slug}`;
   {
     faq && (
       <section class="anime-faq-section">
-        <div class="faq-header">
-          <span class="faq-eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+        <header class="anime-faq-header">
+          {/* <span class="faq-eyebrow">FREQUENTLY ASKED QUESTIONS</span> */}
 
-          <h2 class="faq-title">Questions About this Anime</h2>
+          <h2 class="anime-faq-title">Questions About this Anime</h2>
 
-          {faq.intro && <p class="faq-description">{faq.intro}</p>}
-        </div>
+          {faq.intro && <p class="anime-faq-description">{faq.intro}</p>}
+        </header>
 
-        <div class="faq-list">
+        <div class="anime-faq-list">
           {faq.questions.map((item) => (
-            <details class="faq-item">
-              <summary class="faq-question">{item.question}</summary>
+            <details class="anime-faq-item">
+              <summary>
+                <span>{item.question}</span>
+                <span class="anime-faq-icon">+</span>
+              </summary>
 
-              <div class="faq-answer">
-                <p>{item.answer}</p>
-              </div>
+              <p>{item.answer}</p>
             </details>
           ))}
         </div>

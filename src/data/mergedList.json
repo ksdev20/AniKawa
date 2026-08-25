@@ -5223,6 +5223,21 @@
         "url": "https://www.youtube.com/embed/eAiWeDy3SF8",
         "ytThumbnail": "https://i.ytimg.com/vi/eAiWeDy3SF8/maxresdefault.jpg",
         "audio": "ja",
+        "runtime": "24 minutes",
+        "language": "Japanese",
+        "badge": "⚔️ Action Episode",
+        "arc": "The New Quest Begins",
+        "importance": "Story Progression",
+        "watchReason": "Lloyd proves the true value of an S-Rank adventurer as the party faces a massive monster threat and discovers the strength of teamwork.",
+        "highlights": [
+          "⚔️ Monster Battle",
+          "💪 Lloyd Showcase",
+          "🤝 Teamwork"
+        ],
+        "featuredCharacters": [
+          "Lloyd",
+          "The Adventurer Party"
+        ],
         "titleAlt": "Ep 4 - Lloyd Gives Support",
         "nanoid": "WSwY6OMXQVRBzkMS4F4a4",
         "slug": "lloyd-gives-support",
@@ -5231,7 +5246,7 @@
         "title": "Lloyd Gives Support",
         "description": "The party reaches their quest's farm and fights off thousands of manipulated monsters with Lloyd's support.",
         "img": "https://image.tmdb.org/t/p/original/24MOr6Mm8qLqTtsHHP7il7jZiM2.jpg",
-        "vote_average": 0,
+        "vote_average": 10,
         "vote_count": 0
       }
     ],
@@ -10136,6 +10151,7 @@
     "description": "Koizumi is a mysterious and attractive high school student. But what most people don't know about her is that she's a ramen master who is always on the lookout for great ramen restaurants. Everyday, she goes hunting for real-life places serving the best ramen dishes and delightfully eats the delicious noodles. The way Koizumi downs a giant bowl of ramen–more adeptly than any large man–will amaze and delight you!",
     "tagline": "",
     "popularity": 7.1493,
+    "badge": "🍜 Hidden Gem",
     "anikawaReview": {
       "verdict": "A fun and surprisingly informative food anime that turns a love of ramen into an entertaining slice-of-life experience.",
       "review": "Ms. Koizumi Loves Ramen Noodles is a lighthearted series centered on ramen culture and the people drawn to it. Each episode follows the reserved yet passionate Koizumi as she explores different styles of ramen, from famous shops to convenience store varieties. The anime combines food appreciation with comedy, creating an experience that is both relaxing and educational. While it doesn't focus heavily on long-term story progression, its charm comes from its enthusiasm for its subject matter and its enjoyable cast dynamics. Viewers who enjoy food-focused anime will likely find themselves craving a bowl of ramen after every episode.",
@@ -22271,6 +22287,7 @@
     "description": "Two realms exist in the ancient land of Yanato: the Lofty Realm, where gods reside, and the Lowly Realm, where humans reside. Princess Sakuna was the daughter of the god of war and goddess of harvest, but she led a lazy life. One day, she is banished to Hinoe Island, the Isle of Demons. Stranded in a barren land, Sakuna sets out to slay demons and farm rice. Her new adventure begins!",
     "tagline": "",
     "popularity": 1.5387,
+    "badge": "🌾 Hidden Gem",
     "anikawaReview": {
       "verdict": "A charming fantasy adventure that blends heartfelt character growth with themes inspired by traditional Japanese agriculture.",
       "review": "Sakuna: Of Rice and Ruin offers a refreshing mix of fantasy storytelling, folklore-inspired world-building, and personal growth. Following the spoiled harvest goddess Sakuna as she adapts to a challenging new life, the series focuses on responsibility, community, and perseverance. While the anime retains the warm atmosphere that fans of the original game appreciate, it also stands on its own as a character-driven fantasy adventure. The slower pace allows relationships and themes to develop naturally, making it an appealing watch for viewers who enjoy relaxing stories with meaningful emotional progression rather than constant action.",
@@ -51372,6 +51389,7 @@
     "description": "There’s something really strange about the maid I just hired! No normal person could be so beautiful, or cook such amazingly delicious food, or know exactly what I want before I even ask. She must be using magic—right, a spell is the only thing that can explain why my chest feels so tight whenever I look at her. I swear, I’m going to get to the bottom of what makes this maid so...mysterious!",
     "tagline": "",
     "popularity": 8.0722,
+    "badge": "✨ Trending",
     "anikawaReview": {
       "verdict": "A wholesome romantic comedy that succeeds through charming character interactions and a cozy atmosphere.",
       "review": "The Maid I Hired Recently Is Mysterious is a lighthearted slice-of-life romance built around the amusing relationship between a young boy and his enigmatic maid. Rather than relying on dramatic twists, the series focuses on playful misunderstandings, gentle humor, and the growing bond between its lead characters. The show's appeal comes largely from its warm tone and expressive cast, making it an easy watch after a long day. While the premise remains simple throughout, viewers looking for comfort-focused storytelling, cute interactions, and a relaxed pace will likely find plenty to enjoy.",
@@ -71892,6 +71910,7 @@
     "description": "A desolate land stretches out from the city of poverty. A motorcycle speeds recklessly, blowing clouds of sand and dust. The rider is the protagonist of this story – he has neither a name nor a past. All he has is his ring name, “Junk Dog” and a technique for rigging MEGALOBOX matches with his pal Gansaku Nanbu, which they use to support their hand-to-mouth lives. JD is bored, resigned, and unfulfilled. Yuri has been the reigning champion of MEGALOBOX for the past few years. He has the skills and presence of a true champion. This is a story of JD and his rival, Yuri.",
     "tagline": "",
     "popularity": 11.1198,
+    "badge": "🥊 Cult Classic",
     "anikawaReview": {
       "verdict": "A mature and emotionally powerful sequel that expands Joe's journey beyond the boxing ring.",
       "review": "MEGALOBOX Season 2 takes a darker and more reflective approach than the original season. Rather than focusing solely on competition, the story explores grief, identity, redemption, and the challenges of rebuilding one's life after success. Strong character development and atmospheric storytelling make it one of the most memorable sports anime sequels.",
@@ -72001,30 +72020,216 @@
     "relatedArticles": {
       "heading": "Continue Exploring",
       "intro": "If you enjoyed learning about MEGALOBOX, these guides and recommendations may help you discover your next favorite anime.",
-      "articles": [
-        {
-          "title": "Best Sports Anime for Beginners",
-          "description": "A beginner-friendly guide to the most popular sports anime series.",
-          "slug": "best-sports-anime-for-beginners",
-          "category": "Anime Recommendations",
-          "readingTime": "6 min read"
-        },
-        {
-          "title": "Anime Like MEGALOBOX",
-          "description": "Discover anime with similar themes, characters, and emotional storytelling.",
-          "slug": "anime-like-megalobox",
-          "category": "Similar Anime",
-          "readingTime": "5 min read"
-        },
-        {
-          "title": "The Best Underdog Stories in Anime",
-          "description": "From boxing rings to battlefields, explore anime built around perseverance and growth.",
-          "slug": "best-underdog-anime",
-          "category": "Editorial",
-          "readingTime": "8 min read"
-        }
-      ]
+      "articles": []
     },
+    "staff": [
+      {
+        "name": "Yoshimasa Hosoya",
+        "slug": "yoshimasa-hosoya",
+        "role": "Theme Song Performance",
+        "image": "https://cdn.anikawa.fun/staff/yoshimasa-hosoya.webp"
+      },
+      {
+        "name": "Yoshihiro Ike",
+        "slug": "yoshihiro-ike",
+        "role": "Music Composer",
+        "image": "https://cdn.anikawa.fun/staff/yoshihiro-ike.webp"
+      },
+      {
+        "name": "Yō Moriyama",
+        "slug": "yo-moriyama",
+        "role": "Director",
+        "image": "https://cdn.anikawa.fun/staff/yo-moriyama.webp"
+      },
+      {
+        "name": "Katsuhiko Manabe",
+        "slug": "katsuhiko-manabe",
+        "role": "Series Composition",
+        "image": "https://cdn.anikawa.fun/staff/katsuhiko-manabe.webp"
+      },
+      {
+        "name": "Ikki Kajiwara",
+        "slug": "ikki-kajiwara",
+        "role": "Original Concept",
+        "image": "https://cdn.anikawa.fun/staff/ikki-kajiwara.webp"
+      },
+      {
+        "name": "Tetsuya Nishio",
+        "slug": "tetsuya-nishio",
+        "role": "Character Design",
+        "image": "https://cdn.anikawa.fun/staff/tetsuya-nishio.webp"
+      },
+      {
+        "name": "Manga Entertainment",
+        "slug": "manga-entertainment",
+        "role": "Animation Production",
+        "image": "https://cdn.anikawa.fun/staff/manga-entertainment.webp"
+      }
+    ],
+    "links": [
+      {
+        "name": "Official Website",
+        "url": "https://megalobox.com/",
+        "icon": "/icons/website.svg",
+        "type": "official"
+      },
+      {
+        "name": "MyAnimeList",
+        "url": "https://myanimelist.net/anime/40729/Nomad__Megalo_Box_2",
+        "icon": "/icons/mal.svg",
+        "type": "database"
+      },
+      {
+        "name": "AniList",
+        "url": "https://anilist.co/anime/113239/NOMAD-MEGA-BOX-2/",
+        "icon": "/icons/anilist.svg",
+        "type": "database"
+      },
+      {
+        "name": "IMDb",
+        "url": "https://www.imdb.com/title/tt13636930/",
+        "icon": "/icons/imdb.svg",
+        "type": "database"
+      },
+      {
+        "name": "Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/Megalobox",
+        "icon": "/icons/wiki.svg",
+        "type": "information"
+      }
+    ],
+    "characters": [
+      {
+        "name": "Joe",
+        "slug": "joe",
+        "role": "Main Character",
+        "image": "https://s4.anilist.co/file/anilistcdn/character/large/125369-uVnKfLJKTI4K.jpg",
+        "description": "Once known as Gearless Joe, he now lives under the name Nomad, wandering from town to town while struggling with guilt, addiction, and the consequences of his past.",
+        "voiceActor": {
+          "name": "Yoshimasa Hosoya",
+          "slug": "yoshimasa-hosoya",
+          "image": "https://s4.anilist.co/file/anilistcdn/staff/large/n100626-bH8eZ0wv3HYX.jpg",
+          "notableRoles": "Reiner Braun (Attack on Titan), Fumikage Tokoyami (My Hero Academia), Asahi Azumane (Haikyuu!!)"
+        }
+      },
+      {
+        "name": "Sachio",
+        "slug": "sachio",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/sachio.webp",
+        "description": "The former mechanic and adopted son of Nanbu who struggles to forgive Joe after the events that changed their lives.",
+        "voiceActor": {
+          "name": "Shiro Saito",
+          "slug": "shiro-saito",
+          "image": "https://cdn.anikawa.fun/voice-actors/shiro-saito.webp",
+          "notableRoles": "Veteran Japanese actor and voice actor"
+        }
+      },
+      {
+        "name": "Chief",
+        "slug": "chief",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/chief.webp",
+        "description": "A compassionate immigrant community leader and skilled boxer who becomes Joe's mentor and closest friend during his journey as Nomad.",
+        "voiceActor": {
+          "name": "Fumihiko Tachiki",
+          "slug": "fumihiko-tachiki",
+          "image": "https://cdn.anikawa.fun/voice-actors/fumihiko-tachiki.webp",
+          "notableRoles": "Gendo Ikari (Evangelion), Akainu (One Piece), Kenpachi Zaraki (Bleach)"
+        }
+      },
+      {
+        "name": "Yuri",
+        "slug": "yuri",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/yuri.webp",
+        "description": "The former Megalonia champion whose rivalry with Joe shaped both of their lives. He now serves as an inspiration for the next generation.",
+        "voiceActor": {
+          "name": "Kenjiro Tsuda",
+          "slug": "kenjiro-tsuda",
+          "image": "https://cdn.anikawa.fun/voice-actors/kenjiro-tsuda.webp",
+          "notableRoles": "Kento Nanami (Jujutsu Kaisen), Kishibe (Chainsaw Man), Overhaul (My Hero Academia)"
+        }
+      },
+      {
+        "name": "Aragaki",
+        "slug": "aragaki",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/aragaki.webp",
+        "description": "A former boxer and war veteran coping with trauma who forms an emotional bond with Joe through their shared struggles.",
+        "voiceActor": {
+          "name": "Shunsuke Sakuya",
+          "slug": "shunsuke-sakuya",
+          "image": "https://cdn.anikawa.fun/voice-actors/shunsuke-sakuya.webp",
+          "notableRoles": "Veteran Japanese voice actor"
+        }
+      },
+      {
+        "name": "Mio",
+        "slug": "mio",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/mio.webp",
+        "description": "A talented young artist from Chief's community whose mural becomes a symbol of hope and unity.",
+        "voiceActor": {
+          "name": "Mikako Komatsu",
+          "slug": "mikako-komatsu",
+          "image": "https://cdn.anikawa.fun/voice-actors/mikako-komatsu.webp",
+          "notableRoles": "Maki Zenin (Jujutsu Kaisen), Rebecca (Edgerunners), Sei Iori (Gundam Build Fighters)"
+        }
+      },
+      {
+        "name": "Bonjiri",
+        "slug": "bonjiri",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/bonjiri.webp",
+        "description": "One of the neighborhood children who looks up to Joe and helps keep Chief's community together.",
+        "voiceActor": {
+          "name": "Yasuhiro Mamiya",
+          "slug": "yasuhiro-mamiya",
+          "image": "https://cdn.anikawa.fun/voice-actors/yasuhiro-mamiya.webp",
+          "notableRoles": "Japanese voice actor"
+        }
+      },
+      {
+        "name": "Santa",
+        "slug": "santa",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/santa.webp",
+        "description": "One of the children from Casa who admires Joe and supports the community throughout its hardships.",
+        "voiceActor": {
+          "name": "Ryota Takeuchi",
+          "slug": "ryota-takeuchi",
+          "image": "https://cdn.anikawa.fun/voice-actors/ryota-takeuchi.webp",
+          "notableRoles": "Elias Ainsworth (The Ancient Magus' Bride), Shanks (young, One Piece media)"
+        }
+      },
+      {
+        "name": "Oicho",
+        "slug": "oicho",
+        "role": "Supporting Character",
+        "image": "https://cdn.anikawa.fun/characters/oicho.webp",
+        "description": "A respected underground boxing organizer who continues to support Joe despite his difficult past.",
+        "voiceActor": {
+          "name": "Hiroki Yasumoto",
+          "slug": "hiroki-yasumoto",
+          "image": "https://cdn.anikawa.fun/voice-actors/hiroki-yasumoto.webp",
+          "notableRoles": "Yasutora 'Chad' Sado (Bleach), Elfman Strauss (Fairy Tail), King (One Punch Man)"
+        }
+      },
+      {
+        "name": "Mac Rosario",
+        "slug": "mac-rosario",
+        "role": "Main Antagonist",
+        "image": "https://cdn.anikawa.fun/characters/mac-rosario.webp",
+        "description": "The reigning Megalonia champion whose advanced Gear System and tragic medical condition lead to one of the series' most emotional championship bouts.",
+        "voiceActor": {
+          "name": "Shunsuke Takeuchi",
+          "slug": "shunsuke-takeuchi",
+          "image": "https://cdn.anikawa.fun/voice-actors/shunsuke-takeuchi.webp",
+          "notableRoles": "Archer (Fate/Grand Order), Einar (Vinland Saga), German (The Rising of the Shield Hero)"
+        }
+      }
+    ],
     "episodes": [
       {
         "url": "https://www.youtube.com/embed/UDMi7Op3KPU",
@@ -72048,7 +72253,32 @@
           "The events of this episode introduce story elements that become important later in the Arrancar arc.",
           "Many fans consider this episode the beginning of a major tonal shift for the series.",
           "The episode originally aired on January 10, 2007 in Japan."
-        ]
+        ],
+        "faq": {
+          "intro": "",
+          "questions": [
+            {
+              "question": "Where can I watch Megalobox Season 2 Episode 1?",
+              "answer": "You can watch Megalobox Season 2 Episode 1 online with subtitles on AniKawa. The episode follows the continuation of Joe's journey after the events of the first season."
+            },
+            {
+              "question": "What is Megalobox Season 2 Episode 1 about?",
+              "answer": "Megalobox Season 2 Episode 1 introduces the new chapter of the story, showing Joe's life after the first season and setting up the challenges he will face in the new season."
+            },
+            {
+              "question": "Is Megalobox Season 2 Episode 1 available with subtitles?",
+              "answer": "Yes, Megalobox Season 2 Episode 1 is available with subtitles, allowing viewers to follow the original Japanese audio with translated dialogue."
+            },
+            {
+              "question": "How many episodes does Megalobox Season 2 have?",
+              "answer": "Megalobox Season 2, also known as Megalobox 2: Nomad, has 13 episodes in total."
+            },
+            {
+              "question": "Do I need to watch Megalobox Season 1 before Season 2?",
+              "answer": "Yes, watching the first season is recommended because Season 2 continues Joe's story and builds on the characters and events introduced earlier."
+            }
+          ]
+        }
       },
       {
         "url": "https://www.youtube.com/embed/3lM0ASL6MJM",
@@ -74140,6 +74370,7 @@
     "description": "I, the protagonist, was just an ordinary high school girl, but suddenly I was reincarnated as a spider monster in a fantasy world. Not only that, but I awakened in a dungeon filled with vicious monsters. Armed with only my human knowledge and my overwhelming positivity, I'm forced to use spiderwebs and traps to defeat far stronger monsters just to stay alive... So begins the labyrinth survival story of a girl with incredible mental strength living as one of the lowest-ranked beasts!",
     "tagline": "",
     "popularity": 10.9459,
+    "badge": "🕷️ Fan Favorite",
     "anikawaReview": {
       "verdict": "A creative isekai adventure that combines survival, RPG-style progression, and an unexpectedly ambitious story.",
       "review": "So I'm a Spider, So What? stands out in the crowded isekai genre by placing its protagonist in the body of a weak spider monster rather than a powerful hero. The series balances humor, danger, and constant character growth as Kumoko struggles to survive in a hostile dungeon. Her energetic personality carries much of the show, making even long stretches of monster battles entertaining. While the CGI and visual quality can be inconsistent at times, the inventive world-building and unique perspective help the anime remain engaging throughout. It's a fun choice for viewers who enjoy progression-focused fantasy stories.",

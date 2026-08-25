@@ -1,0 +1,901 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+/* HERO SECTION */
+
+/* .anime-hero {
+    @apply relative overflow-hidden;
+} */
+
+.hero-container {
+    @apply relative z-[5] mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 md:px-8 lg:flex-row lg:items-end lg:gap-12 lg:py-12;
+}
+
+.hero-backdrop-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-[#0b0b0f];
+}
+
+.hero-poster-column {
+    @apply mx-auto w-full max-w-[220px] shrink-0 md:max-w-[260px] lg:mx-0 lg:max-w-[300px];
+}
+
+.hero-poster {
+    @apply aspect-[2/3] w-full rounded-3xl border border-white/10 object-cover shadow-2xl;
+}
+
+.hero-content-column {
+    @apply flex flex-1 flex-col;
+}
+
+.hero-badges {
+    @apply flex flex-wrap gap-2;
+}
+
+.genre-badge {
+    @apply rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300 transition-all;
+}
+
+.genre-badge:hover {
+    @apply border-violet-400/40 bg-violet-500/20 text-white;
+}
+
+.hero-title {
+    @apply mt-4 text-3xl font-black tracking-tight text-white md:text-5xl lg:text-6xl;
+}
+
+.hero-tagline {
+    @apply mt-3 text-base italic text-zinc-400 md:text-lg;
+}
+
+.hero-meta-row {
+    @apply mt-5 flex flex-wrap items-center gap-2 text-sm text-zinc-300 md:text-base;
+}
+
+.hero-summary {
+    @apply mt-6 max-w-4xl text-sm leading-7 text-zinc-200 md:text-base md:leading-8;
+}
+
+.hero-actions {
+    @apply mt-8 flex flex-wrap items-center gap-4;
+}
+
+.watch-season-btn {
+    @apply rounded-2xl bg-violet-600 px-3 py-3 lg:px-6 font-semibold text-white transition-all;
+}
+
+.watch-season-btn:hover {
+    @apply bg-violet-500;
+}
+
+.hero-facts-grid {
+    @apply mt-8 grid grid-cols-2 gap-3 md:grid-cols-4;
+}
+
+.fact-card {
+    @apply flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm;
+}
+
+.fact-label {
+    @apply text-xs uppercase tracking-wider text-zinc-500;
+}
+
+.fact-value {
+    @apply mt-1 text-sm font-semibold text-white;
+}
+
+/* HERO SECTION V2 */
+
+.anime-hero-v2 {
+    @apply relative;
+}
+
+.hero-backdrop {
+    @apply absolute inset-0 h-[650px] overflow-hidden;
+}
+
+.hero-backdrop-img {
+    @apply h-full w-full object-cover;
+}
+
+.hero-backdrop-overlay {
+    @apply absolute inset-0 bg-black/55;
+}
+
+.hero-backdrop-bottom {
+    @apply absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent to-[#09090b];
+}
+
+.hero-shell {
+    @apply relative z-10 mx-auto max-w-7xl px-4 pt-16 md:px-8 md:pt-24;
+}
+
+.hero-card {
+    @apply flex flex-col gap-8 rounded-3xl border border-white/10 bg-black/40 p-5 backdrop-blur-xl md:p-8 lg:flex-row lg:gap-10;
+}
+
+.hero-poster-wrap {
+    @apply mx-auto shrink-0 lg:mx-0;
+}
+
+.hero-poster {
+    @apply aspect-[2/3] w-52 rounded-2xl border border-white/10 object-cover shadow-2xl md:w-64;
+}
+
+.hero-content {
+    @apply flex flex-1 flex-col;
+}
+
+.hero-genre-list {
+    @apply flex flex-wrap gap-2;
+}
+
+.genre-pill {
+    @apply rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300 transition;
+}
+
+.genre-pill:hover {
+    @apply bg-violet-500/20 text-white;
+}
+
+.hero-title {
+    @apply mt-4 text-3xl font-black tracking-tight text-white md:text-5xl;
+}
+
+.hero-tagline {
+    @apply mt-2 text-base italic text-zinc-400;
+}
+
+.hero-meta {
+    @apply mt-5 flex flex-wrap items-center gap-2 text-sm text-zinc-300;
+}
+
+.hero-description {
+    @apply mt-6 max-w-4xl text-sm leading-7 text-zinc-200 md:text-base md:leading-8;
+}
+
+.hero-actions {
+    @apply mt-8 flex flex-wrap items-center gap-4;
+}
+
+.watch-btn {
+    @apply rounded-2xl bg-violet-600 px-6 py-3 font-semibold text-white transition;
+}
+
+.watch-btn:hover {
+    @apply bg-violet-500;
+}
+
+.hero-info-grid {
+    @apply mt-8 grid grid-cols-2 gap-3 md:grid-cols-4;
+}
+
+.info-item {
+    @apply flex flex-col rounded-2xl border border-white/10 bg-white/5 p-4;
+}
+
+.info-label {
+    @apply text-xs uppercase tracking-wider text-zinc-500;
+}
+
+.info-value {
+    @apply mt-1 text-sm font-semibold text-white;
+}
+
+
+/* ANIKAWA REVIEW */
+
+.anikawa-review-section {
+    @apply mx-auto mt-14 max-w-7xl px-4 md:px-8;
+}
+
+.section-heading {
+    @apply mb-6;
+}
+
+.section-badge {
+    @apply inline-flex rounded-full border border-amber-500/20 bg-amber-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-300;
+}
+
+.section-title {
+    @apply mt-3 text-2xl font-bold text-white md:text-4xl;
+}
+
+.review-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8;
+}
+
+.review-verdict {
+    @apply mb-6 rounded-2xl border border-violet-500/20 bg-violet-500/10 p-5;
+}
+
+.verdict-label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-violet-300;
+}
+
+.verdict-text {
+    @apply mt-2 text-lg font-semibold leading-8 text-white;
+}
+
+.review-text {
+    @apply text-sm leading-8 text-zinc-300 md:text-base;
+}
+
+.review-grid {
+    @apply mt-8 grid gap-6 md:grid-cols-2;
+}
+
+.review-column {
+    @apply rounded-2xl border border-white/10 bg-black/20 p-5;
+}
+
+.review-subtitle {
+    @apply text-lg font-semibold text-white;
+}
+
+.review-list {
+    @apply mt-4 space-y-3;
+}
+
+.review-list li {
+    @apply flex items-start gap-3 text-sm leading-7 text-zinc-300;
+}
+
+.review-list li::before {
+    content: "✓";
+    @apply text-violet-400;
+}
+
+/* ANIME FACTS */
+
+.anime-insights-section {
+    @apply mx-auto mt-16 max-w-7xl px-4 md:px-8;
+}
+
+.insights-header {
+    @apply mb-8;
+}
+
+.insights-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.insights-title {
+    @apply mt-3 text-3xl font-bold text-white md:text-4xl;
+}
+
+.insights-description {
+    @apply mt-3 max-w-2xl text-sm leading-7 text-zinc-400 md:text-base;
+}
+
+.insights-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm md:p-8;
+}
+
+.insights-timeline {
+    @apply relative;
+}
+
+.insights-timeline::before {
+    content: "";
+    @apply absolute bottom-0 left-[15px] top-0 w-px bg-white/10;
+}
+
+.insight-item {
+    @apply relative flex gap-4 pb-8 last:pb-0;
+}
+
+.insight-marker {
+    @apply relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-violet-500/20 bg-violet-500/10 text-sm font-bold text-violet-300;
+}
+
+.insight-content {
+    @apply flex-1 pt-1;
+}
+
+.insight-content p {
+    @apply text-sm leading-8 text-zinc-300 md:text-base;
+}
+
+/* Who Should Watch */
+.watch-audience-section {
+    @apply mx-auto mt-16 max-w-7xl px-4 md:px-8 mb-10;
+}
+
+.watch-audience-header {
+    @apply mb-8;
+}
+
+.watch-audience-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.watch-audience-title {
+    @apply mt-3 text-3xl font-bold text-white md:text-4xl;
+}
+
+.watch-audience-description {
+    @apply mt-3 max-w-2xl text-sm leading-7 text-zinc-400 md:text-base;
+}
+
+.watch-audience-grid {
+    @apply grid gap-6 lg:grid-cols-2;
+}
+
+.audience-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm;
+}
+
+.audience-card-title {
+    @apply text-xl font-semibold text-white;
+}
+
+.audience-list {
+    @apply mt-5 space-y-3;
+}
+
+.audience-list li {
+    @apply flex gap-3 text-sm leading-7 text-zinc-300 md:text-base;
+}
+
+.audience-list.positive li::before {
+    content: "✓";
+    @apply font-bold text-violet-400;
+}
+
+.audience-list.neutral li::before {
+    content: "•";
+    @apply font-bold text-zinc-500;
+}
+
+.viewing-summary-card {
+    @apply mt-6 grid gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 md:grid-cols-2;
+}
+
+.summary-item {
+    @apply flex flex-col;
+}
+
+.summary-label {
+    @apply text-xs uppercase tracking-wider text-zinc-500;
+}
+
+.summary-value {
+    @apply mt-2 text-base font-medium text-white;
+}
+
+/* WHAT MAKES IT SPECIAL */
+.special-section {
+    @apply mx-auto mt-16 max-w-7xl px-4 md:px-8;
+}
+
+.special-header {
+    @apply mb-8;
+}
+
+.special-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.special-title {
+    @apply mt-3 text-3xl font-bold text-white md:text-4xl;
+}
+
+.special-description {
+    @apply mt-4 max-w-3xl text-sm leading-8 text-zinc-400 md:text-base;
+}
+
+.special-grid {
+    @apply grid gap-4 md:grid-cols-2 xl:grid-cols-4;
+}
+
+.special-card {
+    @apply rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300;
+}
+
+.special-card:hover {
+    @apply border-violet-500/30 bg-white/[0.07];
+}
+
+.special-card-title {
+    @apply text-lg font-semibold text-white;
+}
+
+.special-card-description {
+    @apply mt-3 text-sm leading-7 text-zinc-300;
+}
+
+
+/*Watch Order*/
+
+.watch-order-section {
+    @apply mx-auto mt-16 max-w-7xl px-4 md:px-8;
+}
+
+.watch-order-header {
+    @apply mb-8;
+}
+
+.watch-order-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.watch-order-title {
+    @apply mt-3 text-3xl font-bold text-white md:text-4xl;
+}
+
+.watch-order-description {
+    @apply mt-3 max-w-3xl text-sm leading-7 text-zinc-400 md:text-base;
+}
+
+.watch-order-list {
+    @apply flex flex-col gap-4;
+}
+
+.watch-order-item {
+    @apply flex items-center gap-4 rounded-3xl border border-white/10 bg-white/5 p-4 transition-all duration-300;
+}
+
+.watch-order-item:hover {
+    @apply border-violet-500/30 bg-white/[0.07];
+}
+
+.watch-order-number {
+    @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-violet-500/15 text-lg font-bold text-violet-300;
+}
+
+.watch-order-content {
+    @apply flex min-w-0 flex-1 flex-col;
+}
+
+.watch-order-item-title {
+    @apply truncate text-base font-semibold text-white md:text-lg;
+}
+
+.watch-order-item-type {
+    @apply mt-1 text-sm text-zinc-400;
+}
+
+.recommended-badge {
+    @apply rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300;
+}
+
+/*FAQ Section*/
+.anime-faq-section {
+    @apply mt-16 rounded-3xl border border-white/10 bg-secondary p-6 md:p-8 w-full max-w-7xl self-center mx-3 sm:mx-5 xl:mx-auto mb-5 sm:mb-10;
+}
+
+
+.anime-faq-header {
+    @apply mb-8;
+}
+
+
+.anime-faq-title {
+    @apply text-2xl font-bold text-white md:text-3xl;
+}
+
+
+.anime-faq-description {
+    @apply mt-3 text-gray;
+}
+
+
+.anime-faq-list {
+    @apply flex flex-col gap-4;
+}
+
+
+.anime-faq-item {
+    @apply rounded-2xl border border-white/10 bg-sort p-5 transition-all duration-300;
+}
+
+
+.anime-faq-item[open] {
+    @apply border-primary/50;
+}
+
+
+.anime-faq-item summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-white;
+}
+
+
+.anime-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.anime-faq-icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-xl text-primary transition-transform duration-300;
+}
+
+
+.anime-faq-item[open] .anime-faq-icon {
+    @apply rotate-45 bg-primary text-white;
+}
+
+
+.anime-faq-item p {
+    @apply mt-4 leading-relaxed text-gray;
+}
+
+/*Related Articles*/
+
+.related-articles-section {
+    @apply mx-auto mt-16 max-w-7xl px-4 md:px-8 mb-6 lg:mb-10 2xl:mb-20;
+}
+
+.related-articles-header {
+    @apply mb-8;
+}
+
+.related-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.25em] text-violet-400;
+}
+
+.related-title {
+    @apply mt-3 text-3xl font-bold text-white md:text-4xl;
+}
+
+.related-description {
+    @apply mt-3 max-w-3xl text-sm leading-7 text-zinc-400 md:text-base;
+}
+
+.related-grid {
+    @apply grid gap-5 md:grid-cols-2 xl:grid-cols-3;
+}
+
+.related-card {
+    @apply flex flex-col rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300;
+}
+
+.related-card:hover {
+    @apply border-violet-500/30 bg-white/[0.07] -translate-y-1;
+}
+
+.related-meta {
+    @apply mb-4 flex items-center justify-between gap-4;
+}
+
+.related-category {
+    @apply rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300;
+}
+
+.related-reading-time {
+    @apply text-xs text-zinc-500;
+}
+
+.related-card-title {
+    @apply text-xl font-semibold leading-snug text-white transition-colors;
+}
+
+.related-card:hover .related-card-title {
+    @apply text-violet-300;
+}
+
+.related-card-description {
+    @apply mt-3 flex-1 text-sm leading-7 text-zinc-400;
+}
+
+.related-link {
+    @apply mt-5 text-sm font-medium text-violet-400 transition-all;
+}
+
+.related-card:hover .related-link {
+    @apply translate-x-1;
+}
+
+/* ===========================================================
+   CHARACTERS SECTION
+=========================================================== */
+
+.characters-section {
+    @apply mt-10 max-w-7xl mx-5 xl:mx-auto;
+}
+
+
+/* Heading */
+
+.section-heading-small {
+    @apply mb-5;
+}
+
+.section-title-small {
+    @apply flex items-center gap-3 text-xl font-bold text-white;
+}
+
+.section-icon {
+    @apply text-primary text-lg;
+}
+
+
+/* ===========================================================
+   CHARACTER GRID
+=========================================================== */
+
+.characters-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3;
+}
+
+
+/* ===========================================================
+   CHARACTER CARD
+=========================================================== */
+
+.character-mini-card {
+    @apply flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-sort p-3 transition-all duration-200 hover:border-primary/40 hover:bg-white/5;
+}
+
+
+/* ===========================================================
+   CHARACTER PROFILE
+=========================================================== */
+
+.character-mini-profile {
+    @apply flex items-center gap-3 min-w-0;
+}
+
+
+.character-mini-image {
+    @apply w-12 h-12 rounded-lg object-cover shrink-0;
+}
+
+
+.character-mini-info {
+    @apply min-w-0 flex flex-col;
+}
+
+
+.character-mini-name {
+    @apply text-sm font-semibold text-white truncate hover:text-primary transition;
+}
+
+
+.character-mini-role {
+    @apply mt-1 text-xs text-gray truncate;
+}
+
+
+/* ===========================================================
+   VOICE ACTOR
+=========================================================== */
+
+.voice-mini-profile {
+    @apply flex items-center gap-2 shrink-0;
+}
+
+
+.voice-mini-info {
+    @apply flex flex-col items-end;
+}
+
+
+.voice-mini-name {
+    @apply max-w-[90px] text-xs font-medium text-gray truncate hover:text-white transition;
+}
+
+
+.voice-mini-language {
+    @apply text-[10px] uppercase text-primary;
+}
+
+
+.voice-mini-image {
+    @apply w-9 h-9 rounded-full object-cover border border-white/10;
+}
+
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width: 640px) {
+
+    .characters-grid {
+        @apply grid-cols-1;
+    }
+
+
+    .character-mini-card {
+        @apply p-2.5;
+    }
+
+
+    .character-mini-image {
+        @apply w-10 h-10;
+    }
+
+
+    .character-mini-name {
+        @apply text-xs;
+    }
+
+
+    .voice-mini-image {
+        @apply w-8 h-8;
+    }
+
+}
+
+/* ===========================================================
+   STAFF SECTION
+=========================================================== */
+
+.staff-section {
+    @apply mt-10 max-w-7xl mx-5 xl:mx-auto;
+}
+
+
+/* Heading */
+
+.section-heading-small {
+    @apply mb-5;
+}
+
+.section-title-small {
+    @apply flex items-center gap-3 text-xl font-bold text-white;
+}
+
+.section-icon {
+    @apply text-primary text-lg;
+}
+
+
+/* ===========================================================
+   STAFF GRID
+=========================================================== */
+
+.staff-grid {
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3;
+}
+
+
+/* ===========================================================
+   STAFF CARD
+=========================================================== */
+
+.staff-card {
+    @apply rounded-xl border border-white/10 bg-sort transition-all duration-200 hover:border-primary/40 hover:bg-white/5;
+}
+
+
+.staff-profile {
+    @apply flex items-center gap-3 p-3;
+}
+
+
+/* ===========================================================
+   STAFF IMAGE
+=========================================================== */
+
+.staff-image {
+    @apply w-12 h-12 rounded-lg object-cover shrink-0;
+}
+
+
+/* ===========================================================
+   STAFF INFO
+=========================================================== */
+
+.staff-info {
+    @apply min-w-0 flex flex-col;
+}
+
+
+.staff-name {
+    @apply text-sm font-semibold text-white truncate;
+}
+
+
+.staff-role {
+    @apply text-xs text-gray truncate mt-1;
+}
+
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width: 640px) {
+
+    .staff-grid {
+        @apply grid-cols-1;
+    }
+
+
+    .staff-profile {
+        @apply p-2.5;
+    }
+
+
+    .staff-image {
+        @apply w-10 h-10;
+    }
+
+
+    .staff-name {
+        @apply text-xs;
+    }
+
+
+    .staff-role {
+        @apply text-[11px];
+    }
+
+}
+
+/* ===========================================================
+   LINKS SECTION
+=========================================================== */
+
+.anime-links-section {
+    @apply mt-10 max-w-7xl mx-5 xl:mx-auto;
+}
+
+
+/* shared heading */
+
+.section-heading-small {
+    @apply mb-5;
+}
+
+.section-title-small {
+    @apply flex items-center gap-3 text-xl font-bold text-white;
+}
+
+.section-icon {
+    @apply text-primary text-lg;
+}
+
+
+/* ===========================================================
+   LINK PILLS
+=========================================================== */
+
+.links-container {
+    @apply flex flex-wrap gap-2;
+}
+
+
+.external-link-pill {
+    @apply inline-flex items-center gap-2 rounded-lg border border-white/10 bg-sort px-3 py-2 text-sm text-gray transition-all duration-200 hover:border-primary/40 hover:text-white hover:bg-white/5;
+}
+
+
+.link-icon {
+    @apply w-4 h-4 object-contain shrink-0;
+}
+
+
+.link-name {
+    @apply whitespace-nowrap;
+}
+
+
+.external-icon {
+    @apply text-xs text-gray opacity-70;
+}
+
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width: 640px) {
+
+    .links-container {
+        @apply gap-2;
+    }
+
+
+    .external-link-pill {
+        @apply px-2.5 py-1.5 text-xs;
+    }
+
+
+    .link-icon {
+        @apply w-3.5 h-3.5;
+    }
+
+}

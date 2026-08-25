@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+
+.profile-main {
+    @apply h-auto w-full flex flex-col items-center px-3;
+}
+
+.search-top {
+    @apply bg-[var(--c-sec)] flex items-center justify-center w-full h-[10%];
+}
+
+.st-bar-div {
+    @apply px-5 w-full max-w-[1000px] relative;
+}
+
+.search-input {
+    @apply outline-none bg-transparent w-full h-12 border-b-2 border-b-[gray] p-2 text-3xl pl-1 pr-7;
+}
+
+.search-input:focus {
+    border-color: #8c52ff;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+.search-clear-btn {
+    @apply absolute z-[1] top-2 right-5 cursor-pointer;
+}
+
+.search-results {
+    @apply max-w-[1200px] mt-8 h-full;
+}
+
+.mov-ser-section {
+    @apply hidden flex-col gap-5 w-full mb-10;
+}
+
+.mov-ser-section.show {
+    display: flex;
+}
+
+.mss-heading {
+    font-family: 'Winky Sans';
+    @apply ml-1 text-3xl font-medium;
+}
+
+.ser-res {
+    @apply flex flex-wrap w-full;
+}
+
+.search-ep-card {
+    min-width: 250px;
+}
+
+.search-anime-card {
+    @apply w-[23vw] max-w-[230px];
+}
+
+.p-top {
+    margin-top: 0;
+}
+
+.part.active {
+    font-family: 'Winky Sans';
+    @apply bg-[var(--c-sec)];
+}
+
+.part.active .part-icon {
+    fill: white;
+}
+
+/*new pop anime list styles*/
+body.loading {
+    cursor: wait;
+}
+
+.new-pop-anime-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.np-watchlist {
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+}
+
+@media (max-width: 312px) {
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+
+    .np-watchlist {
+        grid-template-columns: repeat(auto-fill, 100%);
+    }
+}
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
+    }
+
+    .np-watchlist {
+        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(165px, 165px));
+    }
+}
+
+.new-pop-anime-list.hidden {
+    display: none;
+}
+
+
+.episodes-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.episodes-list.disable-clicks {
+    pointer-events: none;
+}
+
+.episodes-list.disable-clicks .ec-del-icon {
+    pointer-events: none !important;
+    cursor: default;
+}
+
+.el-search {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.el-history {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}

@@ -15,7 +15,9 @@ export interface Anime {
   description: string;
   tagline: string;
   popularity: number;
+  badge?: string;
   episodes: Episode[];
+  number_of_episodes?: number;
   seasons: number;
   runtime: string;
   endDate: string;
@@ -33,7 +35,17 @@ export interface Anime {
   watchOrder?: WatchOrder;
   faq?: AnimeFAQ;
   relatedArticles?: RelatedArticles;
+  characters?: any;
+  staff?: any;
+  links?: any;
+  format?: AnimeFormat;
+  country?: string;
+  year?: number;
 }
+
+// type AnimeStatus = "Finished" | "Releasing" | "Cancelled";
+
+type AnimeFormat = "TV" | "Movie" | "OVA" | "ONA" | "Special" | "Music";
 
 type RelatedArticle = {
   title: string;
@@ -116,5 +128,6 @@ export interface Episode {
   ratingLabel?: string;
   summary?: string;
   importance?: string;
-  facts?: string[]
+  facts?: string[];
+  faq?: any;
 }

@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+/* =========================
+   EPISODE CARD SKELETON
+========================= */
+
+.episode-card-skeleton {
+  @apply overflow-hidden;
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.episode-skeleton-image {
+  @apply w-full aspect-[3/2] bg-white/5 animate-pulse;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.episode-skeleton-content {
+  @apply flex flex-col gap-2 p-4;
+}
+
+
+/* =========================
+   TEXT LINES
+========================= */
+
+.episode-skeleton-line {
+  @apply rounded-full bg-white/10 animate-pulse;
+}
+
+
+.episode-skeleton-line--title {
+  @apply h-3 w-2/5;
+}
+
+
+.episode-skeleton-line--name {
+  @apply h-5 w-4/5 rounded-md;
+}
+
+
+.episode-skeleton-line--name-short {
+  @apply h-5 w-3/5 rounded-md;
+}
+
+
+/* =========================
+   META
+========================= */
+
+.episode-skeleton-meta {
+  @apply flex items-center gap-2 mt-1;
+}
+
+
+.episode-skeleton-line--meta {
+  @apply h-3 w-16;
+}
+
+
+.episode-skeleton-line--meta-short {
+  @apply h-3 w-12;
+}
+
+
+.episode-skeleton-pill {
+  @apply h-5 w-12 rounded-full bg-[var(--c-main)]/10 border border-[var(--c-main)]/10 animate-pulse;
+}
+
+
+/* =========================
+   CONTINUE WATCHING PROGRESS
+========================= */
+
+.episode-skeleton-progress {
+  @apply mt-4 h-2 w-full overflow-hidden rounded-full bg-white/5 animate-pulse;
+}
+
+
+.episode-skeleton-time {
+  @apply mt-3 h-6 w-32 rounded-full bg-white/5 animate-pulse;
+}
+
+
+/* =========================
+   HOMEPAGE WIDTH
+========================= */
+
+.latest-episodes-section {
+  .episode-card--skeleton {
+    @apply max-w-xs;
+  }
+}

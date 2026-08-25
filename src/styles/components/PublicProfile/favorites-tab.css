@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+
+.favorites-tab {
+    @apply w-full;
+}
+
+.favorites-tab__header {
+    @apply mb-7 flex items-center justify-between gap-4;
+}
+
+.favorites-tab__heading {
+    @apply flex items-center gap-3;
+}
+
+.favorites-tab__icon {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-pink-400/10 bg-pink-400/10 text-pink-400;
+}
+
+.favorites-tab__eyebrow {
+    @apply mb-1 text-[11px] font-medium uppercase tracking-[0.14em] text-gray-500;
+}
+
+.favorites-tab__title {
+    @apply text-2xl font-black tracking-tight text-white;
+}
+
+.favorites-tab__page {
+    @apply rounded-lg border border-white/5 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-gray-500;
+}
+
+.favorites-tab__groups {
+    @apply flex flex-col gap-8;
+}
+
+.favorites-tab__group {
+    @apply min-w-0;
+}
+
+.favorites-tab__group-header {
+    @apply mb-4 flex items-center gap-2;
+}
+
+.favorites-tab__group-title {
+    @apply text-lg font-bold text-white;
+}
+
+.favorites-tab__group-count {
+    @apply flex h-5 min-w-5 items-center justify-center rounded-full bg-white/5 px-1.5 text-[10px] font-bold text-gray-500;
+}
+
+.favorites-tab__grid {
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+}
+
+.favorites-tab__card {
+    @apply min-w-0;
+}
+
+.favorites-tab__card-link {
+    @apply block min-w-0 no-underline;
+}
+
+.favorites-tab__poster {
+    @apply relative aspect-[2/3] overflow-hidden rounded-xl border border-white/5 bg-[#141519];
+}
+
+.favorites-tab__poster img {
+    @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.favorites-tab__card-link:hover .favorites-tab__poster img {
+    transform: scale(1.045);
+}
+
+.favorites-tab__card-link:hover .favorites-tab__poster {
+    @apply border-white/10;
+}
+
+.favorites-tab__poster-placeholder {
+    @apply flex h-full w-full items-center justify-center bg-white/[0.03] text-gray-600;
+}
+
+.favorites-tab__heart {
+    @apply absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full border border-pink-400/20 bg-black/60 text-pink-400 shadow-lg backdrop-blur-md;
+}
+
+.favorites-tab__info {
+    @apply min-w-0 px-1 pt-2;
+}
+
+.favorites-tab__name {
+    @apply truncate text-sm font-semibold text-gray-200 transition-colors duration-200;
+}
+
+.favorites-tab__card-link:hover .favorites-tab__name {
+    @apply text-white;
+}
+
+.favorites-tab__year {
+    @apply mt-0.5 block text-xs text-gray-600;
+}
+
+.favorites-tab__empty {
+    @apply flex min-h-[360px] flex-col items-center justify-center rounded-2xl border border-dashed border-white/10 bg-[#141519] px-6 text-center;
+}
+
+.favorites-tab__empty-icon {
+    @apply mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-pink-400/10 text-pink-400;
+}
+
+.favorites-tab__empty h2 {
+    @apply text-lg font-bold text-white;
+}
+
+.favorites-tab__empty p {
+    @apply mt-2 max-w-md text-sm leading-6 text-gray-500;
+}
+
+.favorites-tab__pagination {
+    @apply mt-8 flex items-center justify-center gap-2;
+}
+
+.favorites-tab__pagination-button {
+    @apply inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-[#141519] px-4 py-2.5 text-sm font-semibold text-gray-300 no-underline transition-all duration-200;
+}
+
+.favorites-tab__pagination-button:hover {
+    @apply border-accent/30 bg-white/[0.04] text-white;
+}
+
+.favorites-tab__pagination-button--disabled {
+    @apply cursor-not-allowed opacity-30;
+}
+
+.favorites-tab__pagination-current {
+    @apply flex h-10 min-w-10 items-center justify-center rounded-xl bg-accent px-3 text-sm font-bold text-white;
+}
+
+@media (max-width: 639px) {
+    .favorites-tab__header {
+        @apply mb-5;
+    }
+
+    .favorites-tab__title {
+        @apply text-xl;
+    }
+
+    .favorites-tab__icon {
+        @apply h-9 w-9;
+    }
+
+    .favorites-tab__page {
+        @apply hidden;
+    }
+
+    .favorites-tab__grid {
+        @apply gap-2;
+    }
+
+    .favorites-tab__poster {
+        @apply rounded-lg;
+    }
+
+    .favorites-tab__heart {
+        @apply right-1.5 top-1.5 h-6 w-6;
+    }
+
+    .favorites-tab__name {
+        @apply text-xs;
+    }
+
+    .favorites-tab__pagination-button {
+        @apply px-3 py-2;
+    }
+}

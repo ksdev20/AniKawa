@@ -1,0 +1,168 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import ProfileHero from "@/components/PublicProfile/ProfileHero.astro";
+import ProfileNavigator from "@/components/PublicProfile/ProfileNavigator";
+
+import "@/styles/pages/profile/new-profile.css";
+import "@/components/AnimeSlider/anime-slidertw.css";
+
+import AnimeStats from "@/components/Profile/Overview/AnimeStats";
+import GenreOverview from "@/components/Profile/Overview/GenresOverview";
+import AnimeList from "@/components/Profile/AnimeList/AnimeList";
+
+import FavoritesSection from "@/components/Profile/Overview/FavoritesSection";
+import RecentlyCompleted from "@/components/PublicProfile/Overview/RecentlyCompleted";
+import CurrentlyWatching from "@/components/PublicProfile/Overview/CurrentlyWatching";
+import TopRatedAnime from "@/components/PublicProfile/Overview/TopRatedAnime";
+import AnimeListBreakdown from "@/components/PublicProfile/Overview/AnimeListBreakdown";
+import FavoritesTab from "@/components/PublicProfile/FavoritesTab.astro";
+
+import Stats from "@/components/Profile/Stats/Stats";
+import WatchActivity from "@/components/PublicProfile/Overview/WatchActivity";
+import AnimePersonality from "@/components/PublicProfile/Overview/AnimePersonality";
+
+import {
+  getPublicProfilePageData,
+  resolveProfileTab,
+} from "@/lib/profile/getPublicProfilePageData";
+import AboutCard from "@/components/Profile/Overview/AboutCard";
+
+const { username } = Astro.params;
+
+if (!username) {
+  return Astro.redirect("/404", 404);
+}
+
+const supabase = Astro.locals.supabase;
+
+if (!supabase) {
+  console.error("[PublicProfile] Supabase client is unavailable.");
+
+  return Astro.redirect("/500", 500);
+}
+
+const activeTab = resolveProfileTab(Astro.url.searchParams.get("tab"));
+
+const pageData = await getPublicProfilePageData(supabase, username, activeTab);
+
+if (pageData.status === "not_found") {
+  return Astro.redirect("/404", 404);
+}
+
+if (pageData.status === "error") {
+  return Astro.redirect("/500", 500);
+}
+
+const {
+  publicProfile,
+  favorites,
+  favoriteAnime,
+  stats,
+  continueWatching,
+  isFollowing,
+  isBlocked,
+  userAnimeList,
+  animeRecords,
+  resolvedEpisodeRecords,
+  pageTitle,
+  pageDescription,
+} = pageData;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="profile-app profile-app--loaded">
+    <div class="profile-layout">
+      <ProfileHero
+        profile={publicProfile}
+        username={username}
+        isFollowing={isFollowing}
+        isBlocked={isBlocked}
+      />
+
+      <ProfileNavigator username={username} activeTab={activeTab} />
+
+      <div class="profile-layout__content">
+        {
+          activeTab === "overview" && (
+            <section class="profile-overview">
+              <aside class="profile-overview__sidebar">
+                {/* About */}
+                <AboutCard profile={publicProfile} />
+
+                {/* Recent Watch Activity */}
+                <WatchActivity continueWatching={continueWatching} />
+
+                {/* Favorite Genres */}
+                <GenreOverview
+                  continueWatching={continueWatching}
+                  animeRecords={animeRecords}
+                />
+
+                {/* Anime List Breakdown */}
+                <AnimeListBreakdown stats={stats} />
+
+                {/* Favorites */}
+                <FavoritesSection
+                  favoriteAnime={favoriteAnime}
+                />
+              </aside>
+
+              <div class="profile-overview__main">
+                {/* Anime Statistics */}
+                <AnimeStats
+                  continueWatching={continueWatching}
+                  animeRecords={animeRecords}
+                />
+
+                {/* Anime Personality */}
+                <AnimePersonality
+                  continueWatching={continueWatching}
+                  animeRecords={animeRecords}
+                  favorites={favorites}
+                  stats={stats}
+                  displayName={publicProfile.display_name}
+                />
+
+                {/* Recently Completed */}
+                <RecentlyCompleted userAnimeList={userAnimeList} />
+
+                {/* Currently Watching */}
+                <CurrentlyWatching
+                  continueWatching={continueWatching}
+                  episodeRecords={resolvedEpisodeRecords}
+                />
+
+                {/* Top Rated Anime */}
+                <TopRatedAnime userAnimeList={userAnimeList} />
+              </div>
+            </section>
+          )
+        }
+
+        {
+          activeTab === "anime" && (
+            <AnimeList username={username} isOwner={false} client:load />
+          )
+        }
+
+        {
+          activeTab === "favorites" && (
+            <FavoritesTab
+              username={username}
+              favorites={favorites}
+              favoriteAnime={favoriteAnime}
+              page={Math.max(
+                1,
+                Number(Astro.url.searchParams.get("page") ?? "1") || 1,
+              )}
+              pageSize={24}
+            />
+          )
+        }
+
+        {activeTab === "stats" && <Stats />}
+      </div>
+    </div>
+  </main>
+</Layout>

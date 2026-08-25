@@ -3,9 +3,7 @@ import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import vercelAdapter from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-
 import mdx from "@astrojs/mdx";
-
 import sentry from "@sentry/astro";
 
 // https://astro.build/config

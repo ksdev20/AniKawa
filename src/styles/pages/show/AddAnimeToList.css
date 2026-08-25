@@ -1,0 +1,300 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+.add-anime-list {
+    @apply relative z-10 inline-flex;
+}
+
+.add-anime-list__button {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-2xl border px-4 py-3 font-semibold transition-all duration-200;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-secondary;
+}
+
+.add-anime-list__button:hover:not(:disabled) {
+    @apply -translate-y-0.5;
+}
+
+.add-anime-list__button:active:not(:disabled) {
+    @apply translate-y-0;
+}
+
+.add-anime-list__button:disabled {
+    @apply cursor-not-allowed opacity-70;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Add button
+|--------------------------------------------------------------------------
+|
+| Dark/surface based rather than another violet filled button.
+|
+*/
+
+.add-anime-list__button--add {
+    @apply border-white/15 bg-surface text-white;
+    @apply shadow-lg shadow-black/10;
+}
+
+.add-anime-list__button--add:hover:not(:disabled) {
+    @apply border-violet-400/50 bg-surfaceLight;
+    @apply shadow-lg shadow-violet-950/20;
+}
+
+.add-anime-list__button--add svg {
+    @apply text-violet-300;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Guest
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__button--guest {
+    @apply border-white/15 bg-surface text-white;
+}
+
+.add-anime-list__button--guest:hover:not(:disabled) {
+    @apply border-violet-400/50 bg-surfaceLight;
+}
+
+.add-anime-list__button--guest svg {
+    @apply text-violet-300;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Loading
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list--loading {
+    @apply opacity-90;
+}
+
+.add-anime-list__spinner {
+    @apply animate-spin;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Status button base
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__button--status {
+    @apply border bg-surface font-semibold;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Watching — blue/cyan
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__status--watching {
+    @apply border-sky-400/35 bg-sky-950/30 text-sky-200;
+}
+
+.add-anime-list__status--watching:hover:not(:disabled) {
+    @apply border-sky-300/55 bg-sky-900/40;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Planning — indigo
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__status--planning {
+    @apply border-indigo-400/35 bg-indigo-950/30 text-indigo-200;
+}
+
+.add-anime-list__status--planning:hover:not(:disabled) {
+    @apply border-indigo-300/55 bg-indigo-900/40;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Completed — emerald
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__status--completed {
+    @apply border-emerald-400/35 bg-emerald-950/30 text-emerald-200;
+}
+
+.add-anime-list__status--completed:hover:not(:disabled) {
+    @apply border-emerald-300/55 bg-emerald-900/40;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Paused — amber
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__status--paused {
+    @apply border-amber-400/35 bg-amber-950/30 text-amber-200;
+}
+
+.add-anime-list__status--paused:hover:not(:disabled) {
+    @apply border-amber-300/55 bg-amber-900/40;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Dropped — red
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__status--dropped {
+    @apply border-red-400/35 bg-red-950/30 text-red-200;
+}
+
+.add-anime-list__status--dropped:hover:not(:disabled) {
+    @apply border-red-300/55 bg-red-900/40;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Chevron / state indicator
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__chevron {
+    @apply ml-0.5 text-sm leading-none opacity-70 transition-transform;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Picker
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__picker {
+    @apply absolute left-0 top-[calc(100%+0.6rem)] z-100 w-60 overflow-hidden rounded-2xl border border-white/10 bg-secondary p-2;
+    @apply shadow-2xl shadow-black/40;
+    @apply backdrop-blur-xl;
+}
+
+.add-anime-list__picker-header {
+    @apply px-3 pb-2 pt-2 text-xs font-semibold uppercase tracking-wider text-gray;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Status options
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__options {
+    @apply flex flex-col gap-1;
+}
+
+.add-anime-list__option {
+    @apply flex w-full items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-left text-sm font-medium transition-all duration-150;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400;
+}
+
+.add-anime-list__option:hover:not(:disabled) {
+    @apply border-white/10 bg-white/5;
+}
+
+.add-anime-list__option:disabled {
+    @apply cursor-not-allowed opacity-60;
+}
+
+.add-anime-list__option-icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5;
+}
+
+.add-anime-list__option-label {
+    @apply flex-1;
+}
+
+.add-anime-list__option-check {
+    @apply shrink-0;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Selected option
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__option--selected {
+    @apply bg-white/5;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Option status colors
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__option.add-anime-list__status--watching {
+    @apply text-sky-200;
+}
+
+.add-anime-list__option.add-anime-list__status--planning {
+    @apply text-indigo-200;
+}
+
+.add-anime-list__option.add-anime-list__status--completed {
+    @apply text-emerald-200;
+}
+
+.add-anime-list__option.add-anime-list__status--paused {
+    @apply text-amber-200;
+}
+
+.add-anime-list__option.add-anime-list__status--dropped {
+    @apply text-red-200;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Error
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__error {
+    @apply absolute left-0 top-[calc(100%+0.6rem)] z-40 w-64 rounded-xl border border-red-400/25 bg-red-950/80 px-3 py-2 text-xs font-medium text-red-200 shadow-xl;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Remove from list
+|--------------------------------------------------------------------------
+*/
+
+.add-anime-list__danger {
+    @apply mt-1;
+}
+
+.add-anime-list__divider {
+    @apply mx-2 mb-1 border-t border-white/10;
+}
+
+.add-anime-list__remove {
+    @apply flex w-full items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-left text-sm font-medium text-red-300 transition-all duration-150;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400;
+}
+
+.add-anime-list__remove:hover:not(:disabled) {
+    @apply border-red-400/20 bg-red-950/40 text-red-200;
+}
+
+.add-anime-list__remove:disabled {
+    @apply cursor-not-allowed opacity-50;
+}
+
+.add-anime-list__remove-icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-950/50;
+}
+
+.add-anime-list__remove-label {
+    @apply flex-1;
+}

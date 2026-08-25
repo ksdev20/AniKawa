@@ -1,0 +1,255 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+.top-rated {
+  @apply w-full;
+}
+
+.top-rated__header {
+  @apply mb-5 flex items-end justify-between gap-4;
+}
+
+.top-rated__eyebrow {
+  @apply mb-1 text-xs font-medium uppercase tracking-[0.12em] text-accent;
+}
+
+.top-rated__title {
+  @apply text-xl font-bold tracking-tight text-white;
+}
+
+.top-rated__subtitle {
+  @apply mt-1 text-xs text-gray-500;
+}
+
+.top-rated__view-all {
+  @apply flex shrink-0 items-center gap-1 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-white;
+}
+
+.top-rated__layout {
+  @apply grid gap-3 lg:grid-cols-[1.25fr_1fr];
+}
+
+/* -------------------------------------------------------------------------- */
+/* Featured #1                                                                */
+/* -------------------------------------------------------------------------- */
+
+.top-rated__featured {
+  @apply relative flex min-h-[260px] overflow-hidden rounded-2xl border border-white/10 bg-[#141519] no-underline transition-all duration-300;
+}
+
+.top-rated__featured:hover {
+  @apply -translate-y-1 border-accent/30;
+}
+
+.top-rated__featured-poster-wrap {
+  @apply relative w-[42%] shrink-0 overflow-hidden;
+}
+
+.top-rated__featured-poster {
+  @apply h-full w-full object-cover transition-transform duration-500;
+}
+
+.top-rated__featured:hover .top-rated__featured-poster {
+  transform: scale(1.045);
+}
+.top-rated__featured-poster-wrap::after {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#141519];
+}
+
+.top-rated__poster-placeholder {
+  @apply flex h-full w-full items-center justify-center bg-[#1b1c21] text-3xl text-gray-500;
+}
+
+.top-rated__rank {
+  @apply absolute left-2 top-2 z-[2] flex items-center justify-center rounded-lg px-2 py-1 text-xs font-black text-white shadow-lg;
+}
+
+.top-rated__rank--first {
+  @apply bg-accent;
+}
+
+.top-rated__rank--second {
+  @apply bg-[#8f8f8f];
+}
+
+.top-rated__rank--third {
+  @apply bg-[#a66b3d];
+}
+
+.top-rated__score {
+  @apply absolute z-[2] flex items-baseline rounded-xl bg-black/70 text-white backdrop-blur-md;
+}
+
+.top-rated__score--featured {
+  @apply bottom-3 left-3 px-3 py-2;
+}
+
+.top-rated__score--featured strong {
+  @apply text-xl font-black;
+}
+
+.top-rated__score--featured small {
+  @apply ml-0.5 text-xs text-gray-400;
+}
+
+.top-rated__featured-content {
+  @apply flex min-w-0 flex-1 flex-col justify-end p-5;
+}
+
+.top-rated__rank-label {
+  @apply mb-1 text-xs font-semibold uppercase tracking-[0.1em] text-accent;
+}
+
+.top-rated__featured-title {
+  @apply line-clamp-3 text-xl font-bold leading-tight text-white;
+}
+
+.top-rated__personal-score {
+  @apply mt-3 flex items-center gap-1.5 text-sm font-bold text-white;
+}
+
+.top-rated__personal-score > span:first-child {
+  @apply text-accent;
+}
+
+.top-rated__personal-score-label {
+  @apply ml-1 text-xs font-normal text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* #2 / #3                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.top-rated__runners-up {
+  @apply grid grid-cols-2 gap-3;
+}
+
+@media (min-width: 550px) and (max-width: 799px){
+  .top-rated__runners-up{
+    @apply grid-cols-3;
+  }
+}
+
+.top-rated__runner {
+  @apply flex min-w-0 flex-col overflow-hidden rounded-2xl border border-white/5 bg-[#141519] no-underline transition-all duration-300 hover:-translate-y-1 hover:border-white/10 hover:bg-[#191a20];
+}
+
+.top-rated__runner-poster-wrap {
+  @apply relative aspect-[2/3] overflow-hidden bg-[#1b1c21];
+}
+
+.top-rated__runner-poster {
+  @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.top-rated__runner:hover .top-rated__runner-poster {
+  transform: scale(1.035);
+}
+.top-rated__runner-content {
+  @apply min-w-0 px-3 py-3;
+}
+
+.top-rated__runner-title {
+  @apply line-clamp-2 text-sm font-semibold leading-5 text-white;
+}
+
+.top-rated__runner-score {
+  @apply mt-2 flex items-center gap-1 text-sm font-bold text-accent;
+}
+
+.top-rated__runner-score small {
+  @apply text-[10px] font-normal text-gray-500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* #4+                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.top-rated__remaining {
+  @apply col-span-full grid gap-2;
+}
+
+.top-rated__compact {
+  @apply flex min-w-0 items-center gap-3 rounded-xl border border-white/5 bg-[#141519] px-3 py-2.5 no-underline transition-colors duration-200 hover:border-white/10 hover:bg-[#191a20];
+}
+
+.top-rated__compact-rank {
+  @apply w-8 shrink-0 text-center text-xs font-bold text-gray-500;
+}
+
+.top-rated__compact-poster {
+  @apply h-12 w-8 shrink-0 rounded-md object-cover;
+}
+
+.top-rated__compact-placeholder {
+  @apply flex h-12 w-8 shrink-0 items-center justify-center rounded-md bg-[#1b1c21] text-xs;
+}
+
+.top-rated__compact-title {
+  @apply min-w-0 flex-1 truncate text-sm font-medium text-gray-200;
+}
+
+.top-rated__compact-score {
+  @apply shrink-0 text-sm font-bold text-accent;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsive                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .top-rated__layout {
+    @apply grid-cols-1;
+  }
+
+  .top-rated__featured {
+    @apply min-h-[280px];
+  }
+}
+
+@media (max-width: 639px) {
+  .top-rated__header {
+    @apply items-start;
+  }
+
+  .top-rated__subtitle {
+    @apply max-w-[230px];
+  }
+
+  .top-rated__view-all {
+    @apply text-xs;
+  }
+
+  .top-rated__featured {
+    @apply min-h-[230px] rounded-xl;
+  }
+
+  .top-rated__featured-content {
+    @apply p-4;
+  }
+
+  .top-rated__featured-title {
+    @apply text-lg;
+  }
+
+  .top-rated__runners-up {
+    @apply gap-2;
+  }
+
+  .top-rated__runner {
+    @apply rounded-xl;
+  }
+
+  .top-rated__runner-content {
+    @apply px-2.5 py-2.5;
+  }
+
+  .top-rated__runner-title {
+    @apply text-xs leading-4;
+  }
+
+  .top-rated__compact {
+    @apply gap-2.5 px-2.5 py-2;
+  }
+}

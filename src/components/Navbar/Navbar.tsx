@@ -1,67 +1,49 @@
 import "./navbartw.css";
+
 import { useState, useEffect } from "react";
+
 import { categoryItems, legalItems, npoItems } from "../../config/navItems";
+
 import { Icon } from "../../icons/icons";
-import { type UserData } from "../../types/navbarTypes";
+
 import AfterLoginNav from "./UserSidebar/AfterLoginNav";
-import logout from "../../DbFunctions/logout";
-import BeforeLoginNav from "./UserSidebar/BeforeLoginNav";
+
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
-import Popup1 from "../Popups/Popup1";
-import { usePopup } from "../Popups/usePopup";
-import FetchFromDb from "../auth/FetchFromDb";
+
+import { useAuth } from "@/hooks/useAuth";
+
+import { useLoginModalStore } from "@/global_assets/loginModalStore";
+import {
+  ClockCounterClockwiseIcon,
+} from "@phosphor-icons/react";
 
 function getEl(id: string) {
   return document.getElementById(id);
 }
 
-const pd = (e: any) => {
-  e.preventDefault();
-};
-
-const sp = (e: any) => {
-  e.stopPropagation();
-};
+const pd = (e: any) => e.preventDefault();
+const sp = (e: any) => e.stopPropagation();
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [catddOpen, setCatdd] = useState(false);
   const [personOpen, setPersonOpen] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const loginGate = usePopup();
+  const { user, profile, logout } = useAuth();
 
-  //check login status and update ui
-  useEffect(() => {
-    const loadUserData = () => {
-      const isLogIn = localStorage.getItem("isLoggedIn") == "true";
-      setLoggedIn(isLogIn);
-      if (!isLogIn) return;
-      const user = localStorage.getItem("userData");
-      if (user) setUserData(JSON.parse(user));
-    };
+  const isLoggedIn = !!user;
 
-    loadUserData();
-
-    window.addEventListener("userDataUpdated", loadUserData);
-    return () => {
-      window.removeEventListener("userDataUpdated", loadUserData);
-    };
-  }, []);
-
-  //disable scroll on sidebar open
+  // ✅ Disable scroll when sidebars open
   useEffect(() => {
     document.body.style.overflowY = menuOpen || personOpen ? "hidden" : "";
   }, [menuOpen, personOpen]);
 
-  //to focus on sidebar first button on its opening
+  // ✅ Focus management
   useEffect(() => {
-    menuOpen ? getEl("sb-first-btn")?.focus() : null;
-    personOpen ? getEl("person-first-btn")?.focus() : null;
+    if (menuOpen) getEl("sb-first-btn")?.focus();
+    if (personOpen) getEl("person-first-btn")?.focus();
   }, [menuOpen, personOpen]);
 
-  //to close the sidebars on reaching respective last buttons and one tab click
   const closeFnPerson = (e: any) => {
     pd(e);
     getEl("person-menu")?.focus();
@@ -84,39 +66,49 @@ export default function Navbar() {
 
   const onKd = (handler: any, key: string) => {
     return (e: any) => {
-      if (e.key !== key) return;
-      handler(e);
+      if (e.key === key) handler(e);
     };
   };
 
-  const handleClickWatHis = (name: any) => {
-    const href = () => {
-      if (window.location.pathname.includes(name)) {
+  const handleClickWatHis = async (name: string) => {
+    if (name === "logout") {
+      await logout();
+      setPersonOpen(false);
+      return;
+    }
+
+    if (name === "settings") {
+      const pathname = window.location.pathname;
+
+      const href = "/profile/settings";
+
+      if (pathname === href) {
         setPersonOpen(false);
-      } else {
-        window.location.href = "/" + name;
+        return;
       }
-    };
 
-    const clicks: Record<string, () => void> = {
-      watchlist: href,
-      history: href,
-      logout: logout,
-    };
+      window.location.href = href;
+      return;
+    }
 
-    clicks[name]?.();
-  };
+    if (name === "episodes history") {
+      const href = "/history";
+      window.location.href = href;
+      return;
+    }
 
-  const openLoginPopup = () => {
-    if (personOpen) setPersonOpen(false);
-    if (menuOpen) setMenuOpen(false);
-    if (catddOpen) setCatdd(false);
-    loginGate.openPopup();
+    const href = `/${name}`;
+
+    if (window.location.pathname === href) {
+      setPersonOpen(false);
+      return;
+    }
+
+    window.location.href = href;
   };
 
   return (
     <header>
-    <FetchFromDb />
       <nav className="navbar">
         <section className="nav-left" aria-label="Nav Left">
           <button
@@ -131,39 +123,38 @@ export default function Navbar() {
             {menuOpen ? <Icon name="close" /> : <Icon name="menu" />}
           </button>
           <a aria-label="Homepage" href="/">
-            <img src="/logo.webp" srcSet="/logo.webp 1x, /logo@2x.webp 2x" alt="Website Logo" className="website-logo"/>
+            <img
+              src="/logo.webp"
+              srcSet="/logo.webp 1x, /logo@2x.webp 2x"
+              alt="Website Logo"
+              className="website-logo"
+            />
           </a>
         </section>
         <section className="nav-right" aria-label="Nav Right">
           <a aria-label="Search" className="nav-right-block" href="/search">
             <Icon name="search" />
           </a>
-          {isLoggedIn ? (
-            <a
-              aria-label="Watchlist"
-              id="watchlist-btn-index"
-              className="nav-right-block w-navbar"
-              href="/watchlist"
-            >
-              <Icon name="watchlist" />
-            </a>
-          ) : (
-            <button
-              aria-label="Watchlist"
-              id="watchlist-btn-index"
-              className="nav-right-block w-navbar"
-              onClick={openLoginPopup}
-            >
-              <Icon name="watchlist" />
-            </button>
-          )}
-          <Popup1 isOpen={loginGate.isOpen} onClose={loginGate.closePopup} />
+          <a
+            aria-label="History"
+            id="history-btn-index"
+            className="nav-right-block w-navbar"
+            href="/history"
+          >
+            <ClockCounterClockwiseIcon size={24} />
+          </a>
           <button
             aria-label="Account Menu/Login-Signup Menu"
             className="nav-right-block"
             id="person-menu"
             onClick={() => {
               if (menuOpen) setMenuOpen(false);
+
+              if (!isLoggedIn) {
+                useLoginModalStore.getState().openLogin();
+                return;
+              }
+
               setPersonOpen(!personOpen);
             }}
           >
@@ -172,34 +163,33 @@ export default function Navbar() {
         </section>
       </nav>
       <div className="empty-top"></div>
+
+      {/* Sidebar overlay */}
       <aside
         className={`sidebar-overlay ${menuOpen ? "show" : "hidden"}`}
         id="sidebar-overlay"
         onClick={(e) => {
-          if (e.target == e.currentTarget) setMenuOpen(false);
+          if (e.target === e.currentTarget) setMenuOpen(false);
         }}
         onKeyDown={onKd(closeFnSidebar, "Escape")}
       >
         <nav className="sidebar" id="sidebar" role="menubar">
-          {npoItems.map((obj, i) => {
-            const { label, href } = obj;
-            return (
-              <a
-                key={i}
-                role="menuitem"
-                aria-label={`${label} Anime List Page`}
-                className="sidebar-button"
-                href={href}
-                {...(i == 0 ? { id: "sb-first-btn" } : {})}
-              >
-                {label}
-              </a>
-            );
-          })}
+          {npoItems.map((obj, i) => (
+            <a
+              key={i}
+              role="menuitem"
+              aria-label={`${obj.label} Anime List Page`}
+              className="sidebar-button"
+              href={obj.href}
+              {...(i === 0 ? { id: "sb-first-btn" } : {})}
+            >
+              {obj.label}
+            </a>
+          ))}
           <button
             role="menuitem"
             aria-haspopup="true"
-            aria-expanded="false"
+            aria-expanded={catddOpen}
             aria-controls="dropdown-menu"
             aria-label="Open Categories Dropdown"
             className="sidebar-button category"
@@ -215,55 +205,53 @@ export default function Navbar() {
             id="category-dropdown"
             onKeyDown={onKd(closeFnCatdd, "Escape")}
           >
-            {categoryItems.map((cat, i) => {
-              return (
-                <a
-                  role="menuitem"
-                  key={i}
-                  href={`/category/${cat}`}
-                  className="catdd-btn"
-                >
-                  {cat}
-                </a>
-              );
-            })}
-          </nav>
-          {legalItems.map((obj, i) => {
-            const { idx, label, href } = obj;
-            const isLast = i == legalItems.length - 1;
-
-            return (
+            {categoryItems.map((cat, i) => (
               <a
-                key={idx}
                 role="menuitem"
-                className="sidebar-button"
-                href={href}
-                onKeyDown={isLast ? onKd(closeFnSidebar, "Tab") : undefined}
+                key={i}
+                href={`/category/${cat}`}
+                className="catdd-btn"
               >
-                {label}
+                {cat}
               </a>
-            );
-          })}
+            ))}
+          </nav>
+          {legalItems.map((obj, i) => (
+            <a
+              key={obj.idx}
+              role="menuitem"
+              className="sidebar-button"
+              href={obj.href}
+              onKeyDown={
+                i === legalItems.length - 1
+                  ? onKd(closeFnSidebar, "Tab")
+                  : undefined
+              }
+            >
+              {obj.label}
+            </a>
+          ))}
         </nav>
       </aside>
-      <aside
-        className={`log-sign-overlay ${personOpen ? "show" : "hidden"}`}
-        id="log-sign-overlay"
-        onClick={(e) => {
-          if (e.target == e.currentTarget) setPersonOpen(false);
-        }}
-        onKeyDown={onKd(closeFnPerson, "Escape")}
-      >
-        {isLoggedIn ? (
+
+      {/* Login/Account overlay */}
+      {isLoggedIn && (
+        <aside
+          className={`log-sign-overlay ${personOpen ? "show" : "hidden"}`}
+          id="log-sign-overlay"
+          onClick={(e) => {
+            if (e.target == e.currentTarget) setPersonOpen(false);
+          }}
+          onKeyDown={onKd(closeFnPerson, "Escape")}
+        >
           <AfterLoginNav
             closeFn={onKd(closeFnPerson, "Tab")}
-            userData={userData}
+            userData={profile}
             clickHandler={handleClickWatHis}
           />
-        ) : (
-          <BeforeLoginNav closeFn={onKd(closeFnPerson, "Tab")} />
-        )}
-      </aside>
+        </aside>
+      )}
+
       <SpeedInsights />
       <Analytics />
     </header>

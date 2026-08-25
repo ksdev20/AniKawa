@@ -34,3 +34,39 @@
         @apply w-[39vw] max-w-[210px];
     }
 }
+
+/*new popular anime list*/
+.new-pop-anime-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    list-style-type: none;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+@media (max-width: 312px) {
+    .anime-card-first {
+        min-width: unset;
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fit, 100%);
+    }
+}
+
+@media (min-width: 313px) and (max-width: 500px) {
+    .anime-card-first {
+        min-width: 155px;
+    }
+
+    .new-pop-anime-card {
+        min-width: 155px;
+    }
+
+    .new-pop-anime-list {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 170px));
+    }
+}

@@ -1,19 +1,29 @@
 ---
-import Footer from "../components/Footer/Footer";
-import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer.astro";
 import { GoogleAnalyticsTag } from "../components/SEO/GoogleAnalyticsTag";
 import SEOHead from "../components/SEO/SEOHead.astro";
-import "../styles/index.css";
+import "@/styles/index.css";
+import LoginModal from "@/global_assets/LoginModal";
+import Navbar from "@/components/Navbar/Navbar";
+import AuthBootstrap from "@/components/Auth/AuthBootstrap";
+import ToastProvider from "@/providers/ToastProvider";
 ---
 
-<!doctype html>
 <html lang="en">
   <SEOHead />
   {Astro.url.pathname == "/" ? <SEOHead /> : <slot name="head" />}
   <body>
-    <Navbar client:load />
+    <Navbar client:idle />
+    <ToastProvider client:idle />
     <slot />
+    <LoginModal client:load />
+    <AuthBootstrap client:idle />
     <Footer />
-    <GoogleAnalyticsTag client:load />
+    <GoogleAnalyticsTag client:idle />
+    <script
+    is:inline
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer></script>
   </body>
 </html>

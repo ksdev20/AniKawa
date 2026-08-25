@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@config '../../../tailwind.config.mjs';
+@config '@tw-config';
 
 .browse-categories-section {
     @apply py-12 md:py-16;

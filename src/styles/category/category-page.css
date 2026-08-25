@@ -1,0 +1,579 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+.main-root {
+    @apply w-full flex flex-col items-center py-0 sm:py-20 sm:px-10;
+}
+
+
+/* CATEGORY HERO */
+
+.category-hero {
+    @apply w-full max-w-7xl relative overflow-hidden rounded-3xl bg-secondary px-6 py-8 md:px-10 md:py-10;
+}
+
+
+.category-hero-breadcrumb {
+    @apply mb-6 flex flex-wrap items-center gap-2 text-sm text-gray;
+}
+
+
+.breadcrumb-separator {
+    @apply text-gray/60;
+}
+
+
+/* Main Layout */
+
+.category-hero-content {
+    @apply grid items-center gap-8 lg:grid-cols-[1fr_0.9fr];
+}
+
+
+/* Information */
+
+.category-hero-info {
+    @apply flex flex-col;
+}
+
+
+.category-hero-title {
+    @apply text-4xl font-bold tracking-tight text-white md:text-5xl;
+}
+
+
+.category-hero-description {
+    @apply mt-4 max-w-xl text-base leading-relaxed text-gray-300 md:text-lg;
+}
+
+
+.category-hero-meta {
+    @apply mt-5 flex flex-wrap items-center gap-3;
+}
+
+
+.category-anime-count,
+.category-updated {
+    @apply rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-md;
+}
+
+
+
+/* Buttons */
+
+.category-hero-actions {
+    @apply mt-7 flex flex-col gap-3 sm:flex-row;
+}
+
+
+.category-primary-button {
+    @apply inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105;
+}
+
+
+.category-secondary-button {
+    @apply inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3 font-semibold text-white transition-all duration-300 hover:bg-white/10;
+}
+
+
+
+/* Background Visual */
+
+.category-hero-visual {
+    @apply relative min-h-[260px] overflow-hidden rounded-3xl bg-cover bg-center;
+}
+
+
+.category-hero-visual::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20;
+}
+
+
+
+/* Stats */
+
+.category-hero-stats {
+    @apply mt-8 grid grid-cols-2 gap-4 md:grid-cols-4;
+}
+
+
+.category-stat-card {
+    @apply flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-md;
+}
+
+
+.category-stat-icon {
+    @apply text-xl;
+}
+
+
+.category-stat-content {
+    @apply flex flex-col;
+}
+
+
+.category-stat-content strong {
+    @apply text-lg font-bold text-white;
+}
+
+
+.category-stat-content span {
+    @apply text-sm text-gray;
+}
+
+
+
+/* Tags */
+
+.category-hero-tags {
+    @apply mt-8 flex flex-col gap-3;
+}
+
+
+.category-tags-label {
+    @apply text-sm text-gray;
+}
+
+
+.category-tags-list {
+    @apply flex flex-wrap gap-2;
+}
+
+
+.category-tag {
+    @apply rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-200 transition-all duration-300 hover:bg-primary hover:text-white;
+}
+
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .category-hero {
+        @apply rounded-none px-4 py-6;
+    }
+
+
+    .category-hero-content {
+        @apply flex flex-col-reverse;
+    }
+
+
+    .category-hero-visual {
+        @apply min-h-[220px];
+    }
+
+
+    .category-hero-title {
+        @apply text-3xl;
+    }
+
+
+    .category-hero-description {
+        @apply text-sm;
+    }
+
+
+    .category-primary-button,
+    .category-secondary-button {
+        @apply w-full;
+    }
+
+}
+
+/* ANIME BY MOOD SECTION */
+.anime-mood-section {
+    @apply mt-12 px-4 md:px-0 w-full max-w-7xl;
+}
+
+
+/* Header */
+
+.anime-mood-header {
+    @apply mb-8;
+}
+
+
+.anime-mood-title {
+    @apply text-3xl font-bold text-white md:text-4xl;
+}
+
+
+.anime-mood-description {
+    @apply mt-3 max-w-2xl text-gray;
+}
+
+
+
+/* Grid */
+
+.anime-mood-grid {
+    @apply grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+
+
+/* Card */
+
+.anime-mood-card {
+    @apply flex min-h-[220px] flex-col rounded-3xl border border-white/10 bg-secondary p-6 transition-all duration-300;
+    @apply hover:-translate-y-1 hover:border-primary;
+}
+
+
+
+/* Icon */
+
+.anime-mood-icon {
+    @apply text-4xl;
+}
+
+
+
+/* Card Content */
+
+.anime-mood-card-title {
+    @apply mt-5 text-xl font-bold text-white;
+}
+
+
+.anime-mood-card-description {
+    @apply mt-3 text-sm leading-relaxed text-gray;
+}
+
+
+
+/* Footer */
+
+.anime-mood-card-footer {
+    @apply mt-auto flex items-center justify-between pt-6 text-sm text-gray;
+}
+
+
+.anime-mood-card-footer span:last-child {
+    @apply font-medium text-primary;
+}
+
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .anime-mood-section {
+        @apply mt-8;
+    }
+
+
+    .anime-mood-title {
+        @apply text-2xl;
+    }
+
+
+    .anime-mood-card {
+        @apply min-h-[190px] p-5;
+    }
+
+}
+
+
+/* ANIME SLIDERS SECTION */
+.popular-anime-section {
+    @apply relative mt-16 overflow-hidden rounded-3xl border border-white/10 bg-secondary p-6 md:p-8 w-full max-w-7xl;
+}
+
+
+.popular-anime-section::before {
+    content: "";
+    @apply absolute -top-20 -right-20 h-56 w-56 rounded-full bg-primary/20 blur-3xl;
+}
+
+
+.popular-anime-header {
+    @apply relative z-10 mb-8;
+}
+
+
+.popular-anime-title {
+    @apply flex items-center gap-3 text-3xl font-bold tracking-tight text-white md:text-4xl;
+}
+
+
+.popular-anime-title::after {
+    content: "";
+    @apply h-1 w-16 rounded-full bg-primary;
+}
+
+
+.popular-anime-description {
+    @apply mt-4 max-w-2xl text-base leading-relaxed text-gray md:text-lg;
+}
+
+/* ANIME DISCOVERY SECTION */
+
+.anime-discovery-section {
+    @apply w-full max-w-7xl mt-16 rounded-3xl border border-white/10 bg-secondary p-6 md:p-8;
+}
+
+
+/* Header */
+
+.anime-discovery-header {
+    @apply mb-8;
+}
+
+
+.anime-discovery-title {
+    @apply text-3xl font-bold tracking-tight text-white md:text-4xl;
+}
+
+
+.anime-discovery-count {
+    @apply mt-3 text-base text-gray;
+}
+
+
+
+/* Controls */
+
+.anime-discovery-controls {
+    @apply mt-8 rounded-3xl border border-white/10 bg-secondary p-6;
+}
+
+
+/* Search */
+
+.anime-search-box {
+    @apply mb-6;
+}
+
+
+.anime-search-box label,
+.anime-filter-group label {
+    @apply mb-2 block text-sm font-medium text-white;
+}
+
+
+.anime-search-box input {
+    @apply w-full rounded-xl border border-white/10 bg-sort px-5 py-4 text-white outline-none transition-all placeholder:text-gray focus:border-primary;
+}
+
+
+
+/* Mobile Filter Button */
+
+.anime-filter-toggle {
+    @apply mb-6 flex w-full items-center justify-center rounded-xl border border-white/10 bg-sort px-5 py-3 font-medium text-white transition-all hover:border-primary;
+}
+
+
+
+/* Filter Panel */
+
+.anime-filter-panel {
+    @apply grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3;
+}
+
+
+
+/* Filter Group */
+
+.anime-filter-group {
+    @apply flex flex-col;
+}
+
+
+
+.anime-sort-select,
+.anime-filter-select {
+    @apply w-full cursor-pointer rounded-xl border border-white/10 bg-sort px-4 py-3 text-white outline-none transition-all focus:border-primary;
+}
+
+
+
+/* Apply Button */
+
+.apply-filter-button {
+    @apply rounded-xl bg-primary px-6 py-3 font-semibold text-white transition-all hover:opacity-90;
+}
+
+
+
+/* Desktop */
+
+@media (min-width: 768px) {
+
+    .anime-filter-toggle {
+        @apply hidden;
+    }
+
+}
+
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+    .anime-discovery-controls {
+        @apply rounded-2xl p-4;
+    }
+
+
+    .anime-filter-panel {
+        @apply hidden grid-cols-1;
+    }
+
+
+    .anime-filter-panel.active {
+        @apply grid;
+    }
+
+}
+
+
+
+/* Active Filters */
+
+.anime-active-filters {
+    @apply mt-6 flex flex-wrap items-center gap-3 text-sm text-gray;
+}
+
+
+.anime-active-filters button {
+    @apply rounded-full border border-white/10 bg-sort px-4 py-2 text-white transition-all hover:border-primary;
+}
+
+
+.anime-active-filters button:last-child {
+    @apply border-primary text-primary;
+}
+
+
+
+/* Results */
+
+.anime-results-info {
+    @apply my-6 text-sm text-gray;
+}
+
+
+
+/* Grid */
+
+.anime-discovery-grid {
+    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 list-none;
+}
+
+
+
+/* Pagination */
+
+.anime-pagination {
+    @apply mt-10 flex flex-wrap justify-center gap-3;
+}
+
+
+.anime-pagination button {
+    @apply rounded-xl border border-white/10 bg-sort px-4 py-2 text-sm font-medium text-white transition-all hover:border-primary hover:bg-primary;
+}
+
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .anime-discovery-section {
+        @apply mt-10 rounded-2xl p-4;
+    }
+
+
+    .anime-discovery-title {
+        @apply text-2xl;
+    }
+
+
+    .anime-discovery-controls {
+        @apply p-4;
+    }
+
+
+    .anime-sort-select,
+    .anime-filter-select {
+        @apply w-full;
+    }
+
+
+    .anime-discovery-grid {
+        @apply grid-cols-2 gap-3;
+    }
+
+
+    .anime-pagination button {
+        @apply px-3 py-2;
+    }
+
+}
+
+/* FAQ SECTION */
+.anime-faq-section {
+  @apply mt-16 rounded-3xl border border-white/10 bg-secondary p-6 md:p-8 w-full max-w-7xl;
+}
+
+
+.anime-faq-header {
+  @apply mb-8;
+}
+
+
+.anime-faq-title {
+  @apply text-2xl font-bold text-white md:text-3xl;
+}
+
+
+.anime-faq-description {
+  @apply mt-3 text-gray;
+}
+
+
+.anime-faq-list {
+  @apply flex flex-col gap-4;
+}
+
+
+.anime-faq-item {
+  @apply rounded-2xl border border-white/10 bg-sort p-5 transition-all duration-300;
+}
+
+
+.anime-faq-item[open] {
+  @apply border-primary/50;
+}
+
+
+.anime-faq-item summary {
+  @apply flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-white;
+}
+
+
+.anime-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+
+.anime-faq-icon {
+  @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 text-xl text-primary transition-transform duration-300;
+}
+
+
+.anime-faq-item[open] .anime-faq-icon {
+  @apply rotate-45 bg-primary text-white;
+}
+
+
+.anime-faq-item p {
+  @apply mt-4 leading-relaxed text-gray;
+}

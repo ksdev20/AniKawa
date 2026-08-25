@@ -1,7 +1,6 @@
 ---
 import "./animecardtw.css";
-import { getOptimizedImageUrl, getPosterType } from "../../utils/imageSizing";
-import WBtn2 from "./WBtn2";
+import { getPosterType } from "../../utils/imageSizing";
 import { Icon } from "../../icons/icons";
 
 const { anime, forNewPop = false, forCategory = false } = Astro.props;
@@ -11,10 +10,16 @@ const {
   nanoid = "n-a",
   slug,
   title = "Untitled",
-  scoreAlt = "Score N/A",
   description = "No Description",
   season,
   seasons,
+  score,
+  ratedBy,
+  genres,
+  number_of_episodes,
+  runtime,
+  status,
+  anikawaReview,
 } = anime ?? {};
 
 //cover image fallback
@@ -25,10 +30,14 @@ const season_poster =
   "/anime-image-alt.png";
 
 const titleAlt = seasons > 1 ? `Season ${season}: ${title}` : title;
-const language = "Eng Sub";
-const episodes = anime?.episodes?.length;
+const epLength = number_of_episodes ?? anime?.episodes?.length;
 const ep1Nanoid = anime?.episodes?.[0]?.nanoid;
 const ep1Slug = anime?.episodes?.[0]?.slug;
+const starCount = Math.round(Number(score) / 2);
+const verdict = anikawaReview?.verdict ?? null;
+const strengths = anikawaReview?.strengths;
+
+const star = "★"
 ---
 
 <li class={`anime-card ${forNewPop ? "new-pop-ac" : ""}`}>
@@ -57,19 +66,75 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
       decoding="sync"
     />
     <h2 class="anime-card-title">{titleAlt}</h2>
-    <span class="text-sm text-[gray]">{language}</span>
+    <div class="rating-widget">
+      <div class="rating-stars">
+        <span>{star}</span>
+      </div>
+      <span class="rating-score">
+        {Math.floor(starCount as number)}
+      </span>
+      <div class="rating-reviews">
+        ({ratedBy})
+      </div>
+    </div>
+    <div class="genres-widget">
+      {
+        genres
+          .slice(0, 3)
+          .map((genre: string) => <span class="genre-badge">{genre}</span>)
+      }
+    </div>
+    <div class="episodes-status-widget">
+      <span class="episodes-count">{epLength} Eps</span>
+      {
+        !isNaN(parseFloat(runtime[0])) && (
+          <span class="episode-duration">
+            • {runtime.replace("minutes", "mins")}
+          </span>
+        )
+      }
+    </div>
 
     <section
       class="anime-card-hover"
       style={`background-image: url(${getPosterType(season_poster, "w342")})`}
     >
       <div class="anime-card-hover-details">
-        <h3 class="line-clamp-3 mt-2.5 text-[15px]">{titleAlt}</h3>
-        <span class="ach-text">{scoreAlt}</span>
-        <span class="ach-text">
-          {episodes} Episodes
-        </span>
-        <p class="anime-card-hover-description">{description}</p>
+        <h3 class="anime-card-hover-title">{titleAlt}</h3>
+        <div class="rating-widget">
+          <div class="rating-stars">
+            <span>{star}</span>
+          </div>
+          <span class="rating-score">
+            {Math.floor(starCount as number)}
+          </span>
+          <div class="rating-reviews">
+            ({ratedBy})
+          </div>
+        </div>
+        <div class="episodes-status-widget">
+          <span class="episodes-count">{epLength} Eps</span>
+          {
+            !isNaN(parseFloat(runtime[0])) && (
+              <span class="episode-duration">
+                • {runtime.replace("minutes", "mins")}
+              </span>
+            )
+          }
+        </div>
+        <span class="status-badge">{status}</span>
+        {!verdict && <p class="anime-card-hover-description">{description}</p>}
+        {verdict && <p class="hover-verdict">Verdict: {verdict}</p>}
+        {
+          strengths && (
+            <h4 class="hover-whywatch-title">Why Watch?</h4>
+            <ul class="hover-highlights">
+              {strengths.slice(0, 3).map((i: string) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          )
+        }
       </div>
     </section>
     <nav class="anime-card-hover-actions">
@@ -81,9 +146,9 @@ const ep1Slug = anime?.episodes?.[0]?.slug;
           <Icon name="play" size={40} color="#8c52ff" />
         </a>
       </div>
-      <div class="tooltip w" data-tip="Add to Watchlist">
-        <WBtn2 nanoid={nanoid} client:idle />
-      </div>
+      <!-- <div class="tooltip w" data-tip="Add to Watchlist"> -->
+        <!-- <WBtn2 nanoid={nanoid} client:idle /> -->
+      <!-- </div> -->
     </nav>
   </article>
 </li>

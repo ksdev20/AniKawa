@@ -1,0 +1,1147 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/* ===============================
+   SETTINGS PAGE
+================================ */
+
+.profile-settings {
+
+    @apply mx-auto w-full max-w-6xl px-6 py-12;
+
+}
+
+
+
+/* HERO */
+
+.profile-settings::before {
+
+    content: "";
+
+    @apply absolute inset-x-0 -z-10 h-96 bg-gradient-to-b from-primary/20 via-transparent to-transparent blur-3xl;
+
+}
+
+
+
+.profile-settings__header {
+
+    @apply mb-12;
+
+}
+
+
+.profile-settings__header h1 {
+
+    @apply text-5xl font-black tracking-tight text-white;
+
+}
+
+
+.profile-settings__header p {
+
+    @apply mt-3 max-w-xl text-lg text-white/60;
+
+}
+
+
+
+/* ===============================
+   TABS
+================================ */
+
+
+.settings-navigation {
+
+    @apply flex w-fit gap-2 rounded-2xl border border-white/10 bg-black/20 p-2 backdrop-blur-xl;
+
+}
+
+
+
+.settings-navigation button {
+
+    @apply min-w-40 rounded-xl px-8 py-3 font-semibold text-white/60 transition-all;
+
+}
+
+
+
+.settings-navigation button:hover {
+
+    @apply bg-white/5 text-white;
+
+}
+
+
+
+.settings-navigation button.active {
+
+    @apply bg-primary text-white shadow-xl shadow-primary/30;
+
+}
+
+
+
+
+/* ===============================
+   TAB CONTENT
+================================ */
+
+
+.profile-settings__content {
+
+    @apply mt-10;
+
+}
+
+
+
+.settings-tab {
+
+    @apply flex flex-col gap-10;
+
+}
+
+
+
+.settings-tab>h2 {
+
+    @apply text-3xl font-black text-white;
+
+}
+
+
+
+
+/* ===============================
+   CARDS
+================================ */
+
+
+.settings-card {
+
+
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-secondary to-black/40 p-8 shadow-2xl;
+
+
+}
+
+
+
+.settings-card::after {
+
+    content: "";
+
+    @apply absolute right-0 top-0 h-40 w-40 rounded-full bg-primary/20 blur-3xl;
+
+
+}
+
+
+
+
+.settings-card h3 {
+
+    @apply relative text-2xl font-black text-white;
+
+
+}
+
+
+.settings-card p {
+
+    @apply relative mt-2 text-white/50;
+
+
+}
+
+
+
+/* ===============================
+ PROFILE MEDIA
+================================ */
+
+
+.profile-media-card {
+
+    @apply grid gap-8;
+
+}
+
+
+
+.banner-preview {
+
+
+    @apply relative h-64 overflow-hidden rounded-3xl border border-white/10 bg-black/30;
+
+
+}
+
+
+
+.banner-preview img {
+
+
+    @apply h-full w-full object-cover;
+
+
+}
+
+
+
+.banner-upload-overlay {
+
+
+    @apply absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition;
+
+
+}
+
+
+
+.banner-preview:hover .banner-upload-overlay {
+
+
+    @apply opacity-100;
+
+}
+
+
+
+
+.avatar-section {
+
+
+    @apply flex items-center gap-8;
+
+
+}
+
+
+
+.avatar-preview {
+
+
+    @apply h-40 w-40 rounded-full border-4 border-primary/40 object-cover shadow-xl;
+
+
+}
+
+
+
+/* ===============================
+ ABOUT EDITOR
+================================ */
+
+
+.about-editor {
+
+
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-black/30;
+
+
+}
+
+
+
+.about-editor__toolbar {
+
+
+    @apply border-b border-white/10 p-4;
+
+
+}
+
+
+
+.about-editor__content {
+
+
+    @apply min-h-[450px] p-8 text-lg leading-relaxed text-white;
+
+
+}
+
+
+
+
+/* ===============================
+ BUTTON
+================================ */
+
+
+.settings-save {
+
+
+    @apply mt-6 self-end rounded-2xl bg-primary px-10 py-4 font-black text-white shadow-xl shadow-primary/30 transition;
+
+
+}
+
+
+
+.settings-save:hover {
+
+
+    @apply scale-105;
+
+}
+
+
+
+/* ===============================
+ MOBILE
+================================ */
+
+
+@media(max-width:700px) {
+
+
+    .profile-settings {
+
+        @apply px-4 py-8;
+
+    }
+
+
+
+    .profile-settings__header h1 {
+
+        @apply text-3xl;
+
+    }
+
+
+
+    .settings-navigation {
+
+        @apply w-full;
+
+    }
+
+
+
+    .settings-navigation button {
+
+        @apply min-w-0 flex-1 px-4;
+
+    }
+
+
+
+    .avatar-section {
+
+        @apply flex-col items-start;
+
+    }
+
+
+    .settings-card {
+
+        @apply p-5 rounded-3xl;
+
+    }
+
+
+}
+
+/*Banner Dropzone*/
+.banner-settings {
+
+    @apply flex flex-col gap-6;
+
+}
+
+
+
+.settings-card__header {
+
+    @apply flex items-start justify-between gap-6;
+
+}
+
+
+
+.settings-card__header h3 {
+
+    @apply text-2xl font-black text-white;
+
+}
+
+
+
+.settings-card__header p {
+
+    @apply mt-2 max-w-xl text-sm leading-relaxed text-white/50;
+
+}
+
+
+
+.settings-badge {
+
+    @apply rounded-full bg-primary/20 px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary;
+
+}
+
+
+
+/* DROPZONE */
+
+
+.banner-dropzone {
+
+    @apply relative flex h-80 cursor-pointer items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed border-white/15 bg-black/20 transition-all;
+
+}
+
+
+
+.banner-dropzone:hover {
+
+    @apply border-primary/70 bg-primary/10;
+
+}
+
+
+
+.banner-placeholder {
+
+    @apply flex flex-col items-center text-center;
+
+}
+
+
+
+.upload-icon {
+
+    @apply flex h-24 w-24 items-center justify-center rounded-full bg-primary/20 text-primary shadow-xl;
+
+}
+
+
+
+.banner-placeholder h4 {
+
+    @apply mt-6 text-2xl font-black text-white;
+
+}
+
+
+
+.banner-placeholder p {
+
+    @apply mt-2 text-white/60;
+
+}
+
+
+
+.banner-placeholder span {
+
+    @apply mt-2 text-xs text-white/40;
+
+}
+
+
+
+/* IMAGE */
+
+
+.banner-preview {
+
+    @apply h-full w-full object-cover;
+
+}
+
+
+
+/* LOADING */
+
+
+.upload-overlay {
+
+    @apply absolute inset-0 flex items-center justify-center bg-black/70 text-xl font-black text-white backdrop-blur-sm;
+
+}
+
+.profile-dropzone {
+
+    @apply relative flex cursor-pointer items-center justify-center overflow-hidden rounded-[2rem] border-2 border-dashed border-white/15 bg-black/20 transition-all;
+
+}
+
+
+.profile-dropzone:hover {
+
+    @apply border-primary/70 bg-primary/10;
+
+}
+
+
+
+.profile-dropzone--avatar {
+
+    @apply min-h-72;
+
+}
+
+
+
+.profile-preview--avatar {
+
+    @apply h-56 w-56 rounded-full border-4 border-primary/40 object-cover shadow-2xl;
+
+}
+
+
+
+.profile-placeholder {
+
+    @apply flex flex-col items-center text-center;
+
+}
+
+
+
+.profile-placeholder h4 {
+
+    @apply mt-6 text-xl font-black text-white;
+
+}
+
+
+
+.profile-placeholder p {
+
+    @apply mt-2 text-white/60;
+
+}
+
+
+
+.profile-placeholder span {
+
+    @apply mt-3 text-xs text-white/40;
+
+}
+
+/*About*/
+.about-settings {
+
+    @apply gap-8;
+
+}
+
+
+.about-editor {
+
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-black/30;
+
+}
+
+
+
+.about-editor__toolbar {
+
+    @apply flex gap-2 border-b border-white/10 p-4;
+
+}
+
+
+
+.about-editor__toolbar button {
+
+    @apply flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 font-bold text-white/70 transition;
+
+}
+
+
+
+.about-editor__toolbar button:hover {
+
+    @apply bg-primary text-white;
+
+}
+
+
+
+.about-editor__content {
+
+    @apply min-h-[350px] w-full resize-none bg-transparent p-8 text-lg leading-relaxed text-white outline-none;
+
+}
+
+
+
+.about-editor__content::placeholder {
+
+    @apply text-white/30;
+
+}
+
+
+
+.about-editor__footer {
+
+    @apply flex items-center justify-between;
+
+}
+
+
+
+.about-editor__footer span {
+
+    @apply text-sm text-white/50;
+
+}
+
+
+
+.settings-save:disabled {
+
+    @apply cursor-not-allowed opacity-50;
+
+}
+
+.about-editor__content .ProseMirror {
+
+    @apply min-h-[350px] p-8 text-lg leading-relaxed text-white outline-none;
+
+}
+
+
+.about-editor__content .ProseMirror p {
+
+    @apply my-4;
+
+}
+
+
+
+.about-editor__content .ProseMirror h2 {
+
+    @apply my-6 text-3xl font-black;
+
+}
+
+
+
+.about-editor__content .ProseMirror ul {
+
+    @apply list-disc pl-8;
+
+}
+
+
+
+.about-editor__content .ProseMirror img {
+
+    @apply my-6 rounded-2xl max-w-full;
+
+}
+
+.tiptap-editor {
+
+    @apply overflow-hidden rounded-3xl border border-white/10 bg-black/20;
+
+}
+
+
+
+.tiptap-toolbar {
+
+    @apply flex flex-wrap gap-2 border-b border-white/10 p-4;
+
+}
+
+
+
+.tiptap-toolbar button {
+
+    @apply h-10 min-w-10 rounded-xl bg-white/5 px-3 text-sm font-bold text-white/70 transition;
+
+}
+
+
+
+.tiptap-toolbar button:hover {
+
+    @apply bg-primary text-primary;
+
+}
+
+
+
+.tiptap-content .ProseMirror {
+
+    @apply min-h-[400px] p-8 text-white outline-none;
+
+}
+
+
+
+.tiptap-content .ProseMirror p {
+
+    @apply my-4;
+
+}
+
+
+
+.tiptap-content .ProseMirror h1 {
+
+    @apply text-4xl font-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror h2 {
+
+    @apply text-3xl font-bold;
+
+}
+
+
+
+.tiptap-content .ProseMirror ul {
+
+    @apply list-disc pl-8;
+
+}
+
+
+
+.tiptap-content .ProseMirror ol {
+
+    @apply list-decimal pl-8;
+
+}
+
+
+
+.tiptap-content .ProseMirror blockquote {
+
+    @apply border-l-4 border-primary pl-5 italic text-white/70;
+
+}
+
+/* ==========================
+   TIPTAP EDITOR
+========================== */
+
+.tiptap-editor {
+    @apply overflow-hidden rounded-[20px] border border-black/10 bg-white;
+}
+
+
+/* toolbar */
+
+.tiptap-toolbar {
+    @apply flex flex-wrap gap-2 border-b border-gray-200 bg-gray-50 p-3.5;
+}
+
+
+.tiptap-toolbar button {
+    @apply h-9 min-w-9 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-900 transition-all duration-200 cursor-pointer;
+}
+
+
+.tiptap-toolbar button:hover {
+    @apply border-gray-400 bg-gray-100;
+}
+
+
+
+/* editor */
+
+.tiptap-content {
+    @apply bg-white;
+}
+
+
+.tiptap-content .ProseMirror {
+
+    @apply min-h-[420px] p-8 text-base leading-[1.7] text-black outline-none;
+
+}
+
+
+
+.tiptap-content .ProseMirror p {
+
+    @apply my-4 text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror h1 {
+
+    @apply my-6 text-4xl font-extrabold text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror h2 {
+
+    @apply my-5 text-[28px] font-bold text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror h3 {
+
+    @apply text-[22px] font-bold text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror ul {
+
+    @apply list-disc pl-8 text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror ol {
+
+    @apply list-decimal pl-8 text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror blockquote {
+
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600;
+
+}
+
+
+
+.tiptap-content .ProseMirror code {
+
+    @apply rounded-md bg-gray-100 px-1.5 py-1 text-black;
+
+}
+
+
+
+.tiptap-content .ProseMirror pre {
+
+    @apply overflow-auto rounded-xl bg-black p-5 text-white;
+
+}
+
+
+
+.tiptap-content .ProseMirror img {
+
+    @apply my-5 max-w-full rounded-xl;
+
+}
+
+.tiptap-content .ProseMirror {
+    min-height: 420px;
+    padding: 32px;
+
+    outline: none;
+
+    color: #111;
+    background: white;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* paragraphs */
+
+.tiptap-content .ProseMirror p {
+    margin: 16px 0;
+    color: #111;
+}
+
+
+/* headings */
+
+.tiptap-content .ProseMirror h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 900;
+
+    margin: 32px 0 20px;
+
+    color: #111;
+}
+
+
+.tiptap-content .ProseMirror h2 {
+    font-size: 32px;
+    line-height: 1.3;
+    font-weight: 800;
+
+    margin: 28px 0 16px;
+
+    color: #111;
+}
+
+
+.tiptap-content .ProseMirror h3 {
+    font-size: 24px;
+    font-weight: 700;
+
+    margin: 22px 0 12px;
+
+    color: #111;
+}
+
+
+/* lists */
+
+.tiptap-content .ProseMirror ul {
+    list-style: disc;
+    padding-left: 30px;
+}
+
+
+.tiptap-content .ProseMirror ol {
+    list-style: decimal;
+    padding-left: 30px;
+}
+
+
+/* blockquote */
+
+.tiptap-content .ProseMirror blockquote {
+
+    border-left: 4px solid #8c52ff;
+
+    padding-left: 20px;
+
+    color: #555;
+
+    font-style: italic;
+
+}
+
+
+/* links */
+
+.tiptap-content .ProseMirror a {
+
+    color: #8c52ff;
+
+    text-decoration: underline;
+
+}
+
+
+/* images */
+
+.tiptap-content .ProseMirror img {
+
+    max-width: 100%;
+
+    border-radius: 16px;
+
+    margin: 20px 0;
+
+}
+
+
+/* ==========================
+   BANNER UPLOADER
+========================== */
+
+
+.banner-uploader {
+
+    @apply flex flex-col gap-6;
+
+}
+
+
+
+.banner-uploader__dropzone {
+
+    @apply relative flex aspect-[3/1] min-h-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-[22px] border-2 border-dashed border-white/15 bg-white/[0.05] transition-all duration-300;
+
+}
+
+
+
+.banner-uploader__dropzone:hover {
+
+    @apply border-[#8c52ff] bg-[#8c52ff]/10;
+
+}
+
+
+
+.banner-uploader__preview {
+
+    @apply block h-full w-full object-cover;
+
+}
+
+
+
+.banner-uploader__placeholder {
+
+    @apply text-center text-white;
+
+}
+
+
+
+.banner-uploader__icon {
+
+    @apply mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#8c52ff]/15 text-[#8c52ff];
+
+}
+
+
+
+.banner-uploader__placeholder h4 {
+
+    @apply mt-5 text-[17px];
+
+}
+
+
+
+.banner-uploader__placeholder p {
+
+    @apply my-2 text-gray-400;
+
+}
+
+
+
+.banner-uploader__placeholder span {
+
+    @apply text-xs text-gray-500;
+
+}
+
+
+
+.banner-uploader__overlay {
+
+    @apply absolute inset-0 flex items-center justify-center bg-black/65 text-lg font-semibold text-white;
+
+    backdrop-filter: blur(5px);
+
+}
+
+
+
+.banner-uploader__dropzone.is-uploading {
+
+    pointer-events: none;
+
+}
+
+
+
+@media(max-width:700px) {
+
+    .banner-uploader__dropzone {
+
+        aspect-ratio: 2/1;
+
+    }
+
+}
+
+
+
+/* ==========================
+   SETTINGS LOADER
+========================== */
+
+
+.profile-settings--loading {
+
+    @apply relative flex min-h-[70vh] items-center justify-center overflow-hidden;
+
+}
+
+
+
+.wizard-loader-container {
+
+    @apply absolute inset-0 flex items-center justify-center;
+
+}
+
+
+
+.wizard-loader-content {
+
+    @apply rounded-[28px] border border-white/10 bg-white/[0.04] p-10 text-center;
+
+    width: min(420px, 90vw);
+
+    backdrop-filter: blur(12px);
+    position: relative;
+    z-index: 2;
+
+}
+
+.wizard-loader-content h2 {
+
+    @apply mt-6 text-[22px] text-white;
+
+}
+
+
+
+.wizard-loader-content p {
+
+    @apply mt-2 text-gray-400;
+
+}
+
+
+
+.wizard-loader-progress {
+
+    @apply mt-6 h-1.5 overflow-hidden rounded-full bg-white/10;
+
+}
+
+
+
+.wizard-loader-progress span {
+
+    @apply block h-full w-[35%] rounded-full bg-[#8c52ff];
+
+    animation:
+        wizard-progress 1.5s infinite ease-in-out;
+
+}
+
+
+
+@keyframes wizard-progress {
+
+    from {
+        transform: translateX(-150%);
+    }
+
+    to {
+        transform: translateX(350%);
+    }
+
+}

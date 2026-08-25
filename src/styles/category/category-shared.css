@@ -1,0 +1,1161 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/* =========================================================
+   ANIKAWA CATEGORY PAGE
+   UNIFIED CSS
+   PART 1/3
+
+   Base + Hero + Sections + Stats
+========================================================= */
+
+
+
+/* =========================================================
+   PAGE FOUNDATION
+========================================================= */
+
+
+.category-page {
+
+    @apply relative;
+
+    @apply overflow-hidden;
+
+    @apply min-h-screen;
+
+    background:
+        radial-gradient(circle at 10% 0%,
+            rgba(140, 82, 255, .18),
+            transparent 35%),
+
+        radial-gradient(circle at 90% 20%,
+            rgba(140, 82, 255, .08),
+            transparent 40%);
+
+}
+
+
+
+.category-page::before {
+
+    content: "";
+
+    @apply absolute;
+
+    @apply inset-0;
+
+    @apply pointer-events-none;
+
+    background:
+        linear-gradient(180deg,
+            transparent,
+            rgba(20, 21, 25, .5));
+
+}
+
+
+
+
+/* =========================================================
+   COMMON SECTION
+========================================================= */
+
+
+.category-section {
+
+    @apply relative;
+
+    @apply px-4 md:px-8;
+
+    @apply py-10 md:py-14;
+
+    @apply max-w-7xl;
+
+    @apply mx-auto;
+
+}
+
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+
+.category-hero {
+
+    @apply relative;
+
+    @apply mx-4 md:mx-8;
+
+    @apply mt-8;
+
+    @apply rounded-3xl;
+
+    @apply overflow-hidden;
+
+    @apply min-h-[420px];
+
+    display: flex;
+
+    align-items: center;
+
+
+    background:
+
+        linear-gradient(110deg,
+            rgba(20, 21, 25, .98),
+            rgba(20, 21, 25, .65));
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .08);
+
+
+}
+
+
+
+.category-hero::after {
+
+    content: "";
+
+    @apply absolute;
+
+    @apply inset-0;
+
+
+    background:
+
+        radial-gradient(circle at 75% 50%,
+            rgba(140, 82, 255, .25),
+            transparent 35%);
+
+
+}
+
+
+
+.category-hero-content {
+
+    @apply relative;
+
+    @apply z-10;
+
+    @apply p-8 md:p-14;
+
+    @apply max-w-3xl;
+
+}
+
+
+
+.category-eyebrow {
+
+    @apply inline-flex;
+
+    @apply items-center;
+
+    @apply px-4 py-2;
+
+    @apply rounded-full;
+
+
+    @apply text-xs;
+
+    @apply font-semibold;
+
+    @apply text-primary;
+
+
+    background:
+
+        rgba(140, 82, 255, .12);
+
+
+    border:
+
+        1px solid rgba(140, 82, 255, .25);
+
+
+}
+
+
+
+.category-title {
+
+    @apply mt-6;
+
+    @apply text-4xl;
+
+    @apply md:text-6xl;
+
+    @apply font-black;
+
+    @apply leading-tight;
+
+    @apply text-white;
+
+
+}
+
+
+
+.category-description {
+
+    @apply mt-5;
+
+    @apply max-w-2xl;
+
+    @apply text-base;
+
+    @apply md:text-lg;
+
+    @apply leading-relaxed;
+
+    @apply text-gray;
+
+
+}
+
+
+
+
+/* =========================================================
+   HERO ACTION BUTTONS
+========================================================= */
+
+
+.category-actions {
+
+    @apply mt-8;
+
+    @apply flex;
+
+    @apply flex-wrap;
+
+    @apply gap-4;
+
+}
+
+
+
+.category-primary-btn {
+
+
+    @apply px-6;
+
+    @apply py-3;
+
+    @apply rounded-xl;
+
+    @apply font-semibold;
+
+    @apply text-white;
+
+
+    background:
+
+        linear-gradient(135deg,
+            #8c52ff,
+            #6d32df);
+
+
+    transition: .3s;
+
+
+}
+
+
+
+.category-primary-btn:hover {
+
+    transform:
+
+        translateY(-3px);
+
+}
+
+
+
+.category-secondary-btn {
+
+
+    @apply px-6;
+
+    @apply py-3;
+
+    @apply rounded-xl;
+
+    @apply font-semibold;
+
+    @apply text-white;
+
+
+    background:
+
+        rgba(255, 255, 255, .06);
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .1);
+
+
+}
+
+
+
+.category-secondary-btn:hover {
+
+
+    background:
+
+        rgba(255, 255, 255, .12);
+
+
+}
+
+
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+
+.section-header {
+
+    @apply mb-8;
+
+}
+
+
+
+.section-title {
+
+
+    @apply text-2xl;
+
+    @apply md:text-3xl;
+
+    @apply font-bold;
+
+    @apply text-white;
+
+
+}
+
+
+
+.section-subtitle {
+
+
+    @apply mt-2;
+
+    @apply text-sm;
+
+    @apply md:text-base;
+
+    @apply text-gray;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+
+.stats-grid {
+
+
+    @apply grid;
+
+
+    @apply grid-cols-1;
+
+    @apply sm:grid-cols-3;
+
+
+    @apply gap-5;
+
+
+}
+
+
+
+.stat-card {
+
+
+    @apply rounded-3xl;
+
+    @apply p-6;
+
+
+    background:
+
+
+        linear-gradient(145deg,
+            rgba(36, 36, 36, .95),
+            rgba(20, 21, 25, .95));
+
+
+    border:
+
+
+        1px solid rgba(255, 255, 255, .08);
+
+
+    transition: .3s;
+
+
+}
+
+
+
+.stat-card:hover {
+
+
+    transform:
+
+        translateY(-5px);
+
+
+    border-color:
+
+        rgba(140, 82, 255, .45);
+
+
+}
+
+
+
+.stat-value {
+
+
+    @apply block;
+
+
+    @apply text-3xl;
+
+
+    @apply md:text-4xl;
+
+
+    @apply font-black;
+
+
+    @apply text-white;
+
+
+}
+
+
+
+.stat-value.text-sm {
+
+
+    @apply text-xl;
+
+
+    @apply md:text-2xl;
+
+
+}
+
+
+
+.stat-label {
+
+
+    @apply block;
+
+
+    @apply mt-3;
+
+
+    @apply text-sm;
+
+
+    @apply text-gray;
+
+
+}
+
+/* =========================================================
+   ANIKAWA CATEGORY PAGE
+   UNIFIED CSS
+   PART 2/3
+
+   Anime Rows + Cards + Grid
+========================================================= */
+
+
+
+/* =========================================================
+   ANIME DISCOVERY ROWS
+========================================================= */
+
+
+.anime-row-section {
+
+    @apply overflow-hidden;
+
+}
+
+
+
+.anime-row-section .section-header {
+
+    @apply flex;
+
+    @apply flex-col;
+
+}
+
+
+
+
+
+/* =========================================================
+   SLIDER WRAPPER OVERRIDES
+========================================================= */
+
+
+.anime-row-section .slider-container {
+
+    @apply flex;
+
+    @apply flex-row;
+
+    @apply gap-5;
+
+    @apply overflow-x-auto;
+
+    @apply scroll-smooth;
+
+    @apply pb-4;
+
+}
+
+
+.anime-row-section .slider-container::-webkit-scrollbar {
+
+    display: none;
+
+}
+
+
+
+.anime-row-section .slider-container {
+
+    scrollbar-width: none;
+
+}
+
+
+/* =========================================================
+   FULL CATEGORY GRID
+========================================================= */
+
+
+.anime-grid {
+
+
+    @apply grid;
+
+
+    @apply grid-cols-2;
+
+
+    @apply sm:grid-cols-3;
+
+
+    @apply md:grid-cols-4;
+
+
+    @apply lg:grid-cols-5;
+
+
+    @apply xl:grid-cols-5;
+
+
+    @apply gap-5 no-underline list-none;
+
+
+}
+
+/* =========================================================
+   ANIKAWA CATEGORY PAGE
+   UNIFIED CSS
+   PART 3/3
+
+   Content + Related + Final Polish
+========================================================= */
+
+
+
+/* =========================================================
+   CATEGORY CONTENT BOX
+========================================================= */
+
+
+.category-content-box {
+
+    @apply rounded-3xl;
+
+    @apply p-6 md:p-10;
+
+
+    background:
+
+        linear-gradient(145deg,
+            rgba(36, 36, 36, .95),
+            rgba(20, 21, 25, .95));
+
+
+    border:
+
+        1px solid rgba(255, 255, 255, .08);
+
+
+}
+
+
+
+.category-content-box h2 {
+
+
+    @apply text-2xl md:text-3xl;
+
+
+    @apply font-bold;
+
+
+    @apply text-white;
+
+
+}
+
+
+
+.category-content-box p {
+
+
+    @apply mt-5;
+
+
+    @apply leading-relaxed;
+
+
+    @apply text-gray;
+
+
+    @apply max-w-4xl;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   RELATED CATEGORY GRID
+========================================================= */
+
+
+.related-category-grid {
+
+
+    @apply grid;
+
+
+    @apply grid-cols-1;
+
+
+    @apply sm:grid-cols-2;
+
+
+    @apply lg:grid-cols-3;
+
+
+    @apply gap-5;
+
+
+}
+
+
+
+
+
+.related-category-card {
+
+
+    @apply relative;
+
+
+    @apply overflow-hidden;
+
+
+    @apply rounded-2xl;
+
+
+    @apply p-6;
+
+
+    background:
+
+
+        linear-gradient(135deg,
+
+            rgba(36, 36, 36, .95),
+
+            rgba(20, 21, 25, .95));
+
+
+    border:
+
+
+        1px solid rgba(255, 255, 255, .08);
+
+
+    transition:
+
+
+        transform .35s ease,
+
+        border-color .35s ease;
+
+
+}
+
+
+
+.related-category-card::before {
+
+
+    content: "";
+
+
+    @apply absolute;
+
+
+    @apply inset-0;
+
+
+    background:
+
+
+        radial-gradient(circle at top right,
+
+            rgba(140, 82, 255, .18),
+
+            transparent 55%);
+
+
+    opacity: 0;
+
+
+    transition: .35s;
+
+
+}
+
+
+
+.related-category-card:hover {
+
+
+    transform:
+
+
+        translateY(-6px);
+
+
+    border-color:
+
+
+        rgba(140, 82, 255, .5);
+
+
+}
+
+
+
+.related-category-card:hover::before {
+
+
+    opacity: 1;
+
+
+}
+
+
+
+.related-category-card h3 {
+
+
+    @apply relative;
+
+
+    @apply text-xl;
+
+
+    @apply font-bold;
+
+
+    @apply text-white;
+
+
+}
+
+
+
+.related-category-card p {
+
+
+    @apply relative;
+
+
+    @apply mt-3;
+
+
+    @apply text-sm;
+
+
+    @apply text-gray;
+
+
+    @apply leading-relaxed;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+
+
+.category-empty-state {
+
+
+    @apply rounded-3xl;
+
+
+    @apply p-10;
+
+
+    @apply text-center;
+
+
+    background:
+
+
+        rgba(255, 255, 255, .04);
+
+
+    border:
+
+
+        1px dashed rgba(255, 255, 255, .15);
+
+
+}
+
+
+
+.category-empty-state h3 {
+
+
+    @apply text-xl;
+
+
+    @apply font-bold;
+
+
+    @apply text-white;
+
+
+}
+
+
+
+.category-empty-state p {
+
+
+    @apply mt-3;
+
+
+    @apply text-gray;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   SMOOTH SECTION TRANSITIONS
+========================================================= */
+
+
+.category-section {
+
+
+    animation:
+
+
+        categoryFade .6s ease both;
+
+
+}
+
+
+
+@keyframes categoryFade {
+
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+
+}
+
+
+
+
+
+/* =========================================================
+   GLOBAL LINKS
+========================================================= */
+
+
+.category-page a {
+
+
+    text-decoration: none;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   IMAGE PERFORMANCE
+========================================================= */
+
+
+.category-page img {
+
+
+    user-select: none;
+
+
+    -webkit-user-drag: none;
+
+
+}
+
+
+
+
+
+/* =========================================================
+   MOBILE FINAL POLISH
+========================================================= */
+
+
+@media(max-width:600px) {
+
+
+
+    .category-hero {
+
+
+        @apply min-h-[360px];
+
+
+        @apply mx-3;
+
+
+    }
+
+
+
+    .category-hero-content {
+
+
+        @apply p-6;
+
+
+    }
+
+
+
+    .category-title {
+
+
+        @apply text-3xl;
+
+
+    }
+
+
+
+    .category-description {
+
+
+        @apply text-sm;
+
+
+    }
+
+
+
+    .category-actions {
+
+
+        @apply gap-3;
+
+
+    }
+
+
+
+    .category-primary-btn,
+
+    .category-secondary-btn {
+
+
+        @apply w-full;
+
+
+        @apply text-center;
+
+
+    }
+
+
+
+    .category-section {
+
+
+        @apply py-8;
+
+
+        @apply px-4;
+
+
+    }
+
+
+
+    .section-title {
+
+
+        @apply text-xl;
+
+
+    }
+
+
+
+    .stat-card {
+
+
+        @apply p-5;
+
+
+    }
+
+
+
+    .stat-value {
+
+
+        @apply text-2xl;
+
+
+    }
+
+
+
+    .category-content-box {
+
+
+        @apply p-5;
+
+
+    }
+
+
+
+    .related-category-card {
+
+
+        @apply p-5;
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* =========================================================
+   REDUCED MOTION SUPPORT
+========================================================= */
+
+
+@media(prefers-reduced-motion:reduce) {
+
+
+    * {
+
+
+        animation: none !important;
+
+
+        transition: none !important;
+
+
+    }
+
+
+}

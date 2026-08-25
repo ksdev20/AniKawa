@@ -1,0 +1,994 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+
+.anime-list {
+    @apply flex flex-col gap-7;
+}
+
+
+.anime-list__toolbar {
+    @apply flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between;
+}
+
+
+.anime-list__search {
+    @apply relative flex h-14 min-w-0 flex-1 items-center rounded-2xl border border-primary/15 bg-secondary px-4 shadow-lg transition-all duration-300;
+}
+
+.anime-list__search:focus-within {
+    @apply border-primary/40 shadow-primary/10;
+    box-shadow: 0 12px 40px rgb(140 82 255 / 0.08);
+}
+
+
+.anime-list__search-icon {
+    @apply mr-3 text-xl text-white/30;
+}
+
+
+.anime-list__search input {
+    @apply min-w-0 min-h-10 flex-1 bg-transparent text-sm font-medium text-white outline-none placeholder:text-white/30;
+}
+
+
+.anime-list__search-clear {
+    @apply flex h-8 w-8 items-center justify-center rounded-full text-lg text-white/40 transition hover:bg-white/10 hover:text-white;
+}
+
+
+.anime-list__toolbar-actions {
+    @apply flex items-center gap-3;
+}
+
+
+.anime-list__view-switcher {
+    @apply flex h-12 items-center rounded-2xl border border-white/10 bg-secondary p-1;
+}
+
+
+.anime-list__view-switcher button {
+    @apply flex h-10 w-10 items-center justify-center rounded-xl text-lg text-white/35 transition-all duration-200;
+}
+
+
+.anime-list__view-switcher button:hover {
+    @apply bg-white/5 text-white;
+}
+
+
+.anime-list__view-switcher button.is-active {
+    @apply bg-primary/15 text-primary shadow-lg;
+}
+
+
+.anime-list__sort {
+    @apply relative;
+}
+
+
+.anime-list__sort-trigger {
+    @apply flex h-12 min-w-28 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-secondary px-4 text-sm font-semibold text-white/70 transition hover:border-primary/30 hover:text-white;
+}
+
+
+.anime-list__sort-menu {
+    @apply absolute right-0 top-[calc(100%+8px)] z-50 min-w-48 overflow-hidden rounded-2xl border border-white/10 bg-surface p-1.5 shadow-2xl;
+}
+
+
+.anime-list__sort-menu button {
+    @apply flex w-full rounded-xl px-3 py-2.5 text-left text-sm text-white/60 transition hover:bg-white/5 hover:text-white;
+}
+
+
+.anime-list__sort-menu button.is-active {
+    @apply bg-primary/10 text-primary;
+}
+
+
+.anime-list__body {
+    @apply grid gap-6;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 1100px) {
+    .anime-list__body {
+        grid-template-columns: 280px minmax(0, 1fr);
+        align-items: start;
+    }
+}
+
+.anime-list__sidebar {
+    @apply flex flex-col gap-5;
+}
+
+
+.anime-list__lists {
+    @apply rounded-3xl border border-primary/10 bg-secondary p-5 shadow-xl;
+}
+
+
+.anime-list__eyebrow {
+    @apply mb-2 text-[10px] font-bold tracking-[0.22em] text-primary/70;
+}
+
+
+.anime-list__heading {
+    @apply mb-5 text-2xl font-bold tracking-tight text-white;
+}
+
+
+.anime-list__status-list {
+    @apply flex flex-col gap-1 p-2;
+}
+
+
+.anime-list__status {
+    @apply flex items-center justify-between rounded-2xl px-3.5 py-3 text-sm font-medium text-white/50 transition-all duration-200;
+}
+
+
+.anime-list__status:hover {
+    @apply bg-white/[0.04] text-white;
+}
+
+
+.anime-list__status strong {
+    @apply min-w-7 rounded-full bg-white/5 px-2 py-0.5 text-center text-xs font-semibold text-white/35;
+}
+
+
+.anime-list__status--active {
+    @apply bg-primary/10 text-white;
+}
+
+
+.anime-list__status--active strong {
+    @apply bg-primary/15 text-primary;
+}
+
+
+.anime-list__filters {
+    @apply overflow-hidden rounded-3xl border border-primary/10 bg-secondary shadow-xl;
+}
+
+.anime-list__filters button {
+    @apply cursor-pointer;
+}
+
+
+.anime-list__filters-header {
+    @apply flex w-full items-center justify-between p-5 text-left;
+}
+
+
+.anime-list__filters-header>div {
+    @apply flex flex-col;
+}
+
+
+.anime-list__filters-header span {
+    @apply text-[10px] font-bold tracking-[0.2em] text-primary/60;
+}
+
+
+.anime-list__filters-header strong {
+    @apply mt-1 text-xl font-bold text-white;
+}
+
+
+.anime-list__filters-toggle {
+    @apply flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-lg text-white/50 transition;
+}
+
+
+.anime-list__filters-header:hover .anime-list__filters-toggle {
+    @apply border-primary/20 bg-primary/10 text-primary;
+}
+
+
+.anime-list__filters-content {
+    @apply flex flex-col gap-5 border-t border-white/5 p-5;
+}
+
+
+.anime-list__filter-field {
+    @apply flex flex-col gap-2;
+}
+
+
+.anime-list__filter-label {
+    @apply flex items-center justify-between;
+}
+
+
+.anime-list__filter-label span {
+    @apply text-xs font-semibold text-white/50;
+}
+
+
+.anime-list__select {
+    @apply relative;
+}
+
+.anime-list__select select {
+    @apply h-11 w-full cursor-pointer appearance-none rounded-xl border border-white/10 bg-surfaceLight px-3 pr-10 text-sm font-semibold text-white outline-none transition-all;
+}
+
+.anime-list__select select:hover {
+    @apply border-primary/30 bg-surfaceLight;
+}
+
+.anime-list__select select:focus {
+    @apply border-primary/50 ring-2 ring-primary/10;
+}
+
+.anime-list__select>span {
+    @apply pointer-events-none absolute right-3 top-1/2 flex -translate-y-1/2 items-center text-white/45 transition;
+}
+
+
+.anime-list__year-inputs {
+    @apply flex items-center gap-2;
+}
+
+
+.anime-list__year-inputs input {
+    @apply h-11 min-w-0 w-full rounded-xl border border-white/10 bg-surface px-3 text-sm font-medium text-white outline-none transition placeholder:text-white/25;
+}
+
+
+.anime-list__year-inputs input:focus {
+    @apply border-primary/30;
+}
+
+
+.anime-list__year-inputs>span {
+    @apply text-white/20;
+}
+
+
+.anime-list__year-shortcuts {
+    @apply flex flex-wrap gap-1.5;
+}
+
+
+.anime-list__year-shortcuts button {
+    @apply rounded-lg bg-white/[0.035] px-2.5 py-1.5 text-[11px] font-semibold text-white/35 transition hover:bg-primary/10 hover:text-primary;
+}
+
+
+.anime-list__reset {
+    @apply mt-1 rounded-xl border border-white/10 py-2.5 text-xs font-semibold text-white/35 transition hover:border-red-400/20 hover:bg-red-400/5 hover:text-red-300;
+}
+
+
+.anime-list__results {
+    @apply min-w-0;
+}
+
+
+.anime-list__results-header {
+    @apply mb-5 flex items-end justify-between gap-4;
+}
+
+
+.anime-list__results-kicker {
+    @apply text-[10px] font-bold tracking-[0.2em] text-primary/60;
+}
+
+
+.anime-list__results-title {
+    @apply mt-1 text-2xl font-bold tracking-tight text-white;
+}
+
+
+.anime-list__results-title span {
+    @apply ml-2 text-sm font-medium text-white/30;
+}
+
+
+.anime-list__compare {
+    @apply hidden items-center gap-2 rounded-xl border border-white/10 px-3 py-2 text-xs font-semibold text-white/40 transition hover:border-primary/20 hover:text-primary sm:flex;
+}
+
+
+.anime-list__items {
+    @apply flex flex-col gap-4;
+}
+
+
+.anime-list__item {
+    @apply relative flex min-h-56 rounded-3xl border border-primary/10 bg-secondary transition-all duration-300;
+}
+
+
+.anime-list__item:hover {
+    @apply -translate-y-0.5 border-primary/20 shadow-2xl;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 0.25);
+}
+
+
+.anime-list__poster {
+    @apply relative hidden w-36 shrink-0 overflow-hidden sm:block md:w-40;
+}
+
+
+.anime-list__poster img {
+    @apply h-full w-full object-cover transition-transform duration-500;
+}
+
+
+.anime-list__item:hover .anime-list__poster img {
+    @apply scale-105;
+}
+
+
+.anime-list__poster-overlay {
+    @apply absolute inset-0 flex items-center justify-center bg-primary/30 opacity-0 backdrop-blur-[2px] transition-opacity duration-300;
+}
+
+
+.anime-list__poster-overlay span {
+    @apply rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold tracking-[0.18em] text-white;
+}
+
+
+.anime-list__item:hover .anime-list__poster-overlay {
+    @apply opacity-100;
+}
+
+
+.anime-list__item-main {
+    @apply flex min-w-0 flex-1 flex-col justify-between gap-5 p-5 sm:p-6;
+}
+
+
+.anime-list__item-top {
+    @apply flex justify-between gap-4;
+}
+
+
+.anime-list__meta-line {
+    @apply mb-1.5 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/30;
+}
+
+
+.anime-list__meta-line i {
+    @apply h-1 w-1 rounded-full bg-primary/40;
+}
+
+
+.anime-list__item-top h3 {
+    @apply text-xl font-bold tracking-tight text-white sm:text-2xl;
+}
+
+
+.anime-list__item-actions {
+    @apply relative flex shrink-0 items-start gap-2;
+}
+
+
+.anime-list__score {
+    @apply rounded-xl bg-primary/10 px-3 py-2 text-sm font-bold text-white;
+}
+
+
+.anime-list__score span {
+    @apply text-primary;
+}
+
+
+.anime-list__options {
+    @apply flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white/40 transition hover:border-primary/20 hover:bg-primary/10 hover:text-primary;
+}
+
+
+.anime-list__options-menu {
+    @apply absolute right-0 top-11 z-50 min-w-36 overflow-hidden rounded-2xl border border-white/10 bg-secondary p-1.5 shadow-2xl;
+}
+
+
+.anime-list__options-menu button {
+    @apply w-full rounded-xl px-3 py-2.5 text-left text-xs font-semibold text-white/60 transition-colors duration-150 hover:bg-white/5 hover:text-white;
+}
+
+
+.anime-list__badge {
+    @apply w-fit rounded-full border border-primary/15 bg-primary/5 px-2.5 py-1 text-[11px] font-semibold text-primary/80;
+}
+
+
+.anime-list__description {
+    @apply line-clamp-2 max-w-3xl text-sm leading-6 text-white/40;
+}
+
+
+.anime-list__item-bottom {
+    @apply flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between;
+}
+
+
+.anime-list__progress-wrap {
+    @apply min-w-0 flex-1 xl:max-w-md;
+}
+
+
+.anime-list__progress-info {
+    @apply mb-2 flex justify-between text-xs;
+}
+
+.anime-list__progress-info>strong {
+    @apply font-medium text-white/40;
+}
+
+.anime-list__progress-info strong {
+    @apply text-white/60;
+}
+
+
+.anime-list__progress {
+    @apply h-1.5 overflow-hidden rounded-full bg-white/5;
+}
+
+
+.anime-list__progress span {
+    @apply block h-full rounded-full bg-primary transition-all duration-500;
+}
+
+
+.anime-list__genres {
+    @apply flex flex-wrap gap-1.5;
+}
+
+
+.anime-list__genres span {
+    @apply rounded-full border border-white/5 bg-white/[0.03] px-2.5 py-1 text-[10px] font-medium text-white/35;
+}
+
+
+/* COMPACT */
+
+.anime-list__items--compact {
+    @apply gap-1.5;
+}
+
+
+.anime-list__compact-item {
+    @apply relative grid min-h-16 grid-cols-[minmax(0,1fr)_70px_110px_55px_42px] items-center gap-3 rounded-2xl border border-transparent px-4 transition;
+}
+
+
+.anime-list__compact-item:hover {
+    @apply border-primary/10 bg-secondary;
+}
+
+
+.anime-list__compact-title {
+    @apply relative flex min-w-0 items-center gap-3;
+}
+
+
+.anime-list__compact-title h3 {
+    @apply truncate text-sm font-semibold text-white/75 transition;
+}
+
+
+.anime-list__compact-item:hover .anime-list__compact-title h3 {
+    @apply text-white;
+}
+
+
+.anime-list__compact-number {
+    @apply w-8 shrink-0 text-[10px] font-mono text-white/15;
+}
+
+
+.anime-list__compact-score,
+.anime-list__compact-progress,
+.anime-list__compact-type {
+    @apply text-xs font-medium text-white/40;
+}
+
+
+.anime-list__compact-score {
+    @apply text-primary/80;
+}
+
+
+.anime-list__compact-progress {
+    @apply flex items-center gap-2;
+}
+
+
+.anime-list__compact-progress small {
+    @apply text-[9px] text-white/20;
+}
+
+
+.anime-list__compact-actions {
+    @apply relative flex justify-end;
+}
+
+
+.anime-list__compact-hover-poster {
+    @apply pointer-events-none absolute bottom-12 left-10 z-50 hidden w-32 overflow-hidden rounded-2xl border border-white/10 bg-secondary opacity-0 shadow-2xl transition-all duration-200;
+}
+
+
+.anime-list__compact-hover-poster img {
+    @apply aspect-[2/3] h-auto w-full object-cover;
+}
+
+
+.anime-list__compact-title:hover .anime-list__compact-hover-poster {
+    @apply block opacity-100;
+}
+
+
+/* CARDS */
+
+.anime-list__items--cards {
+    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4;
+}
+
+
+.anime-list__card {
+    @apply relative min-w-0 overflow-hidden rounded-3xl border border-primary/10 bg-secondary shadow-lg transition-all duration-300;
+}
+
+
+.anime-list__card:hover {
+    @apply -translate-y-1 border-primary/20 shadow-2xl;
+}
+
+
+.anime-list__card-image {
+    @apply relative aspect-[2/3] overflow-hidden;
+}
+
+
+.anime-list__card-image>img {
+    @apply h-full w-full object-cover transition-transform duration-500;
+}
+
+
+.anime-list__card:hover .anime-list__card-image>img {
+    @apply scale-105;
+}
+
+
+.anime-list__card-shade {
+    @apply pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 to-transparent;
+}
+
+
+.anime-list__card-score {
+    @apply absolute right-3 top-3 rounded-xl bg-black/50 px-2.5 py-1.5 text-xs font-bold text-white backdrop-blur-md;
+}
+
+
+.anime-list__card-score::first-letter {
+    @apply text-primary;
+}
+
+
+.anime-list__card-options {
+    @apply absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-black/30 text-white/70 backdrop-blur-md transition hover:border-primary/30 hover:bg-primary/20 hover:text-primary;
+}
+
+
+.anime-list__card-status {
+    @apply absolute bottom-3 left-3 rounded-full bg-primary/80 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white backdrop-blur;
+}
+
+.anime-list__card-content {
+    @apply flex min-h-28 flex-col justify-between gap-4 p-4;
+}
+
+
+.anime-list__card-content h3 {
+    @apply truncate text-sm font-bold text-white;
+}
+
+
+.anime-list__card-content>div:first-child span {
+    @apply mt-1 block text-[12px] font-medium text-white/30;
+}
+
+
+.anime-list__card-progress {
+    @apply flex items-center gap-3;
+}
+
+
+.anime-list__card-progress>span {
+    @apply shrink-0 text-[12px] font-semibold text-white/60;
+}
+
+
+.anime-list__card-progress>div {
+    @apply h-1.5 flex-1 overflow-hidden rounded-full bg-white/5;
+}
+
+
+.anime-list__card-progress>div span {
+    @apply block h-full rounded-full bg-primary;
+}
+
+
+/* EMPTY */
+
+.anime-list__empty {
+    @apply flex min-h-80 flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.015] px-6 text-center;
+}
+
+
+.anime-list__empty-icon {
+    @apply mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-2xl text-primary;
+}
+
+
+.anime-list__empty h3 {
+    @apply text-xl font-bold text-white;
+}
+
+
+.anime-list__empty p {
+    @apply mt-2 max-w-sm text-sm text-white/35;
+}
+
+
+@media (max-width: 900px) {
+    .anime-list__compact-item {
+        grid-template-columns:
+            minmax(0, 1fr) 65px 90px 42px;
+    }
+
+    .anime-list__compact-type {
+        @apply hidden;
+    }
+}
+
+
+@media (max-width: 640px) {
+    .anime-list__item {
+        @apply min-h-0;
+    }
+
+    .anime-list__item-main {
+        @apply p-4;
+    }
+
+    .anime-list__description {
+        @apply line-clamp-3;
+    }
+
+    .anime-list__score {
+        @apply hidden;
+    }
+
+    .anime-list__compact-item {
+        grid-template-columns:
+            minmax(0, 1fr) 55px 40px;
+        @apply px-3;
+    }
+
+    .anime-list__compact-progress {
+        @apply justify-end;
+    }
+
+    .anime-list__compact-progress small {
+        @apply hidden;
+    }
+
+    .anime-list__compact-actions {
+        @apply hidden;
+    }
+
+    .anime-list__items--cards {
+        @apply grid-cols-2 gap-3;
+    }
+
+    .anime-list__card-content {
+        @apply p-3;
+    }
+
+    .anime-list__card-content h3 {
+        @apply text-xs;
+    }
+}
+
+/*fixes*/
+/* Removes clear button in Chrome, Safari, and newer Edge browsers */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Removes clear button in legacy Internet Explorer and Edge */
+input[type="search"]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/*Anime List Final*/
+.anime-list__loading {
+    @apply flex min-h-96 flex-col items-center justify-center rounded-3xl border border-primary/10 bg-secondary p-8 text-center;
+}
+
+.anime-list__loading-orbit {
+    @apply relative mb-6 flex h-16 w-16 items-center justify-center;
+}
+
+.anime-list__loading-orbit::before {
+    content: "";
+    @apply absolute inset-0 rounded-full border-2 border-primary/15;
+}
+
+.anime-list__loading-orbit::after {
+    content: "";
+    @apply absolute inset-0 rounded-full border-2 border-transparent border-t-primary;
+    animation: anime-list-spin 0.9s linear infinite;
+}
+
+.anime-list__loading-icon {
+    @apply flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary;
+}
+
+.anime-list__loading-title {
+    @apply text-lg font-bold text-white;
+}
+
+.anime-list__loading-text {
+    @apply mt-2 max-w-sm text-sm leading-6 text-white/45;
+}
+
+
+/* ==========================================================================
+   Error state
+   ========================================================================== */
+
+.anime-list__error {
+    @apply flex min-h-96 flex-col items-center justify-center rounded-3xl border border-red-400/15 bg-red-400/[0.03] p-8 text-center;
+}
+
+.anime-list__error-icon {
+    @apply mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-red-400/15 bg-red-400/10 text-red-300;
+}
+
+.anime-list__error-title {
+    @apply text-xl font-bold text-white;
+}
+
+.anime-list__error-text {
+    @apply mt-2 max-w-md text-sm leading-6 text-white/45;
+}
+
+.anime-list__error-button {
+    @apply mt-6 inline-flex h-10 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 px-5 text-sm font-semibold text-primary transition;
+}
+
+.anime-list__error-button:hover {
+    @apply border-primary/35 bg-primary/15 text-white;
+}
+
+.anime-list__error-button:focus-visible {
+    @apply outline-none ring-2 ring-primary/40 ring-offset-2 ring-offset-secondary;
+}
+
+
+/* ==========================================================================
+   Empty library state
+   ========================================================================== */
+
+.anime-list__empty-library {
+    @apply flex min-h-96 flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.015] p-8 text-center;
+}
+
+.anime-list__empty-library-icon {
+    @apply mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-2xl text-primary;
+}
+
+.anime-list__empty-library-title {
+    @apply text-xl font-bold text-white;
+}
+
+.anime-list__empty-library-text {
+    @apply mt-2 max-w-md text-sm leading-6 text-white/45;
+}
+
+
+/* ==========================================================================
+   Empty filtered/search result
+   ========================================================================== */
+
+.anime-list__empty {
+    @apply flex min-h-96 flex-col items-center justify-center rounded-3xl border border-dashed border-white/10 bg-white/[0.015] px-8 text-center;
+}
+
+.anime-list__empty-icon {
+    @apply mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-xl text-primary;
+}
+
+.anime-list__empty h3 {
+    @apply text-xl font-bold text-white;
+}
+
+.anime-list__empty p {
+    @apply mt-2 max-w-md text-sm leading-6 text-white/45;
+}
+
+
+/* ==========================================================================
+   Sidebar loading
+   ========================================================================== */
+
+.anime-list__status-skeleton {
+    @apply flex h-11 items-center justify-between rounded-xl border border-white/5 bg-white/[0.025] px-4;
+}
+
+.anime-list__status-skeleton::before {
+    content: "";
+    @apply h-3 w-20 rounded-full bg-white/5;
+    animation: anime-list-pulse 1.5s ease-in-out infinite;
+}
+
+.anime-list__status-skeleton::after {
+    content: "";
+    @apply h-5 w-8 rounded-full bg-white/5;
+    animation: anime-list-pulse 1.5s ease-in-out infinite;
+}
+
+
+/* ==========================================================================
+   Results count transition
+   ========================================================================== */
+
+.anime-list__results-title {
+    @apply transition-opacity duration-200;
+}
+
+
+/* ==========================================================================
+   Generic disabled state
+   ========================================================================== */
+
+.anime-list__button--disabled {
+    @apply pointer-events-none cursor-not-allowed opacity-40;
+}
+
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes anime-list-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes anime-list-pulse {
+
+    0%,
+    100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .anime-list__loading-orbit::after,
+    .anime-list__status-skeleton::before,
+    .anime-list__status-skeleton::after {
+        animation: none;
+    }
+}
+
+/*loader modify*/
+.wizard-loader-container {
+    @apply hidden sm:flex;
+}
+
+.for-mob {
+    @apply flex sm:hidden flex-col gap-5 w-full h-full items-center justify-center;
+}
+
+/*anime list loading*/
+.anime-list__load-more {
+    @apply h-px w-full;
+}
+
+.anime-list__loading-more {
+    @apply flex items-center justify-center gap-2 py-6 text-sm text-gray;
+}
+
+.anime-list__detail-status {
+    @apply inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-xs font-semibold leading-none;
+}
+
+.anime-list__detail-status-icon {
+    @apply flex shrink-0 items-center justify-center;
+}
+
+.anime-list__detail-status-label {
+    @apply whitespace-nowrap;
+}
+
+/* Watching */
+.anime-list__progress-info .anime-list__detail-status--watching {
+    @apply border-sky-400/25 bg-sky-400/10 text-sky-300;
+}
+
+.anime-list__progress-info .anime-list__detail-status--watching .anime-list__detail-status-icon,
+.anime-list__progress-info .anime-list__detail-status--watching .anime-list__detail-status-label {
+    @apply text-sky-300;
+}
+
+/* Planning */
+.anime-list__progress-info .anime-list__detail-status--planning {
+    @apply border-indigo-400/25 bg-indigo-400/10 text-indigo-300;
+}
+
+.anime-list__progress-info .anime-list__detail-status--planning .anime-list__detail-status-icon,
+.anime-list__progress-info .anime-list__detail-status--planning .anime-list__detail-status-label {
+    @apply text-indigo-300;
+}
+
+/* Completed */
+.anime-list__progress-info .anime-list__detail-status--completed {
+    @apply border-emerald-400/25 bg-emerald-400/10 text-emerald-300;
+}
+
+.anime-list__progress-info .anime-list__detail-status--completed .anime-list__detail-status-icon,
+.anime-list__progress-info .anime-list__detail-status--completed .anime-list__detail-status-label {
+    @apply text-emerald-300;
+}
+
+/* Paused */
+.anime-list__progress-info .anime-list__detail-status--paused {
+    @apply border-amber-400/25 bg-amber-400/10 text-amber-300;
+}
+
+.anime-list__progress-info .anime-list__detail-status--paused .anime-list__detail-status-icon,
+.anime-list__progress-info .anime-list__detail-status--paused .anime-list__detail-status-label {
+    @apply text-amber-300;
+}
+
+/* Dropped */
+.anime-list__progress-info .anime-list__detail-status--dropped {
+    @apply border-red-400/30 bg-red-400/10 text-red-300;
+}
+
+.anime-list__progress-info .anime-list__detail-status--dropped .anime-list__detail-status-icon,
+.anime-list__progress-info .anime-list__detail-status--dropped .anime-list__detail-status-label {
+    @apply text-red-300;
+}
+
+/* for anime list card*/
+.anime-list__detail-status.al-card{
+    @apply absolute bottom-3 left-3 w-fit h-fit bg-black/30;
+}
+
+/*for anime list compact*/
+.anime-list__compact-header {
+  @apply grid items-center gap-4 px-4 pb-3 text-xs font-semibold uppercase tracking-wider text-white/30;
+  grid-template-columns: minmax(0, 1fr) 100px 140px 120px 44px;
+}
+
+.anime-list__compact-item {
+  @apply grid items-center gap-4;
+  grid-template-columns: minmax(0, 1fr) 100px 140px 120px 44px;
+}

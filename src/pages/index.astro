@@ -1,95 +1,20 @@
 ---
-import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
-import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
-import ManageACW from "../global_assets/ManageACW";
 import Layout from "../layouts/Layout.astro";
-//blog
-import { getCollection } from "astro:content";
+import HeroSectionTmdb from "../components/HeroSection/HeroSectionTmdb.astro";
+import ShareAnikawa from "@/components/HomePageValueSections/ShareAnikawa.astro";
+import ContinueWatchingSlider from "@/components/HomePageValueSections/ContinueWatchingSlider";
+import HomepageIntroSection from "../components/HomePageValueSections/HomepageIntroSection.astro";
+import AnimeSliderStatic from "../components/AnimeSlider/AnimeSliderStatic.astro";
 import WhyAnikawa from "../components/HomePageValueSections/WhyAnikawa.astro";
+import RecommendedByAnikawa from "../components/HomePageValueSections/RecommendedByAnikawa.astro";
+import { AnimeSliderClient } from "@/components/AnimeSlider/AnimeSliderClient";
 import BrowseByCategory from "../components/HomePageValueSections/BrowseByCategory.astro";
 import LatestEpisodes from "../components/HomePageValueSections/LatestEpisodes.astro";
 import PopularAnimeSection from "../components/HomePageValueSections/PopularAnimeSection.astro";
 import NewReleasesSection from "../components/HomePageValueSections/NewReleasesSection.astro";
-import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
-import RecommendedByAnikawa from "../components/HomePageValueSections/RecommendedByAnikawa.astro";
-import HomepageIntroSection from "../components/HomePageValueSections/HomepageIntroSection.astro";
 import BlogsSectionHomepage from "../components/Blog/BlogsSectionHomepage.astro";
-
-const posts = await getCollection("blog");
-//blog
-
-const usedTitlesGlobal: string[] = [];
-const usedTitlesAC2: string[] = [];
-
-export interface Props {
-  info: {
-    bigH: string;
-    smallH: string;
-    filterName: string;
-    usedTitlesGlobal: string[];
-  };
-  anime: any;
-  category: string;
-}
-
-const SliderData = [
-  {
-    bigH: "Watch Top-Rated Anime in HD – 100% Ad-Free!",
-    smallH:
-      "Explore the most popular anime from the last 5 years, all in stunning high definition.",
-    filterName: "topRatedLast5",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "",
-    smallH: "",
-    filterName: "recommendedByAnikawa",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "New Anime Releases This Month",
-    smallH:
-      "Stay updated with the latest anime episodes and series airing this month.",
-    filterName: "sameMonthAnimeGen",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "Most Popular Anime Worldwide",
-    smallH: "Fan-favorite anime loved by viewers across the globe.",
-    filterName: "isPopular",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "Action-Packed Anime Series",
-    smallH: "High-energy battles, epic storylines, and unforgettable heroes.",
-    filterName: "actionPopular",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "Adventure Anime You Can’t Miss",
-    smallH:
-      "Thrilling journeys, mysterious lands, and incredible worlds to explore.",
-    filterName: "adventurePopular",
-    usedTitlesGlobal,
-  },
-  {
-    bigH: "Top Romance Anime with 7★+ Ratings",
-    smallH: "Heartwarming stories and emotional moments for romance lovers.",
-    filterName: "romancePopular",
-    usedTitlesGlobal,
-  },
-];
-
-const BlogSection2 = {
-  heading: "Anime Stories & Recommendations",
-  subheading:
-    "Thoughtfully crafted guides, recommendations, and anime deep-dives curated by the AniKawa team.",
-  btnText: "Read More Articles",
-  btnLink: "/blog",
-  posts: posts,
-};
-
-console.log("index usedTitlesGlobal:", usedTitlesGlobal);
+import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
+import { BlogSection2, recentlyWatched, SliderData } from "@/config/homepage";
 ---
 
 <Layout>
@@ -101,21 +26,18 @@ console.log("index usedTitlesGlobal:", usedTitlesGlobal);
     </div>
   </div>
   <HeroSectionTmdb />
-  <div id="banner-ad-1" class="banner-ad-container"></div>
-  <!-- Banner Homepage 1 -->
+  <ShareAnikawa />
+  <ContinueWatchingSlider client:load />
   <HomepageIntroSection />
   <AnimeSliderStatic info={SliderData[0]} />
-  <div id="banner-ad-2" class="banner-ad-container"></div>
-  <!-- Banner Homepage 3 -->
   <WhyAnikawa />
   <RecommendedByAnikawa info={SliderData[1]} />
-  <div id="banner-ad-3" class="banner-ad-container"></div>
-  <!-- Banner Homepage 2 -->
+  <AnimeSliderClient info={recentlyWatched} client:visible />
   <BrowseByCategory />
   <LatestEpisodes />
   <PopularAnimeSection />
   <NewReleasesSection />
+  <ShareAnikawa />
   <BlogsSectionHomepage info={BlogSection2} />
   <FaqSection />
-  <ManageACW client:load />
 </Layout>

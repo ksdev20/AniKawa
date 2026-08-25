@@ -1,0 +1,254 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+/*NEW COMMENT SYSTEM*/
+/* Comment Section */
+.comment-section {
+    @apply bg-surface p-6 rounded-lg border border-border space-y-6;
+}
+
+.comment-header {
+    @apply space-y-1 text-center;
+}
+
+.comment-header span {
+    @apply text-primary font-bold uppercase tracking-wide text-xs;
+}
+
+.comment-header h2 {
+    @apply font-winky text-xl text-white;
+}
+
+.comment-header p {
+    @apply text-gray text-sm;
+}
+
+/* Toolbar */
+.comments-toolbar {
+    @apply flex items-center gap-4 border-b border-border pb-2;
+}
+
+.comments-toolbar span {
+    @apply text-gray text-sm;
+}
+
+.comments-toolbar button {
+    @apply text-sm text-gray hover:text-primary transition-colors;
+}
+
+.comments-toolbar button.active {
+    @apply text-primary font-semibold;
+}
+
+/* Comment List */
+.comment-list {
+    @apply space-y-4;
+}
+
+.toggle-replies-btn {
+    @apply text-sm text-blue-500 hover:underline;
+}
+
+/* Comment Card */
+.comment-card {
+    @apply bg-surfaceLight border border-border rounded-md p-3;
+}
+
+.comment-card header {
+    @apply flex items-center gap-2 mb-2;
+}
+
+.comment-card img {
+    @apply w-6 h-6 rounded-full;
+}
+
+.comment-card .font-semibold {
+    @apply text-white;
+}
+
+.comment-card p {
+    @apply text-sm text-white whitespace-pre-line mb-2;
+}
+
+/* Pending badge */
+.comment-card .text-yellow-600 {
+    @apply text-xs ml-2;
+}
+
+/* Comment Actions */
+.comment-actions {
+    @apply flex gap-3 text-sm mt-2;
+}
+
+.action-btn {
+    @apply flex items-center gap-1 text-gray hover:text-primary transition-colors;
+}
+
+.action-btn.active {
+    @apply text-primary font-semibold;
+}
+
+.action-btn .icon {
+    @apply text-base;
+}
+
+.action-btn.text-red-500 {
+    @apply text-red-500 hover:text-red-600;
+}
+
+/* Comment Verification */
+.comment-verification {
+    @apply flex justify-center my-4;
+}
+
+/* Comment Section */
+.comment-section {
+    @apply bg-surface p-6 rounded-lg border border-border space-y-6;
+}
+
+.comment-header {
+    @apply space-y-1 text-center;
+}
+
+.comment-header span {
+    @apply text-primary font-bold uppercase tracking-wide text-xs;
+}
+
+.comment-header h2 {
+    @apply font-winky text-xl text-white;
+}
+
+.comment-header p {
+    @apply text-gray text-sm;
+}
+
+/* Toolbar */
+.comments-toolbar {
+    @apply flex items-center gap-4 border-b border-border pb-2;
+}
+
+.comments-toolbar span {
+    @apply text-gray text-sm;
+}
+
+.comments-toolbar button {
+    @apply text-sm text-gray hover:text-primary transition-colors;
+}
+
+.comments-toolbar button.active {
+    @apply text-primary font-semibold;
+}
+
+/* Comment List */
+.comment-list {
+    @apply space-y-4;
+}
+
+.toggle-replies-btn {
+    @apply text-sm text-blue-500 hover:underline;
+}
+
+/* Comment Card */
+.comment-card {
+    @apply bg-surfaceLight border border-border rounded-md p-3;
+}
+
+.comment-card header {
+    @apply flex items-center gap-2 mb-2;
+}
+
+.comment-card img {
+    @apply w-6 h-6 rounded-full;
+}
+
+.comment-card .font-semibold {
+    @apply text-white;
+}
+
+.comment-card p {
+    @apply text-sm text-white whitespace-pre-line mb-2;
+}
+
+/* Pending badge */
+.comment-card .text-yellow-600 {
+    @apply text-xs ml-2;
+}
+
+/* Comment Actions */
+.comment-actions {
+    @apply flex gap-3 text-sm mt-2;
+}
+
+.action-btn {
+    @apply flex items-center gap-1 text-gray hover:text-primary transition-colors;
+}
+
+.action-btn.active {
+    @apply text-primary font-semibold;
+}
+
+.action-btn .icon {
+    @apply text-base;
+}
+
+.action-btn.text-red-500 {
+    @apply text-red-500 hover:text-red-600;
+}
+
+/* Comment Verification */
+.comment-verification {
+    @apply flex justify-center my-4;
+}
+
+
+/* Overlay */
+.report-overlay {
+    @apply fixed inset-0 bg-black/60 flex items-center justify-center z-50;
+}
+
+/* Modal container */
+.report-modal {
+    @apply bg-surfaceLight border border-border rounded-lg p-6 w-full max-w-md relative space-y-4;
+}
+
+/* Close button */
+.report-close {
+    @apply absolute top-3 right-3 text-gray hover:text-primary transition-colors;
+}
+
+/* Heading */
+.report-modal h2 {
+    @apply font-winky text-lg text-white mb-2;
+}
+
+/* Options */
+.report-options {
+    @apply space-y-2;
+}
+
+.report-options label {
+    @apply flex items-center gap-2 text-sm text-white cursor-pointer;
+}
+
+.report-options input[type="radio"] {
+    @apply accent-primary;
+}
+
+/* Textarea */
+.report-modal textarea {
+    @apply w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-white placeholder-gray focus:outline-none focus:ring-1 focus:ring-primary min-h-[100px];
+}
+
+/* Error message */
+.report-error {
+    @apply text-red-500 text-sm;
+}
+
+/* Submit button */
+.report-modal button {
+    @apply px-4 py-2 rounded-md text-sm font-medium transition-colors;
+}
+
+.report-modal button:not(.report-close) {
+    @apply bg-primary text-white hover:bg-accent;
+}

@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+.anime-list-breakdown {
+  @apply w-full overflow-hidden rounded-2xl border border-white/5 bg-[#141519] p-5;
+}
+
+.anime-list-breakdown__header {
+  @apply mb-6 flex items-start justify-between gap-4;
+}
+
+.anime-list-breakdown__eyebrow {
+  @apply mb-1 text-xs font-medium uppercase tracking-[0.12em] text-gray-500;
+}
+
+.anime-list-breakdown__title {
+  @apply text-xl font-bold tracking-tight text-white;
+}
+
+.anime-list-breakdown__total {
+  @apply flex flex-col items-end;
+}
+
+.anime-list-breakdown__total strong {
+  @apply text-2xl font-black leading-none text-white;
+}
+
+.anime-list-breakdown__total span {
+  @apply mt-1 text-[10px] uppercase tracking-wider text-gray-500;
+}
+
+.anime-list-breakdown__chart {
+  @apply flex flex-col gap-4;
+}
+
+.anime-list-breakdown__row {
+  @apply grid grid-cols-[105px_minmax(0,1fr)_52px] items-center gap-3;
+}
+
+.anime-list-breakdown__label {
+  @apply flex min-w-0 items-center gap-2;
+}
+
+.anime-list-breakdown__icon {
+  @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/5;
+}
+
+.anime-list-breakdown__icon--watching {
+  @apply bg-accent/10 text-accent;
+}
+
+.anime-list-breakdown__icon--completed {
+  @apply bg-emerald-400/10 text-emerald-400;
+}
+
+.anime-list-breakdown__icon--planning {
+  @apply bg-sky-400/10 text-sky-400;
+}
+
+.anime-list-breakdown__icon--paused {
+  @apply bg-amber-400/10 text-amber-400;
+}
+
+.anime-list-breakdown__icon--dropped {
+  @apply bg-red-400/10 text-red-400;
+}
+
+.anime-list-breakdown__name {
+  @apply truncate text-sm font-medium text-gray-300;
+}
+
+.anime-list-breakdown__bar-wrap {
+  @apply h-2.5 min-w-0 overflow-hidden rounded-full bg-white/5;
+}
+
+.anime-list-breakdown__bar {
+  @apply h-full overflow-hidden rounded-full;
+  width: var(--bar-width);
+}
+
+.anime-list-breakdown__bar-fill {
+  @apply block h-full w-full rounded-full;
+}
+
+.anime-list-breakdown__bar--watching .anime-list-breakdown__bar-fill {
+  @apply bg-accent;
+}
+
+.anime-list-breakdown__bar--completed .anime-list-breakdown__bar-fill {
+  @apply bg-emerald-400;
+}
+
+.anime-list-breakdown__bar--planning .anime-list-breakdown__bar-fill {
+  @apply bg-sky-400;
+}
+
+.anime-list-breakdown__bar--paused .anime-list-breakdown__bar-fill {
+  @apply bg-amber-400;
+}
+
+.anime-list-breakdown__bar--dropped .anime-list-breakdown__bar-fill {
+  @apply bg-red-400;
+}
+
+.anime-list-breakdown__value {
+  @apply flex items-center justify-end gap-1.5;
+}
+
+.anime-list-breakdown__value strong {
+  @apply text-sm font-bold text-white;
+}
+
+.anime-list-breakdown__value span {
+  @apply text-[10px] text-gray-600;
+}
+
+.anime-list-breakdown__note {
+  @apply mt-5 border-t border-white/5 pt-3 text-[11px] text-gray-600;
+}
+
+@media (max-width: 639px) {
+  .anime-list-breakdown {
+    @apply rounded-xl p-4;
+  }
+
+  .anime-list-breakdown__row {
+    @apply grid-cols-[90px_minmax(0,1fr)_40px] gap-2;
+  }
+
+  .anime-list-breakdown__name {
+    @apply text-xs;
+  }
+
+  .anime-list-breakdown__icon {
+    @apply h-6 w-6;
+  }
+
+  .anime-list-breakdown__bar-wrap {
+    @apply h-2;
+  }
+
+  .anime-list-breakdown__value strong {
+    @apply text-xs;
+  }
+
+  .anime-list-breakdown__value span {
+    @apply hidden;
+  }
+}

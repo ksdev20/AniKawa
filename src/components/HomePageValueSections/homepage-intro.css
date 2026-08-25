@@ -1,8 +1,8 @@
 @import 'tailwindcss';
-@config '../../../tailwind.config.mjs';
+@config '@tw-config';
 
 .homepage-intro-section {
-    @apply py-16 md:py-24;
+    @apply py-9 md:py-24;
 }
 
 .homepage-intro-container {

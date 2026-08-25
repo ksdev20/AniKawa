@@ -1,15 +1,13 @@
 import { type BcObject } from "../../../types/blogcard";
-import "../../../styles/components/BlogCard/BlogCard.css";
+import "../../../styles/components/Blog/BlogCard/BlogCard.css";
 import CategorySection from "./CategorySection";
 
 export default function BlogCard({ BcObject }: { BcObject: BcObject }) {
   const {
     title,
-    subTitle,
     author,
     date,
     img,
-    imgLarge,
     categoryList,
     slug,
     readMinutes,

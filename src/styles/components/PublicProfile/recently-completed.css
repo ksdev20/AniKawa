@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+.recently-completed {
+  @apply w-full;
+}
+
+.recently-completed__header {
+  @apply mb-5 flex items-end justify-between gap-4;
+}
+
+.recently-completed__eyebrow {
+  @apply mb-1 text-xs font-medium uppercase tracking-[0.12em] text-gray-400;
+}
+
+.recently-completed__title {
+  @apply text-xl font-bold tracking-tight text-white;
+}
+
+.recently-completed__view-all {
+  @apply flex shrink-0 items-center gap-1 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-white;
+}
+
+.recently-completed__grid {
+  @apply grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 list-none;
+}
+
+.recently-completed__card {
+  @apply min-w-0 overflow-hidden rounded-xl border border-white/5 bg-[#141519] transition-all duration-200;
+}
+
+.recently-completed__card:hover {
+  @apply -translate-y-1 border-white/10 bg-[#191a20];
+}
+
+.recently-completed__poster-wrap {
+  @apply relative aspect-[2/3] w-full overflow-hidden bg-[#1b1c21];
+}
+
+.recently-completed__poster {
+  @apply h-full w-full object-cover transition-transform duration-300;
+}
+
+.recently-completed__card:hover .recently-completed__poster {
+  transform: scale(1.035);
+}
+
+.recently-completed__poster-placeholder {
+  @apply flex h-full w-full items-center justify-center text-3xl text-gray-500;
+}
+
+.recently-completed__completed-badge {
+  @apply absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#8c52ff] text-sm font-bold text-white shadow-lg;
+}
+
+.recently-completed__content {
+  @apply min-w-0 px-3 py-3;
+}
+
+.recently-completed__anime-title {
+  @apply overflow-hidden text-sm font-semibold leading-5 text-white;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.recently-completed__date {
+  @apply mt-1.5 truncate text-xs text-gray-500;
+}
+
+@media (max-width: 639px) {
+  .recently-completed__grid {
+    @apply grid-cols-3 gap-2;
+  }
+
+  .recently-completed__card {
+    @apply rounded-lg;
+  }
+
+  .recently-completed__content {
+    @apply px-2 py-2.5;
+  }
+
+  .recently-completed__anime-title {
+    @apply text-xs leading-4;
+  }
+
+  .recently-completed__date {
+    @apply text-[10px];
+  }
+
+  .recently-completed__completed-badge {
+    @apply right-1.5 top-1.5 h-6 w-6 text-xs;
+  }
+}

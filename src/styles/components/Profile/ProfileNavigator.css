@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@config '@tw-config';
+
+
+.profile-navigator {
+    @apply w-full;
+}
+
+
+.profile-navigator__inner {
+    @apply relative overflow-hidden rounded-3xl border border-primary/15 bg-secondary p-2 shadow-xl;
+}
+
+
+.profile-navigator__inner::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background:
+        radial-gradient(circle at 12% 50%,
+            rgba(140, 82, 255, 0.09),
+            transparent 32%),
+        radial-gradient(circle at 88% 50%,
+            rgba(178, 140, 255, 0.05),
+            transparent 30%);
+}
+
+
+.profile-navigator__tabs {
+    @apply relative flex items-center gap-1 overflow-x-auto;
+    scrollbar-width: none;
+}
+
+
+.profile-navigator__tabs::-webkit-scrollbar {
+    display: none;
+}
+
+
+.profile-navigator__tab {
+    @apply relative flex shrink-0 items-center gap-2.5 rounded-2xl px-4 py-3 text-sm font-semibold text-white/55 transition-all duration-300;
+}
+
+
+.profile-navigator__tab:hover {
+    @apply bg-white/[0.04] text-white;
+}
+
+
+.profile-navigator__tab:focus-visible {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-secondary;
+}
+
+
+.profile-navigator__tab--active {
+    @apply bg-primary/10 text-white;
+    box-shadow:
+        inset 0 0 0 1px rgba(140, 82, 255, 0.16),
+        0 8px 30px rgba(140, 82, 255, 0.08);
+}
+
+
+.profile-navigator__tab--active::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-2xl;
+    background:
+        linear-gradient(135deg,
+            rgba(140, 82, 255, 0.08),
+            transparent 60%);
+}
+
+
+.profile-navigator__icon {
+    @apply relative z-10 flex h-7 w-7 items-center justify-center rounded-xl bg-white/[0.04] text-base text-white/45 transition-all duration-300;
+}
+
+
+.profile-navigator__tab:hover .profile-navigator__icon {
+    @apply bg-white/[0.07] text-white/75;
+}
+
+
+.profile-navigator__tab--active .profile-navigator__icon {
+    @apply bg-primary/15 text-primary;
+    box-shadow: 0 0 20px rgba(140, 82, 255, 0.12);
+}
+
+
+.profile-navigator__label {
+    @apply relative z-10 whitespace-nowrap;
+}
+
+
+.profile-navigator__indicator {
+    @apply absolute bottom-0 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-primary;
+    box-shadow: 0 0 14px rgba(140, 82, 255, 0.7);
+}
+
+
+@media (max-width: 600px) {
+    .profile-navigator__inner {
+        @apply rounded-2xl p-1.5;
+    }
+
+
+    .profile-navigator__tabs {
+        @apply gap-0.5;
+    }
+
+
+    .profile-navigator__tab {
+        @apply rounded-xl px-3 py-2.5;
+    }
+
+
+    .profile-navigator__icon {
+        @apply h-6 w-6 rounded-lg text-sm;
+    }
+
+
+    .profile-navigator__label {
+        @apply text-xs;
+    }
+}

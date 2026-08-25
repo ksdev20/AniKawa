@@ -1,53 +1,269 @@
-@import 'tailwindcss';
+@config '@tw-config';
+@import "tailwindcss";
 
-footer{
-    @apply py-10 px-5 bg-black text-base text-[gray] border-t border-t-[#ccc];
+/* =======================================================
+   FOOTER
+======================================================= */
+
+footer {
+    @apply relative overflow-hidden border-t border-white/10 bg-secondary px-5 sm:px-8 lg:px-10 py-14 md:py-20;
 }
 
-.footer-disclaimer{
-    @apply text-sm text-center mt-7.5;
-}
+/* Background glow */
 
-.footer-links {
-    @apply flex flex-wrap justify-center gap-6 list-none;
-}
-
-.footer-links li{
-    @apply relative pr-4;
-}
-
-.footer-links li:not(:last-child)::after{
+footer::before,
+footer::after {
     content: "";
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 16px;
-    width: 1px;
-    background-color: gray;
+    border-radius: 9999px;
+    filter: blur(140px);
+    opacity: .16;
+    pointer-events: none;
 }
 
-.footer-links li:hover {
-    color: white;
+footer::before {
+    width: 420px;
+    height: 420px;
+    @apply bg-primary;
+    top: -140px;
+    left: -120px;
 }
 
-.sf-separator {
-    @apply py-5;
+footer::after {
+    width: 520px;
+    height: 520px;
+    @apply bg-primary;
+    bottom: -220px;
+    right: -180px;
 }
 
-/*bottom content source disclaimer*/
+/* =======================================================
+   MAIN GRID
+======================================================= */
+
+.footer-container {
+    @apply relative z-10 mx-auto max-w-7xl grid gap-16 xl:grid-cols-[430px_1fr];
+}
+
+/* =======================================================
+   BRAND
+======================================================= */
+
+.footer-brand {
+    @apply flex flex-col max-w-md;
+}
+
+.footer-logo {
+    @apply inline-flex items-center gap-4 w-fit;
+}
+
+.footer-logo-img {
+    @apply h-14 w-14 rounded-2xl ring-0 ring-white/10 transition-transform duration-300;
+}
+
+.footer-logo:hover .footer-logo-img {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+.footer-logo span {
+    @apply text-3xl md:text-4xl font-black tracking-tight text-white;
+}
+
+.footer-logo span:nth-child(2) {
+    @apply text-primary;
+}
+
+.footer-description {
+    @apply mt-5 text-gray leading-7 text-[15px];
+}
+
+
+
+/* =======================================================
+   NEWSLETTER
+======================================================= */
+
+.newsletter {
+    @apply mt-8 rounded-3xl border border-white/10 bg-white/[0.05] backdrop-blur-xl p-5 sm:p-7 shadow-xl;
+}
+
+.newsletter h3 {
+    @apply text-xl font-bold text-white;
+}
+
+.newsletter p {
+    @apply mt-2 text-sm leading-7 text-gray;
+}
+
+.newsletter-form {
+    @apply mt-6 flex flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/10;
+}
+
+.newsletter-form input {
+    @apply flex-1 bg-transparent px-5 py-4 text-white outline-none;
+}
+
+.newsletter-form input::placeholder {
+    @apply text-gray;
+}
+
+.newsletter-form button {
+    @apply bg-primary px-8 py-4 font-semibold text-white transition-all;
+}
+
+.newsletter-form button:hover {
+    @apply brightness-110;
+    transform: scale(1.03);
+}
+
+
+
+/* =======================================================
+   SOCIALS
+======================================================= */
+
+.footer-socials {
+    @apply mt-8 flex flex-wrap gap-3;
+}
+
+.footer-socials a {
+
+    @apply h-11 w-11 rounded-xl flex items-center justify-center border border-white/10 bg-white/[0.04] transition-all duration-300;
+}
+
+.footer-socials a:hover {
+    @apply border-primary text-primary;
+    transform: translateY(-5px);
+    box-shadow: 0 0 24px rgba(140, 82, 255, .25);
+}
+
+.footer-socials svg {
+    @apply h-5 w-5;
+}
+
+.footer-socials svg {
+    @apply h-5 w-5 opacity-80 transition;
+}
+
+.footer-socials a:hover svg {
+    @apply opacity-100;
+}
+
+
+/* =======================================================
+   LINKS
+======================================================= */
+
+.footer-links-grid {
+
+    @apply grid gap-y-12 gap-x-8 grid-cols-2 lg:grid-cols-4;
+}
+
+.footer-links-grid nav h3 {
+    @apply mb-6 text-sm font-bold uppercase tracking-[0.18em] text-white;
+}
+
+.footer-links-grid ul {
+
+    @apply space-y-3;
+}
+
+.footer-links-grid a {
+
+    @apply inline-flex items-center text-[15px] text-gray transition-all;
+}
+
+.footer-links-grid a:hover {
+
+    @apply text-primary translate-x-1;
+}
+
+.footer-links-grid a:hover {
+    @apply pl-2 text-white;
+}
+
+.footer-links-grid a:hover::before {
+    width: 100%;
+}
+
+
+
+/* =======================================================
+   SOURCE NOTICE
+======================================================= */
+
 .content-source-notice {
-@apply mt-16 rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8;
+
+    @apply mt-16 p-5 sm:p-8 rounded-3xl flex flex-col md:flex-row gap-5 border border-white/10 bg-white/[0.05] backdrop-blur-xl;
 }
 
-.notice-inner {
-@apply mx-auto max-w-4xl;
+.notice-icon {
+
+    @apply h-14 w-14 rounded-2xl text-2xl;
 }
 
-.content-source-notice h3 {
-@apply mb-4 text-lg font-bold text-white;
+.notice-content h3 {
+    @apply text-xl font-bold text-white;
 }
 
-.content-source-notice p {
-@apply mt-3 text-sm leading-7 text-zinc-400 md:text-base;
+.notice-content p {
+    @apply mt-3 max-w-4xl leading-8 text-gray;
+}
+
+@media (max-width:700px) {
+
+    .content-source-notice {
+        @apply flex-col;
+    }
+
+}
+
+
+
+/* =======================================================
+   BOTTOM
+======================================================= */
+
+.footer-bottom {
+
+    @apply mt-14 pt-6 text-center md:text-left flex flex-col md:flex-row gap-3 justify-between items-center border-t border-white/10;
+}
+
+@media (min-width:700px) {
+
+    .footer-bottom {
+        @apply flex-row items-center justify-between;
+    }
+
+}
+
+
+
+/* =======================================================
+   SMALL ANIMATIONS
+======================================================= */
+
+.footer-logo,
+.footer-socials a,
+.newsletter,
+.content-source-notice {
+    transition: all .35s ease;
+}
+
+.newsletter:hover,
+.content-source-notice:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+
+        0 25px 60px rgba(0, 0, 0, .45),
+
+        0 0 0 1px rgba(140, 82, 255, .12),
+
+        0 0 60px rgba(140, 82, 255, .12);
+}
+
+.primary-text {
+    @apply text-[#8c52ff];
 }

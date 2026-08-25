@@ -1,11 +1,9 @@
 ---
-import SEOHead from '../../components/SEO/SEOHead.astro';
-import ProfileCSR from '../../components/profile-components/ProfileCSR';
+import Layout from "@/layouts/Layout.astro";
+import ProfileApp from "@/components/Profile/ProfileApp";
+import "@/styles/pages/profile/new-profile.css";
 ---
 
-<html lang="en">
-    <SEOHead title="Your Profile | Anikawa" description="Profile page of User of Anikawa"/>
-    <body>
-        <ProfileCSR client:load />
-    </body>
-</html>
+<Layout>
+  <ProfileApp client:load />
+</Layout>

@@ -1,0 +1,230 @@
+---
+import { CaretLeftIcon, CaretRightIcon, HeartIcon } from "@phosphor-icons/react";
+
+import type { FavoriteType } from "@/lib/favorites/toggleFavorite";
+import type { Anime } from "@/lib/anime";
+import type { PublicFavorite } from "@/types/profile";
+
+import "@/styles/components/PublicProfile/favorites-tab.css";
+
+interface Props {
+  username: string;
+  favorites: PublicFavorite[];
+  favoriteAnime: Anime[];
+  page: number;
+  pageSize?: number;
+}
+
+interface ResolvedFavorite extends PublicFavorite {
+  title: string;
+  image: string | null;
+  year: string | null;
+  href: string;
+}
+
+const { username, favorites, favoriteAnime, page, pageSize = 24 } = Astro.props;
+
+const animeByNanoid = new Map(
+  favoriteAnime.map((anime) => [anime.nanoid, anime]),
+);
+
+const resolvedFavorites: ResolvedFavorite[] = [];
+
+for (const favorite of favorites) {
+  if (favorite.type !== "anime") {
+    continue;
+  }
+
+  const anime = animeByNanoid.get(favorite.item_id);
+
+  if (!anime) {
+    continue;
+  }
+
+  resolvedFavorites.push({
+    ...favorite,
+    title: anime.title,
+    image: anime.poster ?? null,
+    year: anime.startDate ? anime.startDate.slice(0, 4) : null,
+    href: `/show/${anime.nanoid}/${anime.slug}`,
+  });
+}
+
+const start = (page - 1) * pageSize;
+
+const pageFavorites = resolvedFavorites.slice(start, start + pageSize);
+
+const hasMore = start + pageSize < resolvedFavorites.length;
+
+const currentPage = page;
+
+const previousPage = currentPage > 1 ? currentPage - 1 : null;
+
+const nextPage = hasMore ? currentPage + 1 : null;
+
+const TYPE_ORDER: FavoriteType[] = [
+  "anime",
+  "manga",
+  "character",
+  "staff",
+  "studio",
+];
+
+const TYPE_LABELS: Record<FavoriteType, string> = {
+  anime: "Anime",
+  manga: "Manga",
+  character: "Characters",
+  staff: "Staff",
+  studio: "Studios",
+};
+
+const groupedFavorites = TYPE_ORDER.map((type) => ({
+  type,
+  label: TYPE_LABELS[type],
+  items: pageFavorites.filter((favorite) => favorite.type === type),
+})).filter((group) => group.items.length > 0);
+
+function pageUrl(pageNumber: number) {
+  return `/user/${encodeURIComponent(username)}?tab=favorites&page=${pageNumber}`;
+}
+---
+
+<section class="favorites-tab" aria-labelledby="favorites-title">
+  <header class="favorites-tab__header">
+    <div class="favorites-tab__heading">
+      <span class="favorites-tab__icon">
+        <HeartIcon size={22} weight="duotone" />
+      </span>
+
+      <div>
+        <p class="favorites-tab__eyebrow">Personal collection</p>
+
+        <h1 id="favorites-title" class="favorites-tab__title">Favorites</h1>
+      </div>
+    </div>
+
+    <span class="favorites-tab__page">
+      Page {currentPage}
+    </span>
+  </header>
+
+  {
+    groupedFavorites.length === 0 ? (
+      <div class="favorites-tab__empty">
+        <div class="favorites-tab__empty-icon">
+          <HeartIcon size={34} weight="duotone" />
+        </div>
+
+        <h2>No favorites yet</h2>
+
+        <p>
+          Anime, manga, characters, staff and studios they favorite will appear
+          here.
+        </p>
+      </div>
+    ) : (
+      <div class="favorites-tab__groups">
+        {groupedFavorites.map((group) => (
+          <section
+            class="favorites-tab__group"
+            aria-labelledby={`favorites-${group.type}`}
+          >
+            <div class="favorites-tab__group-header">
+              <h2
+                id={`favorites-${group.type}`}
+                class="favorites-tab__group-title"
+              >
+                {group.label}
+              </h2>
+
+              <span class="favorites-tab__group-count">
+                {group.items.length}
+              </span>
+            </div>
+
+            <div class="favorites-tab__grid">
+              {group.items.map((favorite) => (
+                <article class="favorites-tab__card">
+                  <a
+                    href={favorite.href}
+                    class="favorites-tab__card-link"
+                    aria-label={`View ${favorite.title}`}
+                  >
+                    <div class="favorites-tab__poster">
+                      {favorite.image ? (
+                        <img
+                          src={favorite.image}
+                          alt={`Cover of ${favorite.title}`}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <div class="favorites-tab__poster-placeholder">
+                          <HeartIcon size={24} weight="duotone" />
+                        </div>
+                      )}
+
+                      <span class="favorites-tab__heart">
+                        <HeartIcon size={15} weight="fill" />
+                      </span>
+                    </div>
+
+                    <div class="favorites-tab__info">
+                      <h3 class="favorites-tab__name">{favorite.title}</h3>
+
+                      {favorite.year && (
+                        <span class="favorites-tab__year">{favorite.year}</span>
+                      )}
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    (previousPage || nextPage) && (
+      <nav class="favorites-tab__pagination" aria-label="Favorites pagination">
+        {previousPage ? (
+          <a
+            href={pageUrl(previousPage)}
+            class="favorites-tab__pagination-button"
+            rel="prev"
+          >
+            <CaretLeftIcon size={17} weight="bold" />
+            <span>Previous</span>
+          </a>
+        ) : (
+          <span class="favorites-tab__pagination-button favorites-tab__pagination-button--disabled">
+            <CaretLeftIcon size={17} weight="bold" />
+            <span>Previous</span>
+          </span>
+        )}
+
+        <span class="favorites-tab__pagination-current">{currentPage}</span>
+
+        {nextPage ? (
+          <a
+            href={pageUrl(nextPage)}
+            class="favorites-tab__pagination-button"
+            rel="next"
+          >
+            <span>Next</span>
+
+            <CaretRightIcon size={17} weight="bold" />
+          </a>
+        ) : (
+          <span class="favorites-tab__pagination-button favorites-tab__pagination-button--disabled">
+            <span>Next</span>
+
+            <CaretRightIcon size={17} weight="bold" />
+          </span>
+        )}
+      </nav>
+    )
+  }
+</section>
