@@ -131,6 +131,8 @@ export interface CreateCommentInput {
   guestEmail?: string;
 
   turnstileToken?: string;
+
+  notificationUrl?: string;
 }
 
 export interface EditCommentInput {

@@ -71,6 +71,54 @@ export default function CommentSection({ episodeId }: Props) {
     };
   }, [openMenuCommentId]);
 
+  useEffect(() => {
+    if (loading) return;
+
+    const hash = window.location.hash;
+
+    if (!hash.startsWith("#comment-")) {
+      return;
+    }
+
+    const targetId = hash.slice(1);
+
+    let attempts = 0;
+    const maxAttempts = 30;
+
+    const interval = window.setInterval(() => {
+      const element = document.getElementById(targetId);
+
+      if (!element) {
+        attempts += 1;
+
+        if (attempts >= maxAttempts) {
+          window.clearInterval(interval);
+
+          console.warn("[Comments] Target not found:", targetId);
+        }
+
+        return;
+      }
+
+      window.clearInterval(interval);
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      element.classList.add("comment--highlighted");
+
+      window.setTimeout(() => {
+        element.classList.remove("comment--highlighted");
+      }, 3000);
+    }, 100);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [loading]);
+
   return (
     <section className={`comment-section ${loading ? "is-loading" : ""}`}>
       <header className="comment-header">

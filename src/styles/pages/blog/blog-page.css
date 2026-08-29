@@ -152,6 +152,22 @@
     @apply grid gap-6 md:grid-cols-2 xl:grid-cols-3;
 }
 
+.latest-articles-view-all {
+    @apply mx-auto mb-5 flex w-fit items-center gap-3 rounded-full border border-primary bg-primary px-6 py-3 font-semibold text-white transition-all duration-300;
+}
+
+.latest-articles-view-all:hover {
+    @apply -translate-y-0.5 bg-accent;
+}
+
+.latest-articles-view-all-arrow {
+    @apply text-lg transition-transform duration-300;
+}
+
+.latest-articles-view-all:hover .latest-articles-view-all-arrow {
+    @apply translate-x-1;
+}
+
 .article-card {
     @apply overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-all duration-300;
 }

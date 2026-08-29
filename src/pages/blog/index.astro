@@ -10,7 +10,8 @@ import {
   faqConfig,
 } from "@/config/bloghomepage";
 import "@/styles/pages/blog/blog-page.css";
-const { title, pageDes, pageKw, pageUrl, currentThumbnail, posts } = data;
+const { title, pageDes, pageKw, pageUrl, currentThumbnail, posts, featured } =
+  data;
 ---
 
 <Fragment slot="head">
@@ -48,7 +49,7 @@ const { title, pageDes, pageKw, pageUrl, currentThumbnail, posts } = data;
       <a href="#latest-articles" class="blog-hero-button"> Browse Articles </a>
     </div>
   </section>
-  <FeaturedArticle featuredPost={posts[3]} />
+  <FeaturedArticle featuredPost={featured ?? posts[0]} />
   <!-- <DiscoverAnime /> -->
   <section class="discover-anime-section">
     <div class="discover-anime-container">
@@ -133,6 +134,11 @@ const { title, pageDes, pageKw, pageUrl, currentThumbnail, posts } = data;
       </div>
     </div>
   </section>
+
+  <a href="/blog/all" class="latest-articles-view-all">
+    <span>View All Posts</span>
+    <span class="latest-articles-view-all-arrow">→</span>
+  </a>
   <!-- <BrowseTopics /> -->
 
   <section class="anime-topics-section">

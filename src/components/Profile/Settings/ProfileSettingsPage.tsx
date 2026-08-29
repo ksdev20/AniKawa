@@ -3,10 +3,11 @@ import SettingsNavigation from "./SettingsNavigation";
 
 import ProfileTab from "./ProfileTab";
 import AccountTab from "./AccountTab";
+import NotificationsTab from "./NotificationsTab";
 import { WizardLoader } from "@/components/Loaders/WizardLoader";
 import { useAuth } from "@/hooks/useAuth";
 
-type Tab = "profile" | "account";
+type Tab = "profile" | "account" | "notifications";
 
 export default function ProfileSettingsPage() {
   const [activeTab, setActiveTab] = useState<Tab>("profile");
@@ -28,11 +29,15 @@ export default function ProfileSettingsPage() {
       <SettingsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <div className="profile-settings__content">
-        {activeTab === "profile" ? (
+        {activeTab === "profile" && (
           <ProfileTab profile={profile} onProfileUpdate={setProfile} />
-        ) : (
+        )}
+
+        {activeTab === "account" && (
           <AccountTab profile={profile} onProfileUpdate={setProfile} />
         )}
+
+        {activeTab === "notifications" && <NotificationsTab />}
       </div>
     </section>
   );

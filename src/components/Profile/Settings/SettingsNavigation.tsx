@@ -1,11 +1,18 @@
-interface Props {
-  activeTab: string;
+type Tab = "profile" | "account" | "notifications";
 
-  setActiveTab: (tab: any) => void;
+interface Props {
+  activeTab: Tab;
+  setActiveTab: (tab: Tab) => void;
 }
 
-export default function SettingsNavigation({ activeTab, setActiveTab }: Props) {
-  const tabs = [
+export default function SettingsNavigation({
+  activeTab,
+  setActiveTab,
+}: Props) {
+  const tabs: {
+    id: Tab;
+    label: string;
+  }[] = [
     {
       id: "profile",
       label: "Profile",
@@ -14,6 +21,10 @@ export default function SettingsNavigation({ activeTab, setActiveTab }: Props) {
       id: "account",
       label: "Account",
     },
+    {
+      id: "notifications",
+      label: "Notifications",
+    },
   ];
 
   return (
@@ -21,6 +32,7 @@ export default function SettingsNavigation({ activeTab, setActiveTab }: Props) {
       {tabs.map((tab) => (
         <button
           key={tab.id}
+          type="button"
           onClick={() => setActiveTab(tab.id)}
           className={activeTab === tab.id ? "active" : ""}
         >

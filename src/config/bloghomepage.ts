@@ -27,7 +27,19 @@ const pageUrl = "https://anikawa.fun/blog";
 
 const currentThumbnail =
   "https://ik.imagekit.io/anikawa/Page%20Images/blog-homepage-thumbnail.avif";
-const posts = await getCollection("blog");
+const allPosts = await getCollection("blog");
+
+const sortedPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
+
+const featuredPost = sortedPosts.find(
+  (post) => post.data.featured
+);
+
+const latestPosts = sortedPosts.slice(0, 12);
 
 export const data = {
   title,
@@ -35,7 +47,9 @@ export const data = {
   pageKw,
   pageUrl,
   currentThumbnail,
-  posts,
+  posts: latestPosts,
+  allPosts: sortedPosts,
+  featured: featuredPost
 };
 
 export const discoverAnimeConfig = [

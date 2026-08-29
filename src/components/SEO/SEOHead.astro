@@ -83,7 +83,11 @@ const isHomepage = Astro.url.pathname == "/";
 
   {
     isHomepage && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      <script
+        is:inline
+        type="application/ld+json"
+        set:html={JSON.stringify(jsonLd)}
+      />
     )
   }
   <link
@@ -96,7 +100,7 @@ const isHomepage = Astro.url.pathname == "/";
   <link rel="dns-prefetch" href="//image.tmdb.org" />
   <slot />
   <script
-  is:inline
+    is:inline
     async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4788349295521290"
     crossorigin="anonymous"></script>
@@ -114,5 +118,21 @@ const isHomepage = Astro.url.pathname == "/";
       y = l.getElementsByTagName(r)[0];
       y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "xob25q7l1q");
+  </script>
+
+  /*OneSignal Notifications Setup*/
+  <script
+    is:inline
+    src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+    defer></script>
+
+  <script is:inline>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+    window.OneSignalDeferred.push(async function (OneSignal) {
+      await OneSignal.init({
+        appId: "d3aae22b-4a19-4d45-a1f6-fffe3abbb02c",
+      });
+    });
   </script>
 </head>

@@ -182,7 +182,7 @@
 }
 
 
-.comment-user{
+.comment-user {
     @apply flex flex-col gap-1 text-xs text-gray;
 }
 
@@ -657,7 +657,7 @@
 
 
 .comment-edit-input {
-    @apply min-h-[100px] w-full resize-y rounded-xl border border-secondary  px-4 py-3 text-sm text-white outline-none transition focus:border-gray;
+    @apply min-h-[100px] w-full resize-y rounded-xl border border-secondary px-4 py-3 text-sm text-white outline-none transition focus:border-gray;
 }
 
 
@@ -678,4 +678,40 @@
 
 .comment-edit-error {
     @apply text-sm text-red-400;
+}
+
+.comment--highlighted {
+    @apply relative;
+
+    animation: comment-highlight 3.5s ease-out;
+}
+
+@keyframes comment-highlight {
+    0% {
+        background-color: rgb(140 82 255 / 0.45);
+
+        box-shadow:
+            0 0 0 2px rgb(140 82 255 / 0.9),
+            0 0 28px rgb(140 82 255 / 0.45);
+
+        transform: scale(1.01);
+    }
+
+    20% {
+        background-color: rgb(140 82 255 / 0.28);
+
+        box-shadow:
+            0 0 0 2px rgb(140 82 255 / 0.65),
+            0 0 24px rgb(140 82 255 / 0.3);
+    }
+
+    100% {
+        background-color: transparent;
+
+        box-shadow:
+            0 0 0 0 transparent,
+            0 0 0 transparent;
+
+        transform: scale(1);
+    }
 }

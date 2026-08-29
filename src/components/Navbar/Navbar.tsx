@@ -14,9 +14,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { useAuth } from "@/hooks/useAuth";
 
 import { useLoginModalStore } from "@/global_assets/loginModalStore";
-import {
-  ClockCounterClockwiseIcon,
-} from "@phosphor-icons/react";
+import { ClockCounterClockwiseIcon } from "@phosphor-icons/react";
+import NotificationBell from "../Notifications/NotificationBell";
 
 function getEl(id: string) {
   return document.getElementById(id);
@@ -160,6 +159,7 @@ export default function Navbar() {
           >
             <Icon name="person" />
           </button>
+          <NotificationBell />
         </section>
       </nav>
       <div className="empty-top"></div>

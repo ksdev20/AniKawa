@@ -6,10 +6,39 @@ import { supabase } from "@/lib/supabase";
 
 import { getCurrentProfile } from "@/lib/profile/getCurrentProfile";
 
-
 import { useAuthStore } from "@/stores/authStore";
 
 import { useProfileStore } from "@/stores/profileStore";
+
+function loginOneSignal(userId: string) {
+  return new Promise<void>((resolve, reject) => {
+    window.OneSignalDeferred ??= [];
+
+    window.OneSignalDeferred.push(async (OneSignal) => {
+      try {
+        await OneSignal.login(userId);
+        resolve();
+      } catch (error: unknown) {
+        reject(error);
+      }
+    });
+  });
+}
+
+function logoutOneSignal() {
+  return new Promise<void>((resolve, reject) => {
+    window.OneSignalDeferred ??= [];
+
+    window.OneSignalDeferred.push(async (OneSignal) => {
+      try {
+        await OneSignal.logout();
+        resolve();
+      } catch (error: unknown) {
+        reject(error);
+      }
+    });
+  });
+}
 
 export default function AuthProvider({ children }: PropsWithChildren) {
   const { setUser, setSession, setProfile, setInitialized, clear } =
@@ -22,15 +51,23 @@ export default function AuthProvider({ children }: PropsWithChildren) {
   async function loadUser(session: Session | null) {
     setSession(session);
 
-    setUser(session?.user ?? null);
+    const user = session?.user ?? null;
 
-    if (!session?.user) {
+    setUser(user);
+
+    if (!user) {
       setProfile(null);
 
       return;
     }
 
-    const profile = await getCurrentProfile(session.user.id);
+    // Link this browser's OneSignal subscription
+    // to the authenticated Anikawa user.
+    void loginOneSignal(user.id).catch((error) => {
+      console.error("OneSignal login failed", error);
+    });
+
+    const profile = await getCurrentProfile(user.id);
 
     setProfile(profile);
   }
@@ -89,6 +126,10 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         }
 
         case "SIGNED_OUT": {
+          void logoutOneSignal().catch((error) => {
+            console.error("OneSignal logout failed", error);
+          });
+
           clear();
 
           resetProfileStore();

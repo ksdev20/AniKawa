@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+@config '@tw-config';
+
+
+/* ===============================
+   NOTIFICATIONS TAB
+================================ */
+
+.notifications-tab {
+  @apply space-y-4;
+}
+
+.notifications-tab__intro {
+  @apply mb-5;
+}
+
+.notifications-tab__intro h2 {
+  @apply text-2xl font-bold tracking-tight text-white;
+}
+
+.notifications-tab__intro p {
+  @apply mt-1.5 text-sm text-white/50;
+}
+
+
+/* ===============================
+   CARD
+================================ */
+
+.notifications-tab .settings-card {
+  @apply overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025];
+}
+
+.notifications-tab .settings-card__header {
+  @apply flex items-center justify-between gap-4 border-b border-white/5 px-5 py-4;
+}
+
+.notifications-tab .settings-card__header h3 {
+  @apply text-sm font-bold text-white;
+}
+
+.notifications-tab .settings-card__header p {
+  @apply mt-1 text-xs text-white/40;
+}
+
+
+/* ===============================
+   ALWAYS ON
+================================ */
+
+.notifications-tab__always-on {
+  @apply shrink-0 rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-semibold text-white/40;
+}
+
+
+/* ===============================
+   LIST
+================================ */
+
+.notification-preference-list {
+  @apply divide-y divide-white/5;
+}
+
+
+/* ===============================
+   ROW
+================================ */
+
+.notification-preference {
+  @apply flex min-h-[68px] items-center justify-between gap-4 px-5 py-3;
+}
+
+.notification-preference__content {
+  @apply min-w-0;
+}
+
+.notification-preference__content h4 {
+  @apply text-sm font-medium text-white;
+}
+
+.notification-preference__content p {
+  @apply mt-0.5 text-xs leading-5 text-white/40;
+}
+
+
+/* ===============================
+   TOGGLE
+================================ */
+
+.notification-toggle {
+  @apply relative h-6 w-11 shrink-0 rounded-full bg-white/10;
+  transition:
+    background-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.notification-toggle:hover {
+  @apply bg-white/15;
+}
+
+.notification-toggle span {
+  @apply absolute left-1 top-1 h-4 w-4 rounded-full bg-white/50;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease;
+}
+
+.notification-toggle--active {
+  @apply bg-primary;
+}
+
+.notification-toggle--active span {
+  @apply translate-x-5 bg-white;
+}
+
+.notification-toggle:disabled {
+  @apply cursor-wait opacity-50;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 640px) {
+  .notifications-tab .settings-card__header {
+    @apply px-4 py-3;
+  }
+
+  .notification-preference {
+    @apply px-4;
+  }
+}
+
+.notifications-push-card {
+  @apply overflow-hidden;
+}
+
+.notifications-push-card__action {
+  @apply mt-5;
+}
+
+.notifications-push-card__button {
+  @apply rounded-xl bg-primary px-5 py-3 font-semibold text-white
+    transition-all duration-200
+    hover:brightness-110
+    active:scale-[0.98]
+    disabled:cursor-not-allowed
+    disabled:opacity-50;
+}
+
+.notifications-push-card__error {
+  @apply mt-3 text-sm text-red-400;
+}
+
+.notifications-tab__status {
+  @apply rounded-full border border-white/10 bg-white/5
+    px-3 py-1 text-xs font-semibold text-white/50;
+}
+
+.notifications-tab__status--enabled {
+  @apply border-green-400/20 bg-green-400/10 text-green-400;
+}
+
+.notification-item {
+  @apply relative flex items-stretch;
+}
+
+.notification-item__main {
+  @apply flex flex-1 items-center gap-3 px-4 py-3 text-left
+    transition-colors duration-200 hover:bg-white/5;
+}
+
+.notification-item__mark-read {
+  @apply mr-2 my-auto flex h-8 w-8 shrink-0 items-center
+    justify-center rounded-lg text-white/40 opacity-0
+    transition-all duration-200 hover:bg-white/10 hover:text-white;
+}
+
+.notification-item:hover .notification-item__mark-read {
+  @apply opacity-100;
+}
+
+.notification-item--unread {
+  @apply bg-primary/5;
+}

@@ -109,6 +109,8 @@ export default function ReplyForm({
 
         content,
 
+        notificationUrl: window.location.pathname,
+
         ...(isAuthenticated
           ? {}
           : {

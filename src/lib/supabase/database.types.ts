@@ -545,6 +545,81 @@ export type Database = {
           },
         ]
       }
+      notification_preferences: {
+        Row: {
+          created_at: string
+          push_announcements: boolean
+          push_blog_posts: boolean
+          push_comment_replies: boolean
+          push_new_episodes: boolean
+          push_new_followers: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          push_announcements?: boolean
+          push_blog_posts?: boolean
+          push_comment_replies?: boolean
+          push_new_episodes?: boolean
+          push_new_followers?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          push_announcements?: boolean
+          push_blog_posts?: boolean
+          push_comment_replies?: boolean
+          push_new_episodes?: boolean
+          push_new_followers?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          actor_id: string | null
+          body: string | null
+          created_at: string
+          data: Json
+          dedupe_key: string | null
+          id: string
+          read_at: string | null
+          title: string
+          type: string
+          url: string | null
+          user_id: string
+        }
+        Insert: {
+          actor_id?: string | null
+          body?: string | null
+          created_at?: string
+          data?: Json
+          dedupe_key?: string | null
+          id?: string
+          read_at?: string | null
+          title: string
+          type: string
+          url?: string | null
+          user_id: string
+        }
+        Update: {
+          actor_id?: string | null
+          body?: string | null
+          created_at?: string
+          data?: Json
+          dedupe_key?: string | null
+          id?: string
+          read_at?: string | null
+          title?: string
+          type?: string
+          url?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       profile_block_rate_limits: {
         Row: {
           last_action_at: string
@@ -1061,6 +1136,37 @@ export type Database = {
           isSetofReturn: false
         }
       }
+      rpc_create_notification: {
+        Args: {
+          p_actor_id?: string
+          p_body?: string
+          p_data?: Json
+          p_dedupe_key?: string
+          p_title: string
+          p_type: string
+          p_url?: string
+          p_user_id: string
+        }
+        Returns: {
+          actor_id: string | null
+          body: string | null
+          created_at: string
+          data: Json
+          dedupe_key: string | null
+          id: string
+          read_at: string | null
+          title: string
+          type: string
+          url: string | null
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "notifications"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
       rpc_edit_comment: {
         Args: { p_comment_id: string; p_content: string; p_guest_id?: string }
         Returns: {
@@ -1136,6 +1242,25 @@ export type Database = {
       rpc_get_my_anime_list_entry: {
         Args: { p_anime_nanoid: string }
         Returns: Json
+      }
+      rpc_get_notification_preferences: {
+        Args: never
+        Returns: {
+          created_at: string
+          push_announcements: boolean
+          push_blog_posts: boolean
+          push_comment_replies: boolean
+          push_new_episodes: boolean
+          push_new_followers: boolean
+          updated_at: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "notification_preferences"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       rpc_get_private_profile: { Args: never; Returns: Json }
       rpc_get_public_anime_list: {
@@ -1238,6 +1363,25 @@ export type Database = {
       rpc_toggle_profile_follow: {
         Args: { p_following_username: string }
         Returns: Json
+      }
+      rpc_update_notification_preference: {
+        Args: { p_enabled: boolean; p_preference: string }
+        Returns: {
+          created_at: string
+          push_announcements: boolean
+          push_blog_posts: boolean
+          push_comment_replies: boolean
+          push_new_episodes: boolean
+          push_new_followers: boolean
+          updated_at: string
+          user_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "notification_preferences"
+          isOneToOne: true
+          isSetofReturn: false
+        }
       }
       rpc_upsert_my_anime_list: {
         Args: {

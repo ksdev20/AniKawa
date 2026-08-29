@@ -18,6 +18,26 @@ interface Props {
   depth?: number;
 }
 
+function hasTargetDescendant(
+  parentId: string,
+  targetId: string,
+  replyIdsByParent: Map<string, string[]>,
+): boolean {
+  const replyIds = replyIdsByParent.get(parentId) ?? [];
+
+  for (const replyId of replyIds) {
+    if (replyId === targetId) {
+      return true;
+    }
+
+    if (hasTargetDescendant(replyId, targetId, replyIdsByParent)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 export default function CommentCard({
   comment,
 
@@ -27,7 +47,19 @@ export default function CommentCard({
 
   depth = 0,
 }: Props) {
-  const [showReplies, setShowReplies] = useState(false);
+  const [showReplies, setShowReplies] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    const targetId = window.location.hash.replace("#comment-", "");
+
+    if (!targetId) {
+      return false;
+    }
+
+    return hasTargetDescendant(comment.id, targetId, replyIdsByParent);
+  });
 
   const [replyOpen, setReplyOpen] = useState(false);
 
@@ -98,7 +130,11 @@ export default function CommentCard({
   const isDeleted = comment.status === "deleted";
 
   return (
-    <article className="comment-card" data-depth={depth}>
+    <article
+      className="comment-card"
+      data-depth={depth}
+      id={`comment-${comment.id}`}
+    >
       <div className="comment-top">
         <div className="comment-avatar">{avatarLetter()}</div>
 

@@ -45,6 +45,7 @@ import {
 } from "@/lib/comments/security";
 import { getUserRole } from "@/lib/auth/getUserRole";
 import { isValidUUID } from "@/utils/isValidUUID";
+import { createNotification } from "@/lib/notifications/createNotification";
 
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -88,6 +89,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       guestName,
       guestEmail,
       turnstileToken,
+      notificationUrl,
     } = body;
 
     // =====================================================
@@ -96,6 +98,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     if (typeof episodeId !== "string" || episodeId.trim() === "") {
       return badRequest("Episode id required");
+    }
+
+    if (
+      notificationUrl !== undefined &&
+      (typeof notificationUrl !== "string" ||
+        !notificationUrl.startsWith("/") ||
+        notificationUrl.startsWith("//"))
+    ) {
+      return badRequest("Invalid notification URL");
     }
 
     if (
@@ -244,10 +255,64 @@ export const POST: APIRoute = async ({ request, locals }) => {
       p_user_agent: userAgent,
     });
 
+    const commentUrl =
+  typeof notificationUrl === "string" && data
+    ? `${notificationUrl}#comment-${data.id}`
+    : undefined;
+
     if (error) {
       console.error("rpc_create_comment", error);
 
       return badRequest(error.message);
+    }
+
+    // =====================================================
+    // COMMENT REPLY NOTIFICATION
+    // =====================================================
+
+    if (data && data.parent_id && data.status === "approved") {
+      try {
+        const { data: parentComment, error: parentError } = await supabase
+          .from("comments")
+          .select("user_id")
+          .eq("id", data.parent_id)
+          .is("deleted_at", null)
+          .maybeSingle();
+
+        if (parentError) {
+          console.error(
+            "[Notifications] Failed to find parent comment:",
+            parentError,
+          );
+        } else if (parentComment?.user_id) {
+          await createNotification(supabase, {
+            userId: parentComment.user_id,
+
+            actorId: data.user_id ?? undefined,
+
+            type: "comment_reply",
+
+            title: "Someone replied to your comment",
+
+            body: cleanContent,
+
+            url: commentUrl,
+
+            data: {
+              commentId: data.id,
+              parentCommentId: data.parent_id,
+              episodeId,
+            },
+
+            dedupeKey: `comment_reply:${data.id}`,
+          });
+        }
+      } catch (error) {
+        console.error(
+          "[Notifications] Comment reply notification failed:",
+          error,
+        );
+      }
     }
 
     return created(data);

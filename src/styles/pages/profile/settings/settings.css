@@ -1145,3 +1145,97 @@
     }
 
 }
+
+/* ===============================
+   NOTIFICATIONS TAB
+================================ */
+
+.notifications-tab {
+  @apply space-y-6;
+}
+
+
+/* ===============================
+   PUSH NOTIFICATIONS
+================================ */
+
+.notifications-card {
+  @apply overflow-hidden;
+}
+
+.notifications-card__status {
+  @apply shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-white/60;
+}
+
+.notifications-card__action {
+  @apply mt-6 flex items-center justify-between border-t border-white/10 pt-6;
+}
+
+.notifications-enable-button {
+  @apply inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 font-semibold text-white transition-all;
+}
+
+.notifications-enable-button:hover:not(:disabled) {
+  @apply scale-[1.02] brightness-110;
+}
+
+.notifications-enable-button:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+
+/* ===============================
+   PREFERENCES
+================================ */
+
+.notification-preferences {
+  @apply mt-6 divide-y divide-white/10 border-t border-white/10;
+}
+
+.notification-preference {
+  @apply flex cursor-pointer items-center justify-between gap-6 py-5;
+}
+
+.notification-preference h4 {
+  @apply font-semibold text-white;
+}
+
+.notification-preference p {
+  @apply mt-1 text-sm leading-relaxed text-white/50;
+}
+
+
+/* ===============================
+   TOGGLE
+================================ */
+
+.notification-preference input {
+  @apply h-5 w-5 shrink-0 cursor-pointer accent-primary;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 640px) {
+  .settings-navigation {
+    @apply w-full overflow-x-auto;
+  }
+
+  .settings-navigation button {
+    @apply min-w-fit px-5;
+  }
+
+  .notification-preference {
+    @apply items-start;
+  }
+
+  .notifications-card__action {
+    @apply items-stretch;
+  }
+
+  .notifications-enable-button {
+    @apply w-full;
+  }
+}

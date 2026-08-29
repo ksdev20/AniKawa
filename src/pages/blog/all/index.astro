@@ -1,0 +1,251 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import SEOHead from "../../../components/SEO/SEOHead.astro";
+import "@/styles/pages/blog/blog-all.css";
+import { getCollection } from "astro:content";
+
+const POSTS_PER_PAGE = 12;
+
+const allPosts = await getCollection("blog");
+
+const sortedPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.date).getTime() -
+    new Date(a.data.date).getTime()
+);
+
+const totalPosts = sortedPosts.length;
+const totalPages = Math.max(
+  1,
+  Math.ceil(totalPosts / POSTS_PER_PAGE)
+);
+
+const requestedPage = Number(Astro.url.searchParams.get("page"));
+
+const currentPage =
+  Number.isInteger(requestedPage) && requestedPage > 0
+    ? Math.min(requestedPage, totalPages)
+    : 1;
+
+const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+const endIndex = startIndex + POSTS_PER_PAGE;
+
+const posts = sortedPosts.slice(startIndex, endIndex);
+
+const pageTitle =
+  currentPage === 1
+    ? "All Anime Articles | AniKawa Blog"
+    : `All Anime Articles - Page ${currentPage} | AniKawa Blog`;
+
+const pageDescription =
+  currentPage === 1
+    ? `Explore all ${totalPosts} anime articles published on AniKawa, including recommendations, watch guides, hidden gems, seasonal picks, and anime analysis.`
+    : `Browse anime recommendations, watch guides, hidden gems, seasonal picks, and thoughtful anime articles from AniKawa. Page ${currentPage}.`;
+
+const pageUrl =
+  currentPage === 1
+    ? "https://anikawa.fun/blog/all"
+    : `https://anikawa.fun/blog/all?page=${currentPage}`;
+
+const previousPage =
+  currentPage > 1
+    ? currentPage === 2
+      ? "/blog/all"
+      : `/blog/all?page=${currentPage - 1}`
+    : null;
+
+const nextPage =
+  currentPage < totalPages
+    ? `/blog/all?page=${currentPage + 1}`
+    : null;
+---
+
+<Fragment slot="head">
+  <SEOHead
+    title={pageTitle}
+    description={pageDescription}
+    ogDescription={pageDescription}
+    url={pageUrl}
+  />
+</Fragment>
+
+<Layout>
+  <main>
+    <section class="all-posts-hero">
+      <div class="all-posts-hero-container">
+        <span class="section-badge">📚 AniKawa Blog</span>
+
+        <h1 class="all-posts-title">
+          All Anime Articles
+        </h1>
+
+        <p class="all-posts-description">
+          Explore all of our anime recommendations, watch guides, hidden gems,
+          seasonal picks, and thoughtful editorials.
+        </p>
+
+        <p class="all-posts-count">
+          {totalPosts} {totalPosts === 1 ? "article" : "articles"} published
+        </p>
+      </div>
+    </section>
+
+    <section class="all-posts-section">
+      <div class="all-posts-container">
+        <div class="all-posts-header">
+          <div>
+            <span class="section-badge">✍️ The Archive</span>
+
+            <h2 class="all-posts-section-title">
+              Explore Our Articles
+            </h2>
+          </div>
+
+          <p class="all-posts-page-info">
+            Page {currentPage} of {totalPages}
+          </p>
+        </div>
+
+        <div class="all-posts-grid">
+          {
+            posts.map((post) => (
+              <a
+                href={`/blog/${post.data.slug}`}
+                class="article-card"
+              >
+                <div class="article-card-image-wrapper">
+                  <img
+                    src={post.data.img}
+                    alt={post.data.title}
+                    loading="lazy"
+                    class="article-card-image"
+                  />
+                </div>
+
+                <div class="article-card-content">
+                  <div class="article-card-categories">
+                    {post.data.categoryList.slice(0, 2).map((category) => (
+                      <span>{category}</span>
+                    ))}
+                  </div>
+
+                  <h3 class="article-card-title">
+                    {post.data.title}
+                  </h3>
+
+                  <p class="article-card-subtitle">
+                    {post.data.subTitle}
+                  </p>
+
+                  <div class="article-card-footer">
+                    <div class="article-card-meta">
+                      <span>{post.data.date}</span>
+
+                      {post.data.readMinutes && (
+                        <>
+                          <span>•</span>
+                          <span>
+                            {post.data.readMinutes} min read
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+                    <span class="article-card-arrow">→</span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        {
+          totalPages > 1 && (
+            <nav
+              class="pagination"
+              aria-label="Blog pagination"
+            >
+              {
+                previousPage ? (
+                  <a
+                    href={previousPage}
+                    class="pagination-button pagination-previous"
+                    rel="prev"
+                  >
+                    <span>←</span>
+                    <span>Previous</span>
+                  </a>
+                ) : (
+                  <span
+                    class="pagination-button pagination-previous pagination-button-disabled"
+                    aria-disabled="true"
+                  >
+                    <span>←</span>
+                    <span>Previous</span>
+                  </span>
+                )
+              }
+
+              <div class="pagination-pages">
+                {
+                  Array.from(
+                    { length: totalPages },
+                    (_, index) => {
+                      const pageNumber = index + 1;
+
+                      const href =
+                        pageNumber === 1
+                          ? "/blog/all"
+                          : `/blog/all?page=${pageNumber}`;
+
+                      return (
+                        <a
+                          href={href}
+                          class:list={[
+                            "pagination-page",
+                            {
+                              "pagination-page-active":
+                                pageNumber === currentPage,
+                            },
+                          ]}
+                          aria-current={
+                            pageNumber === currentPage
+                              ? "page"
+                              : undefined
+                          }
+                        >
+                          {pageNumber}
+                        </a>
+                      );
+                    }
+                  )
+                }
+              </div>
+
+              {
+                nextPage ? (
+                  <a
+                    href={nextPage}
+                    class="pagination-button pagination-next"
+                    rel="next"
+                  >
+                    <span>Next</span>
+                    <span>→</span>
+                  </a>
+                ) : (
+                  <span
+                    class="pagination-button pagination-next pagination-button-disabled"
+                    aria-disabled="true"
+                  >
+                    <span>Next</span>
+                    <span>→</span>
+                  </span>
+                )
+              }
+            </nav>
+          )
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

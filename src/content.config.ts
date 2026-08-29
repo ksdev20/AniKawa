@@ -33,6 +33,8 @@ const blog = defineCollection({
 
     readMinutes: z.number().optional(),
 
+    featured: z.boolean().optional().default(false),
+
     toc: z
       .array(
         z.object({

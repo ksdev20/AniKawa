@@ -26,10 +26,7 @@ if (!anime || !episode || slug == "n-a") {
 }
 
 //anime details
-const {
-  slug: animeslug = "n-a",
-  title: animeTitle = "Untitled",
-} = anime ?? {};
+const { slug: animeslug = "n-a", title: animeTitle = "Untitled" } = anime ?? {};
 const language = "Subtitled";
 
 //current episode details
@@ -308,7 +305,18 @@ const pageDes = `Watch ${animeTitle} Episode ${epNum} (${episodeTitle}) in HD ${
 
     <div id="comments"></div>
     <CommentSection episodeId={epNanoid as string} client:visible />
+    <script>
+      const hash = window.location.hash;
 
+      if (hash.startsWith("#comment-")) {
+        const comments = document.getElementById("comments");
+
+        comments?.scrollIntoView({
+          behavior: "auto",
+          block: "start",
+        });
+      }
+    </script>
     {
       faq && (
         <section class="anime-faq-section">
