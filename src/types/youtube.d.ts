@@ -15,9 +15,21 @@ declare global {
 
       getDuration(): number;
 
+      getVideoData(): VideoData;
+
+      getPlayerState(): number;
+
       seekTo(seconds: number, allowSeekAhead: boolean): void;
 
       destroy(): void;
+    }
+
+    interface VideoData {
+      video_id: string;
+
+      author?: string;
+
+      title?: string;
     }
 
     interface PlayerOptions {
@@ -28,6 +40,8 @@ declare global {
       onReady?: (event: PlayerEvent) => void;
 
       onStateChange?: (event: OnStateChangeEvent) => void;
+
+      onError?: (event: OnErrorEvent) => void;
     }
 
     interface PlayerEvent {
@@ -35,6 +49,12 @@ declare global {
     }
 
     interface OnStateChangeEvent {
+      target: Player;
+
+      data: number;
+    }
+
+    interface OnErrorEvent {
       target: Player;
 
       data: number;
@@ -54,8 +74,6 @@ declare global {
       CUED = 5,
     }
 
-    export function get(iframeId: string): Player | null {
-      throw new Error("Function not implemented.");
-    }
+    function get(iframeId: string): Player | null;
   }
 }

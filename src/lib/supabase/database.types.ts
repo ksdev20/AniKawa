@@ -298,6 +298,51 @@ export type Database = {
         }
         Relationships: []
       }
+      episode_feedback: {
+        Row: {
+          anime_id: string
+          created_at: string
+          episode_nanoid: string
+          guest_id: string | null
+          id: string
+          message: string | null
+          page_url: string | null
+          report_type: string
+          screenshot_path: string | null
+          status: string
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          anime_id: string
+          created_at?: string
+          episode_nanoid: string
+          guest_id?: string | null
+          id?: string
+          message?: string | null
+          page_url?: string | null
+          report_type: string
+          screenshot_path?: string | null
+          status?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          anime_id?: string
+          created_at?: string
+          episode_nanoid?: string
+          guest_id?: string | null
+          id?: string
+          message?: string | null
+          page_url?: string | null
+          report_type?: string
+          screenshot_path?: string | null
+          status?: string
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       episode_reactions: {
         Row: {
           created_at: string | null
@@ -1055,6 +1100,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      attach_feedback_screenshot:
+        | {
+            Args: { p_feedback_id: string; p_screenshot_path: string }
+            Returns: undefined
+          }
+        | {
+            Args: {
+              p_feedback_id: string
+              p_guest_id?: string
+              p_screenshot_path: string
+            }
+            Returns: undefined
+          }
       complete_account_deletion: { Args: { p_user_id: string }; Returns: Json }
       episode_vote: {
         Args: {
@@ -1415,6 +1473,18 @@ export type Database = {
       }
       show_limit: { Args: never; Returns: number }
       show_trgm: { Args: { "": string }; Returns: string[] }
+      submit_episode_feedback: {
+        Args: {
+          p_anime_id: string
+          p_episode_nanoid: string
+          p_guest_id?: string
+          p_message?: string
+          p_page_url?: string
+          p_report_type: string
+          p_user_agent?: string
+        }
+        Returns: string
+      }
       toggle_comment_vote: {
         Args: {
           p_comment_id: string

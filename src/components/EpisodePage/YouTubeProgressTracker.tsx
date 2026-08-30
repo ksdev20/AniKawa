@@ -4,6 +4,8 @@ import { getContinueWatchingProgress } from "@/lib/continueWatching/getContinueW
 import { useAuth } from "@/hooks/useAuth";
 import type { User } from "@supabase/supabase-js";
 
+import { setYouTubeDiagnostics } from "@/lib/feedback/youtubeDiagnostics";
+
 interface Props {
   animeId: string;
   episodeNanoid: string;
@@ -67,8 +69,6 @@ export default function YouTubeProgressTracker({
     savingRef.current = true;
 
     try {
-      // console.log("Saving progress", watchedSeconds, "/", durationSeconds);
-
       await saveContinueWatching({
         user: userRef.current,
         animeId,
@@ -83,6 +83,25 @@ export default function YouTubeProgressTracker({
 
   const handleStateChange = useCallback(
     (event: YT.OnStateChangeEvent) => {
+      // ─────────────────────────────────────────────
+      // YouTube diagnostics
+      // ─────────────────────────────────────────────
+
+      const player = event.target;
+
+      const videoData = player.getVideoData?.();
+
+      setYouTubeDiagnostics({
+        videoId: videoData?.video_id ?? null,
+        playerState: event.data ?? null,
+        currentTime: player.getCurrentTime?.() ?? 0,
+        duration: player.getDuration?.() ?? 0,
+      });
+
+      // ─────────────────────────────────────────────
+      // Existing continue-watching logic
+      // ─────────────────────────────────────────────
+
       switch (event.data) {
         case YT.PlayerState.PLAYING:
           if (!autosaveRef.current) {
@@ -92,7 +111,6 @@ export default function YouTubeProgressTracker({
           break;
 
         case YT.PlayerState.PAUSED:
-
         case YT.PlayerState.ENDED:
           void save();
 
@@ -103,6 +121,22 @@ export default function YouTubeProgressTracker({
     },
     [save, stopAutosave],
   );
+
+  const handleError = useCallback((event: YT.OnErrorEvent) => {
+    const player = event.target;
+
+    const videoData = player.getVideoData?.();
+
+    setYouTubeDiagnostics({
+      videoId: videoData?.video_id ?? null,
+      playerState: player.getPlayerState?.() ?? null,
+      errorCode: event.data ?? null,
+      currentTime: player.getCurrentTime?.() ?? 0,
+      duration: player.getDuration?.() ?? 0,
+    });
+
+    console.warn("YouTube player error:", event.data);
+  }, []);
 
   const handleResume = useCallback(
     async (player: YT.Player) => {
@@ -125,9 +159,19 @@ export default function YouTubeProgressTracker({
 
   const handleReady = useCallback(
     async (event: YT.PlayerEvent) => {
-      // console.log("YT READY");
+      const player = event.target;
 
-      await handleResume(event.target);
+      const videoData = player.getVideoData?.();
+
+      setYouTubeDiagnostics({
+        videoId: videoData?.video_id ?? null,
+        playerState: player.getPlayerState?.() ?? null,
+        errorCode: null,
+        currentTime: player.getCurrentTime?.() ?? 0,
+        duration: player.getDuration?.() ?? 0,
+      });
+
+      await handleResume(player);
     },
     [handleResume],
   );
@@ -170,8 +214,6 @@ export default function YouTubeProgressTracker({
 
     initializedRef.current = true;
 
-    // console.log("PLAYER INIT");
-
     await loadYouTubeAPI();
 
     await new Promise((r) => setTimeout(r, 500));
@@ -185,6 +227,16 @@ export default function YouTubeProgressTracker({
     if (existing) {
       playerRef.current = existing;
 
+      const videoData = existing.getVideoData?.();
+
+      setYouTubeDiagnostics({
+        videoId: videoData?.video_id ?? null,
+        playerState: existing.getPlayerState?.() ?? null,
+        errorCode: null,
+        currentTime: existing.getCurrentTime?.() ?? 0,
+        duration: existing.getDuration?.() ?? 0,
+      });
+
       await handleResume(existing);
 
       return;
@@ -194,9 +246,10 @@ export default function YouTubeProgressTracker({
       events: {
         onReady: handleReady,
         onStateChange: handleStateChange,
+        onError: handleError,
       },
     });
-  }, [iframeId, loadYouTubeAPI, handleReady, handleStateChange]);
+  }, [iframeId, loadYouTubeAPI, handleReady, handleStateChange, handleError]);
 
   useEffect(() => {
     destroyedRef.current = false;
@@ -204,8 +257,6 @@ export default function YouTubeProgressTracker({
     void initPlayer();
 
     return () => {
-      // console.log("PLAYER CLEANUP");
-
       stopAutosave();
 
       void save();

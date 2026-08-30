@@ -1,0 +1,261 @@
+@import 'tailwindcss';
+
+@config '@tw-config';
+
+/* EpisodeFeedback */
+
+.episode-feedback {
+
+    @apply mt-4 flex justify-center;
+
+}
+
+.episode-feedback__prompt {
+
+    @apply flex flex-wrap items-center justify-center gap-2 text-sm;
+
+}
+
+.episode-feedback__prompt-text {
+
+    @apply text-gray;
+
+}
+
+.episode-feedback__trigger {
+
+    @apply cursor-pointer font-medium text-accent underline decoration-accent/50 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-secondary;
+
+}
+
+
+/* EpisodeFeedback Modal */
+
+.episode-feedback-modal {
+
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm;
+
+}
+
+.episode-feedback-modal__content {
+
+    @apply max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-border bg-secondary shadow-2xl;
+
+}
+
+
+/* EpisodeFeedback Modal Header */
+
+.episode-feedback-modal__header {
+
+    @apply flex items-start justify-between gap-6 border-b border-border p-5 sm:p-6;
+
+}
+
+.episode-feedback-modal__heading {
+
+    @apply min-w-0;
+
+}
+
+.episode-feedback-modal__title {
+
+    @apply text-xl font-semibold text-white sm:text-2xl;
+
+}
+
+.episode-feedback-modal__description {
+
+    @apply mt-1 text-sm leading-relaxed text-gray;
+
+}
+
+.episode-feedback-modal__close {
+
+    @apply flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-lg text-2xl leading-none text-gray transition-all hover:bg-surface hover:text-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+
+}
+
+
+/* EpisodeFeedback Form */
+
+.episode-feedback-form {
+
+    @apply space-y-6 p-5 sm:p-6;
+
+}
+
+.episode-feedback-form__section {
+
+    @apply space-y-3;
+
+}
+
+.episode-feedback-form__label {
+
+    @apply block text-sm font-semibold text-white;
+
+}
+
+
+/* EpisodeFeedback Options */
+
+.episode-feedback-options {
+
+    @apply grid grid-cols-1 gap-2 sm:grid-cols-2;
+
+}
+
+.episode-feedback-option {
+
+    @apply cursor-pointer rounded-xl border border-border bg-surface p-3 text-left transition-all duration-200 hover:border-primary/50 hover:bg-surfaceLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+
+}
+
+.episode-feedback-option--selected {
+
+    @apply border-primary bg-primary/10 ring-1 ring-primary;
+
+}
+
+.episode-feedback-option__label {
+
+    @apply block text-sm font-medium text-white;
+
+}
+
+.episode-feedback-option__description {
+
+    @apply mt-1 block text-xs leading-relaxed text-gray;
+
+}
+
+
+/* EpisodeFeedback Message */
+
+.episode-feedback-form__message-header {
+
+    @apply flex items-center justify-between gap-3;
+
+}
+
+.episode-feedback-form__optional {
+
+    @apply text-xs text-gray;
+
+}
+
+.episode-feedback-form__textarea {
+
+    @apply min-h-28 w-full resize-y rounded-xl border border-border bg-surface p-3 text-sm leading-relaxed text-white outline-none transition-all placeholder:text-gray/70 hover:border-border focus:border-primary focus:ring-2 focus:ring-primary/20;
+
+}
+
+.episode-feedback-form__character-count {
+
+    @apply text-right text-xs text-gray;
+
+}
+
+.episode-feedback-form__error {
+
+    @apply rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-400;
+
+}
+
+
+/* EpisodeFeedback Footer */
+
+.episode-feedback-modal__footer {
+
+    @apply flex items-center justify-end gap-3 border-t border-border p-5 sm:p-6;
+
+}
+
+.episode-feedback-modal__cancel {
+
+    @apply cursor-pointer rounded-lg px-4 py-2 text-sm font-medium text-gray transition-colors hover:bg-surface hover:text-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+
+}
+
+.episode-feedback-modal__submit {
+
+    @apply cursor-pointer rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:bg-accent hover:shadow-primary/30 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-primary disabled:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-secondary;
+
+}
+
+
+/* EpisodeFeedback Success */
+
+.episode-feedback-success {
+
+    @apply flex flex-col items-center px-5 py-12 text-center sm:px-10;
+
+}
+
+.episode-feedback-success__icon {
+
+    @apply flex size-14 items-center justify-center rounded-full bg-primary text-2xl font-bold text-white shadow-lg shadow-primary/30;
+
+}
+
+.episode-feedback-success__title {
+
+    @apply mt-5 font-winky text-2xl font-semibold text-white;
+
+}
+
+.episode-feedback-success__description {
+
+    @apply mt-2 max-w-sm text-sm leading-relaxed text-gray;
+
+}
+
+.episode-feedback-success__button {
+
+    @apply mt-7 cursor-pointer rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-all hover:bg-accent hover:shadow-primary/30 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-secondary;
+
+}
+
+
+/* EpisodeFeedback Responsive */
+
+@media (max-width: 600px) {
+
+    .episode-feedback-modal {
+
+        @apply items-end p-0;
+
+    }
+
+    .episode-feedback-modal__content {
+
+        @apply max-h-[92vh] max-w-none rounded-b-none rounded-t-2xl;
+
+    }
+
+    .episode-feedback-modal__header {
+
+        @apply p-5;
+
+    }
+
+    .episode-feedback-form {
+
+        @apply p-5;
+
+    }
+
+    .episode-feedback-options {
+
+        @apply grid-cols-1;
+
+    }
+
+    .episode-feedback-modal__footer {
+
+        @apply p-4;
+
+    }
+
+}
