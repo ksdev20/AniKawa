@@ -20,7 +20,7 @@
     "nanostores": "^1.0.1",
     "string-similarity": "^4.0.4",
     "use-debounce": "^10.0.6",
-    "vercel": "^48.2.9"
+    "vercel": "^59.10.0"
   },
   "devDependencies": {
     "@types/string-similarity": "^4.0.2",
