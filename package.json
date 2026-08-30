@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.4.0",
-    "@astrojs/vercel": "^8.2.9",
+    "@astrojs/vercel": "^11.0.8",
     "@nanostores/react": "^1.0.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vercel/analytics": "^1.5.0",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/string-similarity": "^4.0.2",
-    "astro": "^5.14.3",
+    "astro": "^7.2.9",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
