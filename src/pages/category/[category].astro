@@ -1,0 +1,533 @@
+---
+import "@/styles/pages/category/category.css";
+
+import Layout from "@/layouts/Layout.astro";
+import SEOHead from "@/components/SEO/SEOHead.astro";
+import CategoryAnimeBrowser from "@/components/CategoryPage/CategoryAnimeBrowser";
+
+import { getCategoryPageData } from "@/lib/category/category";
+
+const { category: categorySlug } = Astro.params;
+
+const pageData = await getCategoryPageData(categorySlug);
+
+if (!pageData) {
+  return Astro.redirect("/404");
+}
+
+const { category, anime, stats, featuredAnime } = pageData;
+
+const content = category.content;
+const categoryName = category.name;
+
+const {
+  hero,
+  intro,
+  featured,
+  editorPicks,
+  catalogue,
+  relatedCategories,
+  faq,
+} = content;
+
+const totalAnime = stats.totalAnime;
+const averageScore = stats.averageScore;
+const ratedAnime = stats.ratedAnime;
+
+const earliestYear = stats.years.earliest;
+const latestYear = stats.years.latest;
+
+const topFormat = stats.formats[0];
+const topStatus = stats.statuses[0];
+const topCountry = stats.countries[0];
+
+const pageTitle = content.seo.title;
+const pageDescription = content.seo.description;
+---
+
+<Layout>
+  <SEOHead title={pageTitle} description={pageDescription} />
+
+  <main class="category-page">
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+
+    <section class="category-hero">
+      <div class="category-container">
+        <nav class="category-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/categories">Categories</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{categoryName}</span>
+        </nav>
+
+        <div class="category-hero__content">
+          <div class="category-hero__eyebrow">
+            <span>{hero.eyebrow}</span>
+          </div>
+
+          <h1 class="category-hero__title">
+            {hero.title}
+          </h1>
+
+          <p class="category-hero__intro">
+            {hero.intro}
+          </p>
+
+          <div class="category-hero__actions">
+            <a
+              href="#anime-catalogue"
+              class="category-button category-button--primary"
+            >
+              Explore {categoryName}
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href={`/list?genre=${encodeURIComponent(categoryName)}`}
+              class="category-button category-button--secondary"
+            >
+              Browse full list
+            </a>
+          </div>
+        </div>
+
+        <div class="category-hero__meta">
+          <div>
+            <strong>{totalAnime}</strong>
+            <span>Anime</span>
+          </div>
+
+          {
+            ratedAnime > 0 && (
+              <div>
+                <strong>{averageScore.toFixed(1)}</strong>
+                <span>Avg. score</span>
+              </div>
+            )
+          }
+
+          {
+            earliestYear && latestYear && (
+              <div>
+                <strong>
+                  {earliestYear === latestYear
+                    ? earliestYear
+                    : `${earliestYear}–${latestYear}`}
+                </strong>
+                <span>Release range</span>
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+     INTRO / CATEGORY INSIGHT
+     ================================================================ -->
+
+    <section class="category-editorial">
+      <div class="category-container">
+        <div class="category-editorial__header">
+          <span class="category-kicker">
+            ABOUT {categoryName.toUpperCase()}
+          </span>
+
+          <h2>{intro.title}</h2>
+
+          <p>
+            {hero.intro}
+          </p>
+        </div>
+
+        <div class="category-editorial__grid">
+          {
+            intro.paragraphs.map((paragraph: any, index: number) => (
+              <article
+                class:list={[
+                  "category-editorial-card",
+                  index === 0 && "category-editorial-card--large",
+                ]}
+              >
+                <span class="category-editorial-card__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div>
+                  <span class="category-editorial-card__eyebrow">
+                    {index === 0
+                      ? "THE CORE"
+                      : index === 1
+                        ? "THE CONTEXT"
+                        : "THE PSYCHOLOGY"}
+                  </span>
+
+                  <p>{paragraph}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <!-- ================================================================
+     FEATURED EXPERIENCE
+     ================================================================ -->
+
+    {
+      featuredAnime && (
+        <section
+          class="category-featured"
+          aria-labelledby="category-featured-title"
+        >
+          <div class="category-container">
+            <div class="category-featured__header">
+              <div>
+                <span class="category-kicker">{featured.badge}</span>
+
+                <h2 id="category-featured-title">{featured.sectionTitle}</h2>
+              </div>
+
+              <p>{featured.reason}</p>
+            </div>
+
+            <div class="category-featured__anime">
+              <div class="category-featured__backdrop">
+                {featuredAnime.backdrop && (
+                  <img
+                    src={featuredAnime.backdrop}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+
+              <div class="category-featured__overlay" />
+
+              <div class="category-featured__content">
+                <div class="category-featured__poster">
+                  {featuredAnime.poster && (
+                    <img
+                      src={featuredAnime.poster}
+                      alt={featuredAnime.title}
+                      loading="lazy"
+                    />
+                  )}
+                </div>
+
+                <div class="category-featured__details">
+                  <span class="category-featured__label">
+                    FEATURED {categoryName.toUpperCase()} ANIME
+                  </span>
+
+                  <h3>{featuredAnime.title}</h3>
+
+                  {featuredAnime?.tagline && (
+                    <p class="category-featured__subtitle">
+                      {featuredAnime?.tagline}
+                    </p>
+                  )}
+
+                  <div class="category-featured__meta">
+                    {featuredAnime.score != null && (
+                      <span>★ {featuredAnime.score.toFixed(1)}</span>
+                    )}
+
+                    {featuredAnime.year && <span>{featuredAnime.year}</span>}
+
+                    {featuredAnime.format && (
+                      <span>{featuredAnime.format}</span>
+                    )}
+
+                    {featuredAnime.status && (
+                      <span>{featuredAnime.status}</span>
+                    )}
+                  </div>
+
+                  {featuredAnime.genres?.length > 0 && (
+                    <div class="category-featured__genres">
+                      {featuredAnime.genres.slice(0, 4).map((genre) => (
+                        <span>{genre}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  {featuredAnime.description && (
+                    <p class="category-featured__description">
+                      {featuredAnime.description}
+                    </p>
+                  )}
+
+                  <a
+                    href={`/show/${featuredAnime.nanoid}/${featuredAnime.slug}`}
+                    class="category-button category-button--primary"
+                  >
+                    View anime
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )
+    }
+    <!-- ================================================================
+     EDITOR PICKS
+     ================================================================ -->
+
+    <!-- {
+      editorPicks.length > 0 && (
+        <section class="category-picks">
+          <div class="category-container">
+            <div class="category-section-heading">
+              <div>
+                <span class="category-kicker">CURATED FOR YOU</span>
+
+                <h2>Where should you start?</h2>
+              </div>
+
+              <p>
+                Explore different sides of {categoryName.toLowerCase()} through
+                curated ways to browse the catalogue.
+              </p>
+            </div>
+
+            <div class="category-picks__grid">
+              {editorPicks.map((pick, index) => (
+                <a
+                  href={`/list?${new URLSearchParams({
+                    genres: pick.filter.genres.join(","),
+                    sort: pick.filter.sort,
+                  }).toString()}`}
+                  class="category-pick-card"
+                >
+                  <span class="category-pick-card__number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span class="category-pick-card__eyebrow">
+                    {pick.subtitle}
+                  </span>
+
+                  <h3>{pick.title}</h3>
+
+                  <p>{pick.description}</p>
+
+                  <span class="category-pick-card__link">
+                    Explore <span aria-hidden="true">→</span>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    } -->
+
+    <!-- ================================================================
+     ANIME CATALOGUE
+     ================================================================ -->
+
+    <section
+      id="anime-catalogue"
+      class="category-catalogue"
+      aria-labelledby="category-catalogue-title"
+    >
+      <div class="category-container">
+        <!-- <div class="category-section-heading">
+      <div>
+        <span class="category-kicker">
+          DISCOVER {categoryName.toUpperCase()}
+        </span>
+
+        <h2 id="category-catalogue-title">
+          {catalogue.title}
+        </h2>
+      </div>
+
+      <p>{catalogue.description}</p>
+    </div> -->
+
+        <CategoryAnimeBrowser
+          client:visible
+          anime={anime}
+          categoryName={categoryName}
+        />
+      </div>
+    </section>
+
+    <!-- ================================================================
+     CATEGORY SNAPSHOT
+     ================================================================ -->
+
+    <section class="category-snapshot">
+      <div class="category-container">
+        <div class="category-section-heading">
+          <div>
+            <span class="category-kicker">THE NUMBERS</span>
+
+            <h2>A quick look at {categoryName}.</h2>
+          </div>
+        </div>
+
+        <div class="category-snapshot__grid">
+          <div class="category-stat">
+            <strong>{totalAnime}</strong>
+            <span>Titles</span>
+          </div>
+
+          <div class="category-stat">
+            <strong>
+              {ratedAnime > 0 ? averageScore.toFixed(1) : "—"}
+            </strong>
+            <span>Average score</span>
+          </div>
+
+          <div class="category-stat">
+            <strong>{topStatus?.name ?? "—"}</strong>
+            <span>Most common status</span>
+          </div>
+
+          <div class="category-stat">
+            <strong>{topFormat?.name ?? "—"}</strong>
+            <span>Most common format</span>
+          </div>
+        </div>
+
+        {
+          (topCountry || (earliestYear && latestYear)) && (
+            <div class="category-snapshot__grid">
+              {topCountry && (
+                <div class="category-stat">
+                  <strong>{topCountry.name}</strong>
+                  <span>{topCountry.percentage}% of catalogue</span>
+                </div>
+              )}
+
+              {earliestYear && latestYear && (
+                <div class="category-stat">
+                  <strong>
+                    {earliestYear === latestYear
+                      ? earliestYear
+                      : `${earliestYear}–${latestYear}`}
+                  </strong>
+                  <span>Release range</span>
+                </div>
+              )}
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================
+     RELATED CATEGORIES
+     ================================================================ -->
+
+    {
+      relatedCategories.length > 0 && (
+        <section class="category-related">
+          <div class="category-container">
+            <div class="category-section-heading">
+              <div>
+                <span class="category-kicker">KEEP EXPLORING</span>
+
+                <h2>If you like {categoryName}...</h2>
+              </div>
+
+              <p>
+                These categories overlap with {categoryName.toLowerCase()} in
+                interesting ways and may lead you somewhere unexpected.
+              </p>
+            </div>
+
+            <div class="category-related__grid">
+              {relatedCategories.map((related: any) => (
+                <a
+                  href={`/category/${related.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "-")}`}
+                  class="category-related-card group"
+                >
+                  <h3>{related.name}</h3>
+
+                  <p>{related.reason}</p>
+
+                  <span aria-hidden="true">→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- ================================================================
+     FAQ
+     ================================================================ -->
+
+    {
+      faq && faq.questions.length > 0 && (
+        <section class="category-faq">
+          <div class="category-container">
+            <div class="category-section-heading">
+              <div>
+                <span class="category-kicker">QUESTIONS</span>
+
+                <h2>{faq.title}</h2>
+              </div>
+            </div>
+
+            <div class="category-faq__list">
+              {faq.questions.map((item: any) => (
+                <details class="category-faq__item">
+                  <summary>
+                    <span>{item.question}</span>
+
+                    <span aria-hidden="true">+</span>
+                  </summary>
+
+                  <div class="category-faq__answer">
+                    <p>{item.answer}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- ================================================================
+     FINAL CTA
+     ================================================================ -->
+
+    <section class="category-cta">
+      <div class="category-container">
+        <div class="category-cta__inner">
+          <span class="category-kicker">KEEP EXPLORING</span>
+
+          <h2>Find your next kind of anime.</h2>
+
+          <p>
+            {categoryName} is only one corner of the catalogue. Explore more categories
+            and discover something that fits your mood.
+          </p>
+
+          <a
+            href="/categories"
+            class="category-button category-button--primary"
+          >
+            Explore All Categories
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,60 +1,1219 @@
-@import 'tailwindcss';
-@config '@tw-config';
+@import "tailwindcss";
+@config "@tw-config";
+/* ================================================================
+   CATEGORY PAGE
+   ================================================================ */
 
-
-.main-root {
-    @apply w-full flex flex-col items-center;
+.category-page {
+    @apply min-h-screen w-full overflow-hidden bg-secondary text-white;
 }
 
-.category-main {
-    @apply list-none w-full max-w-[1250px] px-10 flex flex-col;
+.category-container {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
 }
 
-@media (max-width: 500px) {
-    .category-main {
-        @apply px-0
+.category-kicker {
+    @apply inline-block font-serif text-[11px] font-bold uppercase tracking-[0.22em] text-accent;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+
+.category-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-winky text-sm font-bold transition-all duration-300;
+}
+
+.category-button--primary {
+    @apply bg-primary text-white shadow-[0_8px_30px_rgba(140,82,255,0.25)] hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(140,82,255,0.35)];
+}
+
+.category-button--secondary {
+    @apply border border-border bg-surface text-gray hover:border-accent hover:text-white;
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+
+.category-hero {
+    @apply relative overflow-hidden border-b border-border bg-secondary py-8 sm:py-12 lg:py-16;
+}
+
+.category-hero::before {
+    @apply pointer-events-none absolute -right-40 -top-40 h-[500px] w-[500px] rounded-full bg-primary opacity-10 blur-3xl content-[""];
+}
+
+.category-hero::after {
+    @apply pointer-events-none absolute -bottom-60 -left-40 h-[450px] w-[450px] rounded-full bg-accent opacity-5 blur-3xl content-[""];
+}
+
+.category-breadcrumb {
+    @apply relative z-10 mb-12 flex items-center gap-2 overflow-hidden whitespace-nowrap font-winky text-xs text-gray;
+}
+
+.category-breadcrumb a {
+    @apply transition-colors duration-200 hover:text-accent;
+}
+
+.category-breadcrumb span:last-child {
+    @apply overflow-hidden text-ellipsis text-white;
+}
+
+.category-hero__content {
+    @apply relative z-10 max-w-[850px];
+}
+
+.category-hero__eyebrow {
+    @apply mb-5 flex items-center gap-3 font-winky text-xs font-bold tracking-[0.18em] text-accent;
+}
+
+.category-hero__eyebrow::before {
+    @apply h-px w-8 bg-primary content-[""];
+}
+
+.category-hero__title {
+    @apply max-w-[850px] font-winky text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-7xl;
+}
+
+.category-hero__intro {
+    @apply mt-6 max-w-[720px] font-winky text-base leading-7 text-gray sm:text-lg;
+}
+
+.category-hero__actions {
+    @apply mt-8 flex flex-wrap items-center gap-3;
+}
+
+.category-hero__meta {
+    @apply relative z-10 mt-14 grid max-w-[700px] grid-cols-2 gap-3 sm:grid-cols-3;
+}
+
+.category-hero__meta div {
+    @apply rounded-2xl border border-border bg-surface px-5 py-4 transition-transform duration-300 hover:-translate-y-1;
+}
+
+.category-hero__meta strong {
+    @apply block font-winky text-xl font-extrabold text-white;
+}
+
+.category-hero__meta span {
+    @apply mt-1 block font-winky text-xs uppercase tracking-wider text-gray;
+}
+/* ================================================================
+   EDITORIAL / CATEGORY INSIGHT
+   ================================================================ */
+
+.category-editorial {
+    @apply bg-surface py-12 sm:py-14 lg:py-16;
+}
+
+.category-editorial__header {
+    @apply max-w-[760px];
+}
+
+.category-editorial__header h2 {
+    @apply mt-3 font-winky text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl;
+}
+
+.category-editorial__header p {
+    @apply mt-4 max-w-[720px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+
+.category-editorial__grid {
+    @apply mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3;
+}
+
+.category-editorial-card {
+    @apply relative overflow-hidden rounded-2xl border border-border bg-secondary p-5 transition-all duration-300 hover:-translate-y-1 hover:border-accent sm:p-6;
+}
+
+.category-editorial-card::after {
+    @apply pointer-events-none absolute -right-12 -top-12 h-24 w-24 rounded-full bg-primary opacity-5 blur-2xl content-[""];
+}
+
+.category-editorial-card--large {
+    @apply lg:col-span-1 lg:row-span-1;
+}
+
+.category-editorial-card__number {
+    @apply mb-6 block font-winky text-xs font-bold tracking-[0.2em] text-accent;
+}
+
+.category-editorial-card__eyebrow {
+    @apply mb-2 block font-winky text-[10px] font-bold uppercase tracking-[0.18em] text-gray;
+}
+
+.category-editorial-card h3 {
+    @apply font-winky text-xl font-extrabold leading-tight text-white sm:text-2xl;
+}
+
+.category-editorial-card p {
+    @apply mt-3 font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+/* ================================================================
+   CATALOGUE
+   ================================================================ */
+
+.category-catalogue {
+    @apply bg-secondary py-16 sm:py-20 lg:py-24;
+}
+
+.category-section-heading {
+    @apply mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end;
+}
+
+.category-section-heading h2 {
+    @apply mt-2 font-winky text-3xl font-extrabold tracking-tight text-white sm:text-4xl;
+}
+
+.category-section-heading>p {
+    @apply max-w-[440px] font-winky text-sm leading-6 text-gray md:text-right;
+}
+
+/* ================================================================
+   CATEGORY ANIME BROWSER
+   ================================================================ */
+
+.category-browser {
+    @apply w-full list-none;
+}
+
+.category-browser__controls {
+    @apply mb-8 rounded-3xl border border-border bg-surface p-4;
+}
+
+.category-browser__grid {
+    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4;
+}
+
+.category-browser__empty {
+    @apply rounded-3xl border border-dashed border-border bg-surface px-6 py-16 text-center;
+}
+
+.category-browser__empty h3 {
+    @apply font-winky text-xl font-bold text-white;
+}
+
+.category-browser__empty p {
+    @apply mt-2 font-winky text-sm text-gray;
+}
+
+/* ================================================================
+   GUIDE / DEEP DIVE
+   ================================================================ */
+
+.category-guide {
+    @apply border-y border-border bg-surface py-16 sm:py-20 lg:py-24;
+}
+
+.category-guide__grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.category-guide-card {
+    @apply rounded-3xl border border-border bg-secondary p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary;
+}
+
+.category-guide-card__number {
+    @apply mb-10 block font-winky text-xs font-bold tracking-[0.2em] text-primary;
+}
+
+.category-guide-card h3 {
+    @apply font-winky text-xl font-extrabold leading-tight text-white;
+}
+
+.category-guide-card p {
+    @apply mt-3 font-winky text-sm leading-7 text-gray;
+}
+
+/* ================================================================
+   SNAPSHOT / NUMBERS
+   ================================================================ */
+
+.category-snapshot {
+    @apply bg-secondary py-16 sm:py-20;
+}
+
+.category-snapshot__grid {
+    @apply grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-4;
+}
+
+.category-stat {
+    @apply bg-surface px-5 py-7 text-center transition-colors duration-300 hover:bg-surfaceLight;
+}
+
+.category-stat strong {
+    @apply block truncate font-winky text-2xl font-extrabold text-white sm:text-3xl;
+}
+
+.category-stat span {
+    @apply mt-2 block font-winky text-[10px] font-bold uppercase tracking-widest text-gray;
+}
+
+
+/* ================================================================
+   FINAL CTA
+   ================================================================ */
+
+.category-cta {
+    @apply bg-secondary py-16 sm:py-24 lg:py-32;
+}
+
+.category-cta__inner {
+    @apply relative overflow-hidden rounded-[2rem] border border-border bg-surface px-6 py-14 text-center sm:px-10 sm:py-20;
+}
+
+.category-cta__inner::before {
+    @apply pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary opacity-10 blur-3xl content-[""];
+}
+
+.category-cta__inner>* {
+    @apply relative z-10;
+}
+
+.category-cta__inner h2 {
+    @apply mx-auto mt-3 max-w-[700px] font-winky text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl;
+}
+
+.category-cta__inner p {
+    @apply mx-auto mt-5 max-w-[550px] font-winky text-sm leading-7 text-gray sm:text-base;
+}
+
+.category-cta__inner .category-button {
+    @apply mt-8;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 600px) {
+    .category-container {
+        @apply px-4;
+    }
+
+    .category-hero {
+        @apply py-6;
+    }
+
+    .category-breadcrumb {
+        @apply mb-8;
+    }
+
+    .category-hero__title {
+        @apply text-4xl;
+    }
+
+    .category-hero__intro {
+        @apply text-sm leading-6;
+    }
+
+    .category-hero__actions {
+        @apply flex-col items-stretch;
+    }
+
+    .category-button {
+        @apply w-full;
+    }
+
+    .category-hero__meta {
+        @apply mt-10 gap-2;
+    }
+
+    .category-hero__meta div {
+        @apply px-3 py-4;
+    }
+
+    .category-hero__meta strong {
+        @apply text-lg;
+    }
+
+    .category-editorial,
+    .category-catalogue,
+    .category-guide,
+    .category-faq {
+        @apply py-14;
+    }
+
+    .category-editorial__grid {
+        @apply mt-8;
+    }
+
+    .category-editorial-card {
+        @apply rounded-2xl p-5;
+    }
+
+    .category-guide-card {
+        @apply rounded-2xl p-5;
+    }
+
+    .category-cta {
+        @apply py-14;
+    }
+
+    .category-cta__inner {
+        @apply rounded-3xl px-5 py-12;
     }
 }
 
-.category-top {
-    @apply mt-12 w-full flex flex-col items-center justify-center;
+
+/*Featured*/
+.category-featured {
+    @apply bg-secondary py-10 sm:py-12 lg:py-14;
 }
 
-.text-section {
-    margin-top: 0px;
+.category-featured__header {
+    @apply flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between;
 }
 
-.category-text {
-    font-family: 'Winky Sans';
-    @apply text-3xl font-medium;
+.category-featured__header > div {
+    @apply min-w-0;
 }
 
-.cat-des {
-    @apply mt-2 text-base text-[gray];
+.category-featured__header h2 {
+    @apply mt-2 font-winky text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl;
+}
+
+.category-featured__header p {
+    @apply max-w-[560px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7 lg:text-right;
 }
 
 
-.cat-anime-card {
-    width: 17vw;
-    max-width: 200px;
+/* ================================================================
+   FEATURED ANIME
+   ================================================================ */
+
+.category-featured__anime {
+    @apply relative isolate mt-7 min-h-[280px] overflow-hidden rounded-3xl border border-border bg-secondary;
 }
 
-.view-all-text-section {
-    @apply flex items-center gap-1 text-[gray] text-base font-bold cursor-pointer pr-5;
+.category-featured__backdrop {
+    @apply absolute inset-0 -z-20;
 }
 
-.view-all-text-section:hover {
-    color: white;
+.category-featured__backdrop img {
+    @apply h-full w-full object-cover object-center;
 }
 
-.view-all-text-section:hover .view-all-icon {
-    fill: white;
+.category-featured__overlay {
+    @apply absolute inset-0 -z-10 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/45;
 }
 
-.cat-anime-card-first {
-    padding: 5px;
+.category-featured__content {
+    @apply relative z-10 flex min-h-[280px] items-center gap-6 p-5 sm:gap-8 sm:p-7 lg:gap-10 lg:p-8;
 }
 
-.cat-anime-card-inside-heading {
-    @apply line-clamp-2 text-ellipsis;
+.category-featured__poster {
+    @apply hidden w-[150px] shrink-0 overflow-hidden rounded-2xl border border-white/10 shadow-2xl sm:block lg:w-[170px];
+}
+
+.category-featured__poster img {
+    @apply aspect-[2/3] h-full w-full object-cover;
+}
+
+.category-featured__details {
+    @apply min-w-0 max-w-[700px];
+}
+
+.category-featured__label {
+    @apply font-winky text-[10px] font-bold uppercase tracking-[0.2em] text-accent sm:text-xs;
+}
+
+.category-featured__details h3 {
+    @apply mt-2 font-winky text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-4xl;
+}
+
+.category-featured__subtitle {
+    @apply mt-1 truncate font-winky text-sm text-gray;
+}
+
+.category-featured__meta {
+    @apply mt-4 flex flex-wrap items-center gap-2 font-winky text-xs font-semibold text-gray;
+}
+
+.category-featured__meta span {
+    @apply rounded-full border border-white/10 bg-white/5 px-2.5 py-1;
+}
+
+.category-featured__meta span:first-child {
+    @apply border-accent/30 bg-primary/10 text-accent;
+}
+
+.category-featured__genres {
+    @apply mt-3 flex flex-wrap gap-2;
+}
+
+.category-featured__genres span {
+    @apply rounded-full bg-surfaceLight px-2.5 py-1 font-winky text-[11px] font-medium text-gray;
+}
+
+.category-featured__description {
+    @apply mt-4 line-clamp-3 max-w-[680px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+
+.category-featured__details .category-button {
+    @apply mt-5 inline-flex;
+}
+
+@media (max-width: 600px) {
+    .category-featured__anime {
+        @apply min-h-0;
+    }
+
+    .category-featured__overlay {
+        @apply bg-secondary/90;
+    }
+
+    .category-featured__content {
+        @apply p-5;
+    }
+
+    .category-featured__details h3 {
+        @apply text-2xl;
+    }
+
+    .category-featured__description {
+        @apply line-clamp-4 text-sm leading-6;
+    }
+}
+
+
+/* ==========================================================================
+   EDITOR PICKS
+   ========================================================================== */
+
+.category-picks {
+    @apply relative overflow-hidden bg-surface py-20 sm:py-24;
+}
+
+.category-picks .category-section-heading {
+    @apply mb-12 grid gap-6 md:grid-cols-[1fr_0.65fr] md:items-end;
+}
+
+.category-picks .category-kicker {
+    @apply inline-flex w-fit rounded-full border border-accent/25 bg-accent/10 px-4 py-2 font-winky text-xs font-bold tracking-[0.2em] text-accent;
+}
+
+.category-picks .category-section-heading h2 {
+    @apply mt-4 font-winky text-4xl font-bold leading-tight text-white sm:text-5xl;
+}
+
+.category-picks .category-section-heading p {
+    @apply max-w-xl text-base leading-7 text-gray sm:text-lg;
+}
+
+.category-picks__grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.category-pick-card {
+    @apply relative flex min-h-[330px] flex-col overflow-hidden rounded-3xl border border-border bg-secondary p-7 no-underline transition duration-300 ease-out hover:-translate-y-2 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/10;
+}
+
+.category-pick-card::before {
+    @apply pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/10 blur-2xl transition duration-500 content-[''] group-hover:scale-150 group-hover:bg-primary/20;
+}
+
+.category-pick-card::after {
+    @apply pointer-events-none absolute bottom-0 left-0 h-1 w-0 bg-primary transition-all duration-300 content-[''] group-hover:w-full;
+}
+
+.category-pick-card__number {
+    @apply relative z-10 mb-10 font-winky text-5xl font-bold leading-none text-surfaceLight transition duration-300 group-hover:text-primary/30;
+}
+
+.category-pick-card__eyebrow {
+    @apply relative z-10 mb-3 block font-winky text-xs font-bold uppercase tracking-[0.18em] text-accent;
+}
+
+.category-pick-card h3 {
+    @apply relative z-10 font-winky text-2xl font-bold leading-tight text-white transition duration-300 group-hover:text-accent;
+}
+
+.category-pick-card p {
+    @apply relative z-10 mt-4 flex-1 text-sm leading-6 text-gray;
+}
+
+.category-pick-card__link {
+    @apply relative z-10 mt-7 inline-flex items-center gap-2 font-winky text-sm font-bold text-accent transition duration-300 group-hover:gap-4;
+}
+
+
+/* ==========================================================================
+   ANIME CATALOGUE
+   ========================================================================== */
+
+.category-catalogue {
+    @apply relative overflow-hidden bg-secondary py-20 sm:py-24;
+}
+
+.category-catalogue::before {
+    @apply pointer-events-none absolute left-1/2 top-0 h-px w-[80%] -translate-x-1/2 bg-border content-[''];
+}
+
+.category-catalogue .category-section-heading {
+    @apply mb-10 grid gap-6 md:grid-cols-[1fr_0.65fr] md:items-end;
+}
+
+.category-catalogue .category-kicker {
+    @apply inline-flex w-fit rounded-full border border-primary/30 bg-primary/10 px-4 py-2 font-winky text-xs font-bold tracking-[0.2em] text-accent;
+}
+
+.category-catalogue .category-section-heading h2 {
+    @apply mt-4 font-winky text-4xl font-bold leading-tight text-white sm:text-5xl;
+}
+
+.category-catalogue .category-section-heading p {
+    @apply max-w-xl text-base leading-7 text-gray sm:text-lg;
+}
+
+
+/* ==========================================================================
+   CATEGORY BROWSER
+   ========================================================================== */
+
+.category-browser {
+    @apply relative overflow-hidden rounded-[2rem] border border-border bg-surface p-4 shadow-2xl shadow-black/20 sm:p-6 lg:p-8;
+}
+
+.category-browser__header {
+    @apply flex flex-col gap-6 border-b border-border pb-7 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.category-browser__eyebrow {
+    @apply font-winky text-xs font-bold uppercase tracking-[0.18em] text-accent;
+}
+
+.category-browser__title {
+    @apply mt-3 font-winky text-2xl font-bold text-white sm:text-3xl;
+}
+
+.category-browser__description {
+    @apply mt-2 max-w-2xl text-sm leading-6 text-gray;
+}
+
+.category-browser__count {
+    @apply flex shrink-0 items-baseline gap-2 rounded-2xl border border-primary/20 bg-secondary px-5 py-3;
+}
+
+.category-browser__count strong {
+    @apply font-winky text-2xl font-bold text-accent;
+}
+
+.category-browser__count span {
+    @apply text-sm text-gray;
+}
+
+.category-browser__toolbar {
+    @apply mt-6 grid gap-3 lg:grid-cols-[1fr_auto_auto];
+}
+
+.category-browser__search {
+    @apply flex min-h-12 items-center gap-3 rounded-2xl border border-border bg-secondary px-4 transition focus-within:border-primary;
+}
+
+.category-browser__search>span {
+    @apply text-xl text-accent;
+}
+
+.category-browser__search input {
+    @apply min-w-0 flex-1 bg-transparent font-winky text-sm text-white outline-none placeholder:text-gray;
+}
+
+.category-browser__search button {
+    @apply flex h-7 w-7 items-center justify-center rounded-full bg-surfaceLight text-gray transition hover:bg-primary hover:text-white;
+}
+
+.category-browser__filter-trigger {
+    @apply flex min-h-12 items-center justify-between gap-8 rounded-2xl border border-border bg-secondary px-5 font-winky text-sm font-bold text-white transition hover:border-primary/60;
+}
+
+.category-browser__filter-trigger.is-active {
+    @apply border-primary bg-primary/10 text-accent;
+}
+
+.category-browser__sort {
+    @apply flex min-h-12 items-center gap-3 rounded-2xl border border-border bg-secondary px-4;
+}
+
+.category-browser__sort>span {
+    @apply font-winky text-xs font-bold uppercase tracking-wider text-gray;
+}
+
+.category-browser__sort select {
+    @apply min-w-28 cursor-pointer bg-transparent font-winky text-sm text-white outline-none;
+}
+
+.category-browser__sort option {
+    @apply bg-secondary text-white;
+}
+
+
+/* ==========================================================================
+   FILTER PANEL
+   ========================================================================== */
+
+.category-browser__filters {
+    @apply mt-4 grid gap-4 rounded-3xl border border-border bg-secondary p-5 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.category-browser__field {
+    @apply flex flex-col gap-2;
+}
+
+.category-browser__field>span {
+    @apply font-winky text-xs font-bold uppercase tracking-wider text-gray;
+}
+
+.category-browser__field select,
+.category-browser__field input {
+    @apply min-h-11 w-full rounded-xl border border-border bg-surface px-3 font-winky text-sm text-white outline-none transition focus:border-primary;
+}
+
+.category-browser__field select {
+    @apply cursor-pointer;
+}
+
+.category-browser__field option {
+    @apply bg-secondary text-white;
+}
+
+.category-browser__year {
+    @apply flex items-center gap-2;
+}
+
+.category-browser__year>span {
+    @apply shrink-0 text-gray;
+}
+
+.category-browser__clear {
+    @apply self-end rounded-xl border border-primary/30 bg-primary/10 px-4 py-3 font-winky text-sm font-bold text-accent transition hover:bg-primary hover:text-white;
+}
+
+
+/* ==========================================================================
+   ANIME GRID
+   ========================================================================== */
+
+.category-browser__grid {
+    @apply mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6;
+}
+
+.category-browser__empty {
+    @apply mt-8 flex min-h-64 flex-col items-center justify-center rounded-3xl border border-dashed border-border bg-secondary px-6 text-center;
+}
+
+.category-browser__empty>span {
+    @apply mb-4 text-5xl text-primary/60;
+}
+
+.category-browser__empty h3 {
+    @apply font-winky text-xl font-bold text-white;
+}
+
+.category-browser__empty p {
+    @apply mt-2 max-w-md text-sm leading-6 text-gray;
+}
+
+.category-browser__empty button {
+    @apply mt-6 rounded-xl bg-primary px-5 py-3 font-winky text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-accent;
+}
+
+
+/* ==========================================================================
+   SHARED SECTION HEADING
+   ========================================================================== */
+
+.category-section-heading {
+    @apply relative;
+}
+
+.category-section-heading .category-kicker {
+    @apply font-winky text-xs font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.category-section-heading h2 {
+    @apply font-winky font-bold text-white;
+}
+
+.category-section-heading p {
+    @apply text-gray;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE POLISH
+   ========================================================================== */
+
+@media (max-width: 600px) {
+
+    .category-featured,
+    .category-picks,
+    .category-catalogue {
+        @apply py-14;
+    }
+
+    .category-featured h2,
+    .category-picks .category-section-heading h2,
+    .category-catalogue .category-section-heading h2 {
+        @apply text-3xl;
+    }
+
+    .category-pick-card {
+        @apply min-h-[290px] p-6;
+    }
+
+    .category-browser {
+        @apply rounded-3xl p-4;
+    }
+
+    .category-browser__filters {
+        @apply grid-cols-1 p-4;
+    }
+
+    .category-browser__grid {
+        @apply grid-cols-2;
+    }
+}
+
+/* ================================================================
+   RELATED CATEGORIES
+   ================================================================ */
+
+.category-related {
+    @apply relative overflow-hidden border-y border-border bg-secondary py-20 md:py-28;
+}
+
+.category-related::before {
+    @apply pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-primary/10 blur-3xl content-[''];
+}
+
+.category-related::after {
+    @apply pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-accent/5 blur-3xl content-[''];
+}
+
+.category-related .category-container {
+    @apply relative z-10;
+}
+
+.category-related__grid {
+    @apply mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.category-related-card {
+    @apply relative flex min-h-[210px] flex-col justify-between overflow-hidden rounded-3xl border border-border bg-surface p-6 no-underline transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-surfaceLight hover:shadow-[0_20px_60px_rgba(140,82,255,0.12)];
+}
+
+.category-related-card::before {
+    @apply pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/5 transition-transform duration-500 content-[''] group-hover:scale-150;
+}
+
+.category-related-card h3 {
+    @apply relative z-10 m-0 font-winky text-2xl font-semibold tracking-tight text-white transition-colors duration-300 group-hover:text-accent;
+}
+
+.category-related-card p {
+    @apply relative z-10 mt-4 max-w-[34rem] text-sm leading-7 text-gray;
+}
+
+.category-related-card>span {
+    @apply relative z-10 mt-8 flex h-10 w-10 items-center justify-center self-end rounded-full border border-border bg-secondary text-lg text-accent transition-all duration-300 group-hover:translate-x-1 group-hover:border-primary group-hover:bg-primary group-hover:text-white;
+}
+
+/* ================================================================
+   FAQ
+   ================================================================ */
+
+.category-faq {
+    @apply relative overflow-hidden border-y border-border bg-surface py-20 md:py-28;
+}
+
+.category-faq::before {
+    @apply pointer-events-none absolute -left-40 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full bg-primary/5 blur-3xl content-[''];
+}
+
+.category-faq .category-container {
+    @apply relative z-10;
+}
+
+.category-faq .category-section-heading {
+    @apply mb-10;
+}
+
+.category-faq__list {
+    @apply mx-auto flex w-full max-w-4xl flex-col gap-3;
+}
+
+.category-faq__item {
+    @apply overflow-hidden rounded-2xl border border-border bg-secondary transition-all duration-300 hover:border-primary/40;
+}
+
+.category-faq__item[open] {
+    @apply border-primary/50 bg-surfaceLight;
+}
+
+.category-faq__item summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-6 px-5 py-5 font-winky text-base font-semibold text-white transition-colors duration-300 hover:text-accent sm:px-6 sm:py-6 sm:text-lg;
+}
+
+.category-faq__item summary::-webkit-details-marker {
+    @apply hidden;
+}
+
+.category-faq__item summary>span:first-child {
+    @apply min-w-0 leading-7;
+}
+
+.category-faq__item summary>span:last-child {
+    @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-xl font-normal leading-none text-accent transition-all duration-300;
+}
+
+.category-faq__item[open] summary>span:last-child {
+    @apply rotate-45 border-primary bg-primary text-white;
+}
+
+.category-faq__answer {
+    @apply px-5 pb-6 sm:px-6;
+}
+
+.category-faq__answer p {
+    @apply m-0 border-t border-border pt-5 text-sm leading-7 text-gray sm:text-base;
+}
+
+/* ================================================================
+   CATEGORY ANIME BROWSER
+   ================================================================ */
+
+.category-browser {
+  @apply relative w-full overflow-hidden rounded-[28px] border border-border bg-secondary p-4 shadow-[0_20px_70px_rgba(0,0,0,0.24)] sm:p-6 lg:p-8;
+}
+
+.category-browser::before {
+  @apply pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-primary/10 blur-3xl content-[''];
+}
+
+.category-browser::after {
+  @apply pointer-events-none absolute -bottom-40 -left-32 h-80 w-80 rounded-full bg-accent/5 blur-3xl content-[''];
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.category-browser__header {
+  @apply relative z-10 flex flex-col gap-6 border-b border-border pb-7 md:flex-row md:items-end md:justify-between;
+}
+
+.category-browser__heading {
+  @apply max-w-3xl min-w-0;
+}
+
+.category-browser__eyebrow {
+  @apply mb-3 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-accent;
+}
+
+.category-browser__eyebrow::before {
+  @apply h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_rgba(140,82,255,0.9)] content-[''];
+}
+
+.category-browser__title {
+  @apply font-winky text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl;
+}
+
+.category-browser__description {
+  @apply mt-3 max-w-2xl text-sm leading-6 text-gray sm:text-[15px];
+}
+
+.category-browser__count {
+  @apply flex w-fit shrink-0 items-center gap-3 rounded-2xl border border-border bg-surface px-5 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)];
+}
+
+.category-browser__count strong {
+  @apply font-winky text-3xl font-bold leading-none text-accent;
+}
+
+.category-browser__count span {
+  @apply text-xs font-bold uppercase tracking-[0.12em] text-gray;
+}
+
+/* ================================================================
+   TOOLBAR
+   ================================================================ */
+
+.category-browser__toolbar {
+  @apply relative z-10 mt-6 flex flex-col gap-3 rounded-2xl border border-border bg-surface p-3 sm:p-4 lg:flex-row;
+}
+
+.category-browser__search {
+  @apply relative flex min-h-[52px] min-w-0 flex-1 items-center rounded-xl border border-border bg-secondary transition-all duration-200 focus-within:border-primary/60 focus-within:shadow-[0_0_0_4px_rgba(140,82,255,0.08)];
+}
+
+.category-browser__search-icon {
+  @apply ml-4 shrink-0 text-2xl leading-none text-accent;
+}
+
+.category-browser__search input {
+  @apply h-[52px] min-w-0 flex-1 border-0 bg-transparent px-3 text-sm font-medium text-white outline-none placeholder:text-gray;
+}
+
+.category-browser__search-clear {
+  @apply mr-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surfaceLight text-xl leading-none text-gray transition-all duration-200 hover:bg-primary/15 hover:text-accent;
+}
+
+.category-browser__filter-trigger {
+  @apply flex min-h-[52px] items-center justify-between gap-8 rounded-xl border border-border bg-secondary px-4 text-sm font-bold text-white transition-all duration-200 hover:border-primary/50 hover:bg-surfaceLight;
+}
+
+.category-browser__filter-trigger.is-active {
+  @apply border-primary/60 bg-primary/10 text-accent shadow-[0_0_24px_rgba(140,82,255,0.12)];
+}
+
+.category-browser__filter-icon {
+  @apply flex h-7 w-7 items-center justify-center rounded-lg bg-surfaceLight text-base text-accent;
+}
+
+.category-browser__sort {
+  @apply flex min-h-[52px] items-center justify-between gap-4 rounded-xl border border-border bg-secondary px-4 lg:min-w-[190px];
+}
+
+.category-browser__sort > span {
+  @apply shrink-0 text-[10px] font-bold uppercase tracking-[0.16em] text-gray;
+}
+
+.category-browser__sort select {
+  @apply min-w-0 cursor-pointer border-0 bg-transparent text-sm font-bold text-white outline-none;
+}
+
+.category-browser__sort option {
+  @apply bg-secondary text-white;
+}
+
+/* ================================================================
+   FILTER PANEL
+   ================================================================ */
+
+.category-browser__filters {
+  @apply relative z-10 mt-3 grid grid-cols-1 gap-3 rounded-2xl border border-border bg-surface p-4 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.category-browser__field {
+  @apply flex min-w-0 flex-col gap-2;
+}
+
+.category-browser__field > span {
+  @apply px-1 text-[10px] font-bold uppercase tracking-[0.15em] text-gray;
+}
+
+.category-browser__field select {
+  @apply h-11 w-full cursor-pointer rounded-xl border border-border bg-secondary px-3 text-sm font-semibold text-white outline-none transition-all duration-200 hover:border-primary/40 focus:border-primary/70 focus:ring-2 focus:ring-primary/10;
+}
+
+.category-browser__field select option {
+  @apply bg-secondary text-white;
+}
+
+.category-browser__year {
+  @apply flex h-11 items-center gap-2;
+}
+
+.category-browser__year input {
+  @apply h-11 min-w-0 w-full rounded-xl border border-border bg-secondary px-3 text-sm font-semibold text-white outline-none transition-all duration-200 placeholder:text-gray hover:border-primary/40 focus:border-primary/70 focus:ring-2 focus:ring-primary/10;
+}
+
+.category-browser__year > span {
+  @apply shrink-0 text-sm font-bold text-gray;
+}
+
+.category-browser__clear {
+  @apply self-end rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-accent transition-all duration-200 hover:border-primary/60 hover:bg-primary hover:text-white;
+}
+
+/* ================================================================
+   RESULT META
+   ================================================================ */
+
+.category-browser__result-meta {
+  @apply relative z-10 mt-5 flex flex-col gap-3 text-xs font-medium text-gray sm:flex-row sm:items-center sm:justify-between;
+}
+
+.category-browser__result-meta strong {
+  @apply font-bold text-white;
+}
+
+.category-browser__result-meta button {
+  @apply w-fit rounded-lg px-2 py-1 font-bold text-accent transition-colors duration-200 hover:bg-primary/10 hover:text-white;
+}
+
+/* ================================================================
+   ANIME GRID
+   ================================================================ */
+
+.category-browser__grid {
+  @apply relative z-10 mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-5;
+}
+
+.category-browser__grid > * {
+  @apply min-w-0;
+}
+
+/* ================================================================
+   EMPTY STATE
+   ================================================================ */
+
+.category-browser__empty {
+  @apply relative z-10 mt-6 flex min-h-[340px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-surface px-6 py-12 text-center;
+}
+
+.category-browser__empty-icon {
+  @apply mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-3xl text-accent shadow-[0_0_35px_rgba(140,82,255,0.12)];
+}
+
+.category-browser__empty h3 {
+  @apply font-winky text-xl font-bold text-white;
+}
+
+.category-browser__empty p {
+  @apply mt-2 max-w-md text-sm leading-6 text-gray;
+}
+
+.category-browser__empty button {
+  @apply mt-6 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-[0_8px_24px_rgba(140,82,255,0.24)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(140,82,255,0.34)];
+}
+
+/* ================================================================
+   DESKTOP PAGINATION
+   ================================================================ */
+
+.category-browser__pagination {
+  @apply relative z-10 mt-8 flex items-center justify-center gap-2 border-t border-border pt-7;
+}
+
+.category-browser__page-button {
+  @apply flex h-10 min-w-10 items-center justify-center rounded-xl border border-border bg-surface px-3 text-sm font-bold text-gray transition-all duration-200 hover:border-primary/50 hover:bg-surfaceLight hover:text-white disabled:pointer-events-none disabled:opacity-30;
+}
+
+.category-browser__page-button.is-active {
+  @apply border-primary bg-primary text-white shadow-[0_7px_22px_rgba(140,82,255,0.28)];
+}
+
+.category-browser__page-button--arrow {
+  @apply text-lg font-medium text-accent hover:bg-primary/10 hover:text-accent;
+}
+
+.category-browser__pages {
+  @apply flex items-center gap-1.5;
+}
+
+.category-browser__ellipsis {
+  @apply flex h-10 min-w-8 items-center justify-center text-sm font-bold text-gray;
+}
+
+/* ================================================================
+   MOBILE PAGINATION
+   ================================================================ */
+
+.category-browser__mobile-pagination {
+  @apply relative z-10 mt-7 flex items-center justify-between gap-3 border-t border-border pt-6 sm:hidden;
+}
+
+.category-browser__mobile-pagination button {
+  @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-surface text-lg font-bold text-accent transition-all duration-200 hover:border-primary/50 hover:bg-primary/10 disabled:pointer-events-none disabled:opacity-30;
+}
+
+.category-browser__mobile-pagination span {
+  @apply text-xs font-medium text-gray;
+}
+
+.category-browser__mobile-pagination strong {
+  @apply font-bold text-white;
+}
+
+/* ================================================================
+   MOBILE
+   ================================================================ */
+
+@media (max-width: 639px) {
+  .category-browser {
+    @apply rounded-2xl p-3;
+  }
+
+  .category-browser__header {
+    @apply gap-5 pb-5;
+  }
+
+  .category-browser__title {
+    @apply text-2xl;
+  }
+
+  .category-browser__description {
+    @apply text-[13px] leading-5;
+  }
+
+  .category-browser__count {
+    @apply w-full justify-center;
+  }
+
+  .category-browser__toolbar {
+    @apply mt-4 p-2;
+  }
+
+  .category-browser__filter-trigger {
+    @apply w-full;
+  }
+
+  .category-browser__sort {
+    @apply w-full;
+  }
+
+  .category-browser__filters {
+    @apply grid-cols-1 p-3;
+  }
+
+  .category-browser__result-meta {
+    @apply mt-4;
+  }
+
+  .category-browser__grid {
+    @apply mt-5 gap-2;
+  }
+
+  .category-browser__pagination {
+    @apply hidden;
+  }
+
+  .category-browser__empty {
+    @apply min-h-[280px] rounded-xl;
+  }
+}
+
+/* ================================================================
+   TABLET
+   ================================================================ */
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .category-browser__grid {
+    @apply grid-cols-3;
+  }
+
+  .category-browser__filters {
+    @apply grid-cols-2;
+  }
+}
+
+/* ================================================================
+   LARGE DESKTOP
+   ================================================================ */
+
+@media (min-width: 1280px) {
+  .category-browser__toolbar {
+    @apply items-center;
+  }
+
+  .category-browser__filter-trigger {
+    @apply min-w-[130px];
+  }
+
+  .category-browser__grid {
+    @apply gap-5;
+  }
 }
