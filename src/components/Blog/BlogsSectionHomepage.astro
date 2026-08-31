@@ -1,89 +1,190 @@
 ---
 import type { BcObject } from "../../types/blogcard";
-import '@/styles/components/Blog/blogs-section-homepage.css';
+import "@/styles/components/Blog/blogs-section-homepage.css";
+
+import {
+  ArrowRightIcon,
+  ArrowUpRightIcon,
+  BookOpenTextIcon,
+  ClockIcon,
+} from "@phosphor-icons/react";
+
 const { heading, subheading, btnText, btnLink, posts } = Astro.props.info;
+
+const featuredPost = posts?.[0];
+const secondaryPosts = posts?.slice(1, 4) ?? [];
 ---
 
-<section class="latest-articles-section">
-  <div class="latest-articles-container">
-    <div class="latest-articles-header">
-      <div>
-        <span class="section-badge"> ✍️ From the AniKawa Blog </span>
+{
+  featuredPost && (
+    <section class="latest-articles-section" aria-labelledby="latest-articles-title">
+      <div class="latest-articles-container">
 
-        <h2 class="section-title">
-          {heading}
-        </h2>
+        <!-- ============================================================
+             HEADER
+             ============================================================ -->
 
-        <p class="section-subtitle">
-          {subheading}
-        </p>
-      </div>
+        <header class="latest-articles-header">
+          <div class="latest-articles-heading">
 
-      <a href={btnLink} class="latest-articles-view-all">
-        {btnText} →
-      </a>
-    </div>
+            <span class="latest-articles-kicker">
+              <BookOpenTextIcon size={15} weight="duotone" />
+              From the AniKawa Blog
+            </span>
 
-    <div class="latest-articles-grid">
-      <!-- Featured Article -->
+            <h2 id="latest-articles-title" class="latest-articles-title">
+              {heading}
+            </h2>
 
-      <a href={`/blog/${posts[0].data.slug}`} class="latest-articles-featured">
-        <img
-          src={posts[0].data.imgLarge || posts[0].data.img}
-          alt={posts[0].data.title}
-          loading="lazy"
-        />
+            <p class="latest-articles-subtitle">
+              {subheading}
+            </p>
 
-        <div class="latest-articles-featured-content">
-          <div class="latest-articles-categories">
-            {
-              posts[0].data.categoryList
-                .slice(0, 2)
-                .map((cat: string) => <span>{cat}</span>)
-            }
           </div>
 
-          <h3>
-            {posts[0].data.title}
-          </h3>
+          <a
+            href={btnLink}
+            class="latest-articles-view-all"
+            aria-label={`${btnText} - AniKawa Blog`}
+          >
+            <span>{btnText}</span>
+            <ArrowRightIcon size={17} weight="bold" aria-hidden="true" />
+          </a>
+        </header>
 
-          <p>
-            {posts[0].data.subTitle}
-          </p>
+        <!-- ============================================================
+             EDITORIAL GRID
+             ============================================================ -->
 
-          <div class="latest-articles-meta">
-            <span>{posts[0].data.date}</span>
-            <span>•</span>
-            <span>{posts[0].data.readMinutes} min read</span>
-          </div>
-        </div>
-      </a>
+        <div class="latest-articles-grid">
 
-      <!-- Sidebar Articles -->
+          <!-- FEATURED ARTICLE -->
 
-      <div class="latest-articles-list">
-        {
-          posts.slice(1, 4).map((post: BcObject) => (
-            <a href={`/blog/${post.data.slug}`} class="latest-articles-card">
-              <img src={post.data.img} alt={post.data.title} loading="lazy" />
+          <a
+            href={`/blog/${featuredPost.data.slug}`}
+            class="latest-articles-featured group"
+          >
+            <div class="latest-articles-featured-media">
 
-              <div class="latest-articles-card-content">
-                <div class="latest-articles-card-category">
-                  {post.data.categoryList[0]}
-                </div>
+              <img
+                src={featuredPost.data.imgLarge || featuredPost.data.img}
+                alt={featuredPost.data.title}
+                loading="lazy"
+              />
 
-                <h3>{post.data.title}</h3>
+              <div class="latest-articles-featured-overlay"></div>
 
-                <p>{post.data.subTitle}</p>
+              <span class="latest-articles-featured-badge">
+                Featured
+              </span>
 
-                <span class="latest-articles-card-meta">
-                  {post.data.readMinutes} min read
+              <span class="latest-articles-featured-arrow">
+                <ArrowUpRightIcon
+                  size={20}
+                  weight="bold"
+                  aria-hidden="true"
+                />
+              </span>
+
+            </div>
+
+            <div class="latest-articles-featured-content">
+
+              <div class="latest-articles-categories">
+                {featuredPost.data.categoryList
+                  .slice(0, 2)
+                  .map((category: string) => (
+                    <span>{category}</span>
+                  ))}
+              </div>
+
+              <h3>{featuredPost.data.title}</h3>
+
+              <p>{featuredPost.data.subTitle}</p>
+
+              <div class="latest-articles-meta">
+                <span>{featuredPost.data.date}</span>
+
+                <span class="latest-articles-meta-dot" aria-hidden="true">
+                  •
+                </span>
+
+                <span class="latest-articles-reading-time">
+                  <ClockIcon size={14} weight="duotone" />
+                  {featuredPost.data.readMinutes} min read
                 </span>
               </div>
-            </a>
-          ))
-        }
+
+            </div>
+          </a>
+
+          <!-- ==========================================================
+               SECONDARY ARTICLES
+               ========================================================== -->
+
+          <div class="latest-articles-list">
+            {secondaryPosts.map((post: BcObject) => (
+              <a
+                href={`/blog/${post.data.slug}`}
+                class="latest-articles-card group"
+              >
+                <div class="latest-articles-card-media">
+
+                  <img
+                    src={post.data.img}
+                    alt={post.data.title}
+                    loading="lazy"
+                  />
+
+                  <span class="latest-articles-card-arrow">
+                    <ArrowUpRightIcon
+                      size={16}
+                      weight="bold"
+                      aria-hidden="true"
+                    />
+                  </span>
+
+                </div>
+
+                <div class="latest-articles-card-content">
+
+                  <span class="latest-articles-card-category">
+                    {post.data.categoryList[0]}
+                  </span>
+
+                  <h3>{post.data.title}</h3>
+
+                  <p>{post.data.subTitle}</p>
+
+                  <span class="latest-articles-card-meta">
+                    <ClockIcon size={13} weight="duotone" />
+                    {post.data.readMinutes} min read
+                  </span>
+
+                </div>
+              </a>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- ============================================================
+             EDITORIAL FOOTER
+             ============================================================ -->
+
+        <div class="latest-articles-footer">
+          <div class="latest-articles-footer-line"></div>
+
+          <span>
+            More stories, guides &amp; anime insights
+          </span>
+
+          <a href={btnLink} aria-label="Explore all AniKawa blog articles">
+            <ArrowRightIcon size={16} weight="bold" aria-hidden="true" />
+          </a>
+        </div>
+
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+  )
+}

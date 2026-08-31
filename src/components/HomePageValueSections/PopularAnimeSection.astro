@@ -1,6 +1,11 @@
 ---
 import AnimeSliderStatic from "../AnimeSlider/AnimeSliderStatic.astro";
-import "./popular-anime.css";
+import "@/styles/components/HomePage/popular-anime.css";
+import {
+  TrophyIcon,
+  ArrowRightIcon,
+  ChartBarIcon,
+} from "@phosphor-icons/react";
 
 const sliderObj = {
   bigH: "",
@@ -9,26 +14,62 @@ const sliderObj = {
 };
 ---
 
-<section class="popular-anime-section">
+<section class="popular-anime put-margin">
   <div class="popular-anime-container">
-    <div class="popular-anime-header">
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+
+    <header class="popular-anime-header">
       <div class="popular-anime-heading">
-        <span class="section-badge"> 🏆 Anime Hall of Fame </span>
+        <span class="popular-anime-kicker">
+          <TrophyIcon size={15} weight="duotone" />
+          Fan Favorites
+        </span>
 
-        <h2 class="section-title">Popular Anime</h2>
+        <h2 class="popular-anime-title">
+          Loved by
+          <span> anime fans.</span>
+        </h2>
 
-        <p class="section-subtitle">
-          Legendary series and fan-favorite classics that every anime enthusiast
-          should experience at least once.
+        <p class="popular-anime-subtitle">
+          Discover the series that consistently stand out among AniKawa's
+          catalog — from modern hits to timeless favorites.
         </p>
       </div>
 
-      <a href="/list/popular" class="popular-anime-view-all">
-        Explore Popular Anime →
+      <a href="/list?sort=popular" class="popular-anime-link">
+        Explore popular
+        <ArrowRightIcon size={17} weight="bold" aria-hidden="true" />
       </a>
+    </header>
+
+    <!-- ============================================================
+         ANIME RAIL
+         ============================================================ -->
+
+    <div class="popular-anime-slider">
+      <AnimeSliderStatic info={sliderObj} />
     </div>
 
-    <AnimeSliderStatic info={sliderObj} />
+    <!-- ============================================================
+         CONTEXT
+         ============================================================ -->
+
+    <aside class="popular-anime-context">
+      <div class="popular-anime-context-icon">
+        <ChartBarIcon size={20} weight="duotone" />
+      </div>
+
+      <div>
+        <h3>What's popular?</h3>
+
+        <p>
+          This collection highlights anime ranked highly by popularity across
+          AniKawa, giving you an easy starting point when you want something
+          widely watched and talked about.
+        </p>
+      </div>
+    </aside>
   </div>
 </section>
-

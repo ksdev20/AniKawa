@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+/* ================================================================
+
+   ANIME DISCOVERY GATEWAY
+
+   ================================================================ */
+
+.discovery-gateway {
+    @apply relative w-full overflow-hidden bg-secondary py-20 sm:py-28;
+}
+
+.discovery-gateway::before {
+    content: "";
+    @apply pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px];
+}
+
+.discovery-gateway-container {
+    @apply relative z-10 mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+
+/* ================================================================
+
+   HEADER
+
+   ================================================================ */
+
+.discovery-gateway-header {
+    @apply mx-auto mb-12 max-w-[720px] text-center sm:mb-16;
+}
+
+.discovery-gateway-kicker {
+    @apply mb-4 inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-4 py-2 font-winky text-[10px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.discovery-gateway-title {
+    @apply font-winky text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl;
+}
+
+.discovery-gateway-title span {
+    @apply text-accent;
+}
+
+.discovery-gateway-description {
+    @apply mx-auto mt-5 max-w-[600px] font-winky text-sm leading-7 text-gray sm:text-base;
+}
+
+/* ================================================================
+
+   GRID
+
+   ================================================================ */
+
+.discovery-gateway-grid {
+    @apply grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6;
+}
+
+/* ================================================================
+
+   CARD
+
+   ================================================================ */
+
+.discovery-card {
+    @apply relative isolate flex min-h-[420px] overflow-hidden rounded-[2rem] border border-border bg-surface p-6 transition-all duration-500 sm:p-9;
+}
+
+.discovery-card:hover {
+    @apply -translate-y-1 border-primary/50 bg-surfaceLight shadow-2xl shadow-primary/10;
+}
+
+/* ================================================================
+
+   CARD GLOW
+
+   ================================================================ */
+
+.discovery-card-glow {
+    @apply pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/10 blur-[80px] transition-all duration-700;
+}
+
+.discovery-card:hover .discovery-card-glow {
+    @apply scale-150 bg-primary/20;
+}
+
+/* ================================================================
+
+   CARD CONTENT
+
+   ================================================================ */
+
+.discovery-card-content {
+    @apply relative z-10 flex w-full flex-col;
+}
+
+.discovery-card-top {
+    @apply flex items-start justify-between;
+}
+
+.discovery-card-icon {
+    @apply flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-accent transition-all duration-500;
+}
+
+.discovery-card:hover .discovery-card-icon {
+    @apply scale-110 bg-primary text-white shadow-lg shadow-primary/30;
+}
+
+.discovery-card-number {
+    @apply font-winky text-sm font-bold tracking-[0.15em] text-gray/50;
+}
+
+/* ================================================================
+
+   CARD COPY
+
+   ================================================================ */
+
+.discovery-card-copy {
+    @apply mt-auto pt-12;
+}
+
+.discovery-card-eyebrow {
+    @apply block font-winky text-[10px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.discovery-card-title {
+    @apply mt-4 font-winky text-4xl font-bold leading-[0.95] tracking-tight text-white sm:text-5xl;
+}
+
+.discovery-card-title span {
+    @apply block text-accent;
+}
+
+.discovery-card-description {
+    @apply mt-5 max-w-[460px] font-winky text-sm leading-7 text-gray;
+}
+
+/* ================================================================
+
+   CARD FOOTER
+
+   ================================================================ */
+
+.discovery-card-footer {
+    @apply mt-8 flex items-center justify-between border-t border-border/70 pt-5;
+}
+
+.discovery-card-cta {
+    @apply font-winky text-sm font-bold text-white transition-colors duration-300 group-hover:text-accent;
+}
+
+.discovery-card-arrow {
+    @apply flex h-10 w-10 items-center justify-center rounded-full border border-border bg-secondary text-gray transition-all duration-500;
+}
+
+.discovery-card:hover .discovery-card-arrow {
+    @apply translate-x-1 border-primary bg-primary text-white;
+}
+
+/* ================================================================
+
+   GENRE DECORATION
+
+   ================================================================ */
+
+.discovery-card-decoration {
+    @apply pointer-events-none absolute right-0 top-1/2 z-0 flex w-[52%] -translate-y-1/2 rotate-[18deg] flex-wrap gap-2 opacity-[0.07] transition-all duration-700;
+}
+
+.discovery-card-decoration span {
+    @apply rounded-full border border-white px-4 py-2 font-winky text-sm font-bold text-white;
+}
+
+.discovery-card:hover .discovery-card-decoration {
+    @apply rotate-[8deg] scale-110 opacity-[0.13];
+}
+
+/* ================================================================
+
+   FILTER PREVIEW
+
+   ================================================================ */
+
+.discovery-card-filter-preview {
+    @apply pointer-events-none absolute bottom-24 right-[-20px] z-0 flex w-[55%] rotate-[-10deg] flex-wrap justify-center gap-2 opacity-[0.08] transition-all duration-700;
+}
+
+.discovery-card-filter-preview span {
+    @apply rounded-xl border border-white px-4 py-2 font-winky text-sm font-bold text-white;
+}
+
+.discovery-card:hover .discovery-card-filter-preview {
+    @apply rotate-[-4deg] scale-110 opacity-[0.15];
+}
+
+/* ================================================================
+
+   BOTTOM TEXT
+
+   ================================================================ */
+
+.discovery-gateway-bottom {
+    @apply mt-10 text-center font-winky text-xs text-gray sm:mt-12 sm:text-sm;
+}
+
+.discovery-gateway-bottom span {
+    @apply ml-1 text-accent;
+}
+
+/* ================================================================
+
+   MOBILE
+
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .discovery-gateway {
+        @apply py-16;
+    }
+
+    .discovery-gateway-header {
+        @apply mb-10;
+    }
+
+    .discovery-gateway-title {
+        @apply text-[2.5rem];
+    }
+
+    .discovery-card {
+        @apply min-h-[390px] rounded-[1.5rem] p-6;
+    }
+
+    .discovery-card-copy {
+        @apply pt-10;
+    }
+
+    .discovery-card-title {
+        @apply text-[2.7rem];
+    }
+
+    .discovery-card-decoration,
+    .discovery-card-filter-preview {
+        @apply w-[65%];
+    }
+}

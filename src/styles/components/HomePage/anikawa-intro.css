@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+/* ================================================================
+
+   ANIKAWA INTRO
+
+   ================================================================ */
+
+.anikawa-intro {
+  @apply relative w-full overflow-hidden bg-secondaryDeep py-14 sm:py-20;
+}
+
+.anikawa-intro::before {
+  content: "";
+  @apply pointer-events-none absolute left-[-180px] top-[15%] h-[360px] w-[360px] rounded-full bg-primary/10 blur-[120px];
+}
+
+.anikawa-intro::after {
+  content: "";
+  @apply pointer-events-none absolute bottom-[-180px] left-1/2 h-[300px] w-[600px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px];
+}
+
+.anikawa-intro-container {
+  @apply relative z-10 mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+
+/* ================================================================
+
+   HEADER
+
+   ================================================================ */
+
+.anikawa-intro-header {
+  @apply mx-auto max-w-[700px] text-center;
+}
+
+.anikawa-intro-kicker {
+  @apply mb-3 inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 font-winky text-[9px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.anikawa-intro-title {
+  @apply font-winky text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl;
+}
+
+.anikawa-intro-title span {
+  @apply text-accent;
+}
+
+.anikawa-intro-lead {
+  @apply mx-auto mt-4 max-w-[600px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+
+/* ================================================================
+
+   SHOWCASE
+
+   ================================================================ */
+
+.anikawa-intro-showcase {
+  @apply relative mt-10 grid min-h-[390px] overflow-hidden rounded-[1.75rem] border border-border bg-surfaceElevated sm:mt-14 sm:min-h-[410px] lg:grid-cols-[1fr_1fr];
+}
+
+.anikawa-intro-showcase::before {
+  content: "";
+  @apply pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(140,82,255,0.13),transparent_42%)];
+}
+
+/* ================================================================
+
+   SHOWCASE CONTENT
+
+   ================================================================ */
+
+.anikawa-intro-showcase-main {
+  @apply relative z-10 flex flex-col justify-center p-6 sm:p-8 lg:p-10;
+}
+
+.anikawa-intro-showcase-label {
+  @apply font-winky text-[9px] font-bold uppercase tracking-[0.22em] text-accent;
+}
+
+.anikawa-intro-showcase-main h3 {
+  @apply mt-4 font-winky text-3xl font-bold leading-[0.98] tracking-tight text-white sm:text-4xl md:text-5xl;
+}
+
+.anikawa-intro-showcase-main h3 span {
+  @apply text-accent;
+}
+
+.anikawa-intro-showcase-main p {
+  @apply mt-5 max-w-[480px] font-winky text-sm leading-6 text-gray sm:text-sm sm:leading-7;
+}
+
+/* ================================================================
+
+   ORBIT
+
+   ================================================================ */
+
+.anikawa-intro-orbit {
+  @apply relative min-h-[280px] overflow-hidden lg:min-h-full;
+}
+
+.anikawa-intro-orbit-ring {
+  @apply absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/15;
+}
+
+.anikawa-intro-orbit-ring-one {
+  @apply w-[200px] sm:w-[240px];
+}
+
+.anikawa-intro-orbit-ring-two {
+  @apply w-[310px] sm:w-[370px] border-dashed;
+}
+
+.anikawa-intro-orbit-center {
+  @apply absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-primary/40 bg-primary/15 shadow-[0_0_60px_rgba(140,82,255,0.25)] backdrop-blur-md;
+}
+
+.anikawa-intro-orbit-center span {
+  @apply font-winky text-xl font-black tracking-tight text-white;
+}
+
+/* ================================================================
+
+   ORBIT NODES
+
+   ================================================================ */
+
+.anikawa-intro-orbit-node {
+  @apply absolute z-10 flex items-center gap-1.5 rounded-full border border-border bg-surfaceLight/90 px-2.5 py-1.5 font-winky text-[10px] font-bold text-white shadow-xl backdrop-blur-md;
+}
+
+.anikawa-intro-orbit-node svg {
+  @apply text-accent;
+}
+
+.node-discover {
+  @apply left-[12%] top-[20%];
+}
+
+.node-watch {
+  @apply right-[10%] top-[16%];
+}
+
+.node-track {
+  @apply bottom-[18%] left-[13%];
+}
+
+.node-connect {
+  @apply bottom-[16%] right-[9%];
+}
+
+/* ================================================================
+
+   FEATURE GRID
+
+   ================================================================ */
+
+.anikawa-intro-features {
+  @apply mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.anikawa-intro-feature {
+  @apply flex gap-3 rounded-xl border border-border bg-surface p-4 transition-all duration-300;
+}
+
+.anikawa-intro-feature:hover {
+  @apply -translate-y-1 border-primary/40 bg-surfaceLight;
+}
+
+.anikawa-intro-feature-icon {
+  @apply flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-accent;
+}
+
+.anikawa-intro-feature h3 {
+  @apply font-winky text-xs font-bold text-white sm:text-sm;
+}
+
+.anikawa-intro-feature p {
+  @apply mt-1.5 font-winky text-[11px] leading-5 text-gray;
+}
+
+/* ================================================================
+
+   MOBILE
+
+   ================================================================ */
+
+@media (max-width: 640px) {
+  .anikawa-intro {
+    @apply py-12;
+  }
+
+  .anikawa-intro-title {
+    @apply text-[2.25rem];
+  }
+
+  .anikawa-intro-lead {
+    @apply mt-3 text-[13px] leading-6;
+  }
+
+  .anikawa-intro-showcase {
+    @apply mt-8 min-h-0 rounded-[1.5rem];
+  }
+
+  .anikawa-intro-showcase-main {
+    @apply p-5;
+  }
+
+  .anikawa-intro-showcase-main h3 {
+    @apply mt-3 text-[2.25rem];
+  }
+
+  .anikawa-intro-showcase-main p {
+    @apply mt-4 text-[13px] leading-6;
+  }
+
+  .anikawa-intro-orbit {
+    @apply min-h-[270px];
+  }
+
+  .anikawa-intro-orbit-ring-one {
+    @apply w-[190px];
+  }
+
+  .anikawa-intro-orbit-ring-two {
+    @apply w-[290px];
+  }
+
+  .anikawa-intro-orbit-center {
+    @apply h-[72px] w-[72px];
+  }
+
+  .anikawa-intro-orbit-node {
+    @apply px-2 py-1 text-[9px];
+  }
+
+  .anikawa-intro-features {
+    @apply mt-2.5;
+  }
+}

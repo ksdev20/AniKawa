@@ -1,74 +1,439 @@
-@import 'tailwindcss';
-@config '@tw-config';
+@import "tailwindcss";
 
-.main-root {
-    @apply w-full flex flex-col items-center;
+@config "@tw-config";
+
+/* ================================================================
+
+   LIST PAGE
+
+   ================================================================ */
+
+.list-page {
+  @apply min-h-screen w-full overflow-hidden bg-secondary text-white;
 }
 
-.main-content {
-    @apply h-full w-full max-w-[1200px] px-5;
+.list-container {
+  @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
 }
 
-.new-first {
-    @apply mt-20 flex items-center justify-between w-full mb-10;
+.list-kicker {
+  @apply inline-block font-serif text-[11px] font-bold uppercase tracking-[0.22em] text-accent;
 }
 
-.new-first-heading {
-    @apply antialiased text-2xl;
+.list-primary-button {
+  @apply inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 font-winky text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20;
 }
 
-@media (max-width: 312px) {
-    .new-first-heading {
-        font-size: 15px;
-    }
-
-    .filter-name {
-        display: none;
-    }
+.list-secondary-button {
+  @apply inline-flex items-center justify-center rounded-full border border-border bg-surface px-5 py-3 font-winky text-sm font-bold text-white transition-all duration-300 hover:border-accent hover:bg-surfaceLight;
 }
 
-@media (min-width: 313px) and (max-width: 500px) {
-    .new-first-heading {
-        font-size: 22px;
-    }
+/* ================================================================
 
-    .filter-name {
-        display: none;
-    }
+   HERO
+
+   ================================================================ */
+
+.list-hero {
+  @apply relative border-b border-border py-16 sm:py-24;
 }
 
-/*new popular anime list*/
-.new-pop-anime-list {
-    display: grid;
-    gap: 8px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-    list-style-type: none;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+.list-hero::before {
+  content: "";
+
+  @apply pointer-events-none absolute left-1/2 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px];
 }
 
-@media (max-width: 312px) {
-    .anime-card-first {
-        min-width: unset;
-    }
-
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fit, 100%);
-    }
+.list-hero-content {
+  @apply relative mx-auto flex max-w-3xl flex-col items-center text-center;
 }
 
-@media (min-width: 313px) and (max-width: 430px) {
-    .anime-card-first {
-        min-width: 150px;
-    }
+.list-heading {
+  @apply mt-4 max-w-3xl font-winky text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl;
+}
 
-    .new-pop-anime-card {
-        min-width: 150px;
-    }
+.list-description {
+  @apply mt-5 max-w-2xl text-sm leading-7 text-gray sm:text-base;
+}
 
-    .new-pop-anime-list {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
-    }
+.list-quick-links {
+  @apply mt-8 flex flex-wrap justify-center gap-2;
+}
+
+.list-quick-links a {
+  @apply rounded-full border border-border bg-surface px-4 py-2 font-winky text-xs font-bold text-gray transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary/10 hover:text-white;
+}
+
+/* ================================================================
+
+   CATALOG
+
+   ================================================================ */
+
+.list-catalog-section {
+  @apply py-10 sm:py-14;
+}
+
+/* ================================================================
+
+   FILTER SYSTEM
+
+   ================================================================ */
+
+.list-filter-system {
+  @apply relative z-10;
+}
+
+.list-filter-topbar {
+  @apply flex flex-col gap-3 lg:flex-row;
+}
+
+.list-search-form {
+  @apply flex flex-1 gap-2;
+}
+
+.list-search-box {
+  @apply flex min-w-0 flex-1 items-center gap-3 rounded-2xl border border-border bg-surface px-4 transition-all duration-300 focus-within:border-primary focus-within:shadow-lg focus-within:shadow-primary/10;
+}
+
+.list-search-box svg {
+  @apply shrink-0 text-gray;
+}
+
+.list-search-box input {
+  @apply h-14 min-w-0 flex-1 bg-transparent font-winky text-sm text-white outline-none placeholder:text-gray;
+}
+
+.list-search-submit {
+  @apply hidden rounded-2xl bg-primary px-6 font-winky text-sm font-bold text-white transition-all duration-300 hover:bg-accent sm:inline-flex sm:items-center;
+}
+
+.list-mobile-filter-toggle {
+  @apply inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-border bg-surface px-5 font-winky text-sm font-bold transition-all duration-300 hover:border-primary hover:bg-surfaceLight lg:hidden;
+}
+
+.list-filter-panel {
+  @apply mt-3 overflow-hidden rounded-2xl border border-border bg-surface;
+}
+
+.list-filter-form {
+  @apply grid gap-6 p-5 sm:p-6 lg:grid-cols-2 xl:grid-cols-3;
+}
+
+.list-filter-panel-header {
+  @apply col-span-full flex items-start justify-between border-b border-border pb-5;
+}
+
+.list-filter-kicker {
+  @apply text-[10px] font-bold uppercase tracking-[0.18em] text-accent;
+}
+
+.list-filter-panel-header h2 {
+  @apply mt-1 font-winky text-2xl font-bold;
+}
+
+.list-filter-reset {
+  @apply rounded-full border border-border px-4 py-2 font-winky text-xs font-bold text-gray transition-all hover:border-primary hover:text-white;
+}
+
+.list-filter-group {
+  @apply min-w-0 border-0 p-0;
+}
+
+.list-filter-label {
+  @apply mb-3 block font-winky text-sm font-bold text-white;
+}
+
+.list-filter-select {
+  @apply h-12 w-full appearance-none rounded-xl border border-border bg-secondary px-4 font-winky text-sm text-white outline-none transition-all duration-300 hover:border-surfaceLight focus:border-primary;
+}
+
+.list-filter-options {
+  @apply flex flex-wrap gap-2;
+}
+
+.list-filter-option {
+  @apply cursor-pointer;
+}
+
+.list-filter-option input {
+  @apply sr-only;
+}
+
+.list-filter-option span {
+  @apply inline-flex rounded-full border border-border bg-secondary px-3 py-2 font-winky text-xs font-bold text-gray transition-all duration-300;
+}
+
+.list-filter-option input:checked + span {
+  @apply border-primary bg-primary/15 text-white;
+}
+
+.list-genre-search {
+  @apply mb-3 h-11 w-full rounded-xl border border-border bg-secondary px-4 font-winky text-xs text-white outline-none transition-all placeholder:text-gray focus:border-primary;
+}
+
+.list-genre-options {
+  @apply flex max-h-52 flex-wrap gap-2 overflow-y-auto pr-1;
+}
+
+.list-genre-option {
+  @apply cursor-pointer;
+}
+
+.list-genre-option input {
+  @apply sr-only;
+}
+
+.list-genre-option span {
+  @apply inline-flex rounded-full border border-border bg-secondary px-3 py-2 font-winky text-xs font-bold text-gray transition-all duration-300;
+}
+
+.list-genre-option input:checked + span {
+  @apply border-primary bg-primary text-white;
+}
+
+.list-filter-actions {
+  @apply col-span-full flex flex-col-reverse gap-3 border-t border-border pt-5 sm:flex-row sm:justify-end;
+}
+
+/* ================================================================
+
+   ACTIVE FILTERS
+
+   ================================================================ */
+
+.list-active-filters {
+  @apply mt-5 rounded-2xl border border-border bg-surface p-4;
+}
+
+.list-active-filters-header {
+  @apply flex items-center justify-between gap-4;
+}
+
+.list-active-filters-header > span {
+  @apply font-winky text-sm font-bold;
+}
+
+.list-clear-all {
+  @apply font-winky text-xs font-bold text-accent transition-colors hover:text-white;
+}
+
+.list-filter-chips {
+  @apply mt-4 flex flex-wrap gap-2;
+}
+
+.list-filter-chip {
+  @apply inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-3 py-2 font-winky text-xs font-bold text-white transition-all duration-300 hover:border-primary hover:bg-primary/20;
+}
+
+/* ================================================================
+
+   RESULTS
+
+   ================================================================ */
+
+.list-results {
+  @apply mt-10;
+}
+
+.list-results-header {
+  @apply mb-7 flex flex-col gap-3 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between;
+}
+
+.list-results-kicker {
+  @apply text-[10px] font-bold uppercase tracking-[0.18em] text-accent;
+}
+
+.list-results-header h2 {
+  @apply mt-2 font-winky text-2xl font-bold tracking-tight sm:text-3xl;
+}
+
+.list-page-indicator {
+  @apply font-winky text-xs text-gray;
+}
+
+.list-anime-grid {
+  @apply grid grid-cols-2 gap-x-3 gap-y-8 sm:grid-cols-3 sm:gap-x-5 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6;
+}
+
+/* ================================================================
+
+   EMPTY STATE
+
+   ================================================================ */
+
+.list-empty-state {
+  @apply flex min-h-[420px] flex-col items-center justify-center rounded-3xl border border-dashed border-border bg-surface px-6 py-16 text-center;
+}
+
+.list-empty-icon {
+  @apply flex h-16 w-16 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-3xl text-accent;
+}
+
+.list-empty-state h2 {
+  @apply mt-6 font-winky text-2xl font-bold;
+}
+
+.list-empty-state p {
+  @apply mt-3 max-w-md text-sm leading-6 text-gray;
+}
+
+.list-empty-state a {
+  @apply mt-7;
+}
+
+/* ================================================================
+
+   PAGINATION
+
+   ================================================================ */
+
+.list-pagination {
+  @apply mt-12 flex flex-wrap items-center justify-center gap-3;
+}
+
+.list-pagination > a {
+  @apply inline-flex h-10 items-center justify-center rounded-full border border-border bg-surface px-4 font-winky text-xs font-bold text-gray transition-all duration-300 hover:border-primary hover:text-white;
+}
+
+.list-pagination-disabled {
+  @apply pointer-events-none opacity-40;
+}
+
+.list-pagination-numbers {
+  @apply flex items-center gap-1;
+}
+
+.list-pagination-numbers a {
+  @apply inline-flex h-10 min-w-10 items-center justify-center rounded-full border border-transparent font-winky text-xs font-bold text-gray transition-all duration-300 hover:border-border hover:bg-surface;
+}
+
+.list-pagination-current {
+  @apply border-primary! bg-primary! text-white!;
+}
+
+.list-pagination-ellipsis {
+  @apply px-1 text-gray;
+}
+
+/* ================================================================
+
+   DISCOVERY
+
+   ================================================================ */
+
+.list-discovery-section {
+  @apply border-t border-border py-16 sm:py-24;
+}
+
+.list-discovery-header {
+  @apply max-w-2xl;
+}
+
+.list-discovery-header h2 {
+  @apply mt-3 font-winky text-3xl font-bold tracking-tight sm:text-4xl;
+}
+
+.list-discovery-header > p:last-child {
+  @apply mt-4 text-sm leading-7 text-gray sm:text-base;
+}
+
+.list-discovery-grid {
+  @apply mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.list-discovery-grid a {
+  @apply relative overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-surfaceLight;
+}
+
+.list-discovery-grid span {
+  @apply text-xs font-bold text-accent;
+}
+
+.list-discovery-grid strong {
+  @apply mt-7 block font-winky text-lg font-bold transition-colors group-hover:text-accent;
+}
+
+.list-discovery-grid p {
+  @apply mt-2 text-xs leading-6 text-gray;
+}
+
+.list-genre-explorer {
+  @apply mt-14 border-t border-border pt-10;
+}
+
+.list-genre-explorer-header {
+  @apply flex flex-wrap items-center justify-between gap-4;
+}
+
+.list-genre-explorer-header h2 {
+  @apply font-winky text-2xl font-bold;
+}
+
+.list-genre-explorer-header a {
+  @apply font-winky text-xs font-bold text-accent transition-colors hover:text-white;
+}
+
+.list-genre-links {
+  @apply mt-6 flex flex-wrap gap-2;
+}
+
+.list-genre-links a {
+  @apply rounded-full border border-border bg-surface px-4 py-2.5 font-winky text-xs font-bold text-gray transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary/10 hover:text-white;
+}
+
+/* ================================================================
+
+   MOBILE
+
+   ================================================================ */
+
+@media (max-width: 1023px) {
+  .list-filter-panel {
+    @apply max-h-0 border-transparent opacity-0 transition-all duration-300;
+  }
+
+  .list-filter-panel.is-open {
+    @apply max-h-[5000px] border-border opacity-100;
+  }
+}
+
+@media (min-width: 1024px) {
+  .list-filter-panel {
+    @apply max-h-none opacity-100;
+  }
+}
+
+@media (max-width: 640px) {
+  .list-hero {
+    @apply py-14;
+  }
+
+  .list-heading {
+    @apply text-4xl;
+  }
+
+  .list-search-submit {
+    @apply hidden;
+  }
+
+  .list-search-form {
+    @apply min-w-0;
+  }
+
+  .list-filter-form {
+    @apply grid-cols-1;
+  }
+
+  .list-pagination {
+    @apply gap-2;
+  }
+
+  .list-pagination > a {
+    @apply px-3;
+  }
+
+  .list-discovery-grid {
+    @apply grid-cols-1;
+  }
 }

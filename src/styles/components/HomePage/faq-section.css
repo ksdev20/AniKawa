@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+/* ================================================================
+   ANIKAWA FAQ
+   ================================================================ */
+
+.anikawa-faq-section {
+  @apply relative w-full overflow-hidden bg-secondary py-14 sm:py-20;
+}
+
+.anikawa-faq-section::before {
+  content: "";
+  @apply pointer-events-none absolute left-1/2 top-[-220px] h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-primary/6 blur-[150px];
+}
+
+.anikawa-faq-container {
+  @apply relative z-10 mx-auto w-full max-w-[900px] px-5 sm:px-8;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.anikawa-faq-header {
+  @apply mx-auto mb-8 max-w-[680px] text-center sm:mb-10;
+}
+
+.anikawa-faq-header .section-badge {
+  @apply inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-winky text-[9px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.anikawa-faq-header .section-title {
+  @apply mt-3 font-winky text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl;
+}
+
+.anikawa-faq-header .section-subtitle {
+  @apply mx-auto mt-3 max-w-[600px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+
+/* ================================================================
+   FAQ LIST
+   ================================================================ */
+
+.anikawa-faq-list {
+  @apply flex flex-col gap-2;
+}
+
+/* ================================================================
+   FAQ ITEM
+   ================================================================ */
+
+.anikawa-faq-item {
+  @apply overflow-hidden rounded-2xl border border-border bg-surface transition-all duration-300;
+}
+
+.anikawa-faq-item:hover {
+  @apply border-primary/20;
+}
+
+.anikawa-faq-item[open] {
+  @apply border-primary/30 bg-surfaceLight;
+}
+
+/* ================================================================
+   QUESTION
+   ================================================================ */
+
+.anikawa-faq-item summary {
+  @apply relative flex cursor-pointer list-none items-center justify-between gap-5 px-5 py-5 font-winky text-sm font-bold text-white transition-colors duration-300 sm:px-6 sm:py-5 sm:text-base;
+}
+
+.anikawa-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.anikawa-faq-item summary::after {
+  content: "+";
+  @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-border bg-secondary font-winky text-lg font-normal leading-none text-gray transition-all duration-300;
+}
+
+.anikawa-faq-item:hover summary::after {
+  @apply border-primary/30 text-accent;
+}
+
+.anikawa-faq-item[open] summary {
+  @apply text-accent;
+}
+
+.anikawa-faq-item[open] summary::after {
+  content: "−";
+  @apply rotate-180 border-primary/30 bg-primary/10 text-accent;
+}
+
+/* ================================================================
+   ANSWER
+   ================================================================ */
+
+.anikawa-faq-item p {
+  @apply max-w-[760px] px-5 pb-5 font-winky text-xs leading-6 text-gray sm:px-6 sm:pb-6 sm:text-sm sm:leading-7;
+}
+
+/* ================================================================
+   FOCUS
+   ================================================================ */
+
+.anikawa-faq-item summary:focus-visible {
+  @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-secondary;
+}
+
+/* ================================================================
+   MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+  .anikawa-faq-section {
+    @apply py-11;
+  }
+
+  .anikawa-faq-header {
+    @apply mb-6;
+  }
+
+  .anikawa-faq-header .section-title {
+    @apply text-[2.1rem];
+  }
+
+  .anikawa-faq-header .section-subtitle {
+    @apply text-[13px] leading-6;
+  }
+
+  .anikawa-faq-item summary {
+    @apply px-4 py-4 text-[13px] leading-5;
+  }
+
+  .anikawa-faq-item summary::after {
+    @apply h-6 w-6 text-base;
+  }
+
+  .anikawa-faq-item p {
+    @apply px-4 pb-5 text-[11px] leading-5;
+  }
+}

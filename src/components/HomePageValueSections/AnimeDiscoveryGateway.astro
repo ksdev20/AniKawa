@@ -1,0 +1,142 @@
+---
+import "@/styles/components/HomePage/anime-discovery-gateway.css";
+import { Icon } from "../../icons/icons";
+import {
+  SquaresFourIcon,
+  ArrowRightIcon,
+  CompassIcon,
+} from "@phosphor-icons/react";
+---
+
+<section class="discovery-gateway" aria-labelledby="discovery-gateway-heading">
+  <div class="discovery-gateway-container">
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+
+    <header class="discovery-gateway-header">
+      <span class="discovery-gateway-kicker"> Find your next obsession </span>
+
+      <h2 id="discovery-gateway-heading" class="discovery-gateway-title">
+        Discover anime
+        <span> your way.</span>
+      </h2>
+
+      <p class="discovery-gateway-description">
+        Explore the AniKawa catalog your way. Browse by genre, or use powerful
+        filters to find exactly what you feel like watching.
+      </p>
+    </header>
+
+    <!-- ============================================================
+         DISCOVERY OPTIONS
+    ============================================================ -->
+
+    <div class="discovery-gateway-grid">
+      <!-- ==========================================================
+           GENRES
+      =========================================================== -->
+
+      <a href="/categories" class="discovery-card discovery-card-genres group">
+        <div class="discovery-card-glow"></div>
+
+        <div class="discovery-card-content">
+          <div class="discovery-card-top">
+            <div class="discovery-card-icon">
+              <SquaresFourIcon size={26} weight="duotone" />
+            </div>
+
+            <span class="discovery-card-number"> 01 </span>
+          </div>
+
+          <div class="discovery-card-copy">
+            <span class="discovery-card-eyebrow"> EXPLORE BY MOOD </span>
+
+            <h3 class="discovery-card-title">
+              Browse by
+              <span>genre.</span>
+            </h3>
+
+            <p class="discovery-card-description">
+              Jump straight into action, romance, fantasy, comedy, thriller, and
+              every other world waiting for you.
+            </p>
+          </div>
+
+          <div class="discovery-card-footer">
+            <span class="discovery-card-cta"> Explore categories </span>
+
+            <span class="discovery-card-arrow">
+              <ArrowRightIcon size={20} weight="bold" />
+            </span>
+          </div>
+        </div>
+
+        <div class="discovery-card-decoration discovery-card-decoration-one">
+          <span>Action</span>
+          <span>Fantasy</span>
+          <span>Romance</span>
+          <span>Comedy</span>
+        </div>
+      </a>
+
+      <!-- ==========================================================
+           ADVANCED BROWSE
+      =========================================================== -->
+
+      <a href="/list" class="discovery-card discovery-card-browse">
+        <div class="discovery-card-glow"></div>
+
+        <div class="discovery-card-content">
+          <div class="discovery-card-top">
+            <div class="discovery-card-icon">
+              <CompassIcon size={26} weight="duotone" />
+            </div>
+
+            <span class="discovery-card-number"> 02 </span>
+          </div>
+
+          <div class="discovery-card-copy">
+            <span class="discovery-card-eyebrow">
+              FIND EXACTLY WHAT YOU WANT
+            </span>
+
+            <h3 class="discovery-card-title">
+              Browse
+              <span>everything.</span>
+            </h3>
+
+            <p class="discovery-card-description">
+              Search the entire catalog and filter by genre, year, format,
+              status, language, rating, episode count, and more.
+            </p>
+          </div>
+
+          <div class="discovery-card-footer">
+            <span class="discovery-card-cta"> Browse all anime </span>
+
+            <span class="discovery-card-arrow">
+              <ArrowRightIcon size={20} weight="bold" />
+            </span>
+          </div>
+        </div>
+
+        <div class="discovery-card-filter-preview">
+          <span>Action</span>
+          <span>2026</span>
+          <span>TV</span>
+          <span>⭐ 8+</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- ============================================================
+         BOTTOM MICROCOPY
+    ============================================================ -->
+
+    <p class="discovery-gateway-bottom">
+      Thousands of possible combinations.
+      <span>The next anime is waiting.</span>
+    </p>
+  </div>
+</section>

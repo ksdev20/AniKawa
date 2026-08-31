@@ -1,102 +1,180 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-.slider-section-text-big {
-    @apply text-white text-[28px] font-[600];
+@config "@tw-config";
+
+/* ================================================================
+   ANIME SLIDER
+   ================================================================ */
+
+.anime-slider-section {
+  @apply relative w-full overflow-hidden bg-secondary py-10 sm:py-14;
 }
 
-.cat-slider-heading-big {
-    @apply ml-[10px] text-2xl;
+.anime-slider-section::before {
+  content: "";
+  @apply pointer-events-none absolute left-[-180px] top-[-180px] h-[400px] w-[400px] rounded-full bg-primary/7 blur-[130px];
+}
+
+.anime-slider-section::after {
+  content: "";
+  @apply pointer-events-none absolute bottom-[-220px] right-[-120px] h-[400px] w-[400px] rounded-full bg-accent/5 blur-[130px];
+}
+
+/* ================================================================
+   HEADING
+   ================================================================ */
+
+.slider-heading {
+  @apply relative z-10 mx-auto mb-7 flex w-full max-w-[1200px] flex-col gap-1.5 px-5 sm:mb-8 sm:px-8;
+}
+
+.slider-section-text-big {
+  @apply font-winky text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl;
 }
 
 .slider-section-text-small {
-    @apply text-lg text-[gray]
+  @apply font-winky text-xs font-medium leading-5 text-gray sm:text-sm;
 }
 
-@media screen and (max-width: 600px) {
-    .slider-section-text-big {
-        font-size: 22px;
-    }
-
-    .slider-section-text-small {
-        font-size: 14px;
-    }
-}
-
-.anime-slider-section {
-    @apply flex flex-col w-full cursor-pointer mb-12;
-}
-
-.cat-slider {
-    @apply mt-4 mb-0;
-}
-
-.cat-slider:is(:first-child) {
-    @apply mt-10;
-}
-
-.slider-heading {
-    @apply flex flex-col w-full gap-2 mb-4 pl-5;
-}
-
-.cat-slider-heading {
-    @apply mb-1 flex-row gap-0 justify-between items-center;
-}
+/* ================================================================
+   SLIDER WRAPPER
+   ================================================================ */
 
 .slider-content-wrapper {
-    @apply relative z-[9] w-full block;
+  @apply relative z-10 w-full;
 }
 
+/* ================================================================
+   ANIME RAIL
+   ================================================================ */
+
 .slider-container {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    @apply relative z-[10] flex scroll-smooth w-full gap-2.5 cursor-pointer select-none items-start overflow-auto px-5 list-none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  @apply relative z-10 mx-auto flex w-full max-w-[1440px] scroll-smooth items-start gap-3 overflow-x-auto px-5 pb-4 select-none sm:gap-4 sm:px-8;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
 }
 
 .slider-container.disable-clicks {
-    pointer-events: none;
+  pointer-events: none;
 }
+
+/* ================================================================
+   SUBTLE RAIL SURFACE
+   ================================================================ */
+
+.slider-content-wrapper::before {
+  content: "";
+  @apply pointer-events-none absolute inset-x-0 top-[-16px] bottom-[-16px] rounded-none bg-surface/40;
+}
+
+/* ================================================================
+   EDGE FADES
+   ================================================================ */
+
+.slider-content-wrapper::after {
+  content: "";
+  @apply pointer-events-none absolute inset-y-0 left-0 z-[10] w-8 bg-gradient-to-r from-secondary to-transparent;
+}
+
+/* ================================================================
+   CATEGORY VARIANT
+   ================================================================ */
+
+.cat-slider {
+  @apply mt-4 mb-0;
+}
+
+.cat-slider:is(:first-child) {
+  @apply mt-8;
+}
+
+.cat-slider-heading-big {
+  @apply ml-2 text-2xl;
+}
+
+.cat-slider-heading {
+  @apply mb-1 flex-row items-center justify-between gap-0;
+}
+
+/* ================================================================
+   SLIDER CONTROLS
+   ================================================================ */
+
+.slider-btn-section {
+  @apply pointer-events-none absolute inset-0 z-[20] w-full;
+}
+
+.slider-btn-section .slider-btn {
+  @apply pointer-events-auto absolute top-1/2 flex -translate-y-1/2 select-none flex-col items-center justify-center rounded-xl border border-border bg-surfaceLight/95 px-2 py-4 shadow-2xl backdrop-blur-md transition-all duration-300;
+}
+
+.slider-btn-section .slider-btn:hover {
+  @apply border-primary/50 bg-surfaceLight shadow-[0_0_30px_rgba(140,82,255,0.15)];
+}
+
+.slider-btn-section .slider-btn:hover .s-btn {
+  fill: #b28cff;
+}
+
+.slider-btn-section .left {
+  @apply left-2;
+}
+
+.slider-btn-section .right {
+  @apply right-2;
+}
+
+.slider-btn-section .hidden {
+  display: none;
+}
+
+.slider-btn-section .disable-click {
+  pointer-events: none;
+}
+
+/* ================================================================
+   MISC
+   ================================================================ */
 
 .put-margin {
-    @apply mb-10;
+  @apply mb-10;
 }
 
-/*Anime Slider Button Section*/
-.slider-btn-section {
-    @apply absolute z-[11] w-full pointer-events-none inset-0;
+/* ================================================================
+   MOBILE
+   ================================================================ */
 
+@media (max-width: 600px) {
+  .anime-slider-section {
+    @apply mb-10 py-8;
+  }
 
-    .slider-btn {
-        transition: display 0.5s ease-out;
-        @apply absolute z-[11] border-2 border-white rounded-[4px] flex flex-col items-center bg-black/50 select-none py-4 px-1.5 pointer-events-auto top-[50%] translate-y-[-50%];
-    }
+  .slider-heading {
+    @apply mb-5 px-5;
+  }
 
-    .left {
-        left: 0;
-    }
+  .slider-section-text-big {
+    @apply text-[1.4rem];
+  }
 
-    .right {
-        right: 0;
-    }
+  .slider-section-text-small {
+    @apply text-[11px] leading-5;
+  }
 
-    .slider-btn:hover .s-btn {
-        fill: #8c52ff;
-    }
+  .slider-container {
+    @apply gap-2.5 px-5 pb-3;
+  }
 
-    .hidden {
-        display: none;
-    }
+  .slider-btn-section {
+    display: none;
+  }
 
-    .disable-click {
-        pointer-events: none;
-    }
-
-    @media (max-width: 600px) {
-        .slider-btn {
-            padding: 5px;
-        }
-
-        .slider-btn-section {
-            display: none;
-        }
-    }
+  .slider-content-wrapper::before {
+    @apply top-[-10px] bottom-[-10px];
+  }
 }

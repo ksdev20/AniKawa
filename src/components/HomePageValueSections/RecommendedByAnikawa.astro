@@ -1,67 +1,71 @@
 ---
+import "@/styles/components/HomePage/anikawa-picks.css";
 import AnimeSliderStatic from "../AnimeSlider/AnimeSliderStatic.astro";
+import {
+  SparkleIcon,
+  ArrowRightIcon,
+  LightbulbIcon,
+} from "@phosphor-icons/react";
+
 const sliderData = Astro.props.info;
 ---
 
-<section class="editors-section put-margin">
-  <div class="section-header">
-    <span class="section-badge"> 💜 AniKawa Picks </span>
+<section class="anikawa-picks">
+  <div class="anikawa-picks-container">
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
 
-    <h2 class="section-title">Editor's Picks</h2>
+    <header class="anikawa-picks-header">
+      <div class="anikawa-picks-heading">
+        <span class="anikawa-picks-kicker">
+          <SparkleIcon size={15} weight="duotone" />
+          AniKawa Picks
+        </span>
 
-    <p class="section-subtitle">
-      Anime we believe every fan should experience.
-    </p>
-  </div>
+        <h2 class="anikawa-picks-title">
+          Handpicked anime.
+          <span>Worth your time.</span>
+        </h2>
 
-  <AnimeSliderStatic info={sliderData} />
-
-  <section class="editors-note-section">
-    <div class="editors-note-container">
-      <h3 class="editors-note-title">Why We Chose These Anime</h3>
-
-      <div class="editors-reasons">
-        <div class="editor-reason">
-          <span>✨</span>
-          <div>
-            <h4>Unforgettable Stories</h4>
-            <p>
-              Anime with stories that stay with you long after the final
-              episode.
-            </p>
-          </div>
-        </div>
-
-        <div class="editor-reason">
-          <span>🌌</span>
-          <div>
-            <h4>Unique Worlds & Ideas</h4>
-            <p>
-              Series that explore concepts and experiences you won't find
-              everywhere.
-            </p>
-          </div>
-        </div>
-
-        <div class="editor-reason">
-          <span>💙</span>
-          <div>
-            <h4>Emotional Impact</h4>
-            <p>
-              Shows that make you laugh, think, and genuinely connect with the
-              story.
-            </p>
-          </div>
-        </div>
-
-        <div class="editor-reason">
-          <span>🔥</span>
-          <div>
-            <h4>Hidden Gems</h4>
-            <p>Amazing anime that deserve more attention from fans.</p>
-          </div>
-        </div>
+        <p class="anikawa-picks-subtitle">
+          A selection from the AniKawa team — stories, worlds, and experiences
+          we think are worth discovering.
+        </p>
       </div>
+
+      <a href="/list?sort=popular" class="anikawa-picks-link">
+        Explore anime
+        <ArrowRightIcon size={17} weight="bold" aria-hidden="true" />
+      </a>
+    </header>
+
+    <!-- ============================================================
+         ANIME RAIL
+         ============================================================ -->
+
+    <div class="anikawa-picks-slider">
+      <AnimeSliderStatic info={sliderData} />
     </div>
-  </section>
+
+    <!-- ============================================================
+         EDITORIAL NOTE
+         ============================================================ -->
+
+    <aside class="anikawa-picks-note">
+      <div class="anikawa-picks-note-icon">
+        <LightbulbIcon size={20} weight="duotone" />
+      </div>
+
+      <div>
+        <h3>Why these picks?</h3>
+
+        <p>
+          We look beyond popularity. These recommendations can come from
+          memorable storytelling, distinctive worlds, emotional impact, or
+          simply being an anime we think deserves more attention.
+        </p>
+      </div>
+    </aside>
+  </div>
 </section>

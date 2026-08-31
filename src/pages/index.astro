@@ -15,6 +15,8 @@ import NewReleasesSection from "../components/HomePageValueSections/NewReleasesS
 import BlogsSectionHomepage from "../components/Blog/BlogsSectionHomepage.astro";
 import FaqSection from "../components/HomePageValueSections/FaqSection.astro";
 import { BlogSection2, recentlyWatched, SliderData } from "@/config/homepage";
+import AnimeDiscoveryGateway from "@/components/HomePageValueSections/AnimeDiscoveryGateway.astro";
+import AnikawaIntro from "@/components/HomePageValueSections/AnikawaIntro.astro";
 ---
 
 <Layout>
@@ -26,18 +28,16 @@ import { BlogSection2, recentlyWatched, SliderData } from "@/config/homepage";
     </div>
   </div>
   <HeroSectionTmdb />
-  <ShareAnikawa />
   <ContinueWatchingSlider client:load />
-  <HomepageIntroSection />
+  <AnikawaIntro />
+  <AnimeDiscoveryGateway />
   <AnimeSliderStatic info={SliderData[0]} />
-  <WhyAnikawa />
   <RecommendedByAnikawa info={SliderData[1]} />
-  <AnimeSliderClient info={recentlyWatched} client:visible />
-  <BrowseByCategory />
   <LatestEpisodes />
   <PopularAnimeSection />
   <NewReleasesSection />
-  <ShareAnikawa />
+  <AnimeSliderClient info={recentlyWatched} client:visible />
   <BlogsSectionHomepage info={BlogSection2} />
+  <ShareAnikawa />
   <FaqSection />
 </Layout>

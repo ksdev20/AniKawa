@@ -1,29 +1,41 @@
 ---
-import "./faq-section.css";
+import "@/styles/components/HomePage/faq-section.css";
+
 ---
 
-<section class="anikawa-faq-section">
+<section class="anikawa-faq-section" aria-labelledby="anikawa-faq-title">
   <div class="anikawa-faq-container">
-    <div class="anikawa-faq-header">
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+
+    <header class="anikawa-faq-header">
       <span class="section-badge"> ❓ Frequently Asked Questions </span>
 
-      <h2 class="section-title">Anime Questions, Answered</h2>
+      <h2 id="anikawa-faq-title" class="section-title">
+        Anime Questions, Answered
+      </h2>
 
       <p class="section-subtitle">
-        Everything you need to know about discovering, tracking, and exploring
-        anime on AniKawa.
+        Everything you need to know about discovering, watching, and getting
+        more out of AniKawa.
       </p>
-    </div>
+    </header>
+
+    <!-- ============================================================
+     QUESTIONS
+     ============================================================ -->
 
     <div class="anikawa-faq-list">
       <details class="anikawa-faq-item">
-        <summary> How is AniKawa different from other anime websites? </summary>
+        <summary> What can I do on AniKawa? </summary>
 
         <p>
-          AniKawa goes beyond basic anime listings by offering curated anime
-          recommendations, detailed anime guides, AniKawa Notes, community
-          ratings, watchlists, viewing history, and personalized discovery
-          features designed specifically for anime fans.
+          You can discover anime through categories, filters, recommendations,
+          and curated collections; explore detailed anime pages; watch available
+          episodes; save anime to your personal lists; track your viewing
+          history; leave comments and feedback; and manage your profile and
+          preferences in one place.
         </p>
       </details>
 
@@ -31,48 +43,50 @@ import "./faq-section.css";
         <summary> Can I save anime to watch later? </summary>
 
         <p>
-          Yes. Logged-in users can create personal watchlists, track their
-          viewing history, and easily return to anime they plan to watch in the
-          future.
+          Yes. Logged-in users can add anime to their personal lists, keep track
+          of favorites, and return to titles they want to watch later. Your
+          viewing history also makes it easier to pick up where you left off.
         </p>
       </details>
 
       <details class="anikawa-faq-item">
-        <summary> How do I discover anime similar to my favorites? </summary>
+        <summary> How can I discover anime similar to my favorites? </summary>
 
         <p>
-          Every anime page includes similar anime recommendations, related
-          genres, curated collections, and editor-selected suggestions to help
-          you find your next series.
+          AniKawa provides similar-anime recommendations, genre information,
+          curated collections, categories, and a detailed discovery system with
+          filters for finding anime based on different preferences.
         </p>
       </details>
 
       <details class="anikawa-faq-item">
-        <summary> What information can I find on an anime page? </summary>
+        <summary> What information is available on an anime page? </summary>
 
         <p>
-          Along with synopsis, ratings, genres, and episode details, many anime
-          pages include viewing recommendations, standout episodes, fun facts,
-          trivia, community ratings, and exclusive AniKawa Notes.
+          Anime pages can include the synopsis, ratings, genres, release
+          information, episode details, recommendations, viewing information,
+          facts, insights, community features, and AniKawa's own editorial notes
+          where available.
         </p>
       </details>
 
       <details class="anikawa-faq-item">
-        <summary> Does AniKawa regularly add new anime and episodes? </summary>
+        <summary> Does AniKawa add new anime and episodes? </summary>
 
         <p>
-          Yes. AniKawa is continuously updated with newly released anime,
-          recently aired episodes, seasonal series, and popular fan favorites.
+          Yes. AniKawa's catalog is regularly updated with new anime, recently
+          released episodes, seasonal titles, and other additions as they become
+          available.
         </p>
       </details>
 
       <details class="anikawa-faq-item">
-        <summary> Which anime genres can I explore on AniKawa? </summary>
+        <summary> Which anime genres can I explore? </summary>
 
         <p>
-          You can browse Action, Romance, Fantasy, Isekai, Comedy, Drama,
-          Thriller, Sci-Fi, Sports, Supernatural, Music, Shounen, and many other
-          anime categories.
+          You can explore a wide range of genres and themes, including Action,
+          Adventure, Comedy, Drama, Fantasy, Romance, Sci-Fi, Sports,
+          Supernatural, Thriller, Isekai, Music, and many others.
         </p>
       </details>
     </div>

@@ -1,7 +1,9 @@
 ---
-import "./share-anikawa.css";
+import "@/styles/components/HomePage/share-anikawa.css";
 import { frontendUrl } from "@/global_assets/globalPaths";
 import ShareAnikawaCSR from "./ShareAnikawaCSR";
+
+import { ShareNetworkIcon, ArrowUpRightIcon } from "@phosphor-icons/react";
 
 const siteUrl = frontendUrl;
 
@@ -15,58 +17,87 @@ const encodedText = encodeURIComponent(text);
 const shareLinks = [
   {
     name: "WhatsApp",
-    icon: "https://img.icons8.com/?size=35&id=16713&format=png&color=000000",
     href: `https://wa.me/?text=${encodedText}%20${encodedUrl}`,
   },
   {
     name: "X",
-    icon: "https://img.icons8.com/?size=35&id=phOKFKYpe00C&format=png&color=ffffff",
     href: `https://twitter.com/intent/tweet?text=${encodedText}&url=${encodedUrl}`,
   },
   {
     name: "Reddit",
-    icon: "https://img.icons8.com/?size=35&id=FLisMqR76b1i&format=png&color=000000",
     href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodeURIComponent(title)}`,
   },
   {
     name: "Facebook",
-    icon: "https://img.icons8.com/?size=35&id=114441&format=png&color=000000",
     href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
   },
 ];
 ---
 
-<section class="share-section">
-  <div class="share-card">
-    <h2 class="share-title">💜 Enjoying AniKawa?</h2>
+<section class="share-section" aria-labelledby="share-anikawa-title">
+  <div class="share-container">
+    <div class="share-card">
+      <!-- Decorative glow -->
+      <div class="share-card-glow" aria-hidden="true"></div>
 
-    <p class="share-subtitle">
-      If AniKawa helped you discover your next favorite anime, share it with
-      another anime fan.
-    </p>
+      <!-- ============================================================
+           ICON
+           ============================================================ -->
 
-    <ShareAnikawaCSR client:load url={siteUrl} />
+      <div class="share-icon">
+        <ShareNetworkIcon size={25} weight="duotone" aria-hidden="true" />
+      </div>
 
-    <div class="share-buttons">
-      {
-        shareLinks.map((social) => (
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="share-button"
-            aria-label={`Share on ${social.name}`}
-          >
-            <img
-              src={social.icon}
-              alt=""
-              loading="lazy"
-              width="35"
-              height="35"
-            />
-          </a>
-        ))
-      }
+      <!-- ============================================================
+           CONTENT
+           ============================================================ -->
+
+      <div class="share-content">
+        <span class="share-kicker"> Spread the word </span>
+
+        <h2 id="share-anikawa-title" class="share-title">
+          Found something
+          <span> worth watching?</span>
+        </h2>
+
+        <p class="share-subtitle">
+          Share AniKawa with another anime fan and help them discover something
+          they'll love.
+        </p>
+      </div>
+
+      <!-- ============================================================
+           PRIMARY SHARE
+           ============================================================ -->
+
+      <div class="share-action">
+        <ShareAnikawaCSR client:load url={siteUrl} />
+      </div>
+
+      <!-- ============================================================
+           SOCIAL SHORTCUTS
+           ============================================================ -->
+
+      <div class="share-social">
+        <span class="share-social-label"> Or share on </span>
+
+        <div class="share-buttons">
+          {
+            shareLinks.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="share-button"
+                aria-label={`Share AniKawa on ${social.name}`}
+              >
+                <span>{social.name}</span>
+                <ArrowUpRightIcon size={14} weight="bold" aria-hidden="true" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
 </section>

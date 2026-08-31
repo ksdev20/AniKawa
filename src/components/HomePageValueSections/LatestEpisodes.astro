@@ -1,41 +1,82 @@
 ---
-import {
-  getNewest15Episodes,
-} from "../../filters/animeFilterMainTmdbVer.ts";
+import { getNewest15Episodes } from "../../filters/animeFilterMainTmdbVer.ts";
 import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
 import EpisodeCardStatic from "../EpisodeCard/EpisodeCardStatic.astro";
-import "./latest-episodes.css";
+import "@/styles/components/HomePage/latest-episodes.css";
+import {
+  LightningIcon,
+  ArrowRightIcon,
+  CalendarDotsIcon,
+} from "@phosphor-icons/react";
 
 const latestEpisodes = await getNewest15Episodes();
 ---
 
-<section class="latest-episodes-section">
+<section class="latest-episodes put-margin">
   <div class="latest-episodes-container">
-    <div class="latest-episodes-header">
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+
+    <header class="latest-episodes-header">
       <div class="latest-episodes-heading">
-        <span class="section-badge"> ⚡ Fresh Releases </span>
+        <span class="latest-episodes-kicker">
+          <LightningIcon size={15} weight="fill" />
+          Fresh Releases
+        </span>
 
-        <h2 class="section-title">Latest Episodes</h2>
+        <h2 class="latest-episodes-title">
+          What's new
+          <span> right now.</span>
+        </h2>
 
-        <p class="section-subtitle">
-          Catch the newest anime episodes and stay up to date with currently
-          airing series.
+        <p class="latest-episodes-subtitle">
+          The newest episodes added to AniKawa, so you can jump straight into
+          what's airing and what's just been released.
         </p>
       </div>
 
-      <!-- <a href="/latest-episodes" class="latest-episodes-view-all">
-        View All Episodes →
-      </a> -->
+      <a href="/list?sort=newest" class="latest-episodes-link">
+        Browse anime
+        <ArrowRightIcon size={17} weight="bold" aria-hidden="true" />
+      </a>
+    </header>
+
+    <!-- ============================================================
+         EPISODE RAIL
+         ============================================================ -->
+
+    <div class="latest-episodes-slider">
+      <div class="latest-episodes-rail">
+        <ul class="slider-container">
+          {
+            latestEpisodes.map((episode: any) => (
+              <EpisodeCardStatic epData={episode} />
+            ))
+          }
+        </ul>
+
+        <AnimeSliderCSR client:load />
+      </div>
     </div>
-    <section class="slider-content-wrapper">
-      <ul class="slider-container">
-        {
-          latestEpisodes.map((episode: any) => {
-            return <EpisodeCardStatic epData={episode} />;
-          })
-        }
-      </ul>
-      <AnimeSliderCSR client:load />
-    </section>
+
+    <!-- ============================================================
+         CONTEXT
+         ============================================================ -->
+
+    <div class="latest-episodes-context">
+      <div class="latest-episodes-context-icon">
+        <CalendarDotsIcon size={20} weight="duotone" />
+      </div>
+
+      <div>
+        <h3>Stay caught up</h3>
+
+        <p>
+          New episodes are added as they become available, making this a quick
+          way to see what's recently arrived on AniKawa.
+        </p>
+      </div>
+    </div>
   </div>
 </section>

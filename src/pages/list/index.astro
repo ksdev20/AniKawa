@@ -1,0 +1,1022 @@
+---
+import "@/styles/pages/list/index.css";
+
+import Layout from "@/layouts/Layout.astro";
+import SEOHead from "@/components/SEO/SEOHead.astro";
+import AnimeCardStatic from "@/components/AnimeCard/AnimeCardStaticTmdbVer.astro";
+import ListFilters from "@/components/List/ListFilters";
+
+import { AnimeCatalog } from "@/lib/anime/AnimeCatalog";
+import type { Anime } from "@/lib/anime";
+
+/* ========================================================================== */
+/* Configuration                                                              */
+/* ========================================================================== */
+
+const ITEMS_PER_PAGE = 24;
+
+const SORT_OPTIONS = [
+  { value: "popular", label: "Most Popular" },
+  { value: "rating", label: "Highest Rated" },
+  { value: "rated", label: "Most Rated" },
+  { value: "newest", label: "Newest" },
+  { value: "oldest", label: "Oldest" },
+  { value: "title-asc", label: "Title: A–Z" },
+  { value: "title-desc", label: "Title: Z–A" },
+  { value: "episodes-desc", label: "Most Episodes" },
+  { value: "episodes-asc", label: "Fewest Episodes" },
+] as const;
+
+const VALID_SORTS = new Set(
+  SORT_OPTIONS.map((option) => option.value),
+);
+
+const VALID_LANGUAGES = new Set([
+  "sub",
+  "dub",
+  "both",
+]);
+
+const VALID_EPISODE_RANGES = new Set([
+  "1-12",
+  "13-24",
+  "25-50",
+  "51-100",
+  "100-plus",
+]);
+
+const VALID_MIN_SCORES = new Set([
+  "7",
+  "7.5",
+  "8",
+  "8.5",
+  "9",
+]);
+
+/* ========================================================================== */
+/* Helpers                                                                    */
+/* ========================================================================== */
+
+function normalize(value: unknown): string {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase();
+}
+
+function slugify(value: string): string {
+  return normalize(value)
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getEpisodeCount(anime: Anime): number {
+  return anime.episodes?.length ?? 0;
+}
+
+function getSearchText(anime: Anime): string {
+  return [
+    anime.title,
+    anime.tagline,
+    anime.description,
+    anime.genres?.join(" "),
+    anime.keywords,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function getAnimeLanguage(anime: Anime): {
+  hasSub: boolean;
+  hasDub: boolean;
+} {
+  const episodes = anime.episodes ?? [];
+
+  const hasSub = episodes.some(
+    (episode) => normalize(episode.audio) === "ja",
+  );
+
+  const hasDub = episodes.some(
+    (episode) => normalize(episode.audio) !== "ja",
+  );
+
+  return {
+    hasSub,
+    hasDub,
+  };
+}
+
+function getPageUrl(
+  pageNumber: number,
+  currentUrl: URL,
+): string {
+  const params = new URLSearchParams(currentUrl.searchParams);
+
+  if (pageNumber <= 1) {
+    params.delete("page");
+  } else {
+    params.set("page", String(pageNumber));
+  }
+
+  const query = params.toString();
+
+  return query
+    ? `/list?${query}`
+    : "/list";
+}
+
+/* ========================================================================== */
+/* Read URL state                                                             */
+/* ========================================================================== */
+
+const params = Astro.url.searchParams;
+
+const search = params.get("search")?.trim().slice(0, 100) ?? "";
+
+const requestedSort = params.get("sort") ?? "popular";
+
+const sort = VALID_SORTS.has(
+  requestedSort as (typeof SORT_OPTIONS)[number]["value"],
+)
+  ? requestedSort
+  : "popular";
+
+const requestedStatus = params.get("status") ?? "";
+
+const requestedFormat = params.get("format") ?? "";
+
+const requestedLanguage = params.get("language") ?? "";
+
+const language = VALID_LANGUAGES.has(requestedLanguage)
+  ? requestedLanguage
+  : "";
+
+const requestedYear = params.get("year") ?? "";
+
+const year = /^\d{4}$/.test(requestedYear)
+  ? Number(requestedYear)
+  : null;
+
+const requestedCountry = params.get("country") ?? "";
+
+const requestedMinScore = params.get("minScore") ?? "";
+
+const minScore = VALID_MIN_SCORES.has(requestedMinScore)
+  ? Number(requestedMinScore)
+  : null;
+
+const requestedEpisodes = params.get("episodes") ?? "";
+
+const episodes = VALID_EPISODE_RANGES.has(requestedEpisodes)
+  ? requestedEpisodes
+  : "";
+
+const requestedPage = Number(params.get("page") ?? "1");
+
+const currentPage =
+  Number.isInteger(requestedPage) && requestedPage > 0
+    ? requestedPage
+    : 1;
+
+/* ========================================================================== */
+/* Catalog                                                                    */
+/* ========================================================================== */
+
+const allAnime = [...(await AnimeCatalog.getAllAnime())];
+
+/* ========================================================================== */
+/* Build dynamic filter options                                               */
+/* ========================================================================== */
+
+const genres = [
+  ...new Set(
+    allAnime
+      .flatMap((anime) => anime.genres ?? [])
+      .filter(Boolean),
+  ),
+].sort((a, b) => a.localeCompare(b));
+
+const formats = [
+  ...new Set(
+    allAnime
+      .map((anime) => anime.format)
+      .filter(
+        (format): format is NonNullable<typeof format> =>
+          Boolean(format),
+      ),
+  ),
+].sort((a, b) => a.localeCompare(b));
+
+const statuses = [
+  ...new Set(
+    allAnime
+      .map((anime) => anime.status)
+      .filter(Boolean),
+  ),
+].sort((a, b) => a.localeCompare(b));
+
+const years = [
+  ...new Set(
+    allAnime
+      .map((anime) => anime.year)
+      .filter(
+        (animeYear): animeYear is number =>
+          typeof animeYear === "number",
+      ),
+  ),
+].sort((a, b) => b - a);
+
+const countries = [
+  ...new Set(
+    allAnime
+      .map((anime) => anime.country)
+      .filter(
+        (country): country is string =>
+          Boolean(country),
+      ),
+  ),
+].sort((a, b) => a.localeCompare(b));
+
+/* ========================================================================== */
+/* Validate dynamic filters                                                   */
+/* ========================================================================== */
+
+const selectedGenres = [
+  ...new Set(
+    params
+      .getAll("genre")
+      .map((genre) => genre.trim())
+      .filter((genre) => genres.includes(genre)),
+  ),
+];
+
+const status = statuses.includes(requestedStatus)
+  ? requestedStatus
+  : "";
+
+const format = formats.includes(
+  requestedFormat as NonNullable<Anime["format"]>,
+)
+  ? (requestedFormat as NonNullable<Anime["format"]>)
+  : "";
+
+const country = countries.includes(requestedCountry)
+  ? requestedCountry
+  : "";
+
+/* ========================================================================== */
+/* Filtering                                                                  */
+/* ========================================================================== */
+
+let filteredAnime = [...allAnime];
+
+/* Search */
+
+if (search) {
+  const normalizedSearch = normalize(search);
+
+  filteredAnime = filteredAnime.filter((anime) =>
+    getSearchText(anime).includes(normalizedSearch),
+  );
+}
+
+/* Status */
+
+if (status) {
+  const normalizedStatus = normalize(status);
+
+  filteredAnime = filteredAnime.filter(
+    (anime) =>
+      normalize(anime.status) === normalizedStatus,
+  );
+}
+
+/* Format */
+
+if (format) {
+  const normalizedFormat = normalize(format);
+
+  filteredAnime = filteredAnime.filter(
+    (anime) =>
+      normalize(anime.format) === normalizedFormat,
+  );
+}
+
+/* Language */
+
+if (language) {
+  filteredAnime = filteredAnime.filter((anime) => {
+    const { hasSub, hasDub } = getAnimeLanguage(anime);
+
+    if (language === "sub") {
+      return hasSub;
+    }
+
+    if (language === "dub") {
+      return hasDub;
+    }
+
+    return hasSub && hasDub;
+  });
+}
+
+/* Genres — anime must contain ALL selected genres */
+
+if (selectedGenres.length > 0) {
+  const normalizedSelectedGenres = selectedGenres.map(normalize);
+
+  filteredAnime = filteredAnime.filter((anime) => {
+    const animeGenres = new Set(
+      (anime.genres ?? []).map(normalize),
+    );
+
+    return normalizedSelectedGenres.every((genre) =>
+      animeGenres.has(genre),
+    );
+  });
+}
+
+/* Year */
+
+if (year !== null) {
+  filteredAnime = filteredAnime.filter(
+    (anime) => anime.year === year,
+  );
+}
+
+/* Minimum score */
+
+if (minScore !== null) {
+  filteredAnime = filteredAnime.filter(
+    (anime) => Number(anime.score ?? 0) >= minScore,
+  );
+}
+
+/* Episode range */
+
+if (episodes) {
+  filteredAnime = filteredAnime.filter((anime) => {
+    const count = getEpisodeCount(anime);
+
+    switch (episodes) {
+      case "1-12":
+        return count >= 1 && count <= 12;
+
+      case "13-24":
+        return count >= 13 && count <= 24;
+
+      case "25-50":
+        return count >= 25 && count <= 50;
+
+      case "51-100":
+        return count >= 51 && count <= 100;
+
+      case "100-plus":
+        return count > 100;
+
+      default:
+        return true;
+    }
+  });
+}
+
+/* Country */
+
+if (country) {
+  const normalizedCountry = normalize(country);
+
+  filteredAnime = filteredAnime.filter(
+    (anime) =>
+      normalize(anime.country) === normalizedCountry,
+  );
+}
+
+/* ========================================================================== */
+/* Sorting                                                                    */
+/* ========================================================================== */
+
+filteredAnime.sort((a, b) => {
+  switch (sort) {
+    case "rating":
+      return (
+        Number(b.score ?? 0) -
+        Number(a.score ?? 0)
+      );
+
+    case "rated":
+      return (
+        Number(b.ratedBy ?? 0) -
+        Number(a.ratedBy ?? 0)
+      );
+
+    case "newest":
+      return (
+        new Date(b.startDate).getTime() -
+        new Date(a.startDate).getTime()
+      );
+
+    case "oldest":
+      return (
+        new Date(a.startDate).getTime() -
+        new Date(b.startDate).getTime()
+      );
+
+    case "title-asc":
+      return a.title.localeCompare(b.title);
+
+    case "title-desc":
+      return b.title.localeCompare(a.title);
+
+    case "episodes-desc":
+      return getEpisodeCount(b) - getEpisodeCount(a);
+
+    case "episodes-asc":
+      return getEpisodeCount(a) - getEpisodeCount(b);
+
+    case "popular":
+    default:
+      return (
+        Number(b.popularity ?? 0) -
+        Number(a.popularity ?? 0)
+      );
+  }
+});
+
+/* ========================================================================== */
+/* Pagination                                                                 */
+/* ========================================================================== */
+
+const totalResults = filteredAnime.length;
+
+const totalPages = Math.max(
+  1,
+  Math.ceil(totalResults / ITEMS_PER_PAGE),
+);
+
+const safePage = Math.min(currentPage, totalPages);
+
+const startIndex =
+  (safePage - 1) * ITEMS_PER_PAGE;
+
+const pageAnime = filteredAnime.slice(
+  startIndex,
+  startIndex + ITEMS_PER_PAGE,
+);
+
+/* ========================================================================== */
+/* Active filters                                                             */
+/* ========================================================================== */
+
+const activeFilters = [
+  search && {
+    label: `Search: ${search}`,
+    key: "search",
+  },
+
+  status && {
+    label: status,
+    key: "status",
+  },
+
+  format && {
+    label: format,
+    key: "format",
+  },
+
+  language && {
+    label:
+      language === "sub"
+        ? "Subtitled"
+        : language === "dub"
+          ? "Dubbed"
+          : "Sub + Dub",
+    key: "language",
+  },
+
+  year && {
+    label: String(year),
+    key: "year",
+  },
+
+  minScore && {
+    label: `${minScore}+ rating`,
+    key: "minScore",
+  },
+
+  episodes && {
+    label:
+      episodes === "100-plus"
+        ? "100+ episodes"
+        : `${episodes} episodes`,
+    key: "episodes",
+  },
+
+  country && {
+    label: country,
+    key: "country",
+  },
+
+  ...selectedGenres.map((genre) => ({
+    label: genre,
+    key: "genre",
+    value: genre,
+  })),
+].filter(Boolean) as Array<{
+  label: string;
+  key: string;
+  value?: string;
+}>;
+
+/* ========================================================================== */
+/* SEO                                                                        */
+/* ========================================================================== */
+
+const hasFilters =
+  activeFilters.length > 0 ||
+  sort !== "popular" ||
+  safePage > 1;
+
+const pageTitle = search
+  ? `Search Results for "${search}" | Anikawa`
+  : hasFilters
+    ? `Anime Discovery Results | Anikawa`
+    : "Explore Anime | Anikawa Anime Catalog";
+
+const pageDescription = search
+  ? `Browse anime matching "${search}" on Anikawa. Explore titles by rating, genre, format, language and more.`
+  : "Explore the Anikawa anime catalog. Discover anime by genre, rating, popularity, release year, format, language and more.";
+
+const pageUrl = "https://anikawa.fun/list";
+
+const pageRobots = hasFilters
+  ? "noindex,follow"
+  : "index,follow";
+
+/* ========================================================================== */
+/* Pagination numbers                                                         */
+/* ========================================================================== */
+
+const paginationNumbers = Array.from(
+  { length: totalPages },
+  (_, index) => index + 1,
+).filter((pageNumber) => {
+  return (
+    pageNumber === 1 ||
+    pageNumber === totalPages ||
+    Math.abs(pageNumber - safePage) <= 2
+  );
+});
+---
+
+<Fragment slot="head">
+  <SEOHead
+    title={pageTitle}
+    description={pageDescription}
+    keywords="anime list, anime discovery, popular anime, highest rated anime, anime by genre"
+    ogDescription={pageDescription}
+    url={pageUrl}
+  />
+
+  <link
+    rel="canonical"
+    href={pageUrl}
+  />
+
+  <meta
+    name="robots"
+    content={pageRobots}
+  />
+</Fragment>
+
+<Layout>
+  <main class="list-page">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+
+    <section class="list-hero">
+      <div class="list-container">
+
+        <div class="list-hero-content">
+          <p class="list-kicker">
+            Anime Discovery
+          </p>
+
+          <h1 class="list-heading">
+            Explore the anime catalog
+          </h1>
+
+          <p class="list-description">
+            Discover something worth watching. Search and explore anime
+            by genre, rating, popularity, release year, format,
+            language, and more.
+          </p>
+
+          <nav
+            class="list-quick-links"
+            aria-label="Quick anime discovery"
+          >
+            <a href="/list?sort=popular">
+              Popular
+            </a>
+
+            <a href="/list?sort=rating">
+              Highest Rated
+            </a>
+
+            <a href="/list?status=Ongoing">
+              Currently Airing
+            </a>
+
+            <a href="/list?format=Movie">
+              Movies
+            </a>
+
+            <a href="/list?sort=newest">
+              Newest
+            </a>
+          </nav>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AD
+         ============================================================ -->
+
+    <div class="list-container">
+      <div
+        id="banner-ad-1"
+        class="banner-ad-container"
+      ></div>
+    </div>
+
+    <!-- ============================================================
+         FILTER + RESULTS
+         ============================================================ -->
+
+    <section class="list-catalog-section">
+      <div class="list-container">
+
+        <ListFilters
+          client:load
+          search={search}
+          sort={sort}
+          status={status}
+          format={format}
+          language={language}
+          year={year}
+          minScore={minScore}
+          episodes={episodes}
+          country={country}
+          selectedGenres={selectedGenres}
+          genres={genres}
+          statuses={statuses}
+          formats={formats}
+          years={years}
+          countries={countries}
+          totalResults={totalResults}
+          sortOptions={[...SORT_OPTIONS]}
+        />
+
+        <!-- Active filters -->
+
+        {
+          activeFilters.length > 0 && (
+            <div class="list-active-filters">
+              <div class="list-active-filters-header">
+                <span>Active filters</span>
+
+                <a
+                  href="/list"
+                  class="list-clear-all"
+                >
+                  Clear all
+                </a>
+              </div>
+
+              <div class="list-filter-chips">
+                {activeFilters.map((filter) => {
+                  const chipParams =
+                    new URLSearchParams(
+                      Astro.url.searchParams,
+                    );
+
+                  if (
+                    filter.key === "genre" &&
+                    filter.value
+                  ) {
+                    const remainingGenres =
+                      chipParams
+                        .getAll("genre")
+                        .filter(
+                          (genre) =>
+                            genre !== filter.value,
+                        );
+
+                    chipParams.delete("genre");
+
+                    remainingGenres.forEach((genre) => {
+                      chipParams.append(
+                        "genre",
+                        genre,
+                      );
+                    });
+                  } else {
+                    chipParams.delete(filter.key);
+                  }
+
+                  chipParams.delete("page");
+
+                  const query =
+                    chipParams.toString();
+
+                  const href = query
+                    ? `/list?${query}`
+                    : "/list";
+
+                  return (
+                    <a
+                      href={href}
+                      class="list-filter-chip"
+                    >
+                      <span>
+                        {filter.label}
+                      </span>
+
+                      <span aria-hidden="true">
+                        ×
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )
+        }
+
+        <!-- Results -->
+         <div id="list-results" />
+        <section
+          class="list-results"
+          aria-labelledby="list-results-heading"
+        >
+          <header class="list-results-header">
+            <div>
+              <p class="list-results-kicker">
+                Browse the catalog
+              </p>
+
+              <h2 id="list-results-heading">
+                {
+                  search
+                    ? `Results for "${search}"`
+                    : `${totalResults.toLocaleString()} Anime Found`
+                }
+              </h2>
+            </div>
+
+            <p class="list-page-indicator">
+              Page {safePage} of {totalPages}
+            </p>
+          </header>
+
+          {
+            pageAnime.length > 0 ? (
+              <ul class="list-anime-grid">
+                {
+                  pageAnime.map((anime) => (
+                    <AnimeCardStatic
+                      anime={anime}
+                      forNewPop={true}
+                    />
+                  ))
+                }
+              </ul>
+            ) : (
+              <div class="list-empty-state">
+                <span class="list-empty-icon">
+                  ◌
+                </span>
+
+                <h2>
+                  Nothing matched those filters
+                </h2>
+
+                <p>
+                  Try removing a filter or return to the
+                  complete anime catalog.
+                </p>
+
+                <a
+                  href="/list"
+                  class="list-primary-button"
+                >
+                  Browse all anime
+                </a>
+              </div>
+            )
+          }
+
+          {
+            totalPages > 1 && (
+              <nav
+                class="list-pagination"
+                aria-label="Anime list pagination"
+              >
+                <a
+                  href={
+                    safePage > 1
+                      ? getPageUrl(
+                          safePage - 1,
+                          Astro.url,
+                        )
+                      : undefined
+                  }
+                  class:list-pagination-disabled={
+                    safePage === 1
+                  }
+                  aria-disabled={
+                    safePage === 1
+                  }
+                >
+                  ← Previous
+                </a>
+
+                <div class="list-pagination-numbers">
+                  {
+                    paginationNumbers.map(
+                      (pageNumber, index) => {
+                        const previousPage =
+                          paginationNumbers[index - 1];
+
+                        const showEllipsis =
+                          previousPage &&
+                          pageNumber -
+                            previousPage >
+                            1;
+
+                        return (
+                          <>
+                            {
+                              showEllipsis && (
+                                <span class="list-pagination-ellipsis">
+                                  …
+                                </span>
+                              )
+                            }
+
+                            <a
+                              href={getPageUrl(
+                                pageNumber,
+                                Astro.url,
+                              )}
+                              class:list-pagination-current={
+                                pageNumber ===
+                                safePage
+                              }
+                              aria-current={
+                                pageNumber ===
+                                safePage
+                                  ? "page"
+                                  : undefined
+                              }
+                            >
+                              {pageNumber}
+                            </a>
+                          </>
+                        );
+                      },
+                    )
+                  }
+                </div>
+
+                <a
+                  href={
+                    safePage < totalPages
+                      ? getPageUrl(
+                          safePage + 1,
+                          Astro.url,
+                        )
+                      : undefined
+                  }
+                  class:list-pagination-disabled={
+                    safePage === totalPages
+                  }
+                  aria-disabled={
+                    safePage === totalPages
+                  }
+                >
+                  Next →
+                </a>
+              </nav>
+            )
+          }
+        </section>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECONDARY AD
+         ============================================================ -->
+
+    <div class="list-container">
+      <div
+        id="banner-ad-2"
+        class="banner-ad-container"
+      ></div>
+    </div>
+
+    <!-- ============================================================
+         DISCOVERY CONTENT
+         ============================================================ -->
+
+    <section class="list-discovery-section">
+      <div class="list-container">
+
+        <div class="list-discovery-header">
+          <p class="list-kicker">
+            Keep Exploring
+          </p>
+
+          <h2>
+            Find anime your way
+          </h2>
+
+          <p>
+            Use the catalog to narrow down exactly what you
+            want to watch, or start with one of the most
+            popular ways to explore Anikawa.
+          </p>
+        </div>
+
+        <div class="list-discovery-grid">
+          <a href="/list?sort=popular" class="group">
+            <span>01</span>
+            <strong>Most Popular</strong>
+            <p>
+              See the anime currently leading the catalog.
+            </p>
+          </a>
+
+          <a href="/list?sort=rating" class="group">
+            <span>02</span>
+            <strong>Highest Rated</strong>
+            <p>
+              Explore anime with the strongest ratings.
+            </p>
+          </a>
+
+          <a href="/list?status=Ongoing" class="group">
+            <span>03</span>
+            <strong>Currently Airing</strong>
+            <p>
+              Follow anime that are still ongoing.
+            </p>
+          </a>
+
+          <a href="/list?format=Movie" class="group">
+            <span>04</span>
+            <strong>Anime Movies</strong>
+            <p>
+              Find a complete story for your next watch.
+            </p>
+          </a>
+        </div>
+
+        {
+          genres.length > 0 && (
+            <div class="list-genre-explorer">
+              <div class="list-genre-explorer-header">
+                <h2>
+                  Explore by genre
+                </h2>
+
+                <a href="/list">
+                  View all anime →
+                </a>
+              </div>
+
+              <div class="list-genre-links">
+                {
+                  genres.slice(0, 18).map((genre) => (
+                    <a
+                      href={`/list?genre=${encodeURIComponent(
+                        genre,
+                      )}`}
+                    >
+                      {genre}
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+  </main>
+</Layout>

@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+/* ================================================================
+   CONTINUE WATCHING
+   ================================================================ */
+
+.continue-watching {
+    @apply relative w-full overflow-hidden bg-secondarySoft py-14 sm:py-20;
+}
+
+.continue-watching::before {
+    content: "";
+    @apply pointer-events-none absolute right-[-180px] top-[-180px] h-[420px] w-[420px] rounded-full bg-primary/8 blur-[130px];
+}
+
+.continue-watching::after {
+    content: "";
+    @apply pointer-events-none absolute bottom-[-220px] left-[15%] h-[360px] w-[500px] rounded-full bg-accent/5 blur-[130px];
+}
+
+/* ================================================================
+   CONTAINER
+   ================================================================ */
+
+.continue-watching-container {
+    @apply relative z-10 mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.continue-watching-header {
+    @apply flex items-end justify-between gap-6;
+}
+
+.continue-watching-heading {
+    @apply min-w-0;
+}
+
+.continue-watching-kicker {
+    @apply mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-winky text-[9px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.continue-watching-title {
+    @apply font-winky text-3xl font-bold leading-none tracking-tight text-white sm:text-4xl md:text-5xl;
+}
+
+.continue-watching-subtitle {
+    @apply mt-3 font-winky text-sm leading-6 text-gray sm:text-base;
+}
+
+/* ================================================================
+   HISTORY LINK
+   ================================================================ */
+
+.continue-watching-history {
+    @apply inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-surface px-4 py-2.5 font-winky text-xs font-bold text-gray transition-all duration-300;
+}
+
+.continue-watching-history:hover {
+    @apply border-primary/40 bg-surfaceLight text-white;
+}
+
+.continue-watching-history svg {
+    @apply text-accent;
+}
+
+/* ================================================================
+   SLIDER
+   ================================================================ */
+
+.continue-watching-slider {
+    @apply relative mt-8;
+}
+
+.continue-watching-list {
+    @apply flex gap-4 overflow-x-auto pb-5;
+    scrollbar-width: none;
+}
+
+.continue-watching-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* ================================================================
+   MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+    .continue-watching {
+        @apply py-11;
+    }
+
+    .continue-watching-header {
+        @apply items-start;
+    }
+
+    .continue-watching-kicker {
+        @apply mb-2;
+    }
+
+    .continue-watching-title {
+        @apply text-[2rem];
+    }
+
+    .continue-watching-subtitle {
+        @apply mt-2 text-[13px] leading-5;
+    }
+
+    .continue-watching-history {
+        @apply px-3 py-2 text-[10px];
+    }
+
+    .continue-watching-history span {
+        @apply hidden;
+    }
+
+    .continue-watching-slider {
+        @apply mt-6;
+    }
+
+    .continue-watching-list {
+        @apply gap-3 pb-4;
+    }
+}

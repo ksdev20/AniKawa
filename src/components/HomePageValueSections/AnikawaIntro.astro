@@ -1,0 +1,164 @@
+---
+import "@/styles/components/HomePage/anikawa-intro.css";
+
+import { Icon } from "../../icons/icons";
+import {
+  MagnifyingGlassIcon,
+  UserCircleIcon,
+  PlayCircleIcon,
+  ChatCircleIcon,
+  BookmarkSimpleIcon,
+  PlayIcon,
+} from "@phosphor-icons/react";
+---
+
+<section class="anikawa-intro" aria-labelledby="anikawa-intro-heading">
+  <div class="anikawa-intro-container">
+    <!-- ============================================================
+         HEADER
+    ============================================================ -->
+
+    <header class="anikawa-intro-header">
+      <span class="anikawa-intro-kicker"> More than anime </span>
+
+      <h2 id="anikawa-intro-heading" class="anikawa-intro-title">
+        Welcome to
+        <span> AniKawa.</span>
+      </h2>
+
+      <p class="anikawa-intro-lead">
+        Your personal home for discovering anime, keeping track of what you
+        watch, and connecting with the stories and people you love.
+      </p>
+    </header>
+
+    <!-- ============================================================
+         PLATFORM STATEMENT
+    ============================================================ -->
+
+    <div class="anikawa-intro-showcase">
+      <div class="anikawa-intro-showcase-main">
+        <span class="anikawa-intro-showcase-label"> YOUR ANIME UNIVERSE </span>
+
+        <h3>
+          Discover it.
+          <br />
+          <span>Watch it.</span>
+          <br />
+          Make it yours.
+        </h3>
+
+        <p>
+          AniKawa brings your entire anime journey together in one place — from
+          finding something new to watch, to building your personal library,
+          sharing your thoughts, and picking up exactly where you left off.
+        </p>
+      </div>
+
+      <div class="anikawa-intro-orbit">
+        <div class="anikawa-intro-orbit-ring anikawa-intro-orbit-ring-one">
+        </div>
+        <div class="anikawa-intro-orbit-ring anikawa-intro-orbit-ring-two">
+        </div>
+
+        <div class="anikawa-intro-orbit-center">
+          <!-- <span>AK</span> -->
+          <img
+            width="32"
+            height="32"
+            src="./favicon-32x32.png"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="anikawa-intro-orbit-node node-discover">
+          <MagnifyingGlassIcon size={18} weight="duotone" />
+          <span>Discover</span>
+        </div>
+
+        <div class="anikawa-intro-orbit-node node-watch">
+          <PlayIcon size={18} weight="duotone" />
+          <span>Watch</span>
+        </div>
+
+        <div class="anikawa-intro-orbit-node node-track">
+          <BookmarkSimpleIcon size={18} weight="duotone" />
+          <span>Track</span>
+        </div>
+
+        <div class="anikawa-intro-orbit-node node-connect">
+          <ChatCircleIcon size={18} weight="duotone" />
+          <span>Connect</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PLATFORM FEATURES
+    ============================================================ -->
+
+    <div class="anikawa-intro-features">
+      <article class="anikawa-intro-feature">
+        <div class="anikawa-intro-feature-icon">
+          <MagnifyingGlassIcon size={21} weight="duotone" />
+        </div>
+
+        <div>
+          <h3>Find what fits you</h3>
+
+          <p>
+            Explore genres, moods, ratings, formats, years, languages, and more
+            to find your next anime.
+          </p>
+        </div>
+      </article>
+
+      <article class="anikawa-intro-feature">
+        <div class="anikawa-intro-feature-icon">
+          <UserCircleIcon size={21} weight="duotone" />
+        </div>
+
+        <div>
+          <h3>Make it yours</h3>
+
+          <p>
+            Build your profile, manage your anime lists, save favorites, and
+            keep your entire watching journey in one place.
+          </p>
+        </div>
+      </article>
+
+      <article class="anikawa-intro-feature">
+        <div class="anikawa-intro-feature-icon">
+          <PlayCircleIcon size={21} weight="duotone" />
+        </div>
+
+        <div>
+          <h3>Pick up where you left off</h3>
+
+          <p>
+            Continue watching without losing your place across the anime you're
+            currently following.
+          </p>
+        </div>
+      </article>
+
+      <article class="anikawa-intro-feature">
+        <div class="anikawa-intro-feature-icon">
+          <ChatCircleIcon size={21} weight="duotone" />
+        </div>
+
+        <div>
+          <h3>Be part of the conversation</h3>
+
+          <p>
+            Share your thoughts, join episode discussions, and interact with
+            other anime fans.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

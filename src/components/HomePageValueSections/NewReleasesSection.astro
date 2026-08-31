@@ -1,41 +1,88 @@
 ---
-import {
-  getNewest15Anime,
-} from "../../filters/animeFilterMainTmdbVer.ts";
+import { getNewest15Anime } from "../../filters/animeFilterMainTmdbVer.ts";
 import AnimeSliderCSR from "../AnimeSlider/AnimeSliderCSR";
 import AnimeCardStaticTmdbVer from "../AnimeCard/AnimeCardStaticTmdbVer.astro";
+import {
+  SparkleIcon,
+  ArrowRightIcon,
+  CalendarPlusIcon,
+} from "@phosphor-icons/react";
 
 const latestAnime = await getNewest15Anime();
 ---
 
-<section class="popular-anime-section">
+<section class="popular-anime-section put-margin">
   <div class="popular-anime-container">
-    <div class="popular-anime-header">
+
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
+
+    <header class="popular-anime-header">
       <div class="popular-anime-heading">
-        <span class="section-badge"> 🚀 Fresh From Japan </span>
 
-        <h2 class="section-title">New Releases</h2>
+        <span class="popular-anime-kicker">
+          <SparkleIcon size={15} weight="duotone" />
+          Fresh Additions
+        </span>
 
-        <p class="section-subtitle">
-          Discover newly released anime series, fresh seasons, and the latest
-          additions making waves in the anime community.
+        <h2 class="popular-anime-title">
+          New on
+          <span> AniKawa.</span>
+        </h2>
+
+        <p class="popular-anime-subtitle">
+          Explore the newest anime series, seasons, and additions to the
+          AniKawa catalog.
         </p>
+
       </div>
 
-      <a href="/list/new" class="popular-anime-view-all">
-        Explore New Releases →
+      <a
+        href="/list?sort=newest"
+        class="popular-anime-link"
+      >
+        Explore new
+        <ArrowRightIcon size={17} weight="bold" aria-hidden="true" />
       </a>
+    </header>
+
+    <!-- ============================================================
+         ANIME RAIL
+         ============================================================ -->
+
+    <div class="popular-anime-slider">
+      <section class="slider-content-wrapper">
+        <ul class="slider-container">
+          {
+            latestAnime.map((anime: any) => (
+              <AnimeCardStaticTmdbVer anime={anime} />
+            ))
+          }
+        </ul>
+
+        <AnimeSliderCSR client:load />
+      </section>
     </div>
 
-    <section class="slider-content-wrapper">
-      <ul class="slider-container">
-        {
-          latestAnime.map((anime: any) => {
-            return <AnimeCardStaticTmdbVer anime={anime} />;
-          })
-        }
-      </ul>
-      <AnimeSliderCSR client:load />
-    </section>
+    <!-- ============================================================
+         CONTEXT
+         ============================================================ -->
+
+    <aside class="popular-anime-context">
+      <div class="popular-anime-context-icon">
+        <CalendarPlusIcon size={20} weight="duotone" />
+      </div>
+
+      <div>
+        <h3>Always something new</h3>
+
+        <p>
+          This collection makes it easy to discover the latest additions to
+          AniKawa without digging through the entire catalog.
+        </p>
+      </div>
+    </aside>
+
   </div>
 </section>

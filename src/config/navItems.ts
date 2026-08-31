@@ -1,20 +1,20 @@
 export const npoItems = [
-    {
-        label: 'Browse by Categories',
-        href: '/categories'
-    },
-    {
-        label: 'New',
-        href: '/list/new'
-    },
-    {
-        label: 'Popular',
-        href: '/list/popular'
-    },
-    {
-        label: 'Old',
-        href: '/list/old'
-    },
+  {
+    label: "Browse Anime",
+    href: "/list",
+  },
+  {
+    label: "Popular",
+    href: "/list?sort=popular",
+  },
+  {
+    label: "New Releases",
+    href: "/list?sort=newest",
+  },
+  {
+    label: "Browse by Genre",
+    href: "/categories",
+  },
 ];
 
 export const categoryItems = [

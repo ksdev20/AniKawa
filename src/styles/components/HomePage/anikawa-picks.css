@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@config "@tw-config";
+
+/* ================================================================
+   ANIKAWA PICKS
+   ================================================================ */
+
+.anikawa-picks {
+  @apply relative w-full overflow-hidden bg-secondaryDeep py-14 sm:py-20;
+}
+
+.anikawa-picks::before {
+  content: "";
+  @apply pointer-events-none absolute right-[-180px] top-[-180px] h-[420px] w-[420px] rounded-full bg-primary/7 blur-[140px];
+}
+
+.anikawa-picks-container {
+  @apply relative z-10 mx-auto w-full max-w-[1440px];
+}
+
+/* ================================================================
+   HEADER
+   ================================================================ */
+
+.anikawa-picks-header {
+  @apply flex items-end justify-between gap-6 px-5 sm:px-8;
+}
+
+.anikawa-picks-heading {
+  @apply max-w-[720px];
+}
+
+.anikawa-picks-kicker {
+  @apply mb-3 inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 font-winky text-[9px] font-bold uppercase tracking-[0.2em] text-accent;
+}
+
+.anikawa-picks-kicker svg {
+  @apply text-accent;
+}
+
+.anikawa-picks-title {
+  @apply font-winky text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl;
+}
+
+.anikawa-picks-title span {
+  @apply text-accent;
+}
+
+.anikawa-picks-subtitle {
+  @apply mt-3 max-w-[620px] font-winky text-sm leading-6 text-gray sm:text-base sm:leading-7;
+}
+
+/* ================================================================
+   EXPLORE LINK
+   ================================================================ */
+
+.anikawa-picks-link {
+  @apply inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-surface px-4 py-2.5 font-winky text-xs font-bold text-gray transition-all duration-300;
+}
+
+.anikawa-picks-link:hover {
+  @apply border-primary/40 bg-surfaceLight text-white;
+}
+
+.anikawa-picks-link svg {
+  @apply text-accent transition-transform duration-300;
+}
+
+.anikawa-picks-link:hover svg {
+  @apply translate-x-0.5;
+}
+
+/* ================================================================
+   SLIDER
+   ================================================================ */
+
+.anikawa-picks-slider {
+  @apply relative mt-8;
+}
+
+/* ================================================================
+   EDITORIAL NOTE
+   ================================================================ */
+
+.anikawa-picks-note {
+  @apply mx-5 mt-5 flex items-start gap-4 rounded-2xl border border-border bg-surface/70 p-5 backdrop-blur-sm sm:mx-8 sm:p-6;
+}
+
+.anikawa-picks-note-icon {
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-accent;
+}
+
+.anikawa-picks-note h3 {
+  @apply font-winky text-sm font-bold text-white;
+}
+
+.anikawa-picks-note p {
+  @apply mt-1.5 max-w-[850px] font-winky text-xs leading-6 text-gray sm:text-sm;
+}
+
+/* ================================================================
+   MOBILE
+   ================================================================ */
+
+@media (max-width: 640px) {
+  .anikawa-picks {
+    @apply py-11;
+  }
+
+  .anikawa-picks-header {
+    @apply items-start px-5;
+  }
+
+  .anikawa-picks-title {
+    @apply text-[2.1rem];
+  }
+
+  .anikawa-picks-subtitle {
+    @apply text-[13px] leading-6;
+  }
+
+  .anikawa-picks-link {
+    @apply px-3 py-2 text-[10px];
+  }
+
+  .anikawa-picks-link {
+    font-size: 0;
+  }
+
+  .anikawa-picks-link svg {
+    @apply h-[17px] w-[17px];
+  }
+
+  .anikawa-picks-slider {
+    @apply mt-6;
+  }
+
+  .anikawa-picks-note {
+    @apply mx-5 mt-4 p-4;
+  }
+
+  .anikawa-picks-note-icon {
+    @apply h-9 w-9;
+  }
+
+  .anikawa-picks-note p {
+    @apply text-[11px] leading-5;
+  }
+}
