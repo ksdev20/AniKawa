@@ -63,12 +63,6 @@ function normalize(value: unknown): string {
     .toLowerCase();
 }
 
-function slugify(value: string): string {
-  return normalize(value)
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
 function getEpisodeCount(anime: Anime): number {
   return anime.episodes?.length ?? 0;
 }

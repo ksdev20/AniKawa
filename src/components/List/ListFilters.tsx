@@ -50,8 +50,6 @@ export default function ListFilters({
   years,
   countries,
 
-  totalResults,
-
   sortOptions,
 }: ListFiltersProps) {
   const [isOpen, setIsOpen] = useState(false);

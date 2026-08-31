@@ -5,7 +5,6 @@ import { useAuth } from "@/hooks/useAuth";
 
 import "@/styles/pages/episode/EpisodeFeedback.css";
 import { getGuestId } from "@/utils/getGuestId";
-import { uploadFeedbackScreenshot } from "@/lib/feedback/uploadFeedbackScreenshot";
 import {
   getYouTubeDiagnostics,
 } from "@/lib/feedback/youtubeDiagnostics";

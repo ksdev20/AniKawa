@@ -14,7 +14,6 @@ import { frontendUrl } from "../../../global_assets/globalPaths";
 import Layout from "../../../layouts/Layout.astro";
 import FavoriteButton from "@/components/AnimePage/FavoriteButton";
 import AddAnimeToList from "@/components/AnimePage/AddAnimeToList";
-import { useLoginModalStore } from "@/global_assets/loginModalStore";
 const { nanoid, slug } = Astro.params;
 const sort = Astro.url.searchParams.get("sort") ?? "old";
 const anime = (await getAnimeById(nanoid)) as Anime | null;
