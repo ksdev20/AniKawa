@@ -29,8 +29,8 @@ export const PATCH: APIRoute = async (context) => {
       return badRequest(parsed.error.issues[0]?.message ?? "Invalid input");
     }
 
-    const guestId = context.request.headers.get("x-guest-id") ?? null;
-    if (guestId && !isValidUUID(guestId ?? null)) { 
+    const guestId = context.request.headers.get("x-guest-id") ?? undefined;
+    if (guestId && !isValidUUID(guestId ?? null)) {
       return badRequest("Invalid guest id");
     }
 
@@ -40,12 +40,22 @@ export const PATCH: APIRoute = async (context) => {
       return serverError("Supabase client missing");
     }
 
+    console.log("[EDIT COMMENT] Starting RPC", {
+      commentId,
+      isGuest: !!guestId,
+    });
+
+    const start = performance.now();
+
     const { data, error } = await supabase.rpc("rpc_edit_comment", {
       p_comment_id: commentId,
-
       p_content: parsed.data.content,
+      p_guest_id: guestId,
+    });
 
-      p_guest_id: guestId ?? undefined,
+    console.log("[EDIT COMMENT] RPC finished", {
+      durationMs: Math.round(performance.now() - start),
+      hasError: !!error,
     });
 
     if (error) {

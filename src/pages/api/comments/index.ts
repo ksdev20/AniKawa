@@ -256,9 +256,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     const commentUrl =
-  typeof notificationUrl === "string" && data
-    ? `${notificationUrl}#comment-${data.id}`
-    : undefined;
+      typeof notificationUrl === "string" && data
+        ? `${notificationUrl}#comment-${data.id}`
+        : undefined;
 
     if (error) {
       console.error("rpc_create_comment", error);
@@ -379,6 +379,13 @@ export const GET: APIRoute = async ({ request, locals }) => {
       return badRequest("Invalid guest id");
     }
 
+    const parsedCursorScore =
+      cursorScore !== null ? Number(cursorScore) : undefined;
+
+    if (parsedCursorScore !== undefined && Number.isNaN(parsedCursorScore)) {
+      return badRequest("Invalid cursor score");
+    }
+
     // =====================================================
     // Fetch comments
     // =====================================================
@@ -390,7 +397,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
       p_limit: limit,
 
-      p_cursor_score: Number(cursorScore) ?? undefined,
+      p_cursor_score: parsedCursorScore,
       p_cursor_created_at: cursorCreatedAt ?? undefined,
       p_cursor_id: cursorId ?? undefined,
 

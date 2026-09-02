@@ -1,22 +1,15 @@
-import sanitizeHtml from "sanitize-html";
-
 /**
- * Sanitizes user-generated comment content.
+ * Sanitizes plain-text comments.
  *
- * Comments are plain text only.
- * HTML, scripts, attributes, and unsafe content are removed.
+ * Removes HTML tags and normalizes whitespace.
  */
 export function sanitizeComment(input: string): string {
   if (!input) {
     return "";
   }
 
-  const sanitized = sanitizeHtml(input, {
-    allowedTags: [],
-    allowedAttributes: {},
-
-    disallowedTagsMode: "discard",
-  });
-
-  return sanitized.replace(/\s+/g, " ").trim();
+  return input
+    .replace(/<[^>]*>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
